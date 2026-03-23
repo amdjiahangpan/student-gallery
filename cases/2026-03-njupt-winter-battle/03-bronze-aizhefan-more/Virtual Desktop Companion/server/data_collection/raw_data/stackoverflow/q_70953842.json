@@ -1,0 +1,24 @@
+{
+  "id": 70953842,
+  "title": "Error: wsl.exe exited with code 4294967295 on Installing Rancher Desktop",
+  "body": "<p>I am getting the below error when installing the latest stable Rancher Desktop in my Virtual Machine.</p>\n<p>Could someone please help?</p>\n<p><strong>Error:</strong></p>\n<blockquote>\n<p>Error: wsl.exe exited with code 4294967295</p>\n</blockquote>\n<p><strong>Command:</strong></p>\n<pre><code>wsl --distribution rancher-desktop --exec mkdir -p /mnt/wsl/rancher-desktop/run/data\n</code></pre>\n<p><strong>Logs:</strong></p>\n<pre><code>2022-02-02T09:58:39.490Z: Running command wsl --distribution rancher-desktop --exec wslpath -a -u C:\\Users\\VIVEK~1.NUN\\AppData\\Local\\Temp\\rd-distro-gGd3SG\\distro.tar...\n2022-02-02T09:58:40.641Z: Running command wsl --distribution rancher-desktop --exec tar -cf /mnt/c/Users/VIVEK~1.NUN/AppData/Local/Temp/rd-distro-gGd3SG/distro.tar -C / /bin/busybox /bin/mount /bin/sh /lib /etc/wsl.conf /etc/passwd /etc/rancher /var/lib...\n2022-02-02T09:58:42.628Z: Running command wsl --import rancher-desktop-data C:\\Users\\Vivek.Nuna\\AppData\\Local\\rancher-desktop\\distro-data C:\\Users\\VIVEK~1.NUN\\AppData\\Local\\Temp\\rd-distro-gGd3SG\\distro.tar --version 2...\n2022-02-02T09:58:44.025Z: Running command wsl --distribution rancher-desktop-data --exec /bin/busybox [ ! -d /etc/rancher ]...\n2022-02-02T09:58:44.025Z: Running command wsl --distribution rancher-desktop-data --exec /bin/busybox [ ! -d /var/lib ]...\n2022-02-02T10:03:54.533Z: Running command wsl --terminate rancher-desktop...\n2022-02-02T10:03:54.534Z: Running command wsl --terminate rancher-desktop-data...\n2022-02-02T10:03:54.971Z: Running command wsl --distribution rancher-desktop --exec mkdir -p /mnt/wsl/rancher-desktop/run/data...\n2022-02-02T10:04:03.418Z: WSL: executing: mkdir -p /mnt/wsl/rancher-desktop/run/data: Error: wsl.exe exited with code 4294967295\n</code></pre>\n<p><a href=\"https://i.sstatic.net/xdyQ6.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/xdyQ6.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 42,
+  "answer_count": 12,
+  "view_count": 67811,
+  "tags": [
+    "kubernetes",
+    "virtual-machine",
+    "windows-subsystem-for-linux",
+    "rancher"
+  ],
+  "creation_date": "2022-02-02T10:18:21",
+  "answers": [
+    {
+      "id": 72783814,
+      "body": "<p>I met the same issue in Windows 10.</p>\n<p>Below solution helped me:</p>\n<h2>1. Quit Rancher Desktop</h2>\n<p><a href=\"https://i.sstatic.net/U8kpt.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/U8kpt.png\" alt=\"Quit Rancher\" /></a></p>\n<h2>2. Run below command in Windows command line:</h2>\n<pre class=\"lang-bash prettyprint-override\"><code>wsl --update\n</code></pre>\n<h2>3. After update completed, open Rancher Desktop again.</h2>\n<p>Rancher Desktop works well now.</p>\n<p><a href=\"https://i.sstatic.net/t7bWi.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/t7bWi.png\" alt=\"Rancher Desktop works well now\" /></a></p>\n<p>After completed installing Rancher desktop, you can use the <code>docker</code> and <code>kubectl</code> commands in Windows command line successfully.</p>\n<h2>References:</h2>\n<p><a href=\"https://github.com/rancher-sandbox/rancher-desktop/issues/1328#issuecomment-1022190843\" rel=\"noreferrer\">Error: wsl.exe exited with code 4294967295 #1328 - github</a></p>\n",
+      "score": 46,
+      "creation_date": "2022-06-28T09:19:05"
+    }
+  ],
+  "source": "stackoverflow"
+}

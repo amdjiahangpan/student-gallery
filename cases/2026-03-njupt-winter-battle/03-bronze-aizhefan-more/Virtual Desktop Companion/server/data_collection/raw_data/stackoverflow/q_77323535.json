@@ -1,0 +1,17 @@
+{
+  "id": 77323535,
+  "title": "Add nvidia runtime to docker runtimes on windows WSL",
+  "body": "<p>I want to add the nvidia runtime to my docker.\nNote that i am running windows 11.\nDocker Desktop v.4.24.2 on Windows integrated on WSL 2\nNVIDIA Drivers 545.84</p>\n<p>I installed everything as nvidia-container-toolkit and  in the wsl that is running ubuntu 22.04 LTS\nI am able to run</p>\n<pre><code>docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -it --rm -v .:/app nvcr.io/nvidia/pytorch:22.07-py3\n</code></pre>\n<p>And it actually loads my GPU with everything it needs. I know this because i am able to execute inside a jupyter notebook</p>\n<pre><code>import torch\nfor i in range(torch.cuda.device_count()):\n   print(torch.cuda.get_device_properties(i).name)\n</code></pre>\n<p>And it shows my GPU (RTX 2080 SUPER)</p>\n<p>But if i want to use the flag --runtime=nvidia it says</p>\n<p>docker: Error response from daemon: unknown or invalid runtime name: nvidia.\nSee 'docker run --help'.</p>\n<p>I want to use it inside a docker compose:</p>\n<pre><code>version: '3'\nservices:\n  pytorch_container:\n    image: nvcr.io/nvidia/pytorch:22.07-py3\n    command: [&quot;bash&quot;]\n    volumes:\n      - .:/app\n    runtime: nvidia\n    ipc: host\n    ulimits:\n      memlock: -1\n      stack: 67108864\n    stdin_open: true\n    tty: true\n</code></pre>\n<p>It doesnt run because it doesnt find the nvidia runtime</p>\n<p>I already tried\n<a href=\"https://stackoverflow.com/a/59008360/22768491\">https://stackoverflow.com/a/59008360/22768491</a>\nand still nothing</p>\n",
+  "score": 10,
+  "answer_count": 1,
+  "view_count": 7048,
+  "tags": [
+    "docker",
+    "pytorch",
+    "nvidia",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-10-19T11:54:25",
+  "answers": [],
+  "source": "stackoverflow"
+}

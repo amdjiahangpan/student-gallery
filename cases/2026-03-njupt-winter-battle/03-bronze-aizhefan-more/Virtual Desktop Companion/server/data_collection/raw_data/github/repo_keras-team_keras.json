@@ -1,0 +1,21 @@
+{
+  "id": 33015583,
+  "name": "keras",
+  "full_name": "keras-team/keras",
+  "description": "Deep Learning for humans",
+  "stars": 63812,
+  "forks": 19697,
+  "open_issues": 281,
+  "url": "https://github.com/keras-team/keras",
+  "clone_url": "https://github.com/keras-team/keras.git",
+  "readme_content": "",
+  "created_at": "2015-03-28T00:35:42Z",
+  "updated_at": "2026-02-19T06:08:50Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

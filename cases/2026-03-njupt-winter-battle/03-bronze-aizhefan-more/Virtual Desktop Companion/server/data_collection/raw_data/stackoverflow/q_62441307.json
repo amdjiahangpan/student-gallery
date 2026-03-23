@@ -1,0 +1,24 @@
+{
+  "id": 62441307,
+  "title": "How can I change the location of docker images when using Docker Desktop on WSL2 with Windows 10 Home?",
+  "body": "<p>I've just upgraded to Windows 10 Home May 2020, <a href=\"https://learn.microsoft.com/en-us/windows/wsl/install-win10\" rel=\"noreferrer\">activated WSL2</a>, and installed <a href=\"https://hub.docker.com/editions/community/docker-ce-desktop-windows\" rel=\"noreferrer\">Docker Desktop</a>.</p>\n<p>WSL2 must be installed in my system disk, which is a small SSD. I don't want to fill it with docker images. How do I change the docker images path? I'd like to use a path in my big Windows filesystem.</p>\n<p>The <a href=\"https://stackoverflow.com/questions/42250222/what-is-docker-image-location-on-windows-10/\">image location</a> is somewhat confusing. I believe it is in <code>/mnt/wsl/docker-desktop-data/</code>.</p>\n<p>How do I change the directory of docker images inside WSL2? May I change docker configuration to select a path inside <code>/mnt/d</code>, or mount a path from /mnt/d over docker data dirs?</p>\n",
+  "score": 356,
+  "answer_count": 13,
+  "view_count": 166253,
+  "tags": [
+    "docker",
+    "windows-10",
+    "docker-desktop",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-18T02:21:37",
+  "answers": [
+    {
+      "id": 63752264,
+      "body": "<p>The WSL 2 docker-desktop-data vm disk image would normally reside in:\n<code>%USERPROFILE%\\AppData\\Local\\Docker\\wsl\\data\\ext4.vhdx</code></p>\n<p>Follow the following to relocate it to other drive/directory, with all existing docker data preserved (tested against Docker Desktop 2.3.0.4 (46911), and continued to work after updating the 3.1.0 (51484)):</p>\n<p>First, shut down your docker desktop by right click on the Docker Desktop icon and select Quit Docker Desktop</p>\n<p>Then, open your command prompt:</p>\n<pre><code>wsl --list -v\n</code></pre>\n<p>You should be able to see, make sure the STATE for both is Stopped.(<code>wsl  --shutdown</code>)</p>\n<pre><code>  NAME                   STATE           VERSION\n* docker-desktop         Stopped         2\n  docker-desktop-data    Stopped         2\n</code></pre>\n<p>Export docker-desktop-data into a file</p>\n<pre><code>wsl --export docker-desktop-data &quot;D:\\Docker\\wsl\\data\\docker-desktop-data.tar&quot;\n</code></pre>\n<p>Unregister docker-desktop-data from wsl, note that after this, your <code>ext4.vhdx</code> file would automatically be removed (so back it up first if you have important existing image/container):</p>\n<pre><code>wsl --unregister docker-desktop-data\n</code></pre>\n<p>Import the docker-desktop-data back to wsl, but now the ext4.vhdx would reside in different drive/directory (Note that you will need to create <code>D:\\Docker\\wsl\\data\\</code> if it does not already exist):</p>\n<pre><code>wsl --import docker-desktop-data &quot;D:\\Docker\\wsl\\data&quot; &quot;D:\\Docker\\wsl\\data\\docker-desktop-data.tar&quot; --version 2\n</code></pre>\n<p>Start the Docker Desktop again and it should work. In the event that Docker Desktop doesn't start correctly, restart the PC and try again.</p>\n<p>You may delete the <code>D:\\Docker\\wsl\\data\\docker-desktop-data.tar</code> file (NOT the <code>ext4.vhdx</code> file) if everything looks good for you after verifying</p>\n",
+      "score": 844,
+      "creation_date": "2020-09-05T09:10:13"
+    }
+  ],
+  "source": "stackoverflow"
+}

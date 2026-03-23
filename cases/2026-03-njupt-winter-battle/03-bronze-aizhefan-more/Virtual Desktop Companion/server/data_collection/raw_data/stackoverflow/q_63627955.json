@@ -1,0 +1,24 @@
+{
+  "id": 63627955,
+  "title": "Can&#39;t load shared library libQt5Core.so.5",
+  "body": "<p>This question has been asked before, but the fixes don't work for me. I am running Windows 10 with WSL (Debian) and I am unable to run a QT program because of the error</p>\n<p><code>texconv: error while loading shared libraries: libQt5Core.so.5: cannot open shared object file: No such file or directory</code></p>\n<p>I found <a href=\"https://askubuntu.com/questions/1034313/ubuntu-18-4-libqt5core-so-5-cannot-open-shared-object-file-no-such-file-or-dir\">a post</a> which discusses the same problem. I've tried tolos' and Envek's solutions, but they don't work for me. For me the file is under <code>/usr/lib/x86_64-linux-gnu/</code> like tolos' was. I also sudo-ed the strip and recompiled the qt program (If that even matters), but it still doesn't work.</p>\n<p>If it matters, my kernel version (checked with <code>uname -r</code>) is 4.4.0-18362-Microsoft and I have no issues running this qt program on my other PC that uses WSL Ubuntu. And I installed the qt stuff with this command: <code>sudo apt-get install qt5-default qtbase5-dev</code></p>\n",
+  "score": 31,
+  "answer_count": 2,
+  "view_count": 74846,
+  "tags": [
+    "qt",
+    "debian",
+    "shared-libraries",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-08-28T05:28:23",
+  "answers": [
+    {
+      "id": 68897099,
+      "body": "<p>I had an image that I would run using <strong>docker run</strong> and which would successfully launch KStars -- an application that uses this <code>libQt5core.so.5</code>.</p>\n<p>If I ran the very same image on a <strong>Kubernetes</strong> cluster then I would get an error message when launching KStars like <code>libQt5Core.so.5: cannot open shared object file: No such file or directory</code> or some such.</p>\n<p>Putting this <code>strip</code> command into the Dockerfile and rebuilding the image allowed the application to load successfully in both environments.</p>\n<pre><code>sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5\n</code></pre>\n",
+      "score": 32,
+      "creation_date": "2021-08-23T18:01:51"
+    }
+  ],
+  "source": "stackoverflow"
+}

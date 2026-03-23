@@ -1,0 +1,22 @@
+{
+  "id": 66585350,
+  "title": "DDEV in WSL2: How do I get `ddev launch` to open a browser on Windows?",
+  "body": "<p>I'm using DDEV and in my wsl2 installation the <code>ddev launch</code> command stopped working this week, apparently because the <code>xdg-open</code> command didn't work anymore.</p>\n<p>Setting the <code>$BROWSER</code> variable to a specific browser didn't work as the standard installation path contains spaces and this breaks in <code>xdg-open</code>. Also it would break if I switch browsers or use a different standard browser.</p>\n<pre class=\"lang-none prettyprint-override\"><code>/usr/bin/xdg-open: www-browser: not found&lt;br /&gt;\n/usr/bin/xdg-open: links2: not found&lt;br /&gt;\n/usr/bin/xdg-open: elinks: not found&lt;br /&gt;\n/usr/bin/xdg-open: links: not found&lt;br /&gt;\n/usr/bin/xdg-open: lynks: not found&lt;br /&gt;\n/usr/bin/xdg-open: w3m: not found&lt;br /&gt;\nxdg-open: no method available for opening [...]&lt;br /&gt;\nfailed to run launch: no method available for opening [...]\n</code></pre>\n",
+  "score": 15,
+  "answer_count": 2,
+  "view_count": 10214,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "ddev"
+  ],
+  "creation_date": "2021-03-11T15:16:17",
+  "answers": [
+    {
+      "id": 66585414,
+      "body": "<p>In WSL2 I added the Browser variable to ~/.bashrc</p>\n<pre><code>export BROWSER=&quot;powershell.exe /C start&quot;\n</code></pre>\n<p>This opens the standard browser under windows.\nAn alternative way would be to use</p>\n<pre><code>export BROWSER=&quot;explorer.exe&quot;\n</code></pre>\n<p>but this opens the adress twice in the browser.</p>\n<p>Links to other resources:</p>\n<ul>\n<li><a href=\"https://superuser.com/a/1266038/75275\">https://superuser.com/a/1266038/75275</a></li>\n</ul>\n",
+      "score": 17,
+      "creation_date": "2021-03-11T15:20:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 52905844,
+  "title": "git bash on windows vs. WSL",
+  "body": "<p>I downloaded git on my windows, and some other stuffs, including git bash, came along.</p>\n\n<p>Although I didn't know why bash terminal has been included in the \"git\", \nit supported not only the functions for git, but other functions like mkdir, cp, mv, just like a real linux bash terminal.</p>\n\n<p>Recently I came to know the WSL (Windows Subsystem for Linux), which makes bash terminal available in windows.</p>\n\n<p>Is the git bash quite inferior to WSL in terms of functionality? </p>\n\n<p>Does it contain some constraints that WSL doesn't have?</p>\n",
+  "score": 58,
+  "answer_count": 2,
+  "view_count": 53882,
+  "tags": [
+    "git-bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-10-20T12:51:21",
+  "answers": [
+    {
+      "id": 52911039,
+      "body": "<p><a href=\"https://github.com/git-for-windows/git/\" rel=\"noreferrer\">Git for Windows</a> is using the  <a href=\"https://mingw-w64.org/doku.php\" rel=\"noreferrer\">mingw-w64</a> project (as <a href=\"https://stackoverflow.com/q/32356595/6309\">illustrated here</a>) and <a href=\"https://www.msys2.org/\" rel=\"noreferrer\"><strong>msys2</strong></a>.<br>\nSee more in \"<a href=\"https://stackoverflow.com/a/35099458/6309\">How are msys, msys2, and msysgit related to each other?</a>\".</p>\n\n<p>That is vastly different from <a href=\"https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux\" rel=\"noreferrer\">WSL</a>, which emulates an actual Linux distribution.</p>\n\n<blockquote>\n  <p>Does it contain some constraints that WSL doesn't have?</p>\n</blockquote>\n\n<p>The Git for Windows is based on a <a href=\"https://stackoverflow.com/a/1780614/6309\">POSIX</a> compatibility layer, <a href=\"https://stackoverflow.com/a/27372958/6309\">which has limitations</a>: <a href=\"https://stackoverflow.com/a/32355772/6309\">POSIX support is deprecated since Windows 8</a>.</p>\n\n<hr>\n\n<p>Note: WSL will soon be <a href=\"https://stackoverflow.com/a/56012225/6309\">replaced by WSL2</a>, which uses an entirely new architecture that uses a <a href=\"https://devblogs.microsoft.com/commandline/shipping-a-linux-kernel-with-windows/\" rel=\"noreferrer\">real Linux kernel</a>.</p>\n\n<hr>\n\n<p>If your program depends on Git bash (and not WSL/WSL2 bash), make sure to put said Git for Windows first in <code>your</code> PATH, as <a href=\"https://stackoverflow.com/users/22656/jon-skeet\">Jon Skeet</a> described in \"<a href=\"https://codeblog.jonskeet.uk/2019/10/12/using-git-bash-from-appveyor/\" rel=\"noreferrer\">USING “GIT BASH” FROM APPVEYOR</a>\", in an <a href=\"https://www.appveyor.com/\" rel=\"noreferrer\">AppVeyor CI environment</a>.</p>\n\n<pre><code># Make sure we get the bash that comes with git, not WSL bash\n  - ps: $env:Path = \"C:\\Program Files\\Git\\bin;$env:Path\"\n</code></pre>\n",
+      "score": 32,
+      "creation_date": "2018-10-20T23:57:41"
+    }
+  ],
+  "source": "stackoverflow"
+}

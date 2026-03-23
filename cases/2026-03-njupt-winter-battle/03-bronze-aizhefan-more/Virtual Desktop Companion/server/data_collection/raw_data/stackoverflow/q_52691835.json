@@ -1,0 +1,25 @@
+{
+  "id": 52691835,
+  "title": "WSL (Ubuntu): how to open localhost in browser from bash terminal",
+  "body": "<p>I am trying to open <a href=\"http://localhost\" rel=\"noreferrer\">http://localhost</a> in (any) browser from WSL bash terminal.</p>\n\n<p>So far I have tried:</p>\n\n<ul>\n<li><a href=\"https://stackoverflow.com/questions/28162697/how-can-i-open-google-chrome-from-the-terminal-with-the-url-localhost3000\">How can I open Google Chrome from the terminal with the URL &quot;localhost:3000&quot;?</a></li>\n<li><a href=\"https://stackoverflow.com/questions/42463929/couldnt-find-a-file-descriptor-referring-to-the-console-on-ubuntu-bash-on-win\">&quot;Couldn&#39;t find a file descriptor referring to the console&quot; on Ubuntu bash on Windows</a></li>\n<li><a href=\"https://stackoverflow.com/questions/19652678/how-to-mention-c-program-files-in-batchfile/19652711\">How to mention C:\\Program Files in batchfile</a></li>\n</ul>\n\n<p>No luck in setting up BROWSER variable for xdg-open, it responds to <code>xdg-open http://localhost</code> with <code>/usr/bin/xdg-open: 851: /usr/bin/xdg-open: /c/\"Program: not found</code>.</p>\n\n<p>I have tried escaping with <code>\\</code> and <code>^</code>. Using <code>%ProgramFiles(x86)%</code> and ofcorse <code>\"Program Files (x86)\"</code>. More or less it is the same answer every time... Any ideas how to set a work flow for opening browser in WSL?</p>\n\n<p>So far I've ended up with:</p>\n\n<p><code>/c/Program\\ Files\\ \\(x86\\)/Google/Chrome/Application/chrome.exe localhost</code></p>\n\n<p>But I am looking for more elegant solution.</p>\n",
+  "score": 29,
+  "answer_count": 11,
+  "view_count": 85870,
+  "tags": [
+    "windows",
+    "bash",
+    "ubuntu",
+    "browser",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-10-07T18:58:23",
+  "answers": [
+    {
+      "id": 55762624,
+      "body": "<p>You can invoke the Windows command line from Bash and use Windows file association to open URL with the default Windows browser.</p>\n<p>To do so just type in Bash:</p>\n<pre class=\"lang-sh prettyprint-override\"><code>cmd.exe /C start http://localhost\n</code></pre>\n<p>In my case this loads <code>localhost</code> in Chrome, note that the full URL is necessary for Windows to decide what to do.</p>\n<p>This is similar to what <code>open</code> does in MacOS, hence you may find useful to directly alias the command and use it also for other type of files:</p>\n<pre class=\"lang-sh prettyprint-override\"><code># add this to .bash_aliases\nopen='cmd.exe /C start'\n</code></pre>\n<p>Now you can <code>open URL</code> or <code>open file.pdf</code> directly from WSL.</p>\n<hr />\n<p>Note: since you are simply redirecting commands to <code>cmd.exe</code>, it needs to have access to the file your working with. As a consequence the above solution will work when you find yourself in the Windows file system, but probably will fail when you are working with files in Linux partition (i.e. in the <code>tmp</code> or in the <code>bin</code> folder). This probably <a href=\"https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/\" rel=\"noreferrer\">has been fixed</a> in the new version of the WSL but I have not tested it.</p>\n",
+      "score": 22,
+      "creation_date": "2019-04-19T13:27:54"
+    }
+  ],
+  "source": "stackoverflow"
+}

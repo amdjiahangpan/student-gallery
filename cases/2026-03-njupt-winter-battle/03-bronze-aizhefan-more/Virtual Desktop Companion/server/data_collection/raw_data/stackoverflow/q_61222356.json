@@ -1,0 +1,24 @@
+{
+  "id": 61222356,
+  "title": "No menu for adding WSL python interpreter in PyCharm",
+  "body": "<p>I was following <a href=\"https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html#configure-wsl\" rel=\"noreferrer\">this guide</a> from official jetbrains page, until the step 2 comes in the existence.</p>\n\n<p>In the picture mentioned in that page, has so many options like ssh, wsl, vagrant, docker, etc. In my pycharm (latest 2019.3.4) it only shows 4 options - venv, conda, pipenv and system-interpreter.</p>\n\n<blockquote>\n  <p>There is no WSL menu in the add python interpreter dialog.</p>\n</blockquote>\n\n<p>See the below image:</p>\n\n<p><a href=\"https://i.sstatic.net/tgpid.jpg\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/tgpid.jpg\" alt=\"enter image description here\"></a></p>\n\n<p>Searched web for an hour and found no results that show how to fix it. I started plugin search in the PyCharm if there's an external plugin to do so, but there were no plugin named as WSL.</p>\n\n<p>I don't know how to setup the WSL interpreter, I have python3.8 installed on my wsl right now.</p>\n\n<p>Any help will be appreciated!</p>\n",
+  "score": 18,
+  "answer_count": 3,
+  "view_count": 15377,
+  "tags": [
+    "python",
+    "pycharm",
+    "windows-subsystem-for-linux",
+    "jetbrains-ide"
+  ],
+  "creation_date": "2020-04-15T06:09:49",
+  "answers": [
+    {
+      "id": 61553478,
+      "body": "<p>I have solved this by</p>\n<ul>\n<li>Uninstalling pycharm with history and cache.</li>\n<li>Removing folders completely from <code>C:\\Users\\%USERNAME%\\AppData\\Local</code> and <code>C:\\Users\\%USERNAME%\\AppData\\Roaming\\JetBrains</code> and</li>\n<li>Clean re-install of pycharm</li>\n<li>WSL interpreter option shows up as normal</li>\n<li>Ideavim is creating a conflict I guess.</li>\n</ul>\n",
+      "score": 15,
+      "creation_date": "2020-05-02T01:51:23"
+    }
+  ],
+  "source": "stackoverflow"
+}

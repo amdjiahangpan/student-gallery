@@ -1,0 +1,25 @@
+{
+  "id": 69253074,
+  "title": "How to delete a single command from history in bash",
+  "body": "<p>After some searching online I found that the following command should remove a single entry from the bash history:</p>\n<pre><code>$ history -d &lt;number&gt;\n</code></pre>\n<p>So let's say I would like to remove this single line from my history because I misspelled git\n:</p>\n<pre><code>10003 gti add . &amp;&amp; git commit -m\n</code></pre>\n<p>When I do the following command:</p>\n<pre><code>$ history -d 10003\n</code></pre>\n<p>It still shows up in my history, even when I restart the terminal</p>\n<p>So any idea how I can fix this because I use autocomplete and sometimes especially when using git it can get a bit messy.</p>\n",
+  "score": 19,
+  "answer_count": 2,
+  "view_count": 32682,
+  "tags": [
+    "bash",
+    "command-line",
+    "terminal",
+    "autocomplete",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-09-20T10:40:01",
+  "answers": [
+    {
+      "id": 69254611,
+      "body": "<p>Command history in Bash is stored both in-memory, typically for the current shell session, and on disk, by default in <code>~/.bash_history</code>. A default history configuration might append the in-memory session to the file on disk when the session is terminated, but there are a lot of knobs to tweak.</p>\n<p>To permanently delete a command from history, after running <code>history -d &lt;number&gt;</code>, you can run <code>history -w</code>. This writes both the in-memory session and any edits to the older history back to the <code>~/.bash_history</code> file.</p>\n<p>You could also edit the <code>~/.bash_history</code> file directly. As long as you <em>don't</em> run <code>history -w</code> in this case, the older commands will not be touched when the current Bash session exits.</p>\n<p>A few references to history settings:</p>\n<ul>\n<li><a href=\"https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILE\" rel=\"noreferrer\"><code>HISTFILE</code></a> – the file where history is persisted (defaults to <code>~/.bash_history</code>)</li>\n<li><a href=\"https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILESIZE\" rel=\"noreferrer\"><code>HISTFILESIZE</code></a> – the number of commands stored in the history file (defaults to <code>HISTSIZE</code>)</li>\n<li><a href=\"https://www.gnu.org/software/bash/manual/bash.html#index-HISTSIZE\" rel=\"noreferrer\"><code>HISTSIZE</code></a> – the number of commands stored in the (in-memory) history list (defaults to 500)</li>\n<li><a href=\"https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin\" rel=\"noreferrer\"><code>cmdhist</code></a> – shell option to save multi-line commands in a single history entry</li>\n<li><a href=\"https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin\" rel=\"noreferrer\"><code>histappend</code></a> – shell option to control if the history list is appended to the history file, or if the history file is overwritten</li>\n<li><a href=\"https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin\" rel=\"noreferrer\"><code>lithist</code></a> – shell option to store multi-line commands using linebreaks instead of semicolons</li>\n</ul>\n<p>The <code>-w</code> option was recommended in <a href=\"https://unix.stackexchange.com/a/49216\">this answer</a> on the Unix &amp; Linux Stack Exchange site.</p>\n",
+      "score": 20,
+      "creation_date": "2021-09-20T12:41:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

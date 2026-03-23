@@ -1,0 +1,23 @@
+{
+  "id": 44480829,
+  "title": "How to &quot;copy to clipboard&quot; in vim of Bash on Windows?",
+  "body": "<p>I used to use <code>\"+y</code> to copy text to system's clipboard, but it doesn't work in vim of Bash on Windows.</p>\n",
+  "score": 39,
+  "answer_count": 11,
+  "view_count": 30966,
+  "tags": [
+    "bash",
+    "vim",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-06-11T05:58:06",
+  "answers": [
+    {
+      "id": 44480918,
+      "body": "<p>To copy to the clipboard from within vim in Bash on Windows 10, hold <code>Shift</code> and drag the cursor over text. then press <code>enter</code></p>\n\n<p>A selection should look like this before pressing <code>enter</code>:</p>\n\n<p><a href=\"https://i.sstatic.net/j4HG3.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/j4HG3.png\" alt=\"Selection should look like this before pressing ENTER\"></a></p>\n\n<p><strong>EDIT</strong>: This only works with text that fits on the screen all at once; it cannot be used to copy blocks of text that span many 'screens'</p>\n",
+      "score": 35,
+      "creation_date": "2017-06-11T06:14:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

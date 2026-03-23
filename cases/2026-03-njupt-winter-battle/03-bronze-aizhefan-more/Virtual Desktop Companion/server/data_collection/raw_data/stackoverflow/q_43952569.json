@@ -1,0 +1,22 @@
+{
+  "id": 43952569,
+  "title": "NFS client under WSL - mount.nfs: No such device",
+  "body": "<p>I am getting the following error trying to mount a nfs export.</p>\n\n<pre><code>sudo mount 192.168.1.175:/mnt/nas /mnt/c/nas\nmount.nfs: No such device\n</code></pre>\n\n<p>Any ideas on how to fix this?</p>\n",
+  "score": 17,
+  "answer_count": 4,
+  "view_count": 35431,
+  "tags": [
+    "nfs",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-05-13T11:25:26",
+  "answers": [
+    {
+      "id": 67073914,
+      "body": "<p>If like me you are stuck on WSL1 you can work around this issue by mapping the drive in windows. Use the <strong>Map Network Drive</strong> feature and create a drive letter for your nfs mount e.g. G:</p>\n<p>Now in WSL you can mount that drive letter:</p>\n<pre><code>sudo mkdir /mnt/g\nsudo mount -t drvfs G: /mnt/g\n</code></pre>\n<p>from: <a href=\"https://www.public-health.uiowa.edu/it/support/kb48568/\" rel=\"nofollow noreferrer\">How to Mount Windows Network Drives in WSL</a></p>\n<p>I have not tested the access speed to a drive mapped through to WSL like this but I would expect it to be slow!</p>\n",
+      "score": 4,
+      "creation_date": "2021-04-13T11:22:11"
+    }
+  ],
+  "source": "stackoverflow"
+}

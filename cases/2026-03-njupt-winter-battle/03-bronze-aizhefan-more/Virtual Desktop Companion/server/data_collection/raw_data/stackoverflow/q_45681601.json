@@ -1,0 +1,25 @@
+{
+  "id": 45681601,
+  "title": "How to use difftool and mergetool on Windows 10 Ubuntu bash (WSL)",
+  "body": "<p>I use Windows 10 Ubuntu bash, provided by Windows Subsystem for Linux. I want to use a visual diff/merge tool for git. I installed <a href=\"https://www.perforce.com/products/helix-apps/merge-diff-tool-p4merge\" rel=\"noreferrer\">p4merge</a> on Windows (followed this <a href=\"https://danlimerick.wordpress.com/2011/06/19/git-for-window-tip-use-p4merge-as-mergetool/\" rel=\"noreferrer\">artice</a>) and configured the git <code>.gitconfig</code> file with the following way (I adjusted the paths to be accessible from Windows 10 Ubuntu bash):</p>\n<pre><code>[merge]\n    tool = p4merge\n[mergetool &quot;p4merge&quot;]\n    path = /mnt/c/Program Files/Perforce/p4merge.exe\n[mergetool]\n    prompt = false\n[diff]\n    tool = p4merge\n[difftool &quot;p4merge&quot;]\n    path = /mnt/c/Program Files/Perforce/p4merge.exe\n[difftool]\n    prompt = false\n</code></pre>\n<p>Additionally, I added the following folder to the bash <code>PATH</code> variable in <code>.bashrc</code> to make it callable from anywhere:</p>\n<pre><code> export PATH=$PATH:&quot;/mnt/c/Program Files/Perforce&quot;\n</code></pre>\n<p>So my problem is that if I call <code>git difftool</code> in the bash - to investigate the changes with <code>p4merge</code> - I got the following messages</p>\n<ul>\n<li>in bash: <code>Unable to translate current working directory. Using C:\\Windows\\system32</code>.</li>\n<li>the <code>p4merge</code> application is started right after the call but gives the following message: <code>Error: ... point to an invalid file</code>.</li>\n</ul>\n<p>If I understand right, this problem may emanate from the fact that a Windows program (namely <code>p4merge</code>) could not find a file that is referenced with a Linux file path (e.g. <code>/mnt/c/..</code>).</p>\n<p>Is there any way to solve this kind of problem? (Maybe it is a more general problem: using Linux path from Windows application.)</p>\n<p>Anyway, I do not insist on using <code>p4merge</code> but any similar visual tool to compare differences and to make merge possible.</p>\n<p>Any information you can provide me would be greatly appreciated.</p>\n",
+  "score": 19,
+  "answer_count": 4,
+  "view_count": 9270,
+  "tags": [
+    "windows",
+    "bash",
+    "git",
+    "windows-subsystem-for-linux",
+    "p4merge"
+  ],
+  "creation_date": "2017-08-14T19:20:44",
+  "answers": [
+    {
+      "id": 56536372,
+      "body": "<h1>Solution to this problem is simplified!</h1>\n\n<p>Thanks to the <a href=\"https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/\" rel=\"noreferrer\">Windows 10 version 1903</a> update, accessing the Linux subsystem from Windows 10 is now possible. It is much more easier.</p>\n\n<p>Just make sure that <strong>git config --global --list</strong> has these lines. That's all!</p>\n\n<pre><code>diff.tool=p4merge\nmerge.tool=p4merge\ndifftool.p4merge.cmd=/mnt/c/Program\\ Files/Perforce/p4merge.exe \"$(wslpath -aw $LOCAL)\" \"$(wslpath -aw $REMOTE)\"\nmergetool.p4merge.cmd=/mnt/c/Program\\ Files/Perforce/p4merge.exe \"$(wslpath -aw $BASE)\" \"$(wslpath -aw $LOCAL)\" \"$(wslpath -aw $REMOTE)\" \"$(wslpath -aw $MERGED)\"\nmergetool.p4merge.trustexitcode=false\n</code></pre>\n\n<h3>Takeaways:</h3>\n\n<ul>\n<li>Linux subsystem now resides at <strong>\\\\wsl$\\{distro name}\\</strong> path. </li>\n<li>Which means you can access the <strong>tmp folder</strong> at <strong>\\\\wsl$\\Ubuntu\\tmp\\</strong>. Even from the File Explorer!</li>\n<li><strong>wslpath -aw</strong> command does the heavy lifting for you.</li>\n<li>The command now properly translates Linux relative <strong>/tmp/whatever</strong> path to a Windows 10 relative path.</li>\n</ul>\n",
+      "score": 25,
+      "creation_date": "2019-06-11T04:13:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

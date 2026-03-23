@@ -1,0 +1,25 @@
+{
+  "id": 65307784,
+  "title": "MSSQL container fails to start when mapping volumes after upgrading to WSL2",
+  "body": "<p>After I changed Docker Desktop to use WSL2, I am unable to start an mssql image using Docker-compose.</p>\n<p>If I don't map the volumes the container starts up.</p>\n<p><strong>Docker-compose</strong></p>\n<pre><code>services:\n  db:\n    image: &quot;mcr.microsoft.com/mssql/server:2019-latest&quot;\n    container_name: mssql\n    environment:\n        SA_PASSWORD: &quot;***********&quot;\n        ACCEPT_EULA: &quot;Y&quot;\n    ports:\n    - 1433:1433\n    volumes:\n    - ~/docker/sql/mssql/:/var/opt/mssql/\n    - ~/docker/sql/sqlserver/:/var/opt/sqlserver/\n    healthcheck:\n      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P &quot;$$SA_PASSWORD&quot; -Q &quot;SELECT 1&quot; || exit 1\n      interval: 30s\n      timeout: 30s\n      retries: 3\n</code></pre>\n<p><strong>Error</strong></p>\n<pre><code>** ERROR: [AppLoader] Failed to load LSA: 0xc0070102\nAppLoader: Exiting with status=0xc0070102\nThis program has encountered a fatal error and cannot continue running at Tue Dec 15 13:49:34 2020\nThe following diagnostic information is available:\n\nReason: 0x00000006\nMessage: Termination of \\SystemRoot\\system32\\AppLoader.exe was due to fatal error 0xC0000001\nAddress: 0x3fffb0c551f1\nStack Trace:\nfile://package4/windows/system32/sqlpal.dll+0x000000000030E7D9\nfile://package4/windows/system32/sqlpal.dll+0x000000000030C769\nfile://package4/windows/system32/sqlpal.dll+0x0000000000255F1D\nfile://package4/windows/system32/sqlpal.dll+0x00000000002551F1\nfile://package4/windows/system32/sqlpal.dll+0x0000000000254A72\nfile://package4/windows/system32/sqlpal.dll+0x0000000000254B4B\nfile://package4/windows/system32/sqlpal.dll+0x0000000000202FE2\nfile://package4/windows/system32/sqlpal.dll+0x0000000000347898\nfile:///windows/system32/AppLoader.exe+0x0000000000003C90\nfile:///Windows/SYSTEM32/KERNEL32.DLL+0x0000000000014414\nfile:///windows/system32/ntdll.dll+0x0000000000075541\n&lt;unknown&gt;+0x00000000FC3FE000\nProcess: 10 - sqlservr\nThread: 39 (application thread 0x68)\nInstance Id: 7cfc9545-c829-4a7e-a461-83b481fe05e3\nCrash Id: b747c621-d4e2-46ed-9122-f14a8d54386a\nBuild stamp: fd4eb1565f159d8f4b2d49c48e96d5797508c8bc5f222def3def149a28435962\nDistribution: Ubuntu 18.04.5 LTS\nProcessors: 8\nTotal Memory: 13339308032 bytes\nTimestamp: Tue Dec 15 13:49:34 2020\n\nUbuntu 18.04.5 LTS\nCapturing core dump and information to /var/opt/mssql/log...\n/bin/cat: /proc/10/maps: Permission denied\n/bin/cat: /proc/10/environ: Permission denied\n/usr/bin/find: '/proc/10/map_files': Permission denied\n/usr/bin/find: '/proc/10/map_files': Permission denied\n/usr/bin/find: '/proc/10/map_files': Permission denied\n/usr/bin/find: '/proc/10/map_files': Permission denied\ndmesg: read kernel buffer failed: Operation not permitted\n/usr/bin/timeout: failed to run command '/bin/journalctl': No such file or directory\n/usr/bin/timeout: failed to run command '/bin/journalctl': No such file or directory\nTue Dec 15 13:49:36 UTC 2020 Capturing program information\nTue Dec 15 13:49:36 UTC 2020 Attempting to capture a dump with paldumper for pid 10\nWARNING: Capture attempt failure detected\nAttempting to capture a filtered dump with paldumper for pid 10\nWARNING: Attempt to capture dump failed. Reference /var/opt/mssql/log/core.sqlservr.10.temp/log/paldumper-debug.log for details\n\nTue Dec 15 13:49:36 UTC 2020 Attempting to capture a dump with gdb\nTue Dec 15 13:49:36 UTC 2020 Captured a dump with gdb\nTue Dec 15 13:49:36 UTC 2020 Capturing program binaries\nTue Dec 15 13:49:36 UTC 2020 Compressing the dump files\n</code></pre>\n<p><strong>wsl --list --verbose</strong></p>\n<pre><code>  NAME                   STATE           VERSION\n* Ubuntu-20.04           Running         2\n  docker-desktop         Running         2\n  docker-desktop-data    Running         2\n</code></pre>\n",
+  "score": 18,
+  "answer_count": 3,
+  "view_count": 19297,
+  "tags": [
+    "sql-server",
+    "docker",
+    "docker-compose",
+    "docker-desktop",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-12-15T14:21:53",
+  "answers": [
+    {
+      "id": 66238175,
+      "body": "<p>As <a href=\"https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-configure?view=sql-server-ver15&amp;pivots=cs1-bash#persist\" rel=\"noreferrer\">the documentation</a> states, the entire /var/opt/mssql folder cannot be mapped, but probably what you want is to map the data subdirectory /var/opt/mssql/data, which holds the db files, those you can map without any trouble</p>\n<blockquote>\n<p>...Host volume mapping for Docker on Windows does not currently support mapping the complete /var/opt/mssql directory. However, you can map a subdirectory, such as /var/opt/mssql/data to your host machine...</p>\n</blockquote>\n",
+      "score": 63,
+      "creation_date": "2021-02-17T08:24:53"
+    }
+  ],
+  "source": "stackoverflow"
+}

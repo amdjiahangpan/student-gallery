@@ -1,0 +1,23 @@
+{
+  "id": 54377052,
+  "title": "How to connect to WSL mysql from Host Windows",
+  "body": "<p>I am trying to connect HeidiSql from the host  to my WSL Mysql but I could not get it to connect it </p>\n\n<p>Error \"can't connect to Mysql server on '127.0.0.1'\"</p>\n\n<p>Tried SSH too but could not connect to the server</p>\n\n<p><a href=\"https://i.sstatic.net/jDM7X.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/jDM7X.png\" alt=\"enter image description here\"></a></p>\n",
+  "score": 32,
+  "answer_count": 7,
+  "view_count": 66899,
+  "tags": [
+    "mysql",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-01-26T09:10:44",
+  "answers": [
+    {
+      "id": 68860131,
+      "body": "<p>By default, MySql only listens on 127.0.0.1. If you are connecting using the IP address returned by <code>wsl hostname -I</code> (as mentioned by <a href=\"https://stackoverflow.com/questions/54377052/how-to-connect-to-wsl-mysql-from-host-windows#comment121313869_60014486\">Permana</a>) then you need to change /etc/mysql/mysql.conf.d/mysqld.cnf to listen on all IPs or your specific IP.</p>\n<p>Edit your MySql config by typing this in your Ubuntu instance:\n<code>sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>\n<p>Change the line:\n<code>bind-address = 127.0.0.1</code></p>\n<p>To:\n<code>bind-address = 0.0.0.0</code></p>\n<p>or change <code>0.0.0.0</code> to the IP returned by <code>wsl hostname -I</code>.</p>\n<p>Restart MySql using: <code>sudo service mysql restart</code></p>\n",
+      "score": 22,
+      "creation_date": "2021-08-20T09:39:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

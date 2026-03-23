@@ -1,0 +1,25 @@
+{
+  "id": 38086185,
+  "title": "How to check if a program is run in Bash on Ubuntu on Windows and not just plain Ubuntu?",
+  "body": "<p>Pretty straightforward, the usual places to figure out the OS you're on seem to be identical to plain Ubuntu on Ubuntu for Windows. For example <code>uname -a</code> is identical to a native GNU/Linux install and <code>/etc/os-version</code> is identical to a Ubuntu Trusty Tahr install.</p>\n\n<p>The only thing I can think of is to check if <code>/mnt/c/Windows</code> exists, but I'm not sure if that's a foolproof idea.</p>\n",
+  "score": 48,
+  "answer_count": 15,
+  "view_count": 14123,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-06-28T20:58:08",
+  "answers": [
+    {
+      "id": 43618657,
+      "body": "<p>The following works in bash on Windows 10, macOS, and Linux:</p>\n<pre><code>#!/bin/bash\nset -e\nif grep -qEi &quot;(Microsoft|WSL)&quot; /proc/version &amp;&gt; /dev/null ; then\n    echo &quot;Windows 10 Bash&quot;\nelse\n    echo &quot;Anything else&quot;\nfi\n</code></pre>\n<p>You need to check for both &quot;Microsoft&quot; and &quot;WSL&quot; per <a href=\"https://github.com/Microsoft/WSL/issues/423#issuecomment-221627364\" rel=\"noreferrer\">this comment</a> by Ben Hillis, WSL Developer:</p>\n<blockquote>\n<p>For the time being this is probably the best way to do it. I can't\npromise that we'll never change the content of these ProcFs files, but\nI think it's unlikely we'll change it to something that doesn't\ncontain &quot;Microsoft&quot; or &quot;WSL&quot;.</p>\n<pre><code>/proc/sys/kernel/osrelease\n/proc/version\n</code></pre>\n</blockquote>\n<p>And case shall be ignored for <code>grep</code>. In WSL2, <code>/proc/version</code> gives lowercased microsoft.</p>\n",
+      "score": 47,
+      "creation_date": "2017-04-25T18:46:53"
+    }
+  ],
+  "source": "stackoverflow"
+}

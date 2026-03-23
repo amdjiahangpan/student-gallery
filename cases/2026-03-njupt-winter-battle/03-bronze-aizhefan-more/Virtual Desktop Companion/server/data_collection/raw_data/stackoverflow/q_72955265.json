@@ -1,0 +1,18 @@
+{
+  "id": 72955265,
+  "title": "cannot replace to directory /var/lib/docker/overlay2/if2ip5okvavl8u6jpdtpczuog/merged/app/node_modules/@ampproject/remapping with file",
+  "body": "<p>On my Windows machine, I am attempting to build a containerized node.js application with the following Dockerfile:</p>\n<pre class=\"lang-docker prettyprint-override\"><code>  # use latest version of nodejs\n  FROM node:lts-alpine\n  \n  # install aurelia-cli to build the app &amp; http-server to serve static contents\n  RUN npm i -g http-server\n  RUN npm i -g aurelia-cli\n  \n  # set working directory to app\n  # henceforth all commands will run inside this folder\n  WORKDIR /app\n  \n  # copy package.json related files first and install all required dependencies\n  COPY package*.json ./\n  RUN npm install\n  \n  # copy the rest of the files and folders &amp; install dependencies\n  COPY . ./\n  RUN npm run build\n  \n  # by default http-server will serve contents on port 8080\n  # so we expose this port to host machine\n  EXPOSE 8080\n  \n  CMD [ &quot;http-server&quot; , &quot;dist&quot; ]\n</code></pre>\n<p>However, <code>docker build . </code> fails at the line <code>Copy . ./</code>. with the message <code>cannot replace to directory /var/lib/docker/overlay2/if2ip5okvavl8u6jpdtpczuog/merged/app/node_modules/@ampproject/remapping with file</code>.</p>\n<p>What do I need to do to get my container image to build?</p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 15459,
+  "tags": [
+    "node.js",
+    "docker",
+    "npm",
+    "windows-subsystem-for-linux",
+    "aurelia"
+  ],
+  "creation_date": "2022-07-12T16:05:56",
+  "answers": [],
+  "source": "stackoverflow"
+}

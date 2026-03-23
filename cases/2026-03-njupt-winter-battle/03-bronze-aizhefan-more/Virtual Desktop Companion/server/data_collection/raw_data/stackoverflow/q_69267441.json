@@ -1,0 +1,22 @@
+{
+  "id": 69267441,
+  "title": "vs-code: How to open current WSL folder *as wsl* from command line?",
+  "body": "<p>How do I do this in my non-vs-code terminal:</p>\n<pre><code>wsl:/home/peter/myproject$ code .\n</code></pre>\n<p>and then have <code>myproject</code> open in Visual Studio Code <em>in a new WSL window</em> or somehow in WSL mode?</p>\n<p>I <em>am</em> able to open the current folder as a &quot;normal&quot; windows folder using:</p>\n<pre><code>&quot;$(wslpath 'C:\\Users\\pvm\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe')&quot; .\n</code></pre>\n<p>but then many things don't work, because it isn't opened as a WSL folder. I can however, click on where the red arrow points, and then on where the green arrow points.</p>\n<p><a href=\"https://i.sstatic.net/3eCCi.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/3eCCi.png\" alt=\"code screenshot for reopen folder in wsl\" /></a></p>\n<p>As an alternative, I can open a WSL window in VS Code, and open a terminal from there. From inside this terminal-in-code, I can navigate to a folder and type <code>code .</code>. Then it gets opened exactly as I want, but this is only possible from a terminal-in-code, not from a standalone &quot;normal&quot; WSL terminal. If one tries to run the same code command from a normal terminal, one gets a &quot;Command is only available in WSL or inside a Visual Studio Code terminal.&quot; error. And this is <a href=\"https://github.com/microsoft/vscode-remote-release/issues/1042\" rel=\"noreferrer\">as designed</a>.</p>\n<p>So the question remains: How do I open a folder from a standalone WSL terminal in VS code in WSL mode?</p>\n",
+  "score": 14,
+  "answer_count": 2,
+  "view_count": 17806,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-09-21T10:37:35",
+  "answers": [
+    {
+      "id": 72351941,
+      "body": "<p><a href=\"https://code.visualstudio.com/docs/remote/wsl#_open-a-remote-folder-or-workspace\" rel=\"noreferrer\">VS Code can be started with the <code>--remote</code> command line parameter</a>:</p>\n<pre><code>code --remote wsl+&lt;distro name&gt; &lt;path in WSL&gt;\n</code></pre>\n<p>For your example:</p>\n<pre><code>&quot;$(wslpath 'C:\\Users\\pvm\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe')&quot; --remote wsl+&lt;distro name&gt; &quot;$(pwd)&quot;\n</code></pre>\n<p>I added an <code>alias</code> to my <code>.bashrc</code> to open VS Code in the current working directory:</p>\n<pre><code>alias c=&quot;code --remote wsl+ubuntu \\&quot;\\$(pwd)\\&quot;&quot;\n</code></pre>\n",
+      "score": 15,
+      "creation_date": "2022-05-23T16:31:55"
+    }
+  ],
+  "source": "stackoverflow"
+}

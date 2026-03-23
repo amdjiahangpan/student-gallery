@@ -1,0 +1,16 @@
+{
+  "id": 51377291,
+  "title": "Cant uninstall Docker from Ubuntu on WSL",
+  "body": "<p>I am trying to uninstall Docker but I always get an Error. I already searched in the internet but wasnt succesful to fix the error. I have the impression there are some broken packages but I am very new to Linux in general.\nThis is the result:</p>\n\n<pre><code>sudo apt-get purge -y docker-ce \n                                                                                                                                                 1 ↵ Reading package lists... Done\nBuilding dependency tree\nReading state information... Done\nThe following packages will be REMOVED:\n  docker-ce*\n0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.\n1 not fully installed or removed.\nAfter this operation, 181 MB disk space will be freed.\n(Reading database ... 44147 files and directories currently installed.)\nRemoving docker-ce (18.03.1~ce-0~ubuntu) ...\ninvoke-rc.d: could not determine current runlevel\n * Stopping Docker: docker                                                                                                                                                                                      start-stop-daemon: warning: failed to kill 466: No such process\nNo process in pidfile '/var/run/docker-ssd.pid' found running; none killed.\ninvoke-rc.d: initscript docker, action \"stop\" failed.\ndpkg: error processing package docker-ce (--purge):\n subprocess installed pre-removal script returned error exit status 1\ndpkg: error while cleaning up:\n subprocess installed post-installation script returned error exit status 1\nErrors were encountered while processing:\n docker-ce\nE: Sub-process /usr/bin/dpkg returned an error code (1)\n</code></pre>\n\n<p>I hope anybody can help me with that. :)</p>\n",
+  "score": 10,
+  "answer_count": 2,
+  "view_count": 11105,
+  "tags": [
+    "docker",
+    "ubuntu-16.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-07-17T09:03:53",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 62215963,
+  "title": "How to install GCC and GDB for WSL(windows subsytem for linux)?",
+  "body": "<p>I need gcc to compile a c code and unable to install gcc on wsl. I tried <code>sudo apt-get install gcc</code> but it doesn't work. This is the error.</p>\n\n<pre><code>hack@DESKTOP-VMQA3JB:~$ sudo apt-get install gcc\nReading package lists... Done\nBuilding dependency tree\nReading state information... Done\nSome packages could not be installed. This may mean that you have\nrequested an impossible situation or if you are using the unstable\ndistribution that some required packages have not yet been created\nor been moved out of Incoming.\nThe following information may help to resolve the situation:\n\nThe following packages have unmet dependencies:\n gcc : Depends: gcc-9 (&gt;= 9.2.1-1~) but it is not going to be installed\nE: Unable to correct problems, you have held broken packages.\n</code></pre>\n\n<p>I don't know the dependencies to install. Please help me with gdb also. thankyou.</p>\n",
+  "score": 38,
+  "answer_count": 2,
+  "view_count": 100671,
+  "tags": [
+    "windows",
+    "gcc",
+    "gdb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-05T13:01:21",
+  "answers": [
+    {
+      "id": 63548362,
+      "body": "<p>You need to:</p>\n<ol>\n<li>Update and upgrade:</li>\n</ol>\n<pre class=\"lang-sh prettyprint-override\"><code>$ sudo apt-get update &amp;&amp; sudo apt-get upgrade -y\n</code></pre>\n<p><a href=\"https://i.sstatic.net/tahPl.jpg\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/tahPl.jpg\" alt=\"enter image description here\" /></a></p>\n<p>2.Clean unrequired packages:</p>\n<pre class=\"lang-sh prettyprint-override\"><code>$ sudo apt autoremove -y\n</code></pre>\n<p><a href=\"https://i.sstatic.net/pm4ob.jpg\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/pm4ob.jpg\" alt=\"enter image description here\" /></a></p>\n<ol start=\"3\">\n<li>Install GCC:</li>\n</ol>\n<pre class=\"lang-sh prettyprint-override\"><code>$ sudo apt-get install gcc -y\n</code></pre>\n<p><a href=\"https://i.sstatic.net/sPmYm.jpg\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/sPmYm.jpg\" alt=\"enter image description here\" /></a></p>\n<ol start=\"4\">\n<li>Check and confirmed installed gcc version:</li>\n</ol>\n<pre class=\"lang-sh prettyprint-override\"><code>gcc --version\n</code></pre>\n<p><a href=\"https://i.sstatic.net/RjUPW.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/RjUPW.png\" alt=\"enter image description here\" /></a></p>\n",
+      "score": 86,
+      "creation_date": "2020-08-23T14:52:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

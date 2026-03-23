@@ -1,0 +1,24 @@
+{
+  "id": 4638500,
+  "title": "Git blame showing no history",
+  "body": "<p>When I run git blame on a file (using msysgit) I always get the following sort of printout:</p>\n\n<pre><code>00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   1) package co\n00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   2) {\n00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   3)      impor\n00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   4)      impor\n00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   5)      impor\n00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   6)      impor\n00000000 (Not Committed Yet 2011-01-09 11:21:30 +0200   7)      impor\n</code></pre>\n\n<p>i.e. it shows all lines as Not Yet Committed.</p>\n\n<p>I tried this on many files, that have many commits - always the same results. I also tried using relative/full path, but it seems to make no difference.</p>\n\n<p>When I try to use TortoiseGit's blame it always shows every line as being last committed at the first commit:</p>\n\n<p><img src=\"https://i.sstatic.net/c4p9p.png\" alt=\"alt text\"></p>\n\n<p>even thought, as I've said, there are actually tens of commits in the history of these files..</p>\n\n<p>Ideas?</p>\n\n<p><strong>Edit - More Info</strong></p>\n\n<ul>\n<li>Git blame works fine on GitHub, where this repo is hosted.</li>\n<li>It also works fine if I clone it to a linux machine and do the blame there</li>\n<li>It seems that only on msysgit this doesn't work</li>\n</ul>\n",
+  "score": 91,
+  "answer_count": 4,
+  "view_count": 16833,
+  "tags": [
+    "git",
+    "windows-subsystem-for-linux",
+    "msysgit",
+    "blame"
+  ],
+  "creation_date": "2011-01-09T09:26:33",
+  "answers": [
+    {
+      "id": 4653165,
+      "body": "<p><code>git blame file.txt</code> blames the version of file.txt in your working copy. If file.txt has Windows-newlines (CRLF) in the repo and you have <code>core.autocrlf = true</code>, then every line of file.txt will be considered different and will be reported by <code>git blame</code> as not yet committed.</p>\n\n<p>The reason why <code>git blame &lt;my_branch&gt;</code> (or even better <code>git blame HEAD</code>, which works no matter what branch you're on) works, is that it doesn't blame the working copy version so there's no potential for lines not yet being committed.</p>\n",
+      "score": 131,
+      "creation_date": "2011-01-11T00:51:29"
+    }
+  ],
+  "source": "stackoverflow"
+}

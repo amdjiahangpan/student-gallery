@@ -1,0 +1,24 @@
+{
+  "id": 62405765,
+  "title": "Memory allocation to docker containers after moving to WSL 2 in Windows",
+  "body": "<p>I recently updated my Docker environment to run on <code>WSL 2</code> on Windows.</p>\n\n<p>For setting memory allocation limits on containers in previous versions, I had option in Docker Desktop GUI under <code>Settings-&gt;Resources-&gt;Advanced-&gt;Preferences</code> to adjust memory and CPU allocation.</p>\n\n<p>After WSL 2 integration, I am not able to find that option.\n<a href=\"https://i.sstatic.net/ZHGI3.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/ZHGI3.png\" alt=\"enter image description here\"></a></p>\n\n<p>I assume I should run everything through my Linux distro from now on, so this is the solution I was able to find:</p>\n\n<pre><code>docker run -d -p 8081:80 --memory=\"256m\" container_name\n</code></pre>\n\n<p>I dont want to have to set a flag each time when running a container. Is there a way to permanently set the memory allocation?</p>\n",
+  "score": 62,
+  "answer_count": 3,
+  "view_count": 83816,
+  "tags": [
+    "docker",
+    "docker-for-windows",
+    "ubuntu-20.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-16T09:54:33",
+  "answers": [
+    {
+      "id": 62773629,
+      "body": "<p>The Memory and CPU settings were removed for WSL2 integration. However, starting in Windows <a href=\"https://learn.microsoft.com/en-us/windows/wsl/release-notes#build-18945\" rel=\"noreferrer\">Build 18945</a>, there is a workaround to limit WSL2 memory usage.</p>\n<p>Create a <code>%UserProfile%\\.wslconfig</code> file for configuring WSL2 settings:</p>\n<pre><code>[wsl2]\nmemory=6GB  # Any size you feel like (must be an integer!)\nswap=0\nlocalhostForwarding=true\n</code></pre>\n<p>Run <code>Get-Service LxssManager | Restart-Service</code> in an admin Powershell <em>(or reboot)</em> and verify that the <code>vmmem</code> usage in Task Manager drops off.</p>\n<p>For the complete list of settings, please visit <a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl-config\" rel=\"noreferrer\">Advanced settings configuration in WSL</a>.</p>\n",
+      "score": 107,
+      "creation_date": "2020-07-07T10:52:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

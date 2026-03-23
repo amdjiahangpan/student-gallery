@@ -1,0 +1,15 @@
+{
+  "id": 45013279,
+  "title": "Maven on Windows Subsystem For Linux",
+  "body": "<p>I'm trying to run maven on Windows Subsystem for Linux, and getting \"cannot allocate memory\" errors. However, <em>free -m</em> shows that I have plenty of memory available, and the same build on Cygwin succeeds.</p>\n\n<p>Anyone have any tips for dealing with this? I'd prefer to change my settings.xml over my pom.xml's, but I'm open to almost anything.</p>\n",
+  "score": 14,
+  "answer_count": 1,
+  "view_count": 18094,
+  "tags": [
+    "maven",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-07-10T13:25:03",
+  "answers": [],
+  "source": "stackoverflow"
+}

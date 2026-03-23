@@ -1,0 +1,16 @@
+{
+  "id": 63679865,
+  "title": "Install Tensorflow-GPU on WSL2",
+  "body": "<p>Has anyone successfully installed Tensorflow-GPU on WSL2 with NVIDIA GPUs? I have Ubuntu 18.04 on WSL2, but am struggling to get NVIDIA drivers installed. Any help would be appreciated as I'm lost.</p>\n",
+  "score": 13,
+  "answer_count": 4,
+  "view_count": 26582,
+  "tags": [
+    "tensorflow",
+    "nvidia",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-01T00:41:30",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 70570309,
+  "title": "PkgResourcesDeprecationWarning: 0.1.36ubuntu1 is an invalid version, has anyone seen this before",
+  "body": "<blockquote>\n<p>/home/user/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116:\nPkgResourcesDeprecationWarning: 0.1.36ubuntu1 is an invalid version\nand will not be supported in a future release</p>\n</blockquote>\n<p>What is causing this, and what can be done to fix it?</p>\n",
+  "score": 12,
+  "answer_count": 3,
+  "view_count": 14260,
+  "tags": [
+    "ubuntu",
+    "virtualenv",
+    "windows-subsystem-for-linux",
+    "pipenv"
+  ],
+  "creation_date": "2022-01-03T19:06:07",
+  "answers": [],
+  "source": "stackoverflow"
+}

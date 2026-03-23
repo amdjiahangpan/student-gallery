@@ -1,0 +1,18 @@
+{
+  "id": 70488471,
+  "title": "Docker with create react app is not updating changes",
+  "body": "<p>I'm creating a React app with docker in WSL2 and create-react-app and everything seems to be working fine except the app is not updating with changes in the code. I mean, when I make a change in the code, the browser should update the changes automatically, but it doesn't and I have to restart the container to see them. I added <code>CHOKIDAR_USEPOLLING=true</code> in <code>ENV</code> but it's not working either. These are the configuration files:</p>\n<p><em>dockerfile</em></p>\n<pre><code># pull official base image\nFROM node:16.13.1\n\n# set working directory\nWORKDIR /app\n\n# add `/app/node_modules/.bin` to $PATH\nENV PATH /app/node_modules/.bin:$PATH\n\n# install app dependencies\n\nCOPY package.json ./\nCOPY package-lock.json ./\nRUN npm install\n\n# add app\nCOPY . ./\n\n# start app\nCMD [&quot;npm&quot;, &quot;start&quot;]\n</code></pre>\n<p><em>docker-compose.yml</em></p>\n<pre><code>services:\n  react:\n    build: ./frontend\n    command: npm start\n    ports:\n      - 3000:3000\n    volumes: \n      - ./frontend:/app\n    env_file:\n      - 'env.react'\n</code></pre>\n<p><em>env.react</em></p>\n<pre><code>CHOKIDAR_USEPOLLING=true\n</code></pre>\n<p><em>package.json</em></p>\n<pre><code>{\n  &quot;name&quot;: &quot;app&quot;,\n  &quot;version&quot;: &quot;0.1.0&quot;,\n  &quot;private&quot;: true,\n  &quot;dependencies&quot;: {\n    &quot;@testing-library/jest-dom&quot;: &quot;^5.16.1&quot;,\n    &quot;@testing-library/react&quot;: &quot;^12.1.2&quot;,\n    &quot;@testing-library/user-event&quot;: &quot;^13.5.0&quot;,\n    &quot;mdbreact&quot;: &quot;^5.2.0&quot;,\n    &quot;react&quot;: &quot;^17.0.2&quot;,\n    &quot;react-dom&quot;: &quot;^17.0.2&quot;,\n    &quot;react-painter&quot;: &quot;^0.4.0&quot;,\n    &quot;react-router-dom&quot;: &quot;^6.2.1&quot;,\n    &quot;react-scripts&quot;: &quot;5.0.0&quot;,\n    &quot;sass&quot;: &quot;^1.45.1&quot;,\n    &quot;web-vitals&quot;: &quot;^2.1.2&quot;\n  },\n  &quot;scripts&quot;: {\n    &quot;start&quot;: &quot;react-scripts start&quot;,\n    &quot;build&quot;: &quot;react-scripts build&quot;,\n    &quot;test&quot;: &quot;react-scripts test&quot;,\n    &quot;eject&quot;: &quot;react-scripts eject&quot;\n  },\n  &quot;eslintConfig&quot;: {\n    &quot;extends&quot;: [\n      &quot;react-app&quot;,\n      &quot;react-app/jest&quot;\n    ]\n  },\n  &quot;browserslist&quot;: {\n    &quot;production&quot;: [\n      &quot;&gt;0.2%&quot;,\n      &quot;not dead&quot;,\n      &quot;not op_mini all&quot;\n    ],\n    &quot;development&quot;: [\n      &quot;last 1 chrome version&quot;,\n      &quot;last 1 firefox version&quot;,\n      &quot;last 1 safari version&quot;\n    ]\n  }\n}\n\n</code></pre>\n<p>Can you see what I'm doing wrong? Thanks!</p>\n",
+  "score": 11,
+  "answer_count": 6,
+  "view_count": 13680,
+  "tags": [
+    "node.js",
+    "reactjs",
+    "docker",
+    "docker-compose",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-12-26T17:26:03",
+  "answers": [],
+  "source": "stackoverflow"
+}

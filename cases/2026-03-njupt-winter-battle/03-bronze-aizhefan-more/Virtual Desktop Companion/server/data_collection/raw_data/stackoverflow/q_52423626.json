@@ -1,0 +1,23 @@
+{
+  "id": 52423626,
+  "title": "Remember git passphrase in WSL",
+  "body": "<p>I run Windows 10 with WSL.  I have the desired behaviour on one computer, but cannot replicate elsewhere.  Here's what I'm after:</p>\n\n<ol>\n<li>First time I run a remote git command using my ssh key, git prompts me for the passphrase</li>\n<li>Subsequent times no prompt, including in new terminal windows (I use ConEmu)</li>\n<li>When all console windows are closed, back to #1  </li>\n</ol>\n\n<p>Things I've tried:</p>\n\n<ul>\n<li>using <code>eval $(ssh-agent)</code>, followed by <code>ssh-add</code>; it will remember the passphrase, but if I put it in my <code>~/.bash_profile</code> then it prompts me for every new console window, and I open a lot - many of which I'm not using git in.</li>\n<li>setting <code>git config --global credential.helper</code> to <code>cache</code> or <code>store</code></li>\n<li>everything <a href=\"https://stackoverflow.com/questions/45925964/how-to-use-git-credential-store-on-wsl-ubuntu-on-windows\">here</a></li>\n<li>using <code>bash.exe</code> and <code>wsl.exe</code> to get <code>git-credentials-manager.exe</code> to work</li>\n</ul>\n\n<p>Here's an example of what I've put in my <code>~/.gitconfig</code>:\n<code>\n[credential]\n   helper = \"/mnt/c/Program\\\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe\"\n</code></p>\n\n<p>I've installed the <code>git credential manager</code> from <a href=\"https://github.com/Microsoft/Git-Credential-Manager-for-Windows\" rel=\"noreferrer\">here</a> and have also tried the main Git For Windows installation as an alternative.</p>\n\n<p>How can I encourage it to remember my passphrase?</p>\n",
+  "score": 41,
+  "answer_count": 3,
+  "view_count": 20689,
+  "tags": [
+    "git",
+    "windows-subsystem-for-linux",
+    "ssh-agent"
+  ],
+  "creation_date": "2018-09-20T11:02:08",
+  "answers": [
+    {
+      "id": 63207006,
+      "body": "<p>I tried the option to add <code>AddKeysToAgent yes</code> to <code>~/.ssh/config</code> but it doesn't keep it between new tabs on the terminal.</p>\n<p>The best solution I found so far is to do the following:</p>\n<pre><code>sudo apt install keychain\n</code></pre>\n<p>Find your hostname using the terminal:</p>\n<pre><code>hostname\n</code></pre>\n<p>Then add the following to your <code>~/.bashrc</code> or <code>~/.zshrc</code> file:</p>\n<pre><code>/usr/bin/keychain --nogui ~/.ssh/id_rsa\nsource $HOME/.keychain/YOUR-HOSTNAME-HERE-sh\n</code></pre>\n<p>Now, each time you reboot, you’ll have to enter your passphrase. But you only have to do it one time until you reboot or terminate WSL.</p>\n<p>If you want to use the same key you already have on Windows you can follow this post <a href=\"https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/\" rel=\"noreferrer\">Sharing SSH keys between Windows and WSL 2</a></p>\n",
+      "score": 63,
+      "creation_date": "2020-08-01T15:36:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

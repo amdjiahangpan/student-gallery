@@ -1,0 +1,23 @@
+{
+  "id": 55649015,
+  "title": "Could not resolve host: github.com ONLY in windows bash",
+  "body": "<p>I have installed ubuntu 18.04(WSL) in my win 10 64 bit, 1903.</p>\n\n<p>For the command <code>git clone https://github.com/facebookresearch/fastText.git</code>,</p>\n\n<p>it works well in <code>git bash</code>(git for windows) and <code>ubuntu 18.04</code> shell but not in <code>bash</code> (C:\\Windows\\System32\\bash.exe), the error message is </p>\n\n<pre><code>$ git clone https://github.com/facebookresearch/fastText.git\nCloning into 'fastText'...\nfatal: unable to access 'https://github.com/facebookresearch/fastText.git/': Could not resolve host: github.com\n</code></pre>\n\n<p>I have only two <code>.gitconfig</code> file in my pc, one for <code>git bash</code> and another for <code>ubuntu 18.04</code> shell. I think <code>ubuntu 18.04</code> shell may equal to <code>bash</code> in some degree but the <code>bash</code> must have problems.</p>\n\n<p><a href=\"https://i.sstatic.net/Lm3e4.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Lm3e4.png\" alt=\"1\"></a></p>\n",
+  "score": 18,
+  "answer_count": 6,
+  "view_count": 41757,
+  "tags": [
+    "bash",
+    "git",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-04-12T09:53:52",
+  "answers": [
+    {
+      "id": 60663576,
+      "body": "<p>It could be that your <code>/etc/resolv.conf</code> file is corrupt - it happened to me!</p>\n<p>Symptoms are:</p>\n<ul>\n<li>Inside WSL <code>/etc/resolv.conf</code> is not plain text but some binary garbage. It should be plain text.</li>\n<li>You cannot e.g. <code>ping google.com</code> or <code>ping stackoverflow.com</code> from inside WSL.</li>\n<li>You can ping those domains OK from powershell in the windows host. Windows git also works OK.</li>\n</ul>\n<p>Aside: Interestingly <code>ping github.com</code> fails for me today on all my machines but that doesn't stop me from visiting github in my browser or using git - strange.</p>\n<p>The solution is to <code>sudo rm /etc/resolv.conf</code> and restart WSL - windows will recreate that file for you and you should be able to ping away and use git once more from within WSL.</p>\n<p>To restart WSL - open a Powershell terminal in Administrator mode and run the following commands. (taken from @germa-vinsmoke 's answer)</p>\n<pre><code>wsl --shutdown\nGet-Service LxssManager | Restart-Service\n</code></pre>\n",
+      "score": 26,
+      "creation_date": "2020-03-13T01:00:26"
+    }
+  ],
+  "source": "stackoverflow"
+}

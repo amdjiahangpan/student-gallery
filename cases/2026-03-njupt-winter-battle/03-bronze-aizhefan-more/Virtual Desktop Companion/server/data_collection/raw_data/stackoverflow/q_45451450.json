@@ -1,0 +1,18 @@
+{
+  "id": 45451450,
+  "title": "How can I build my Gradle project using a Windows JDK from Ubuntu on Windows?",
+  "body": "<p>My Windows 10 machine recently forcibly upgraded me to the new \"Creators Update\" version of windows, the \"About your PC\" widget now reports my OS version as \"1703\".</p>\n\n<p>I thought I would have a crack at using the Windows Subsystem for Linux / Ubuntu on Windows to compile my Gradle projects.</p>\n\n<p>I have a Windows JDK installed at <code>c:\\jvm\\jdk1.8.0_102</code>.</p>\n\n<p>In my MinGW terminal window (\"git bash\"), I can setup a JAVA_HOME and execute the gradle wrapper script from my source directory and it will just work:</p>\n\n<pre><code>export JAVA_HOME=/c/jvm/jdk1.8.0_102\n./gradlew tasks\n</code></pre>\n\n<p>But I can't figure out how to do an equivalent thing with WSL.\nOpening up the \"Bash on Ubuntu on Windows\" terminal, changing to my source directory and invoking the following:</p>\n\n<pre><code>export JAVA_HOME=/mnt/c/jvm/jdk1.8.0_102\n./gradlew tasks\n</code></pre>\n\n<p>Results in the following:</p>\n\n<pre><code>ERROR: JAVA_HOME is set to an invalid directory: /mnt/c/jvm/jdk1.8.0_102\n\nPlease set the JAVA_HOME variable in your environment to match the\nlocation of your Java installation.\n</code></pre>\n\n<p>Note that the Windows JDK runs fine from within the bash terminal.  Executing <code>$JAVA_HOME/bin/java.exe -version</code> in the Ubuntu terminal will work fine.</p>\n\n<p><strong>The question is</strong>:</p>\n\n<p>Is there any way to run my gradlew script from a \"Bash on Ubuntu on Windows\" terminal using the Windows JDK I've previously installed.</p>\n\n<p><em>Please note</em>:</p>\n\n<p>I'm specifically asking if it's possible to get my Gradle script running using the Windows JDK, not an Ubuntu/Linux JDK installed with WSL.\nI understand I can likely run my gradle wrapper script by installing a Linux JDK within the Windows Sunbsystem for Linux, but I'm trying to figure out if it's possible to run my builds using the Windows JDK.</p>\n",
+  "score": 13,
+  "answer_count": 3,
+  "view_count": 6969,
+  "tags": [
+    "java",
+    "windows",
+    "bash",
+    "gradle",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-08-02T04:23:58",
+  "answers": [],
+  "source": "stackoverflow"
+}

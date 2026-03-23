@@ -1,0 +1,15 @@
+{
+  "id": 68633973,
+  "title": "Intellisense autocomplete not working for wsl in vscode",
+  "body": "<p>I've been setting up vscode as an IDE for python development. I use windows subsystem for linux with my python packages installed through anaconda there.</p>\n<p>My problem is that auto completion does not work as expected. For examples, outside of wsl if I am using the numpy package I can get autocompletion:</p>\n<p><a href=\"https://i.sstatic.net/2qYqy.png\" rel=\"noreferrer\">Autocomplete outside of wsl</a></p>\n<p>However, inside of wsl autocomplete does not find numpy.linalg (as in example above):</p>\n<p><a href=\"https://i.sstatic.net/UbucQ.png\" rel=\"noreferrer\">Autocomplete inside wsl</a></p>\n<p>Thanks in advance!</p>\n<p>edit: I am currently using wsl1 if that information is relavent!</p>\n",
+  "score": 11,
+  "answer_count": 3,
+  "view_count": 12776,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-08-03T09:55:15",
+  "answers": [],
+  "source": "stackoverflow"
+}

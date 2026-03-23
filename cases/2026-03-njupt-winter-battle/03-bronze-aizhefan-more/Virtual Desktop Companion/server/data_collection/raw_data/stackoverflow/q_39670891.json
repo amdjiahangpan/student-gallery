@@ -1,0 +1,18 @@
+{
+  "id": 39670891,
+  "title": "Eclipse C/C++ project on Bash on Ubuntu on Windows",
+  "body": "<p>I've installed Eclipse Neon (v4.6). Also, I have \"Bash on Ubuntu on Windows\" (Sept '16). I installed gcc and gdb for compiling and debugging in C. I tested them on terminal and they're running.</p>\n\n<p>I'm trying to use Eclipse to create a new C project but in the compiler selection stage it doesnt give me the option to use the \"Bash on Ubuntu on Windows\" compiler.</p>\n\n<p>Is there any way to solve my problem?</p>\n",
+  "score": 11,
+  "answer_count": 6,
+  "view_count": 13570,
+  "tags": [
+    "c",
+    "eclipse",
+    "gcc",
+    "gdb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-09-23T23:22:45",
+  "answers": [],
+  "source": "stackoverflow"
+}

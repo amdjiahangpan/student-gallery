@@ -1,0 +1,24 @@
+{
+  "id": 41338549,
+  "title": "SDL2 Can&#39;t create window since it couldn&#39;t find matching GLX visual",
+  "body": "<p>I have a problem as i am currently running Ubuntu Terminal on Windows 10. I also have XMing installed as my X-server(I use XMing for qemu,etc...). And i am trying to run this SDL2 Program. So i have this for main.cpp:</p>\n\n<pre><code>#include &lt;stdio.h&gt; \n#include &lt;stdlib.h&gt; \n#include &lt;unistd.h&gt; \n\n#include &lt;SDL2/SDL.h&gt; \n#include &lt;GL/gl.h&gt; \n\nint main(int argc, char *argv[]) \n{ \n        int final_status = 1; \n        SDL_Window *window; \n        SDL_GLContext openGL_context; \n\n        if (SDL_Init(SDL_INIT_VIDEO)) { \n                fprintf(stderr, \"Unable to initialize SDL: %s\\n\", \n                        SDL_GetError()); \n                return 1; \n        } \n        window = SDL_CreateWindow(\"My Demo\", SDL_WINDOWPOS_CENTERED, \n                                  SDL_WINDOWPOS_CENTERED, 640, 480, \n                                  SDL_WINDOW_OPENGL); \n        if (!window) { \n                fprintf(stderr, \"Can't create window: %s\\n\", SDL_GetError()); \n                goto finished; \n        } \n\n        openGL_context = SDL_GL_CreateContext(window); \n        if (!openGL_context) { \n                fprintf(stderr, \"Can't create openGL context: %s\\n\", \n                        SDL_GetError()); \n                goto close_window; \n        } \n\n        /* drawing code removed */ \n\n        final_status = 0; \n        SDL_GL_DeleteContext(openGL_context); \nclose_window: \n        SDL_DestroyWindow(window); \nfinished: \n        SDL_Quit(); \n        fprintf(stdout, \"done\\n\"); \n        fflush(stdout); \n        return final_status; \n}  \n</code></pre>\n\n<p>And then when i run <code>g++ main.cpp -lSDL2</code> , i get this output:</p>\n\n<pre><code>Can't create window: Couldn't find matching GLX visual\ndone\n</code></pre>\n\n<p>I have tried to search how to solve this GLX Problem but can't seem to find a solution for it. Help would be greatly appreciated!</p>\n",
+  "score": 14,
+  "answer_count": 1,
+  "view_count": 16200,
+  "tags": [
+    "c++",
+    "sdl-2",
+    "windows-subsystem-for-linux",
+    "glx"
+  ],
+  "creation_date": "2016-12-27T03:09:45",
+  "answers": [
+    {
+      "id": 42742658,
+      "body": "<p>Ensure that GLX is installed correctly by running <code>glxinfo</code>.  At the bottom, you'll find the list of supported visuals.  Here's mine:</p>\n\n<pre><code>1 GLX Visuals\n    visual  x   bf lv rg d st  colorbuffer  sr ax dp st accumbuffer  ms  cav\n  id dep cl sp  sz l  ci b ro  r  g  b  a F gb bf th cl  r  g  b  a ns b eat\n----------------------------------------------------------------------------\n0x022 24 tc  0  24  0 r  y .   8  8  8  0 .  .  0 16  0  0  0  0  0  0 0 None\n</code></pre>\n\n<p>Try running the following before running the SDL2 program:</p>\n\n<pre><code>export SDL_VIDEO_X11_VISUALID=\n</code></pre>\n\n<p>This causes SDL to go down a different code path to find the visual.  You can also try hardcoding the visual to the visual id from <code>glxinfo</code>:</p>\n\n<pre><code>export SDL_VIDEO_X11_VISUALID=0x022\n</code></pre>\n",
+      "score": 18,
+      "creation_date": "2017-03-12T01:24:36"
+    }
+  ],
+  "source": "stackoverflow"
+}

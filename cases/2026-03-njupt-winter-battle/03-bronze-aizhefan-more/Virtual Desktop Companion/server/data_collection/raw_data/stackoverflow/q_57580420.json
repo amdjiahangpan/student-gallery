@@ -1,0 +1,22 @@
+{
+  "id": 57580420,
+  "title": "WSL: Using A WSL symlink folder from Windows",
+  "body": "<p>I use WSL almost exclusively, and only switch to main windows for browsing and running Windows native programs. I have a git repository located at <code>/mnt/c/myrepo</code>. In order to \"install\" the code inside <code>/mnt/c/myrepo</code> I need to move it to <code>/mnt/c/otherlocation/renamed</code>. Instead of executing <code>cp -r /mnt/c/myrepo /mnt/c/otherlocation/renamed</code> every time I do a <code>git pull</code> from <code>/mnt/c/myrepo</code>, I would like to symlink <code>/mnt/c/myrepo</code> to <code>/mnt/c/otherlocation/renamed</code>. However when I do this, the program which consumes <code>/mnt/c/otherlocation/renamed</code> isn't able to view the \"contents\" of renamed as a directory. </p>\n\n<p>I have been all over the WSL github repo and issue tracker trying to find a solution to this issue. I see a lot of exclamations about how symlinks \"just work\". I have enabled every Windows 10 developer feature I can find, I even followed some reddit thread where someone claimed that purchasing Pengwin and creating a symlink from Pengwin would ensure this compatibility, but I still can't seem to make this work.</p>\n\n<p>The basic usage I need, is allow me to view \"renamed\" as a directory from windows, or for windows to recognize the symlink as a symlinked directory.</p>\n\n<p>from wsl:</p>\n\n<pre><code>ln -s /mnt/c/myrepo  /mnt/c/otherlocation/renamed\n</code></pre>\n\n<p>from windows:</p>\n\n<ol>\n<li>open file explorer</li>\n<li>navigate to c:\\otherlocation</li>\n<li>open mydir and view the contents as if it were a native directory</li>\n</ol>\n\n<p>How do I do this?</p>\n",
+  "score": 35,
+  "answer_count": 6,
+  "view_count": 79101,
+  "tags": [
+    "symlink",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-08-20T19:31:18",
+  "answers": [
+    {
+      "id": 76181147,
+      "body": "<p>Since this seems to be the only SO post that has any googlejuice when searching for <strong>Symlink from Windows to WSL</strong> I thought I'd add the answer to that question, ie,</p>\n<p><em>how to make a &quot;symlink&quot; from the windows filesystem to the wsl filesystem, that works for windows apps?</em></p>\n<p>answer was in the comments, credit to @Mikepote</p>\n<ol>\n<li><p>first open <strong>Powershell</strong> with <strong>Run as Administrator</strong></p>\n</li>\n<li><p>then run</p>\n</li>\n</ol>\n<pre><code> New-Item -ItemType SymbolicLink -Path &quot;windows-path\\to\\symlink&quot; -Target &quot;\\\\wsl$\\Ubuntu\\home\\yourusername\\path\\to\\target-thing&quot; \n</code></pre>\n<p>substitute your distro name for <code>Ubuntu</code> above if necessary, and <code>yourusername</code> obviously too.</p>\n",
+      "score": 20,
+      "creation_date": "2023-05-05T10:18:36"
+    }
+  ],
+  "source": "stackoverflow"
+}

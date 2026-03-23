@@ -1,0 +1,23 @@
+{
+  "id": 39404087,
+  "title": "pem file permissions on Bash on Ubuntu on Windows",
+  "body": "<p>I am attempting to login to my box using my .pem file however I get the error</p>\n\n<pre><code>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\nPermissions 0555 for './arete-server.pem' are too open.\nIt is required that your private key files are NOT accessible by others.\nThis private key will be ignored.\nbad permissions: ignore key: ./arete-server.pem\nPermission denied (publickey).\n</code></pre>\n\n<p>chmod 400 doesn't work on Bash on Ubuntu on Windows and the best permissions I can give it is -r-xr-xr-x</p>\n\n<p>Any idea how to get permissions to a point where I can use this pem file?</p>\n",
+  "score": 16,
+  "answer_count": 9,
+  "view_count": 27361,
+  "tags": [
+    "windows",
+    "bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-09-09T04:55:10",
+  "answers": [
+    {
+      "id": 49927203,
+      "body": "<p>On WSL, chmod donesn't work on NTFS partitions used by Windows. You need to move your .pem file to a partition in Linux container (for example the home folder), then chmod 400 will work.</p>\n\n<ol>\n<li>Navigate to a NTFS folder, example: cd /mnt/c/keyfiles</li>\n<li>Move .pem file to your home folder: mv key.pem ~</li>\n<li>Navigate to your folder: cd ~</li>\n<li>Apply the permission: chmod 400 key.pem</li>\n</ol>\n",
+      "score": 42,
+      "creation_date": "2018-04-19T17:47:29"
+    }
+  ],
+  "source": "stackoverflow"
+}

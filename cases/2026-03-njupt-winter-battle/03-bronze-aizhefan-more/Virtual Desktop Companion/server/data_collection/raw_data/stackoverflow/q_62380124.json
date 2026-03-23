@@ -1,0 +1,23 @@
+{
+  "id": 62380124,
+  "title": "where docker image is stored with docker-desktop for windows?",
+  "body": "<p>I installed docker-desktop for windows 10 from <a href=\"https://www.docker.com/products/docker-desktop\" rel=\"noreferrer\">https://www.docker.com/products/docker-desktop</a>, and I enabled the docker daemon for Linux container.\nI have my own wsl2 distro called ubuntu, and I enabled the docker-desktop integration with distro ubuntu, and built an image in it.\nBut I cannot figure out where the image is saved.\nI did some search and found people saying it is in <code>\\\\wsl$\\docker-desktop-data\\mnt\\wsl\\docker-desktop-data\\data\\docker</code>. I did find this folder, but the whole folder is only a few hundred MB, and my image is several GB. I only find metadata in the folder but not the real image.\nSomeone point out that I can find path to image in docker resources configuration tab, but mine does not show where the docker image is...\n<a href=\"https://i.sstatic.net/BCgEW.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/BCgEW.png\" alt=\"docker resources\" /></a></p>\n<p>Any one has found the image in similar situation?</p>\n<p><strong>UPDATE</strong>\nthe volumes are created in the folder: <code>\\\\wsl$\\docker-desktop-data\\mnt\\wsl\\docker-desktop-data\\version-pack-data\\community\\docker\\volumes</code></p>\n",
+  "score": 30,
+  "answer_count": 3,
+  "view_count": 45397,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-desktop"
+  ],
+  "creation_date": "2020-06-15T01:36:14",
+  "answers": [
+    {
+      "id": 65726249,
+      "body": "<p>The Docker VM is stored in the file <code>%USERPROFILE%\\AppData\\Local\\Docker\\wsl\\data\\ext4.vhdx</code>.</p>\n<p>This might not be what you're looking for, but I found this thread when looking for the linked one, so this answer might help some other people.</p>\n<p><a href=\"https://stackoverflow.com/questions/62441307/how-can-i-change-the-location-of-docker-images-when-using-wsl2-with-windows-10-h\">More info</a></p>\n",
+      "score": 18,
+      "creation_date": "2021-01-14T20:13:15"
+    }
+  ],
+  "source": "stackoverflow"
+}

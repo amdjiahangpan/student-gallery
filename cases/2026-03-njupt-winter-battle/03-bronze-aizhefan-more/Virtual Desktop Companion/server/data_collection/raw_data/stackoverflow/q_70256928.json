@@ -1,0 +1,24 @@
+{
+  "id": 70256928,
+  "title": "Docker Compose prompted error: no configuration file provided: not found",
+  "body": "<p>I had setup Docker Desktop with Windows WSL integration version 2 and I run into issue when execute certain <code>docker compose</code> command with following errors</p>\n<pre><code>docker compose logs\nno configuration file provided: not found\n</code></pre>\n<p>However, there were no problem found when executing the following</p>\n<pre><code>docker compose up\n</code></pre>\n<p>and image built and fired up successfully.</p>\n<p>Is there anyone who can help with this?</p>\n<hr />\n<h3>Output of <code>docker info</code></h3>\n<pre><code>Client:\n Context:    default\n Debug Mode: false\n Plugins:\n  buildx: Docker Buildx (Docker Inc., v0.7.1)\n  compose: Docker Compose (Docker Inc., v2.2.1)\n  scan: Docker Scan (Docker Inc., 0.9.0)\n\nServer:\n Containers: 3\n  Running: 3\n  Paused: 0\n  Stopped: 0\n Images: 4\n Server Version: 20.10.11\n Storage Driver: overlay2\n  Backing Filesystem: extfs\n  Supports d_type: true\n  Native Overlay Diff: true\n  userxattr: false\n Logging Driver: json-file\n Cgroup Driver: cgroupfs\n Cgroup Version: 1\n Plugins:\n  Volume: local\n  Network: bridge host ipvlan macvlan null overlay\n  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog\n Swarm: inactive\n Runtimes: io.containerd.runc.v2 io.containerd.runtime.v1.linux runc\n Default Runtime: runc\n Init Binary: docker-init\n containerd version: 7b11cfaabd73bb80907dd23182b9347b4245eb5d\n runc version: v1.0.2-0-g52b36a2\n init version: de40ad0\n Security Options:\n  seccomp\n   Profile: default\n Kernel Version: 5.10.60.1-microsoft-standard-WSL2\n Operating System: Docker Desktop\n OSType: linux\n Architecture: x86_64\n CPUs: 8\n Total Memory: 24.95GiB\n Name: docker-desktop\n ID: FUMA:ZOXR:BA4L:YSOZ:4NQT:HHIZ:ASAD:EJGA:NJRG:SO4S:GXN3:JG5H\n Docker Root Dir: /var/lib/docker\n Debug Mode: false\n Registry: https://index.docker.io/v1/\n Labels:\n Experimental: false\n Insecure Registries:\n  127.0.0.0/8\n Live Restore Enabled: false\n\nWARNING: No blkio throttle.read_bps_device support\nWARNING: No blkio throttle.write_bps_device support\nWARNING: No blkio throttle.read_iops_device support\nWARNING: No blkio throttle.write_iops_device support\n</code></pre>\n",
+  "score": 141,
+  "answer_count": 20,
+  "view_count": 373914,
+  "tags": [
+    "docker",
+    "docker-compose",
+    "windows-subsystem-for-linux",
+    "docker-desktop"
+  ],
+  "creation_date": "2021-12-07T08:24:21",
+  "answers": [
+    {
+      "id": 70257438,
+      "body": "<p>execute docker-compose command where docker-compose.yml file located at should resolved it.</p>\n<p>or specify the docker-compose.yml file as bellow</p>\n<pre><code>docker-compose -f &lt;docker-compose.yml&gt; logs \n</code></pre>\n<p>as suggested</p>\n",
+      "score": 109,
+      "creation_date": "2021-12-07T09:10:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

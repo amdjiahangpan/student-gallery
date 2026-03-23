@@ -1,0 +1,25 @@
+{
+  "id": 53874221,
+  "title": "Mount disk image on WSL (Windows subsystem for Linux)?",
+  "body": "<p>I'm using Ubuntu and I have created a full copy of my system SSD hard drive with the following command:</p>\n\n<pre><code>dd if=/dev/sda of=ubuntu.iso\n</code></pre>\n\n<p>and saved it on a backup HDD which is an NTFS drive.</p>\n\n<p>I'm now on Windows 10 PRO and want to mount this image using WSL (Ubuntu 18.04). This is the command I'm using: </p>\n\n<pre><code>sudo mount -o ro,loop,offset=1048576 /mnt/a/ubuntu.iso /mnt/ubuntu_backup\n</code></pre>\n\n<p>This is the error that I get:</p>\n\n<pre><code> mount: /mnt/ubuntu_backup: mount failed: Operation not permitted.\n</code></pre>\n\n<p>This same command worked on Ubuntu.</p>\n\n<p>Is it possible to mount this image using WSL?</p>\n",
+  "score": 26,
+  "answer_count": 1,
+  "view_count": 21077,
+  "tags": [
+    "windows",
+    "windows-10",
+    "filesystems",
+    "mount",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-12-20T18:31:43",
+  "answers": [
+    {
+      "id": 64666410,
+      "body": "<p>Try copying the ISO file into a folder on your computer (not inside WSL) and then mount the ISO using Windows Explorer. After that, use</p>\n<pre><code>sudo mount -t drvfs [drive letter of your ISO]: /where/you/want/to/mount/it\n</code></pre>\n<p>For you that would be</p>\n<pre><code>cp /mnt/a/ubuntu.iso /mnt/[home drive letter, most likely C, lowercase]/wherever/you/want/to/put/it\n</code></pre>\n<p>Then run <code>explorer.exe</code>, navigate to the folder you copied the ISO to, mount the ISO, record the drive letter, and then type</p>\n<pre><code>sudo mount -t drvfs [drive letter of your ISO]: /where/you/want/to/mount/it\n</code></pre>\n<p>This should give you the same functionality. After that, it will say</p>\n<blockquote>\n<p>mount: /home/vishal/custom-iso/mnt: WARNING: device write-protected,\nmounted read-only.</p>\n</blockquote>\n<p>This is in WSL 1, not WSL 2, but I suspect that it will work the same way. In fact, I think WSL 2 will be easier to mount the ISO because it is essentially its own self-contained virtual machine. Using Powershell, I was able to mount physical drives to it, so I see no problem with getting an ISO to mount properly in WSL 2</p>\n",
+      "score": 5,
+      "creation_date": "2020-11-03T16:07:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 57363597,
+  "title": "How to use a new Windows Terminal app for SSH?",
+  "body": "<p>The <a href=\"https://github.com/microsoft/terminal\" rel=\"noreferrer\">Windows Terminal</a> app is advertised as a central hub for all terminal work, so I'm interested in a way to bring my SSH connections into it and replace ancient PuTTY.</p>\n",
+  "score": 50,
+  "answer_count": 4,
+  "view_count": 94532,
+  "tags": [
+    "windows",
+    "ssh",
+    "terminal",
+    "console",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-08-05T17:39:58",
+  "answers": [
+    {
+      "id": 57363598,
+      "body": "<p>You can use a <code>commandline</code> field in your <a href=\"https://learn.microsoft.com/en-us/windows/terminal/customize-settings/profile-general#command-line\" rel=\"noreferrer\">profile configuration</a> to initiate an SSH connection on tab creation.</p>\n<p>Step-by-step guide:</p>\n<ol>\n<li>Ensure you have an SSH client (try to connect to the server from a <code>Command Prompt</code> tab). <a href=\"https://stackoverflow.com/a/58029292/3399377\">@dhgouveia2's post</a> details this step.</li>\n<li>Open <strong>Settings</strong> (Ctrl+,)</li>\n<li>Find the <code>&quot;list&quot;</code> array in the <code>&quot;profiles&quot;</code> object</li>\n<li>Find a <code>Command Prompt</code> profile (<code>&quot;commandline&quot;: &quot;cmd.exe&quot;</code>)</li>\n<li>Duplicate the profile (copy-paste the whole object, watch for the comma between objects)</li>\n<li>Change the <code>&quot;guid&quot;</code> value to a new GUID (for example, <a href=\"https://www.guidgen.com/\" rel=\"noreferrer\">from here</a>)</li>\n<li>Change the <code>commandline</code> value to <code>&quot;commandline&quot; : &quot;ssh me@my-server -p 22 -i ~/.ssh/id_rsa&quot;</code> (use your own connection command).</li>\n<li>Change the profile's <code>&quot;name&quot;</code></li>\n<li>Add an <code>&quot;icon&quot; : &quot;ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png&quot;</code> item to use a Tux icon (default icons are <a href=\"https://github.com/microsoft/terminal/tree/master/src/cascadia/CascadiaPackage/ProfileIcons\" rel=\"noreferrer\">here</a>)</li>\n<li>You should have something like this:\n<pre class=\"lang-json prettyprint-override\"><code>{\n    &quot;$schema&quot;: &quot;https://aka.ms/terminal-profiles-schema&quot;,\n    &quot;profiles&quot;:\n    {\n        &quot;list&quot;:\n        [\n            // ...\n            {\n                &quot;guid&quot;: &quot;{1d43c510-93e8-4960-a18b-e432641e0930}&quot;,\n                &quot;name&quot;: &quot;ssh my-server&quot;,\n                &quot;icon&quot; : &quot;ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png&quot;,\n                &quot;commandline&quot;: &quot;ssh me@my-server -p 22 -i ~/.ssh/id_rsa&quot;\n            }\n        ]\n    }\n}\n</code></pre>\n</li>\n<li>Save the configuration and enjoy the new item in the <strong>New Tab</strong> drop-down.</li>\n</ol>\n",
+      "score": 63,
+      "creation_date": "2019-08-05T17:39:58"
+    }
+  ],
+  "source": "stackoverflow"
+}

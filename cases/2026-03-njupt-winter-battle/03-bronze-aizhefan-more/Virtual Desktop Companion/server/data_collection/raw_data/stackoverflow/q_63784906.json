@@ -1,0 +1,16 @@
+{
+  "id": 63784906,
+  "title": "Firewall blocking WSL 2",
+  "body": "<p>My firewall (Norton) is blocking WSL 2 from using the internet. I cannot ping even google.</p>\n<p>When I turn the firewall off, everything works, and when I turn it back on again, it no longer works.</p>\n<p>What rules do I have to set on the firewall to allow WSL to go through? Will it work for all firewalls or just Norton?</p>\n",
+  "score": 13,
+  "answer_count": 4,
+  "view_count": 30431,
+  "tags": [
+    "firewall",
+    "windows-subsystem-for-linux",
+    "norton"
+  ],
+  "creation_date": "2020-09-07T22:18:17",
+  "answers": [],
+  "source": "stackoverflow"
+}

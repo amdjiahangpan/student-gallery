@@ -1,0 +1,17 @@
+{
+  "id": 58312319,
+  "title": "Couldn&#39;t start client Rust Language Server",
+  "body": "<p>I'm trying to figure out how to use rustc &amp; cargo from my WSL. I use VS Code and Rust (rls) plugin and can compile my code but there is a problem with RLS:</p>\n<blockquote>\n<p>Couldn't start client Rust Language Server</p>\n<p>Rustup not available. Install from <a href=\"https://www.rustup.rs/\" rel=\"noreferrer\">https://www.rustup.rs/</a></p>\n</blockquote>\n<p>How i can solve this problem?</p>\n",
+  "score": 11,
+  "answer_count": 6,
+  "view_count": 9682,
+  "tags": [
+    "visual-studio-code",
+    "rust",
+    "windows-subsystem-for-linux",
+    "rust-language-server"
+  ],
+  "creation_date": "2019-10-09T21:07:03",
+  "answers": [],
+  "source": "stackoverflow"
+}

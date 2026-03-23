@@ -1,0 +1,23 @@
+{
+  "id": 61083772,
+  "title": "Where are Docker volumes located when running WSL using Docker Desktop?",
+  "body": "<p>I am running <em>Windows Subsystem Linux</em> (WSL) with Ubuntu as client OS under Windows 10. Now I installed <em>Docker Desktop</em> on the Windows host and enabled the WSL integration in the Docker settings. That works fine so far, I can access the Docker daemon running on the Windows host from my WSL Ubuntu client.</p>\n\n<p>Now I am wondering where all the Docker volumes and other data is stored in this setup. Usually these are under <code>/var/lib/docker</code>, but it seems when using WSL this is not the case. When running <code>df -h</code> I can see the following Docker-related lines:</p>\n\n<pre><code>/dev/sdd        251G  3.1G  236G   2% /mnt/wsl/docker-desktop-data/isocache\n/dev/sdc        251G  120M  239G   1% /mnt/wsl/docker-desktop/shared-sockets\n/dev/loop0      244M  244M     0 100% /mnt/wsl/docker-desktop/cli-tools\n</code></pre>\n\n<p>So they are somewhere on the Windows host it seems.<br>\n... but where?</p>\n",
+  "score": 75,
+  "answer_count": 18,
+  "view_count": 111295,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-desktop"
+  ],
+  "creation_date": "2020-04-07T15:35:46",
+  "answers": [
+    {
+      "id": 64430683,
+      "body": "<p>When I create a volume named shared_data in docker, I can find it under</p>\n<pre><code>\\\\\\wsl$\\docker-desktop-data\\version-pack-data\\community\\docker\\volumes\\shared_data\\\\_data\n</code></pre>\n",
+      "score": 120,
+      "creation_date": "2020-10-19T15:41:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

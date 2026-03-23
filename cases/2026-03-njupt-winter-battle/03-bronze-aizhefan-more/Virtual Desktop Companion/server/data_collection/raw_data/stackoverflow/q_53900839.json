@@ -1,0 +1,22 @@
+{
+  "id": 53900839,
+  "title": "git repo gives contradictory info from WSL than from Windows",
+  "body": "<p>When I run <code>git status</code> on a git repository through WSL (Windows Subsystem for Linux) that's on the Window's directory (<code>/mnt/c/Users/....</code>), I get that every file in the directory has been modified. Each modification is just delete and re-write of the original file. See below:\n<a href=\"https://i.sstatic.net/gGpud.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/gGpud.png\" alt=\"enter image description here\"></a></p>\n\n<p>Below is a <code>git diff</code> on one of the files\n<a href=\"https://i.sstatic.net/wKO1h.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/wKO1h.png\" alt=\"git diff on specific file\"></a></p>\n\n<p>Now if I run a <code>git status</code> on the exact same repository on the Windows side (through powershell), I get nothing:</p>\n\n<p><a href=\"https://i.sstatic.net/e0wvB.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/e0wvB.png\" alt=\"enter image description here\"></a></p>\n\n<p>Any particular reason behind this? I know the <code>^M</code> have to do with the different line endings that Linux and Microsoft are using, but that git would disagree on whether changes have been made or not seems odd to me.</p>\n\n<p>Note: I've been working on the repository on WSL side through a separate clone of the repository (hence why the Windows side is 15 commits behind). No editing has been done to the Windows repository though. Not sure if this changes anything, but I'd figure I'd mention it.</p>\n",
+  "score": 41,
+  "answer_count": 3,
+  "view_count": 17025,
+  "tags": [
+    "git",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-12-23T02:47:15",
+  "answers": [
+    {
+      "id": 53900940,
+      "body": "<p>The two git installations (native windows and WSL) are using a different setting for the <code>core.autocrlf</code> configuration, because these two installations are not using the same global config file.</p>\n<p>Put simply, the native windows client is converting LF to CRLF upon checkout, and hence the presence of CRLF is not &quot;seen&quot; as a change by <code>git status</code>.  On the contrary, the WSL client expects UNIX-style LF line endings, so the <code>git status</code> sees every file as having been modified to change LF to CRLF.</p>\n<p>Instead of relying on the global setting the <code>core.autocrlf</code> you should set it locally in the repository for any shared repositories.  If the same repository is being accessed from both Linux/WSL and native Windows, you probably want this set to <code>false</code> so git does not change any line endings at all.  Just beware that if you do set this as false, you'll have to make sure your editors can handle the line endings as they are (in general, most programmers editors I've used do support using UNIX LF, even on Windows).</p>\n<p>The <code>core.autocrlf</code> is documented here for more info:</p>\n<p><a href=\"https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_autocrlf\" rel=\"noreferrer\">https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_autocrlf</a></p>\n",
+      "score": 49,
+      "creation_date": "2018-12-23T03:13:58"
+    }
+  ],
+  "source": "stackoverflow"
+}

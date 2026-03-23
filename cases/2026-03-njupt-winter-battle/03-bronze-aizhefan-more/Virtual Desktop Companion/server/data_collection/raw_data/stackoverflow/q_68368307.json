@@ -1,0 +1,23 @@
+{
+  "id": 68368307,
+  "title": "How to remove wsl distro from windows?",
+  "body": "<p>I've installed docker desktop on my windows 10.\nThen I discovered WSL.\nAfter writing command <code>wsl -l -v</code> I saw that I had 2 distros:</p>\n<pre><code>docker-desktop-data\ndocker-desktop\n</code></pre>\n<p>I've also installed Ubuntu 20.04 from Microsoft Store and now I also have</p>\n<pre><code>Ubuntu-20.04\n</code></pre>\n<p>Now I want to get rid of these 2. I don't need so many of them. I know that docker-desktop-data contains images docker-desktop contains the docker infrastructure. But it's still unclear to me and confusing. I want to use Ubuntu-20.04 for my docker experiments only.</p>\n<p>How do I delete these?</p>\n<p><a href=\"https://i.sstatic.net/1D49A.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/1D49A.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 19,
+  "answer_count": 2,
+  "view_count": 36551,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-desktop"
+  ],
+  "creation_date": "2021-07-13T19:24:35",
+  "answers": [
+    {
+      "id": 73712865,
+      "body": "<p>If after uninstalling docker you still see docker-desktop-data</p>\n<p>You can remove it with the following command:</p>\n<pre><code>wsl --unregister docker-desktop-data\n</code></pre>\n<p>You can list distros with the following command:</p>\n<pre><code>wsl -l\n</code></pre>\n",
+      "score": 23,
+      "creation_date": "2022-09-14T07:13:36"
+    }
+  ],
+  "source": "stackoverflow"
+}

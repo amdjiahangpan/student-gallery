@@ -1,0 +1,23 @@
+{
+  "id": 75739545,
+  "title": "docker Buildx &quot;ERROR: BuildKit is enabled but the buildx component is missing or broken&quot; error",
+  "body": "<p>When I try to do a Docker Build using Docker as usual, I get the error message in the image and cannot Build.\nWhat should I do in this case?\nBy the way, Docker's version is 23.0.1.\n<a href=\"https://i.sstatic.net/AzgNi.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/AzgNi.png\" alt=\"enter image description here\" /></a>\n<a href=\"https://i.sstatic.net/PIryk.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/PIryk.png\" alt=\"enter image description here\" /></a>\n<a href=\"https://i.sstatic.net/kMF5Y.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/kMF5Y.png\" alt=\"enter image description here\" /></a></p>\n<p>When I uninstall docker buildx and then Build, I get other warning errors and the Build itself works, but parallel processing cannot be performed.\nMy ideal would be to use Buildx to do a parallel Build.</p>\n",
+  "score": 31,
+  "answer_count": 8,
+  "view_count": 68774,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "buildx"
+  ],
+  "creation_date": "2023-03-15T00:28:54",
+  "answers": [
+    {
+      "id": 75805654,
+      "body": "<p>Did you maybe use Docker Desktop on Windows, uninstall it, and then tried to install Docker directly on WSL?</p>\n<p>In that case you may have an issue that in /usr/local/lib/docker/cli-plugins/ you don't have actual files, but broken links to WSL installation. This happened to me.</p>\n<p>To verify check output from: <code>ls -la /usr/local/lib/docker/cli-plugins/</code></p>\n<p>In my case, I <code>rm</code> these broken links, then rerun Docker installation on WSL and it solved the problem.</p>\n",
+      "score": 35,
+      "creation_date": "2023-03-21T19:33:41"
+    }
+  ],
+  "source": "stackoverflow"
+}

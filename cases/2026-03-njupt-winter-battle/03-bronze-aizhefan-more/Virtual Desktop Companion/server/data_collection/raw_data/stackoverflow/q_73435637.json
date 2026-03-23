@@ -1,0 +1,25 @@
+{
+  "id": 73435637,
+  "title": "How can I fix &quot;/usr/bin/ld: warning: trap.o: missing .note.GNU-stack section implies executable stack&quot;?",
+  "body": "<p>I compiled the same project on ubuntu20.04 in wsl and my main used OS archLinux respectively. On wsl, everything went normal, while on archlinux the error message as follows would show:</p>\n<blockquote>\n<p><em>/usr/bin/ld: warning: trap.o: missing .note.GNU-stack section implies executable stack</em><br />\n<em>/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker</em></p>\n</blockquote>\n<p>It seems like an error caused by the linker <strong>ld</strong>, the version message of it on my Linux OS is:</p>\n<pre><code>GNU ld (GNU Binutils) 2.39\nCopyright (C) 2022 Free Software Foundation, Inc.\n</code></pre>\n<p>And my wsl has:</p>\n<pre><code>GNU ld (GNU Binutils for Ubuntu) 2.34\nCopyright (C) 2020 Free Software Foundation, Inc.\n</code></pre>\n<p>On arch, gcc's version is <strong>12.1.1</strong>, while on wsl it is gcc <strong>9.3.0</strong></p>\n<p>Was it caused by the difference between the old and new versions?\nHow can I fix it?</p>\n",
+  "score": 15,
+  "answer_count": 4,
+  "view_count": 25355,
+  "tags": [
+    "c",
+    "linux",
+    "gcc",
+    "windows-subsystem-for-linux",
+    "ld"
+  ],
+  "creation_date": "2022-08-21T15:08:45",
+  "answers": [
+    {
+      "id": 73468271,
+      "body": "<p>Call with ld option <code>-z noexecstack</code>.</p>\n<p>Credit to <a href=\"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ffcf9c5700e49c0aee42dcba9a12ba21338e8136\" rel=\"noreferrer\">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ffcf9c5700e49c0aee42dcba9a12ba21338e8136</a>.</p>\n",
+      "score": 25,
+      "creation_date": "2022-08-24T06:16:09"
+    }
+  ],
+  "source": "stackoverflow"
+}

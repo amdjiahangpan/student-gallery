@@ -1,0 +1,21 @@
+{
+  "id": 64185560,
+  "title": "Where are the files inside wsl2 physically stored?",
+  "body": "<p>I've installed wsl2 on my windows machine and I was not able to figure out where  the files are actually stored.<br />\nNote, that I don't mean that I wanna browse them inside the file explorer - I know it can be done by typing in the explorer <code>\\\\wsl$\\</code>.<br />\nIf I would have to guess I would say the files are stored in the same hard-drive that the os is stored.</p>\n<p>So actually I have two related questions.</p>\n<ol>\n<li>Where the files are stored?</li>\n<li>If they are stored in the hard drive of my os, can I somehow relocate my wsl to another hard drive?</li>\n</ol>\n<p>EDIT:<br />\nI was able to locate the installation path, in my machine the path is:<br />\n<code>C:\\Users\\Eliran\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\\LocalState</code></p>\n<p>Is there a way to mount this to another location?</p>\n",
+  "score": 82,
+  "answer_count": 3,
+  "view_count": 158419,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-10-03T14:56:15",
+  "answers": [
+    {
+      "id": 64219885,
+      "body": "<p>All the files are stored in a <code>ext4.vhd</code> files in the installation directory, which you can't mount directly onto windows as it is in ext4 (obv)</p>\n<p>There's two ways to change the location of the above mentioned vhd file the official, tedious way and an unofficial quick and dirty way</p>\n<p><strong>The official tedious way</strong></p>\n<ol>\n<li>Export the distro to a location with <code>wsl.exe --export &lt;Distro&gt; &lt;FileName&gt;</code> from CMD/PowerShell</li>\n<li>Import the distro to a different location with <code>wsl.exe --import &lt;Distro&gt; &lt;InstallLocation&gt; &lt;FileName&gt; [Options]</code></li>\n</ol>\n<p>The problems with this is it's quite time consuming and after you do this, pray that it exported and imported several gigabytes worth of thousands of files without any problems</p>\n<p><strong>The quick and dirty way</strong></p>\n<p>This involes an unofficial opensource WSL manager called <a href=\"https://github.com/DDoSolitary/LxRunOffline\" rel=\"noreferrer\">lxrunoffline</a></p>\n<p>To install it (takes like a min at max) read through the instructions by the dev <a href=\"https://github.com/DDoSolitary/LxRunOffline#install\" rel=\"noreferrer\">here</a></p>\n<p>If you installed it by manually downloading the binaries from the release page, make sure to install it to a directory in PATH, like <code>C:\\Windows</code></p>\n<p>Now the process is simple as <code>lxrunoffline move -n &lt;distroname&gt; -d &lt;destination-folder&gt;</code></p>\n<p>For example <code>lxrunoffline move -n Ubuntu-20.04 -d G:\\wsl\\</code></p>\n<p>Hope I helped</p>\n<p>Edit: typo</p>\n",
+      "score": 47,
+      "creation_date": "2020-10-06T05:31:31"
+    }
+  ],
+  "source": "stackoverflow"
+}

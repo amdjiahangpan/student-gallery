@@ -1,0 +1,22 @@
+{
+  "id": 70946140,
+  "title": "Docker Desktop WSL ext4.vhdx too large",
+  "body": "<p>I have WSL installed as well as Docker Desktop.</p>\n<p>I tried to clean up docker as much as I could by running</p>\n<pre><code>docker system prune -a\n\ndocker volume rm $(docker volume ls -q -f dangling=true)\n</code></pre>\n<p>Then I verified with</p>\n<pre><code>❯ docker system df\nTYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE\nImages          0         0         0B        0B\nContainers      0         0         0B        0B\nLocal Volumes   0         0         0B        0B\nBuild Cache     0         0         0B        0B\n</code></pre>\n<p>However, I see that I still have nearly 12G used by WSL.</p>\n<p>I assume this file is docker related. Why is it so large despite me removing all containers and volumes?</p>\n<p>How do I shrink it (or can I delete it?)</p>\n<p><a href=\"https://i.sstatic.net/6kH5S.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/6kH5S.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 270,
+  "answer_count": 6,
+  "view_count": 256193,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-02-01T19:07:34",
+  "answers": [
+    {
+      "id": 74870395,
+      "body": "<p>(Update for December 2022)</p>\n<p>The windows utility <code>diskpart</code> can now be used to shrink Virtual Hard Disk (vhdx) files provided you freed up the space inside it by deleting any unnecessary files. I found the info in <a href=\"https://stephenreescarter.net/how-to-shrink-a-wsl2-virtual-disk/\" rel=\"noreferrer\">this guide</a>.</p>\n<p>I am putting the gist of the instructions below for reference but the guide above is more complete.</p>\n<p>First make sure all WSL instances are shut down by opening an administrator command window, and typing:</p>\n<pre><code>&gt;&gt; wsl --shutdown \n</code></pre>\n<p>Verify everything is stopped by:</p>\n<pre><code>&gt;&gt; wsl.exe --list --verbose\n</code></pre>\n<p>Then start diskpart:</p>\n<pre><code>&gt;&gt; diskpart\n</code></pre>\n<p>and inside diskpart type:</p>\n<pre><code>DISKPART&gt; select vdisk file=&quot;&lt;path to vhdx file&gt;&quot;\n</code></pre>\n<p>For example:</p>\n<pre><code>DISKPART&gt; select vdisk file=&quot;C:\\Users\\user\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu22.04LTS_12rqwer1sdgsda\\LocalState\\ext4.vhdx&quot;\n</code></pre>\n<p>it should respond by saying\n<code>DiskPart successfully selected the virtual disk file.</code></p>\n<p>Then to shrink</p>\n<pre><code>DISKPART&gt; compact vdisk\n</code></pre>\n<p>After this the vhdx file should shrink in usage. In my case it went from 40GB to 4GB. You can type <code>exit</code> to quit diskpart.</p>\n",
+      "score": 403,
+      "creation_date": "2022-12-21T01:01:02"
+    }
+  ],
+  "source": "stackoverflow"
+}

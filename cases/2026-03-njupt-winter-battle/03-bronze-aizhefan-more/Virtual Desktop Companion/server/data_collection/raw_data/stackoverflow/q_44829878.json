@@ -1,0 +1,24 @@
+{
+  "id": 44829878,
+  "title": "Trying to use bash on Windows and got no installed distributions message",
+  "body": "<p>I am trying to use <strong>bash</strong> on <strong>Windows 10</strong>, but I'm getting this message when tried to run bash:</p>\n\n<blockquote>\n  <p>Windows Subsystem for Linux has no installed distributions.\n  Distributions can be installed by visiting the Windows Store:\n  <a href=\"https://aka.ms/wslstore\" rel=\"noreferrer\">https://aka.ms/wslstore</a> Press any key to continue...</p>\n</blockquote>\n\n<p>When I go to that url which opens the <strong>Windows Store</strong> app, there no sign of any <strong>Linux</strong> distribution there.</p>\n\n<p>My windows version is(as in my right bottom corner of the screen):</p>\n\n<blockquote>\n  <p>Windows 10 Enterprise Insider Preview. Evaluation copy.Build\n  16215.rs_prerelease.170603-1840</p>\n</blockquote>\n\n<p>I follow the instructions in this guide <a href=\"https://msdn.microsoft.com/en-us/commandline/wsl/install_guide\" rel=\"noreferrer\">Installation Guide</a> and also was watching this video <a href=\"https://www.youtube.com/watch?v=XfRo63afjtM&amp;feature=em-uploademail\" rel=\"noreferrer\">Editing code and files on Windows Subsystem for Linux on Windows 10</a> from Scott Hanselman, but they didn't get the message of no installed distribution.</p>\n\n<p>Any Help?</p>\n",
+  "score": 137,
+  "answer_count": 26,
+  "view_count": 195633,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-06-29T15:52:36",
+  "answers": [
+    {
+      "id": 44866882,
+      "body": "<p>When the Windows Store opened, there was no Distro to choose, then I found this command <code>lxrun /install</code> and worked for me as well.</p>\n\n<p>You will get something like this as an output:</p>\n\n<pre><code>C:\\WINDOWS\\system32&gt;lxrun /install\nWarning: lxrun.exe is only used to configure the legacy Windows Subsystem for Linux distribution.\nDistributions can be installed by visiting the Microsoft Store:\nhttps://aka.ms/wslstore\n\nThis will install Ubuntu on Windows, distributed by Canonical and licensed under its terms available here:\nhttps://aka.ms/uowterms\n\nType \"y\" to continue: y\nDownloading from the Microsoft Store... 100%\nExtracting filesystem, this will take a few minutes...\nWould you like to set the Ubuntu locale to match the Windows locale (en-FI)?\nThe default locale is en_US.\nType \"y\" to continue: y\nPlease create a default UNIX user account. The username does not need to match your Windows username.\nFor more information visit: https://aka.ms/wslusers\nEnter new UNIX username: &lt;you type your login here&gt;\nEnter new UNIX password:\nRetype new UNIX password:\npasswd: password updated successfully\nInstallation successful!\nDocumentation is available at:  https://aka.ms/wsldocs\n</code></pre>\n",
+      "score": 173,
+      "creation_date": "2017-07-02T02:09:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

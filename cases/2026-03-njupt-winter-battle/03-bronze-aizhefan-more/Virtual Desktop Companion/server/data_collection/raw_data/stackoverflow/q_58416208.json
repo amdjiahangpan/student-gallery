@@ -1,0 +1,17 @@
+{
+  "id": 58416208,
+  "title": "WSL Conda Environment in PyCharm",
+  "body": "<p>I'm trying to set up a new dev environment on Windows 10. Let me set the stage with some key points:</p>\n<p>I am using Ubuntu through Windows Subsystem for Linux (WSL).\nI have Anaconda3 installed on WSL.\nI have PyCharm installed on Windows 10.</p>\n<p>I am attempting to use a Conda environment created in the WSL within PyCharm on Windows 10. For some reason I cannot find documentation or guidance on the process.</p>\n<p>I have already successfully setup a virtualenv within WSL as a remote interpreter for PyCharm however it will not allow me to do the same with a Conda environment.</p>\n",
+  "score": 12,
+  "answer_count": 6,
+  "view_count": 12447,
+  "tags": [
+    "python",
+    "pycharm",
+    "anaconda",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-10-16T14:53:21",
+  "answers": [],
+  "source": "stackoverflow"
+}

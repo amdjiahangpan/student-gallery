@@ -1,0 +1,23 @@
+{
+  "id": 63497928,
+  "title": "Ubuntu WSL with docker could not be found",
+  "body": "<p>The command <code>$ docker</code> could not be found in this WSL 1 distro.\nWe recommend to convert this distro to WSL 2 and activate\nthe WSL integration in Docker Desktop settings.</p>\n<p>See <a href=\"https://docs.docker.com/docker-for-windows/wsl/\" rel=\"noreferrer\">https://docs.docker.com/docker-for-windows/wsl/</a> for details.</p>\n<p>Not able to change to WSL2 and not able to install docker:</p>\n<p><a href=\"https://i.sstatic.net/WwQkT.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/WwQkT.png\" alt=\"docker wls\" /></a></p>\n",
+  "score": 181,
+  "answer_count": 25,
+  "view_count": 298023,
+  "tags": [
+    "windows",
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-08-20T03:36:54",
+  "answers": [
+    {
+      "id": 64373477,
+      "body": "<p>You need to go to the docker desktop settings, and enable integration with your distro in &quot;Resources -&gt; WSL Integration&quot;.</p>\n<p><a href=\"https://i.sstatic.net/2FO7x.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/2FO7x.png\" alt=\"enter image description here\" /></a></p>\n",
+      "score": 300,
+      "creation_date": "2020-10-15T14:12:10"
+    }
+  ],
+  "source": "stackoverflow"
+}

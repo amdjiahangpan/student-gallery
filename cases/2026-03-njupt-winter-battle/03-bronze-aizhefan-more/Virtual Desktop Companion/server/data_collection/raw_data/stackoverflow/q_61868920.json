@@ -1,0 +1,21 @@
+{
+  "id": 61868920,
+  "title": "Connect Hyper-V VM from WSL (Ubuntu)",
+  "body": "<p>I have created a VM on Hyper-V with 2 Network Adapters.</p>\n<ol>\n<li>NAT switch <a href=\"https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network\" rel=\"noreferrer\">for static ip</a></li>\n<li>External Switch (for access internet)</li>\n</ol>\n<p>From my command line I was able to connect to the VM with the Nat Switch IP\nbut from WSL Bash I was not able to connect with IP NatSwitch, but able to connect with ExternalSwitch IP.</p>\n<p>Why?</p>\n",
+  "score": 19,
+  "answer_count": 2,
+  "view_count": 21694,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-05-18T11:49:48",
+  "answers": [
+    {
+      "id": 75684131,
+      "body": "<p>I did this and it worked for me.</p>\n<pre><code>Get-NetIPInterface | where {$_.InterfaceAlias -eq 'vEthernet (WSL)' -or $_.InterfaceAlias -eq 'vEthernet (Default Switch)'} | Set-NetIPInterface -Forwarding Enabled\n</code></pre>\n<p>Got it from <a href=\"https://techcommunity.microsoft.com/t5/itops-talk-blog/windows-subsystem-for-linux-2-addressing-traffic-routing-issues/ba-p/1764074\" rel=\"noreferrer\">here</a></p>\n",
+      "score": 21,
+      "creation_date": "2023-03-09T11:43:10"
+    }
+  ],
+  "source": "stackoverflow"
+}

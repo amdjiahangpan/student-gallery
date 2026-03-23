@@ -1,0 +1,22 @@
+{
+  "id": 44049070,
+  "title": "Bash on Ubuntu on Windows not starting",
+  "body": "<p>So, I've been using the new(ish) Bash on Ubuntu on Windows (WSL) for a while now and all has been top-notch, until yesterday. </p>\n\n<p>I git-pushed from Bash by accident, so it asked me for my repo-destination account details like normal. I decided to ignore this, terminate Bash and try to just use powershell instead (can't ever remember passwords!). Terminating Bash however caused the shell to freeze. I forced closed and restarted my comp (I've had to force close and restart several times before for various reasons and everything was fine).</p>\n\n<p>After boot up, I just tried to check if Bash was working again, but it wasn't. It just failed to start with no error message. For example:</p>\n\n<pre><code>PS C:\\WINDOWS\\system32&gt; bash\nPS C:\\WINDOWS\\system32&gt;\n</code></pre>\n\n<p>Has anyone else had a similar situation/knows how to help?</p>\n\n<p>EDIT: Only solved through reinstalling bash, using</p>\n\n<pre><code>    lxrun /uninstall /full\n</code></pre>\n\n<p>then </p>\n\n<pre><code>    lxrun /install \n</code></pre>\n",
+  "score": 29,
+  "answer_count": 13,
+  "view_count": 80314,
+  "tags": [
+    "bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-05-18T13:26:22",
+  "answers": [
+    {
+      "id": 62581337,
+      "body": "<p>I had the same issue but my solution was different. I found that my (Default) WSL distribution was set to docker-desktop-data instead of my Ubuntu distribution, e.g.</p>\n<p>In PowerShell (Windows Shell): <code>wslconfig /L</code></p>\n<p>This lists WSL distributions.  For me &quot;docker-desktop-data (Default)&quot; was listed as default not my Ubuntu distribution.</p>\n<p>To change this:</p>\n<p>In PowerShell (Windows Shell): <code>wslconfig /setdefault Ubuntu-20.04</code></p>\n",
+      "score": 46,
+      "creation_date": "2020-06-25T17:46:44"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,23 @@
+{
+  "id": 60256901,
+  "title": "Crontab never executes in Windows Subsystem for Linux",
+  "body": "<p>I set up some cronjobs a while back using <code>crontab -e</code>. My crontab includes the following line:</p>\n\n<pre><code>* * * * * /usr/bin/touch /home/blah/MADEBYCRON\n</code></pre>\n\n<p>It's been weeks since I did this. I have never seen <code>/home/blah/MADEBYCRON</code>. I set permissions on my home directory so it should be able to create files in this directory, so why does this file never exist?</p>\n\n<p><code>/var/log/syslog</code> does not exist.</p>\n",
+  "score": 17,
+  "answer_count": 5,
+  "view_count": 18580,
+  "tags": [
+    "bash",
+    "cron",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-02-17T06:22:12",
+  "answers": [
+    {
+      "id": 60262632,
+      "body": "<p>Ensure that the cron service is running. I use WSL with cron every day for my local backups using rsync so this should work.</p>\n\n<p>Use <code>which cron</code> to check its installed, mine says <code>/usr/sbin/cron</code>.</p>\n\n<p>Use <code>crontab -l</code> to list your configured jobs.</p>\n\n<p>Use <code>ps aux | grep cron</code> to look see if cron is running, you should see <code>/usr/sbin/cron</code> if it is.</p>\n\n<p>Use <code>service cron status</code> to check if the service is started.</p>\n\n<p>Use <code>sudo service cron start</code> to start the cron service if it is not running.</p>\n",
+      "score": 65,
+      "creation_date": "2020-02-17T12:36:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

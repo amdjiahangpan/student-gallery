@@ -1,0 +1,25 @@
+{
+  "id": 48179857,
+  "title": "apt in Linux Subsystem for Windows 10 is failing with 404 Not Found",
+  "body": "<p>I have a Windows 10 laptop on which I am trying to install <code>gcc</code>. I have in the past tried alternatives such as Netbeans, Cygwin and various emulators and virtual machines all to no avail.</p>\n<p>What has been working so far is that I enabled the 'new' windows developer mode which allowed me to download a Linux bash shell from the windows store. It works for all the regular Linux commands, but doesn't have gcc installed.</p>\n<p>When I type in <code>gcc</code> (or <code>gcc --version</code>) in the shell, it prints the following line:</p>\n<blockquote>\n<p>The program 'gcc' is currently not installed. You can install it by typing:\nsudo apt install gcc</p>\n</blockquote>\n<p>Which I tried, it then ran through a bunch of installer stuff but consistently seemed to run into errors such as the following:</p>\n<blockquote>\n<p>Err:7 <a href=\"http://archive.ubuntu.com/ubuntu\" rel=\"nofollow noreferrer\">http://archive.ubuntu.com/ubuntu</a> xenial-updates/main amd64 libdpkg- &gt;perl all 1.18.4ubuntu1.2</p>\n</blockquote>\n<blockquote>\n<p>404  Not Found [IP: <strong>INSERT IP ADDRESS HERE</strong> ]</p>\n</blockquote>\n<p>where the ip address is different on each error line.</p>\n<p>It ultimately fails with the following line:</p>\n<blockquote>\n<p>Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?</p>\n</blockquote>\n<p>I have tried but again I get the same kinds of errors as above.</p>\n<p>I would really like to get <code>gcc</code> working in the Windows/Linux shell as it is working great for everything else, and I'm trying to keep the number of programs on my computer to a minimum.</p>\n<p>Does anyone know why this isn't working, or how (if possible) I can make it work?</p>\n<p>P.S I do need it to be <code>gcc</code> because of school reasons</p>\n",
+  "score": 18,
+  "answer_count": 5,
+  "view_count": 14142,
+  "tags": [
+    "bash",
+    "gcc",
+    "windows-10",
+    "installation",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-01-10T03:26:12",
+  "answers": [
+    {
+      "id": 58283558,
+      "body": "<p>For what it's worth: I landed on this SO topic after having a similar issue.</p>\n\n<p>What fixed it for me was to run </p>\n\n<pre><code>sudo apt-get update\nsudo apt-get upgrade\n</code></pre>\n\n<p>I guess the repo URLs were too old, even though my Ubuntu was in a recent version.</p>\n",
+      "score": 39,
+      "creation_date": "2019-10-08T09:25:11"
+    }
+  ],
+  "source": "stackoverflow"
+}

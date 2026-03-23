@@ -1,0 +1,24 @@
+{
+  "id": 3681950,
+  "title": "Is it possible to run LINQPad with Mono (Mac)",
+  "body": "<p>I have installed Mono 2.6.7 in Snow Leopard and would like to run LINQPad.  I've gotten LINQPad (v2.21) to start but immediately get a FileNotFoundException.  Has anyone been able to run it successfully?</p>\n\n<p>I assume the exception is because it's trying to read/write a config file or something but hopefully there is some workaround.</p>\n\n<p>Thanks.</p>\n\n<p><strong>Edit:\nBuilding Mono with \"Olive\" (required for WPF):</strong></p>\n\n<p>In Terminal: </p>\n\n<pre><code>svn co svn://anonsvn.mono-project.com/source/trunk/olive\ncd /Users/(your user name)/olive\n./configure --prefix=/Users/(your user name)/olive --with-glib=embedded\nmake\nmake install\n</code></pre>\n\n<p>Now navigate in Finder to:</p>\n\n<blockquote>\n  <p>/Users/(your user name)/olive/lib/mono/gac</p>\n</blockquote>\n\n<p>Copy those folders (ex: PresentationCore, PresentationFramework) into:</p>\n\n<blockquote>\n  <p>/Library/Frameworks/Mono.framework/Versions/2.6.7/lib/mono/gac\n  (Current Mono version is 2.6.7 but this obviously may be different)</p>\n</blockquote>\n\n<p><strong>Edit:</strong> Unfortunately, now I'm getting this when running LINQPad:</p>\n\n<blockquote>\n  <p>WARNING **: The class\n  System.Windows.Resources.AssemblyAssociatedContentFileAttribute\n  could not be loaded, used in LINQPadcould not be loaded, used in LINQPad</p>\n</blockquote>\n\n<p><strong>Edit:</strong> Xamarin Workbooks recently released 1.0 (<a href=\"https://developer.xamarin.com/workbooks/\" rel=\"noreferrer\">https://developer.xamarin.com/workbooks/</a>) and is the closest I've seen to LINQPad on macOS.</p>\n\n<p><strong>Edit (September 2017):</strong>\n<em>This is still speculative!</em></p>\n\n<p>Running most Windows applications (including GUI apps) might be possible with Docker and Windows Subsystem for Linux (WSL):</p>\n\n<p><img src=\"https://blog.jessfraz.com/img/cmd-exe.gif\" alt=\"Animated demo of cmd.exe running on Ubuntu\"></p>\n\n<p>See the blog post at <a href=\"https://blog.jessfraz.com/post/windows-for-linux-nerds/\" rel=\"noreferrer\">https://blog.jessfraz.com/post/windows-for-linux-nerds/</a> for a detailed walkthrough.</p>\n",
+  "score": 35,
+  "answer_count": 5,
+  "view_count": 17647,
+  "tags": [
+    "linux",
+    "mono",
+    "windows-subsystem-for-linux",
+    "linqpad"
+  ],
+  "creation_date": "2010-09-10T02:36:50",
+  "answers": [
+    {
+      "id": 3682218,
+      "body": "<p>LINQPad doesn't work in Mono primarily because it relies on ActiPro's SyntaxEditor which does some Win32 interop. LINQPad itself also does some interop.</p>\n\n<p>An early prototype of LINQPad used a TextBox instead of a syntax editor - this might be what was tested against Mono.</p>\n",
+      "score": 38,
+      "creation_date": "2010-09-10T04:14:57"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 46593596,
+  "title": "Visual Studio Code, Python linting with WSL (Windows Subsystem for Linux)",
+  "body": "<p>I'm using Windows 10 on 64 bit PC. Recently, I started using VS Code with Ubuntu Bash on Windows. Everything works great except linting. I tried to get it working with pylint and pep8 but none of them worked. I think that the problem is caused because of the location of the linter. However, I couldn't figure out how to fix the problem. You can check my settings for the pylint:</p>\n\n<pre><code>// Whether to lint Python files using pylint.\n\"python.linting.pylintEnabled\": true,\n\n// Severity of Pylint message type 'Convention/C'.\n\"python.linting.pylintCategorySeverity.convention\": \"Information\",\n\n// Severity of Pylint message type 'Refactor/R'.\n\"python.linting.pylintCategorySeverity.refactor\": \"Hint\",\n\n// Severity of Pylint message type 'Warning/W'.\n\"python.linting.pylintCategorySeverity.warning\": \"Warning\",\n\n// Severity of Pylint message type 'Error/E'.\n\"python.linting.pylintCategorySeverity.error\": \"Error\",\n\n// Severity of Pylint message type 'Fatal/F'.\n\"python.linting.pylintCategorySeverity.fatal\": \"Error\",\n\n// Path to Pylint, you can use a custom version of pylint by modifying this \n// setting to include the full path.\n\"python.linting.pylintPath\": \"pylint\",\n\n// Arguments passed in. Each argument is a separate item in the array.\n\"python.linting.pylintArgs\": [],\n</code></pre>\n\n<p>I would appreciate any help. Thank you...</p>\n",
+  "score": 15,
+  "answer_count": 3,
+  "view_count": 8488,
+  "tags": [
+    "python",
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "bash-on-windows"
+  ],
+  "creation_date": "2017-10-05T19:40:49",
+  "answers": [
+    {
+      "id": 46725696,
+      "body": "<p>From what I can tell, if you're using WSL, the shell is a separate environment from VSCode. That's why the git extension <a href=\"https://github.com/Microsoft/vscode/issues/29812\" rel=\"nofollow noreferrer\">won't work</a> unless you install the Windows version, even if you've installed it in WSL. And while it is possible to <a href=\"https://github.com/Microsoft/BashOnWindows/issues/1946#issuecomment-295020357\" rel=\"nofollow noreferrer\">invoke WSL from Windows</a>, I've not been able to get it working.</p>\n\n<p>So for linting, install Python and flake8 in Windows (e.g. pip install flake8 in Git Bash) and you should be fine.</p>\n\n<p>P.S. If someone can tell me otherwise, I'd love to know! It's a bit annoying having to essentially download stuff twice (once in Windows, once in WSL).</p>\n",
+      "score": 4,
+      "creation_date": "2017-10-13T08:30:52"
+    }
+  ],
+  "source": "stackoverflow"
+}

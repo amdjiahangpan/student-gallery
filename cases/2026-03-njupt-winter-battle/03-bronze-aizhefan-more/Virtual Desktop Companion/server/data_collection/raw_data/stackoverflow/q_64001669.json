@@ -1,0 +1,24 @@
+{
+  "id": 64001669,
+  "title": "ZSH And VSCode - Default Shells",
+  "body": "<p>I've started setting up ZSH for VSCode. It worked for a small bit, but then it changed to Git Bash (my previous default shell). I tried changing the shell back to ZSH, but it didn't display in the list of opinions. Though, it does display WSL, which displays a completely different theme<br></p>\n<p>My theme (in windows terminal, unbuntu, ect): <br>\n<a href=\"https://i.sstatic.net/FVk2R.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/FVk2R.png\" alt=\"My theme\" /></a><br>\nThe theme that is in VSCode: <br>\n<a href=\"https://i.sstatic.net/yZyed.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/yZyed.png\" alt=\"WSL defaulted theme\" /></a></p>\n<p>I've tried adding this to my <code>settings.json</code>:</p>\n<pre class=\"lang-json prettyprint-override\"><code>&quot;terminal.integrated.shell.windows&quot;: &quot;/bin/zsh&quot;,\n</code></pre>\n<p>But it says: &quot;The terminal process failed to launch: Path to shell executable &quot;\\bin\\zsh&quot; does not exist.&quot;</p>\n<p>How can I fix this (change the default shell back to ZSH)?</p>\n",
+  "score": 39,
+  "answer_count": 4,
+  "view_count": 119067,
+  "tags": [
+    "ubuntu",
+    "visual-studio-code",
+    "zsh",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-22T00:53:30",
+  "answers": [
+    {
+      "id": 65578052,
+      "body": "<p>Try <code>which zsh</code> to confirm the path of your zsh executable. You might be having path error.</p>\n<p><a href=\"https://i.sstatic.net/4aSzC.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/4aSzC.png\" alt=\"which zsh\" /></a></p>\n<p><em>Or Try the GUI way.</em></p>\n<ol>\n<li>Open Command Palette</li>\n</ol>\n<p>Windows - <code>Ctrl</code> + <code>Shift</code> + <code>P</code></p>\n<p>Mac - <code>⌘</code> + <code>Shift</code> + <code>P</code></p>\n<ol start=\"2\">\n<li>Search For <code>Terminal: Select Default Shell</code> and select it.</li>\n</ol>\n<p><a href=\"https://i.sstatic.net/GsN8z.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/GsN8z.png\" alt=\"Command Palette\" /></a></p>\n<ol start=\"3\">\n<li>See the list of available shells and select one. If you cannot see zsh here, then you might have some configuration issues with zsh.</li>\n</ol>\n<p><a href=\"https://i.sstatic.net/G203Y.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/G203Y.png\" alt=\"Available Shells\" /></a></p>\n<p>It also likely that the zsh installation/configuration error caused your entry in <code>settings.json</code> file to be invalid. Once you have selected the shell, hit <code>ctrl</code> + <code>~</code> or <code>⌘</code> + <code>J</code> to open the terminal window and see the results. If you already opened a terminal then you would have to trash it or open another one.</p>\n<p>You could also open your <code>settings.json</code> and see or add the following entry directly.</p>\n<pre><code>// Edit July 2021 - New Updated Snippet\n&quot;terminal.integrated.defaultProfile.osx&quot;: &quot;zsh&quot;\n\n// Now deprecated\n&quot;terminal.integrated.shell.osx&quot;: &quot;/bin/zsh&quot;\n</code></pre>\n",
+      "score": 67,
+      "creation_date": "2021-01-05T11:32:15"
+    }
+  ],
+  "source": "stackoverflow"
+}

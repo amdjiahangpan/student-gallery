@@ -1,0 +1,23 @@
+{
+  "id": 68563040,
+  "title": "How to make Telescope ignore files inside node_modules?",
+  "body": "<p>I'm new in the <strong>VIM</strong> / <strong>NEOVIM</strong> world so I probably am doing something else wrong, but from the docs it says that Telescope will ignore all the files registered in the <code>.gitignore</code> file, which is definitively there but it still searches in <code>node_modules</code></p>\n<p>So this is what I do:</p>\n<ol>\n<li>I <code>cd</code> into my project folder</li>\n<li>Hit <code>nvim</code></li>\n<li>hit <code>&lt;leader&gt;ff</code></li>\n<li>Telescope opens and I start typing, but searches are really slow because they are including <code>node_modules</code></li>\n</ol>\n<p>These are the plugins that I have for setting up telescope</p>\n<pre><code>&quot; Telescope\nPlug 'nvim:solua/popup.nvim'\nPlug 'nvim-lua/plenary.nvim'\nPlug 'nvim-telescope/telescope.nvim'\n</code></pre>\n<p>And then my remaps right from the docs:</p>\n<pre><code>&quot; Find files using Telescope command-line sugar.\nnnoremap &lt;leader&gt;ff &lt;cmd&gt;Telescope find_files&lt;cr&gt;\nnnoremap &lt;leader&gt;fg &lt;cmd&gt;Telescope live_grep&lt;cr&gt;\nnnoremap &lt;leader&gt;fb &lt;cmd&gt;Telescope buffers&lt;cr&gt;\nnnoremap &lt;leader&gt;fh &lt;cmd&gt;Telescope help_tags&lt;cr&gt;\n</code></pre>\n<p>All this is running in a <strong>WSL</strong> terminal with Ubuntu. What am I missing?</p>\n",
+  "score": 14,
+  "answer_count": 5,
+  "view_count": 33519,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "neovim",
+    "telescope.nvim"
+  ],
+  "creation_date": "2021-07-28T15:17:04",
+  "answers": [
+    {
+      "id": 69923907,
+      "body": "<p>Just add</p>\n<pre class=\"lang-lua prettyprint-override\"><code>require('telescope').setup{ \n  defaults = { \n    file_ignore_patterns = { \n      &quot;node_modules&quot; \n    }\n  }\n}\n</code></pre>\n<p>to your <code>init.lua</code></p>\n",
+      "score": 47,
+      "creation_date": "2021-11-11T06:12:23"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,23 @@
+{
+  "id": 66753829,
+  "title": "how to move workspace(a simple project) from windows file system (/mnt/) to linux (~/home)",
+  "body": "<p>I am developing a Django project (nothing) and trying to use using WSL2.</p>\n<p>so  if I use the Ubuntu Terminal from Windows to create a project and try running it in VScode, I got this little message,</p>\n<p><a href=\"https://i.sstatic.net/ghYmY.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/ghYmY.png\" alt=\"enter image description here\" /></a></p>\n<p>I just don't know how to do that at all,</p>\n<p>it's the first time I tried to use WSL2 (which is awesome), if someone could help, thank you very much.</p>\n",
+  "score": 24,
+  "answer_count": 1,
+  "view_count": 15511,
+  "tags": [
+    "linux",
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-03-22T21:05:44",
+  "answers": [
+    {
+      "id": 68816609,
+      "body": "<p>If you have your project in some mounted folder -&gt; linux path starting with /mnt/ e.g.\n<code>/mnt/c/Users/rasto/Desktop/some_folder/my_project/</code></p>\n<p>When you open VS Code in this directory (via running command <code>code .</code> or opening the VS Code from windows) you get the warning:</p>\n<p><em>This workspace is on the Windows file system (/mnt/). For best performance, we recommend moving the workspace to the Linux file system (~/home).</em></p>\n<p>The solution is easy -&gt; move/copy the project folder to <code>~/my_project/</code> directory:</p>\n<p><strong>In WSL terminal:</strong></p>\n<p>Recursively copy all files from source-path to destination-path and if the folder <em>~/my_project/</em> does not exists, it will be created</p>\n<pre><code> cp -R /mnt/c/Users/rasto/Desktop/some_folder/my_project/ ~/my_project\n</code></pre>\n<p>Move to the directory in your terminal</p>\n<pre><code>cd ~/my_project\n</code></pre>\n<p>And open VS Code from console with</p>\n<pre><code>code .\n</code></pre>\n<p><strong>Note:</strong> To open VS Code from terminal you must have installe extension <a href=\"https://code.visualstudio.com/docs/remote/wsl\" rel=\"noreferrer\">Remote Development extension pack</a></p>\n<p><strong>Note2:</strong> To access the linux folder from windows file explorer just right click in VS Code <em>explorer</em> and <em>Reveal in explorer</em> or with the path like: <strong>\\\\wsl$\\Ubuntu-18.04\\home\\rasto\\my_projects</strong></p>\n",
+      "score": 28,
+      "creation_date": "2021-08-17T11:33:50"
+    }
+  ],
+  "source": "stackoverflow"
+}

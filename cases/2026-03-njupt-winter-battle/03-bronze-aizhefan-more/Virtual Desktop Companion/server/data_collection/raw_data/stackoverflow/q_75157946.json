@@ -1,0 +1,23 @@
+{
+  "id": 75157946,
+  "title": "WSL Failed to Initialize on Windows 11",
+  "body": "<p>I installed Docker on a clean laptop with the official Windows 11 with the latest update. Pre-installed WSL2 for Windows 11 according to Microsoft documentation. When running docker, the &quot;docker starting...&quot; is infinite. Attaching the error log.\nError sending starting WSL engine:</p>\n<blockquote>\n<p>Docker.Core.HttpBadResponseException: {&quot;message&quot;:&quot;2 errors\noccurred:\\n\\t* provisioning docker WSL distros: unregistering WSL\ndistro &quot;docker-desktop&quot;: unregistering WSL &quot;docker-desktop&quot;:\nwinapi error #2147746562\\n\\t* checking if isocache exists: CreateFile\n\\\\wsl$\\docker-desktop-data\\isocache\\: The network name cannot be\nfound.\\n\\n&quot;}</p>\n</blockquote>\n<p>I tried to reinstall WSL and Docker. Deleted %appdata%/docker.\nFor the test, I tried to install the Ubuntu subsystem through the Microsoft store. She didn't work either. Most likely a problem with the WSL. Tried to disable and enable again Windows features (WSL Support and Virtual Machine feature).</p>\n",
+  "score": 17,
+  "answer_count": 5,
+  "view_count": 24967,
+  "tags": [
+    "docker",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-01-18T10:39:21",
+  "answers": [
+    {
+      "id": 75302399,
+      "body": "<p>I had the same error solved it by: <a href=\"https://github.com/docker/for-win/issues/7039\" rel=\"noreferrer\">https://github.com/docker/for-win/issues/7039</a></p>\n<p>Don't need to reinstall it.</p>\n<p>Open windows shell as Administrator and run:</p>\n<pre class=\"lang-powershell prettyprint-override\"><code>wsl --unregister docker-desktop\n</code></pre>\n<p>Then go to <em>services</em>, stop <em>Docker Desktop</em> service, then start it again.</p>\n",
+      "score": 32,
+      "creation_date": "2023-01-31T19:46:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

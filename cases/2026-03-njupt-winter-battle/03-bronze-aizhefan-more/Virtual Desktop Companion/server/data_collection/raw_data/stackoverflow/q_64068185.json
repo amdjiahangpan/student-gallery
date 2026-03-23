@@ -1,0 +1,22 @@
+{
+  "id": 64068185,
+  "title": "Docker Image Taking up Space After Deletion",
+  "body": "<p>I committed an existing Docker container to create a new image but the committed image was way too large (the original image was 3+ GB, and with just a few additional things installed in the container, the committed image was 8+GB).</p>\n<p>I'm low on space, so I decided to delete the committed image, but even after deleting the committed image, my disk space hasn't gone up. Yet, when I run <code>docker system df</code> it's showing only the space that should be used original image and the container (I only have one image and one container).</p>\n<p>Any way for me to free up the space that I'm sure is somehow still being occupied by that image I deleted? (For reference, I created the image, then deleted it, all within an hour, and was constantly monitoring my free space, so I'm pretty sure it's this and not something else that's taking up space.)</p>\n<p>Also, I'm using Docker Desktop for Windows with WSL2 integration so it's not as easy to check Docker's disk use by just going to <code>/var/lib/docker</code> and checking disk usage.</p>\n",
+  "score": 111,
+  "answer_count": 11,
+  "view_count": 129647,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-25T16:41:05",
+  "answers": [
+    {
+      "id": 64942256,
+      "body": "<p>I have used these commands to shrink desktop image from 35GB to 1GB</p>\n<p>(in windows 10, docker version 19.03.13)</p>\n<h2>Remove unused images and other resources</h2>\n<p><code>docker system prune -a</code></p>\n<h2>Remove more resources</h2>\n<p><code>docker volume rm $(docker volume ls -q -f dangling=true)</code></p>\n<h2>Stop docker desktop, optimize image</h2>\n<p>Make sure HyperV turned on</p>\n<p><code>%windir%\\System32\\mmc.exe &quot;%windir%\\System32\\virtmgmt.msc&quot;</code> or type Hyper-V in win search</p>\n<p>Optimize disk in GUI &gt; Go to VM, and check disk</p>\n<p><code>Optimize-VHD -Path &quot;C:\\ProgramData\\DockerDesktop\\vm-data\\DockerDesktop.vhdx&quot; -Mode Full</code></p>\n<h2>Start docker desktop</h2>\n<p>Now I have 34+GB free disk space</p>\n<h2>Cleanup using docker desktop app</h2>\n<p>You can purge data when you click on bug icon in header and then click clean / purge data..</p>\n<p><a href=\"https://i.sstatic.net/6QbgO.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/6QbgO.png\" alt=\"enter image description here\" /></a></p>\n<p>Clean / purge data option does not remove wsl integration.</p>\n",
+      "score": 178,
+      "creation_date": "2020-11-21T10:55:09"
+    }
+  ],
+  "source": "stackoverflow"
+}

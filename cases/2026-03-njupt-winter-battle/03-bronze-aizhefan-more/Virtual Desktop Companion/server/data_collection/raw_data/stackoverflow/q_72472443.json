@@ -1,0 +1,24 @@
+{
+  "id": 72472443,
+  "title": "Git Credential Manager Not Found on WSL2",
+  "body": "<h1>Error Message</h1>\n<pre class=\"lang-bash prettyprint-override\"><code>/mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe get: 1: /mnt/c/Program Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe: not found\n</code></pre>\n<h1>Problem Story</h1>\n<p>I found this problem then git ask me for a username and password to authenticate to GitHub whenever I'm doing git activity with GitHub remote repository from my local WSL2 environment.</p>\n<p>It is very annoying to do this every time, then I search and follow several tutorials I can find on the internet, but everything just led me to the same problem again, these tutorial is not solving my problem at all.</p>\n<p>Every tutorial tells me that I should add the GCM directory in the Windows environment for the git in the WSL2 environment. Theoretically, it should solve my problem, but it is not.</p>\n",
+  "score": 19,
+  "answer_count": 9,
+  "view_count": 31435,
+  "tags": [
+    "git",
+    "github",
+    "windows-subsystem-for-linux",
+    "git-credential-manager"
+  ],
+  "creation_date": "2022-06-02T07:42:54",
+  "answers": [
+    {
+      "id": 72472444,
+      "body": "<h1>Solution</h1>\n<p>If there is no <code>git-credential-core.exe</code> in your git folder, then use it instead of the <code>git-credential-wincred.exe</code>. No <code>-core</code> executable file exists, so I use the <code>-wincred</code> file.</p>\n<p>Execute this command on WSL2 (use the <code>-core</code> rather than <code>-wincred</code> if it exists):</p>\n<pre class=\"lang-bash prettyprint-override\"><code>git config --global credential.helper &quot;/mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-core.exe&quot;\n</code></pre>\n<p><strong>only if the above command ❌ fails or does not solve the problem,</strong> change to <code>-wincred</code></p>\n<pre class=\"lang-bash prettyprint-override\"><code>git config --global credential.helper &quot;/mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe&quot;\n</code></pre>\n<h1>Explanation</h1>\n<p>I think <code>git-credential-manager-core.exe</code> has already been renamed <code>git-credential-wincred.exe</code>, but many tutorials on the internet are already deprecated because they gave us the old name of this executable file. This is my biggest problem because following any tutorial makes me find the same error over time.</p>\n",
+      "score": 42,
+      "creation_date": "2022-06-02T07:42:54"
+    }
+  ],
+  "source": "stackoverflow"
+}

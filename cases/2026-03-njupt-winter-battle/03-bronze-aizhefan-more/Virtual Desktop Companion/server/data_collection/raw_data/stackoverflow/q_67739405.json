@@ -1,0 +1,18 @@
+{
+  "id": 67739405,
+  "title": "Comparing content of 2 files with md5sum",
+  "body": "<p>How can I compare the md5 sums for 2 files in one command?</p>\n<p>I can compute them each individually:</p>\n<pre><code>my_prompt$ md5sum file_1.sql\n20f750ff1aa835965ec93bf36fd8cf22  file_1.sql\n\nmy_prompt$ md5sum file_2.sql\n733d53913c366ee87b6ce677971be17e  file_2.sql\n</code></pre>\n<p>But wonder how this can be combined into a single comparison computation.\nI have tried different approaches that fails:</p>\n<pre><code>my_prompt$ md5sum file_1.sql == md5sum file_2.sql\nmy_prompt$ `md5sum file_1.sql` == `md5sum file_2.sql`\nmy_prompt$ (md5sum file_1.sql) == (md5sum file_2.sql)\nmy_prompt$ `md5sum file_1.sql` -eq `md5sum file_2.sql`\n</code></pre>\n<p>What am I missing here ?\nTried following <a href=\"https://stackoverflow.com/questions/33049634/compare-md5-sums-in-bash-script/45502352\">Compare md5 sums in bash script</a> and <a href=\"https://unix.stackexchange.com/questions/78338/a-simpler-way-of-comparing-md5-checksum\">https://unix.stackexchange.com/questions/78338/a-simpler-way-of-comparing-md5-checksum</a> without luck.</p>\n",
+  "score": 12,
+  "answer_count": 4,
+  "view_count": 36908,
+  "tags": [
+    "bash",
+    "ubuntu",
+    "md5",
+    "windows-subsystem-for-linux",
+    "md5sum"
+  ],
+  "creation_date": "2021-05-28T13:05:21",
+  "answers": [],
+  "source": "stackoverflow"
+}

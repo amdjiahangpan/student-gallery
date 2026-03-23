@@ -1,0 +1,22 @@
+{
+  "id": 64191759,
+  "title": "WslRegisterDistribution failed with error: 0xffffffff",
+  "body": "<p>Unable to install Ubuntu 20.04 LTS in WSL 2. I have enabled all the required things for WSl.\nIt is resulting following error.\n<a href=\"https://i.sstatic.net/riOxF.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/riOxF.png\" alt=\"Error message\" /></a></p>\n",
+  "score": 16,
+  "answer_count": 7,
+  "view_count": 47856,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-10-04T06:27:27",
+  "answers": [
+    {
+      "id": 64217462,
+      "body": "<p>Please try the following:</p>\n<ol>\n<li>Go to System Tools =&gt; Resource Monitor GUI for windows</li>\n<li>Check which service is using port <strong>53</strong>,</li>\n<li>Once you identify it, kill the process as follows: <code>taskkill /f /pid [PID]</code>.</li>\n<li>Go to <code>Users/[youruser]/AppData/Local/Packages/</code> and look for a folder called <code>CanonicalGroupLimitedUbuntu...</code> then right click on it, go to <code>Properties =&gt; Advanced Options</code> and disable compression for the folder, then click accept and also apply this change for subfolders.</li>\n</ol>\n<p><strong>[Note]</strong> Windows uses Compression for the installation folders so is not possible to run it.</p>\n<p>Once this is done, try to run your installation and should be working.</p>\n<p>Hope it helps. Regards</p>\n",
+      "score": 62,
+      "creation_date": "2020-10-05T23:31:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

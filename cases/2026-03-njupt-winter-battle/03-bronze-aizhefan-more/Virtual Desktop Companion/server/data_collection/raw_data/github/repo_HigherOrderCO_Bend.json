@@ -1,0 +1,21 @@
+{
+  "id": 684776900,
+  "name": "Bend",
+  "full_name": "HigherOrderCO/Bend",
+  "description": "A massively parallel, high-level programming language",
+  "stars": 19174,
+  "forks": 468,
+  "open_issues": 102,
+  "url": "https://github.com/HigherOrderCO/Bend",
+  "clone_url": "https://github.com/HigherOrderCO/Bend.git",
+  "readme_content": "",
+  "created_at": "2023-08-29T20:44:32Z",
+  "updated_at": "2026-02-19T06:26:41Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

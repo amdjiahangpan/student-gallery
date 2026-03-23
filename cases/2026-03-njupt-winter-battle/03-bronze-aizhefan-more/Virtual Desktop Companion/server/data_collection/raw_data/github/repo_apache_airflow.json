@@ -1,0 +1,21 @@
+{
+  "id": 33884891,
+  "name": "airflow",
+  "full_name": "apache/airflow",
+  "description": "Apache Airflow - A platform to programmatically author, schedule, and monitor workflows",
+  "stars": 44318,
+  "forks": 16507,
+  "open_issues": 1749,
+  "url": "https://github.com/apache/airflow",
+  "clone_url": "https://github.com/apache/airflow.git",
+  "readme_content": "",
+  "created_at": "2015-04-13T18:04:58Z",
+  "updated_at": "2026-02-19T06:38:52Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

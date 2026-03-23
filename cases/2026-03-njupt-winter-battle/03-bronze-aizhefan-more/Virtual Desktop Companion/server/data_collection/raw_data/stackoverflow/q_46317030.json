@@ -1,0 +1,22 @@
+{
+  "id": 46317030,
+  "title": "How to call Linux commands through WSL in Windows command line?",
+  "body": "<p>I would like to use <code>ls</code>, and many other Linux tools, from the command line on Windows 10. I know that there is GnuWin32 and other binary replacements, but none of those works as elegantly as the Windows Subsystem for Linux (WSL); including the update mechanisms.</p>\n\n<p>With WSL, one can call <code>ls ...</code> from the command line via <code>bash -c \"ls ...\"</code>, which works great. Ideally, however, I would just type <code>ls</code> on the command line. I can create an <code>ls.bat</code> which basically does <code>@bash -c \"ls %*\"</code> - but I would have to do that for every single command I want to export. Is there a more direct way of exporting <code>ls</code> (and many others) to the command line?</p>\n",
+  "score": 24,
+  "answer_count": 4,
+  "view_count": 16021,
+  "tags": [
+    "shortcut",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-09-20T08:29:12",
+  "answers": [
+    {
+      "id": 49186380,
+      "body": "<p>Apparently this was the <a href=\"https://blogs.msdn.microsoft.com/wsl/2016/10/19/windows-and-ubuntu-interoperability/\" rel=\"noreferrer\">most requested feature for WSL</a>, and Microsoft now supports this feature. To use linux commands from within Command Prompt (or PowerShell), just prefix the command with <code>wsl</code>. So, for example, here's how you run <code>ls</code> from CMD.</p>\n\n<pre><code>C:\\temp&gt; wsl ls\n&lt;- contents of C:\\temp -&gt;\n</code></pre>\n\n<p>Or here's how you update package lists.</p>\n\n<pre><code>C:\\temp&gt; wsl sudo apt-get update\n[sudo] password for username:\nHit:1 http://archive.ubuntu.com/ubuntu xenial InRelease\nGet:2 http://security.ubuntu.com/ubuntu xenial-security InRelease [94.5 kB]\n</code></pre>\n\n<p>More details can be found in the <a href=\"https://learn.microsoft.com/en-us/windows/wsl/interop#run-linux-tools-from-a-windows-command-line\" rel=\"noreferrer\">official docs</a>.\nI'm not sure if you are looking for a solution which doesn't involve any kind of prefixing. If that's the case, I don't know of any solution yet.</p>\n",
+      "score": 31,
+      "creation_date": "2018-03-09T03:56:04"
+    }
+  ],
+  "source": "stackoverflow"
+}

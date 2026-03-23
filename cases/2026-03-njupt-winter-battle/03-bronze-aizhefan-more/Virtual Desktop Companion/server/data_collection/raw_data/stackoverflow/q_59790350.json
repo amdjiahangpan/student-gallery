@@ -1,0 +1,23 @@
+{
+  "id": 59790350,
+  "title": "QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to &#39;/tmp/runtime-aadithyasb&#39;",
+  "body": "<p>I am using WSL in Windows 10. I have this warning getting displayed when I run a python file:</p>\n\n<pre><code>QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-aadithyasb'\n</code></pre>\n\n<p>I can understand that the <code>XDG_RUNTIME_DIR</code> environment variable is not set and it is creating its own path <code>/tmp/runtime-aadithyasb</code></p>\n\n<p>I am getting this warning from the moment I installed Xserver for Windows using VcXsrv to open plots when the file is ran. </p>\n\n<p>Wy question is should I add this <code>XDG_RUNTIME_DIR</code> environment variable in windows or is there any method to set a directory under the variable for Ubuntu used under WSL?</p>\n",
+  "score": 35,
+  "answer_count": 4,
+  "view_count": 184508,
+  "tags": [
+    "x11",
+    "windows-subsystem-for-linux",
+    "qstandardpaths"
+  ],
+  "creation_date": "2020-01-17T15:29:55",
+  "answers": [
+    {
+      "id": 59843603,
+      "body": "<p>I was able to find what the caused the terminal to issue the warning. Yet I am posting this so that it would be useful for people someday who are new to using WSL like me. This link helped me to solve it and gave me a better insight on how linux works under a WSL:</p>\n\n<p><a href=\"https://dev.to/winebaths/getting-up-and-running-with-the-windows-subsystem-for-linux-8oc\" rel=\"noreferrer\">https://dev.to/winebaths/getting-up-and-running-with-the-windows-subsystem-for-linux-8oc</a></p>\n\n<p>To solve this issue I just added the below lines to my <code>.bashrc</code> file: </p>\n\n<pre class=\"lang-sh prettyprint-override\"><code>export XDG_RUNTIME_DIR=/some/directory/you/specify \nexport RUNLEVEL=3\n</code></pre>\n\n<p>After this just run the command</p>\n\n<pre class=\"lang-sh prettyprint-override\"><code>source .bashrc \n</code></pre>\n\n<p>Now the warning will not keep displaying in your terminal.</p>\n",
+      "score": 37,
+      "creation_date": "2020-01-21T14:47:04"
+    }
+  ],
+  "source": "stackoverflow"
+}

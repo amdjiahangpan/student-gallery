@@ -1,0 +1,22 @@
+{
+  "id": 66466339,
+  "title": "Docker for Windows and WSL1 to Work together",
+  "body": "<p>Exactly the same problem as <a href=\"https://stackoverflow.com/questions/63497928\">Ubuntu WSL with docker could not be found</a></p>\n<pre><code>$ docker\n\nThe command 'docker' could not be found in this WSL 1 distro.\nWe recommend to convert this distro to WSL 2 and activate\nthe WSL integration in Docker Desktop settings.\n\nSee https://docs.docker.com/docker-for-windows/wsl/ for details.\n</code></pre>\n<p>But my requirement is different -- I want to</p>\n<ul>\n<li>stick with WSL1 (for reasons beyond this topic)</li>\n<li>and use Docker for Windows as-is</li>\n</ul>\n<p>I.e., I have WSL1 and Docker for Windows installed parallel to each other. This is my current info:</p>\n<pre><code>C:&gt; ver\nMicrosoft Windows [Version 10.0.18363.1379]\n\nC:&gt; wsl -l -v\n  NAME      STATE           VERSION\n* Debian    Running         1\n</code></pre>\n<p>I don't see integration in &quot;Resources -&gt; WSL Integration&quot;, and I don't have WSL2 backend enabled in Docker Desktop settings.</p>\n<p><a href=\"https://i.sstatic.net/zTtij.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/zTtij.png\" alt=\"enter image description here\" /></a></p>\n<p>Just that I'm getting the above problem -- my <code>docker</code> works anywhere, in CMD, Powershell, git-bash, etc, just not in my WSL.</p>\n<p>All solutions that I found are to install Docker for Windows <em>within</em> WSL1 or WSL2, but I want to keep everything as is -- WSL and Docker for Windows installed <em>parallel to each other</em>.</p>\n<p>Any solution for that?</p>\n",
+  "score": 25,
+  "answer_count": 3,
+  "view_count": 47602,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-03-03T23:12:41",
+  "answers": [
+    {
+      "id": 66467396,
+      "body": "<blockquote>\n<p>The command 'docker' could not be found in this WSL 1 distro.<br/>\nWe recommend to convert this distro to WSL 2 and activate<br/>\nthe WSL integration in Docker Desktop settings.</p>\n</blockquote>\n<p>This means in <code>WSL2</code>, it has a real linux kernel which is required to install docker daemon, then in <code>docker-desktop</code> you could have chance to set docker daemon in <code>WSL2</code>. Otherwise, the docker daemon is running in <code>Hyper-V machine</code>. But, if you stick in <code>WSL1</code>, no chance to run <code>docker-daemon</code> in WSL, so the only option is running <code>docker daemon</code> in <code>Hyper-V machine</code>.</p>\n<p>Although above is the fact, still we have  chance to let you operate <code>docker ps, docker pull</code> etc. in <code>WSL1</code> bash just like you operate through <code>CMD, Powershell, git-bash</code>, that is <a href=\"https://docs.docker.com/engine/install/linux-postinstall/#configure-where-the-docker-daemon-listens-for-connections\" rel=\"noreferrer\">allow Docker to accept requests from remote hosts</a>.</p>\n<p>For your case, the steps maybe next:</p>\n<p><strong>1. Expose docker daemon in <code>docker desktop</code> settings as next, then click <code>Apply &amp; Restart</code>:</strong></p>\n<p><a href=\"https://i.sstatic.net/RKFcW.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/RKFcW.png\" alt=\"enter image description here\" /></a></p>\n<p><strong>2. Install standalone docker client in <code>WSL1</code>:</strong></p>\n<pre><code>$ wget https://download.docker.com/linux/static/stable/x86_64/docker-20.10.5.tgz\n$ tar zxvf docker-20.10.5.tgz\n$ cd docker\n</code></pre>\n<p><strong>3. Set default docker daemon:</strong></p>\n<pre><code>$ export DOCKER_HOST=tcp://localhost:2375\n</code></pre>\n<p><strong>4. Verify docker client command:</strong></p>\n<pre><code>$ ./docker info\n</code></pre>\n",
+      "score": 44,
+      "creation_date": "2021-03-04T01:43:09"
+    }
+  ],
+  "source": "stackoverflow"
+}

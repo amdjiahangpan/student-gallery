@@ -1,0 +1,21 @@
+{
+  "id": 598667202,
+  "name": "browser",
+  "full_name": "lightpanda-io/browser",
+  "description": "Lightpanda: the headless browser designed for AI and automation",
+  "stars": 11854,
+  "forks": 357,
+  "open_issues": 62,
+  "url": "https://github.com/lightpanda-io/browser",
+  "clone_url": "https://github.com/lightpanda-io/browser.git",
+  "readme_content": "",
+  "created_at": "2023-02-07T15:19:34Z",
+  "updated_at": "2026-02-19T06:35:25Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

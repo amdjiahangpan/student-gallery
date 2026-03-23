@@ -1,0 +1,24 @@
+{
+  "id": 53474575,
+  "title": "How to translate the wslpath /home/user/ to windows path",
+  "body": "<p>I use Linux subsystem of windows 10(windows 10 version 1803)</p>\n\n<p>I can use command line:</p>\n\n<pre><code>user@laptop:~$ wslpath -w /c/\nC:\\\n</code></pre>\n\n<p>But when I try to use</p>\n\n<pre><code>user@laptop:~$ wslpath -w ~\nwslpath: /home/user: Result not representable\n</code></pre>\n\n<p>Even I use:</p>\n\n<pre><code>user@laptop:~$ wslpath -w /home/user\nwslpath: /home/user: Result not representable\n</code></pre>\n\n<p>why? \nhow to translate the /home/user to windows path?</p>\n\n<p>my home folder path in windows is <code>C:\\Users\\winuser\\AppData\\Local\\lxss\\home</code></p>\n\n<p>I expect some command line can give me return that string.</p>\n",
+  "score": 32,
+  "answer_count": 3,
+  "view_count": 55538,
+  "tags": [
+    "bash",
+    "path",
+    "windows-subsystem-for-linux",
+    "realpath"
+  ],
+  "creation_date": "2018-11-26T03:50:59",
+  "answers": [
+    {
+      "id": 53548414,
+      "body": "<h1>Updated guidance for users of Windows 10 1809 or later:</h1>\n\n<p>In Windows 10 1809, we (finally) shipped filesystem integration allowing you to access the files in your WSL distros from Windows via the <code>\\\\wsl$</code> UNC path:</p>\n\n<p><a href=\"https://i.sstatic.net/HAQW4.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/HAQW4.png\" alt=\"enter image description here\"></a></p>\n\n<blockquote>\n  <p>If you're interested in the details behind how this works, please visit this blog post: <a href=\"https://devblogs.microsoft.com/commandline/a-deep-dive-into-how-wsl-allows-windows-to-access-linux-files/\" rel=\"noreferrer\">https://devblogs.microsoft.com/commandline/a-deep-dive-into-how-wsl-allows-windows-to-access-linux-files/</a></p>\n</blockquote>\n\n<p>This now allows <code>wslpath</code> to provide a Windows-accessible path to files within your distro's filesystem: </p>\n\n<p><a href=\"https://i.sstatic.net/Pi5TE.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Pi5TE.png\" alt=\"enter image description here\"></a></p>\n\n<p>In the up-coming Windows 10 May 2020 Update (2004), you won't have to remember the somewhat obscure <code>\\\\wsl$\\</code> UNC path - instead you'll just click on the Tux (Linux penguin) icon in your File Explorer:</p>\n\n<p><a href=\"https://i.sstatic.net/Sf674.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Sf674.png\" alt=\"enter image description here\"></a></p>\n\n<h2>Warning for WSL1 users:</h2>\n\n<p>Do not try to spelunk to the <code>%localappdata%\\lxss\\...</code> folders containing your WSL1 Linux files from Windows - there be dragons!</p>\n\n<p>Please read this post: <a href=\"https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/\" rel=\"noreferrer\">https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/</a></p>\n\n<p>This guidance has not, and will not change, though it will become less important over time: In particular, WSL2 does not use <code>%localappdata%\\lxss</code> - instead it stores your linux files within EXT4 formatted VHDX files delivering near-native IO performance for the distro's local filesystem.</p>\n",
+      "score": 40,
+      "creation_date": "2018-11-29T22:15:07"
+    }
+  ],
+  "source": "stackoverflow"
+}

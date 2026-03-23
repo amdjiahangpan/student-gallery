@@ -1,0 +1,23 @@
+{
+  "id": 48582952,
+  "title": "Execute Batch file in Windows Subsystem for Linux",
+  "body": "<p>Is it possible to execute a <code>.bat</code> file from a Windows Subsystem for Linux (eg. Ubuntu)?</p>\n\n<p>It is trivial to run an <code>.exe</code> file from a WSL, but I haven't found a trivial way to run a <code>.bat</code>. The only way I found is to open <code>cmd.exe</code>, but that is a bit cumbersome to do every time I need to execute a <code>.bat</code> file.</p>\n",
+  "score": 36,
+  "answer_count": 3,
+  "view_count": 36743,
+  "tags": [
+    "windows",
+    "batch-file",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-02-02T12:41:48",
+  "answers": [
+    {
+      "id": 48583228,
+      "body": "<p>Unfortunately at the moment you cannot do so without either using:</p>\n\n<pre class=\"lang-bash prettyprint-override\"><code>cmd.exe /c foo.bat\n</code></pre>\n\n<p>…or the following hack using binfmt:</p>\n\n<pre class=\"lang-bash prettyprint-override\"><code>sudo sh -c \"echo :WindowsBatch:E::bat::/init: &gt; /proc/sys/fs/binfmt_misc/register\"\n</code></pre>\n\n<p>You could then just type:</p>\n\n<pre class=\"lang-bash prettyprint-override\"><code>foo.bat\n</code></pre>\n\n<p><em>The problems with this method are that you'd need to be root, run it each time you opened a bash window, probably do the same for <code>.cmd</code> files too and, I suppose, any bash script name ending with <code>.bat</code> could have issues!</em></p>\n\n<p>I guess until Microsoft deals with this issue, you're limited to the above.</p>\n",
+      "score": 39,
+      "creation_date": "2018-02-02T12:57:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 45773825,
+  "title": "vagrant with virtualbox on wsl VERR_PATH_NOT_FOUND",
+  "body": "<p>I try to run vagrant from wsl :</p>\n\n<p><strong>Windows 10 Pro Version 1703 Build 15063.540</strong></p>\n\n<p><strong>Ubuntu 16.04.2 LTS</strong></p>\n\n<p><strong>vagrant version : 1.9.7</strong></p>\n\n<p><strong>Virtualbox version : 5.1.26r117224</strong></p>\n\n<p>add to my bachrc</p>\n\n<pre><code>export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=\"1\"\n</code></pre>\n\n<p>and i have added the virtualbox to path in windows</p>\n\n<p><a href=\"https://i.sstatic.net/LAw3Y.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/LAw3Y.png\" alt=\"enter image description here\"></a></p>\n\n<p>on run <strong>vagrant up</strong> i got this error </p>\n\n<blockquote>\n  <p>Stderr: VBoxManage.exe: error: RawFile#0 failed to create the raw\n  output file\n  /mnt/d/Projects/GOPATH/src/github.com/hyperledger/Fabric/devenv/ubuntu-xenial-16.04-cloudimg-console.log\n  (VERR_PATH_NOT_FOUND)</p>\n</blockquote>\n\n<p>if i try to start the vm from Virtualbox directly</p>\n\n<blockquote>\n  <p>Failed to open a session for the virtual machine hyperledger.</p>\n  \n  <p>RawFile#0 failed to create the raw output file\n  /mnt/d/Projects/GOPATH/src/github.com/hyperledger/Fabric/devenv/ubuntu-xenial-16.04-cloudimg-console.log\n  (VERR_PATH_NOT_FOUND).</p>\n  \n  <p>Result Code: E_FAIL (0x80004005) Component: ConsoleWrap Interface:\n  IConsole {872da645-4a9b-1727-bee2-5585105b9eed}</p>\n</blockquote>\n\n<p><a href=\"https://i.sstatic.net/Bd9ER.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Bd9ER.png\" alt=\"enter image description here\"></a></p>\n",
+  "score": 18,
+  "answer_count": 2,
+  "view_count": 20737,
+  "tags": [
+    "vagrant",
+    "windows-10",
+    "virtualbox",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-08-19T16:26:19",
+  "answers": [
+    {
+      "id": 45774147,
+      "body": "<p>I have found the solution</p>\n<p>it to add</p>\n<pre><code>config.vm.provider &quot;virtualbox&quot; do |vb|\n  vb.customize [ &quot;modifyvm&quot;, :id, &quot;--uartmode1&quot;, &quot;disconnected&quot; ]\nend\n</code></pre>\n<p>to the vagrant file</p>\n<p><a href=\"https://github.com/mitchellh/vagrant/issues/8604\" rel=\"noreferrer\">https://github.com/mitchellh/vagrant/issues/8604</a></p>\n<p>However, you may also do this via the VirtualBox UI as shown here, i.e. the &quot;disconnected&quot; as shown will accomplish the same thing.  <code>vb.customize</code> - the <code>.customize</code> will not work for some vagrant versions.</p>\n<p><a href=\"https://i.sstatic.net/B057L.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/B057L.png\" alt=\"enter image description here\" /></a></p>\n",
+      "score": 32,
+      "creation_date": "2017-08-19T16:59:58"
+    }
+  ],
+  "source": "stackoverflow"
+}

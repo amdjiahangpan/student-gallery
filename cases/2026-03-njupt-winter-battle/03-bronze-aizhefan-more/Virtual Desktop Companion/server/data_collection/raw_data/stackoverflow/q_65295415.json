@@ -1,0 +1,25 @@
+{
+  "id": 65295415,
+  "title": "running nvidia-docker on Windows 10 + WSL2",
+  "body": "<p>I saw several Q&amp;As on this topic and tried both approaches. Any advice on how to proceed with either route are appreciated:</p>\n<h3>Running nvidia-docker from within WSL2</h3>\n<p>I followed <a href=\"https://docs.nvidia.com/cuda/wsl-user-guide/index.html#installing-nvidia-drivers\" rel=\"noreferrer\">NVIDIA docs</a> and <a href=\"https://ubuntu.com/blog/getting-started-with-cuda-on-ubuntu-on-wsl-2\" rel=\"noreferrer\">this tutorial</a>. Everything installs and <code>docker</code> command runs from within Ubuntu 20.04. However, <code>sudo service docker start</code> returns:<br />\n<code>docker: unrecognized service</code></p>\n<p><strong>Update</strong>:\nthis turns to be a <a href=\"https://bugs.launchpad.net/ubuntuwsl/+bug/1878324\" rel=\"noreferrer\">known issue</a>. I was able to install and run docker on Ubuntu following <a href=\"https://docs.docker.com/engine/install/ubuntu/\" rel=\"noreferrer\">these instructions</a>.  However, next I am running into an <a href=\"https://github.com/NVIDIA/nvidia-docker/issues/1225\" rel=\"noreferrer\">issue like this</a></p>\n<pre><code>$docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark\nStatus: Downloaded newer image for nvcr.io/nvidia/k8s/cuda-sample:nbody\ndocker: Error response from daemon: OCI runtime create failed: container_linux.go:370: starting container process caused: process_linux.go:459: container init caused: Running hook #0:: error running hook: exit status 1, stdout: , stderr: nvidia-container-cli: initialization error: nvml error: driver not loaded: unknown.\nERRO[0065] error waiting for container: context canceled\n</code></pre>\n<ul>\n<li>there is a similar issue for WSL1 <a href=\"https://stackoverflow.com/questions/63012885/docker-unrecognized-service\">here</a>, where advice is well to install WSL2. I am running into the same thing under WSL2.</li>\n</ul>\n<h3>Running NVIDIA docker from Windows:</h3>\n<p>Another <a href=\"https://thecodest.co/blog/painless-way-to-wsl-2-with-docker/\" rel=\"noreferrer\">school of thought</a> suggest removing docker from WSL Ubuntu and running Windows docker instead. Then one can connect to it from WSL. Well, I am not able to run <code>nvidia-docker</code> from Windows at all:</p>\n<pre><code>$ docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark\nUnable to find image 'nvcr.io/nvidia/k8s/cuda-sample:nbody' locally\nnbody: Pulling from nvidia/k8s/cuda-sample\n...\ndocker: Error response from daemon: could not select device driver &quot;&quot; with capabilities: [[gpu]].\n</code></pre>\n<ul>\n<li>there are tips on how to fix it <a href=\"https://github.com/NVIDIA/nvidia-docker/issues/1243https://github.com/NVIDIA/nvidia-docker/issues/1243\" rel=\"noreferrer\">here</a>, but it is all about docker running from within Linux. Which does not work (See above).</li>\n</ul>\n<p>Additionally, after removing docker from ubuntu I can still run docker from Ubuntu20.04 or when I run <code>wsl</code> from Powershell:</p>\n<pre><code>$ which docker\n/mnt/c/ProgramData/DockerDesktop/version-bin/docker\n$ docker \nThe command 'docker' could not be found in this WSL 2 distro.\nWe recommend to activate the WSL integration in Docker Desktop settings.\n\nSee https://docs.docker.com/docker-for-windows/wsl/ for details.\n</code></pre>\n<p>I have definitely enabled  WSL2-based engine and integration for Ubuntu 20.04 enabled in two different tabs in Docker settings.</p>\n<h3>System</h3>\n<pre><code>Windows 10\nWSL 2\nUbuntu 20.04 within WSL2\nWindows Docker with WSL2-based engine and integration enabled\n</code></pre>\n<p>Any help how to diagnose it further is much appreciated</p>\n",
+  "score": 22,
+  "answer_count": 3,
+  "view_count": 46938,
+  "tags": [
+    "docker",
+    "nvidia",
+    "ubuntu-20.04",
+    "windows-subsystem-for-linux",
+    "nvidia-docker"
+  ],
+  "creation_date": "2020-12-14T19:42:15",
+  "answers": [
+    {
+      "id": 72589947,
+      "body": "<p>As of June 2022, with Windows 10, I didn't have to do anything to enable this. I have a pre-existing Ubuntu 20.04 install on WSL 2, and Docker running on Windows with WSL 2 integration enabled. I ran <code>docker run -it --rm --gpus all ubuntu nvidia-smi</code> and it showed my GPU.</p>\n",
+      "score": 14,
+      "creation_date": "2022-06-12T06:30:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

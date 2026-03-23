@@ -1,0 +1,21 @@
+{
+  "id": 59057687,
+  "title": "How to change default directory in Windows Subsystem for Linux",
+  "body": "<p>I am setting up my development environment, so I just installed Windows Subsystem for Linux and it always seems to open a fresh terminal in my Windows home directory - <code>/mnt/c/Users/dl</code> and I'm trying to make it default to the linux home directory - <code>/home/dl</code>.</p>\n<p>I checked to see what the home directory is in the Linux subsystem in <code>/etc/passwd</code> and it is correctly set:</p>\n<pre><code>dl:x:1000:1000:,,,:/home/dl:/bin/bash\n</code></pre>\n<p>Then I came across this <a href=\"https://github.com/microsoft/terminal/issues/2743\" rel=\"noreferrer\">solution</a>, but it doesn't seem to have any affect:</p>\n<pre><code>// Set starting directory\n&quot;startingDirectory&quot;: &quot;\\\\\\\\wsl$\\\\Ubuntu\\\\home\\\\dl\\\\&quot;\n</code></pre>\n<p>I know I can just run <code>cd ~</code> in my dot files (which is what I'm currently using), but I'm looking for a way where <code>/home/dl</code> is just the default and <code>cd ~</code> isn't needed.  Is this possible?</p>\n",
+  "score": 38,
+  "answer_count": 19,
+  "view_count": 128003,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-11-26T18:57:03",
+  "answers": [
+    {
+      "id": 66381106,
+      "body": "<p>You should only change the <code>startingDirectory</code> for WSL (Ubuntu in this case) terminal sessions.</p>\n<ol>\n<li>Open <code>settings.json</code> via <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>,</kbd> in <strong>Windows Terminal</strong><sup>1</sup></li>\n<li>Make sure you are modifying <code>startingDirectory</code> under <code>profiles/list/name: &quot;Ubuntu&quot;</code></li>\n</ol>\n<p>Example below (the slashes need to be escaped):</p>\n<pre><code>....\n{\n    &quot;guid&quot;: &quot;{2c4de342-xxx-xxx-xxx-2309a097f518}&quot;,\n    &quot;hidden&quot;: false,\n    &quot;name&quot;: &quot;Ubuntu&quot;,\n    &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;,\n    &quot;startingDirectory&quot;: &quot;\\\\\\\\wsl$\\\\Ubuntu\\\\home\\\\windows_username_in_lower_case&quot;\n},\n....\n</code></pre>\n<p>Documentation about <a href=\"https://learn.microsoft.com/en-us/windows/terminal/customize-settings/profile-general#starting-directory\" rel=\"noreferrer\"><code>startingDirectory</code></a> including default values and expected values.</p>\n<p>Inside <code>settings.json</code> you will also find an explanation of the json schema which is <a href=\"https://aka.ms/terminal-profiles-schema\" rel=\"noreferrer\">here</a></p>\n<p><sup>1</sup> If you need to know how or where to edit Windows Terminal settings/preferences: <a href=\"https://learn.microsoft.com/en-us/windows/terminal/get-started\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/terminal/get-started</a></p>\n",
+      "score": 49,
+      "creation_date": "2021-02-26T06:28:52"
+    }
+  ],
+  "source": "stackoverflow"
+}

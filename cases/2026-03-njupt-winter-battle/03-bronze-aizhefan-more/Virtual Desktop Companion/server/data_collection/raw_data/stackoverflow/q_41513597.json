@@ -1,0 +1,22 @@
+{
+  "id": 41513597,
+  "title": "How do I access the WSL Linux file system from Windows?",
+  "body": "<p>I found that static files served from a Rails application running in <code>/home/pupeno/projectx</code> take more or less half as much time than the ones served from <code>/mnt/c/Users/pupeno/projectx</code>. It's almost acceptable. I tried webrick and puma (as well as passenger and unicorn, which don't work yet).</p>\n\n<p>So, if I'm going to host my source code in <code>/home/pupeno</code>, how do I access from Windows applications such as RubyMine?</p>\n\n<p>For the record, this is the application being served from the Windows file system:</p>\n\n<p><a href=\"https://i.sstatic.net/zy50W.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/zy50W.png\" alt=\"enter image description here\"></a></p>\n\n<p>and this is the Linux file system:</p>\n\n<p><a href=\"https://i.sstatic.net/aTKSy.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/aTKSy.png\" alt=\"enter image description here\"></a></p>\n",
+  "score": 31,
+  "answer_count": 8,
+  "view_count": 57113,
+  "tags": [
+    "filesystems",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-01-06T20:11:25",
+  "answers": [
+    {
+      "id": 54950152,
+      "body": "<p>PM for Windows Command-Line here:</p>\n<p>Thus far, accessing Linux files from Windows has been unsupported. To understand why, please read this post: <a href=\"https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/\" rel=\"noreferrer\">https://blogs.msdn.microsoft.com/commandline/2016/11/17/do-not-change-linux-files-using-windows-apps-and-tools/</a></p>\n<p>However, as of Windows 10 build 1903 (March 2019), we (finally!) exposed your distros' filesystems to Windows!</p>\n<p>To learn more, please read this post: <a href=\"https://blogs.msdn.microsoft.com/commandline/2019/02/15/whats-new-for-wsl-in-windows-10-version-1903/\" rel=\"noreferrer\">https://blogs.msdn.microsoft.com/commandline/2019/02/15/whats-new-for-wsl-in-windows-10-version-1903/</a></p>\n<p><a href=\"https://i.sstatic.net/R9sGT.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/R9sGT.png\" alt=\"enter image description here\" /></a></p>\n<p>Look forward to hearing how you get on with this feature. If you find any problems, please file issues on the WSL GitHub repo here: <a href=\"https://github.com/microsoft/wsl\" rel=\"noreferrer\">https://github.com/microsoft/wsl</a>.</p>\n",
+      "score": 22,
+      "creation_date": "2019-03-01T18:13:16"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 38444497,
+  "title": "Trouble locating my serial ports using bash on Windows 10",
+  "body": "<p>I want to be able to read from serial ports on my computer and write to a file.  Inside /dev (using Bash shell on Windows 10) I can't seem to locate my USB serial ports (I have tty, tty0, tty1, and that's it for tty).</p>\n\n<p>Is it located somewhere else, or even accessible through the bash shell? I just want to be able to know how to access it at this point.</p>\n\n<p>In device manager, COM4 shows up under ports when I plug in my USB. I also ran the command <code>wmic path Win32_SerialPort</code> in the Windows command prompt and it said \"No Instance(s) Available.\" So I'm very confused as to how I can view my Serial Ports and why they aren't showing up in certain instances. </p>\n\n<p>Any clarification on how serial ports work, especially with USB, would be greatly appreciated, as I am pretty new with this stuff.</p>\n",
+  "score": 15,
+  "answer_count": 2,
+  "view_count": 14305,
+  "tags": [
+    "linux",
+    "serial-port",
+    "windows-10",
+    "usb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-07-18T19:25:49",
+  "answers": [
+    {
+      "id": 44976750,
+      "body": "<p>Soon, Windows will officially support serial on the Windows Subsystem for Linux (WSL). The <code>COM_n_</code> ports will be available at <code>/dev/ttyS_n_</code></p>\n\n<p>Mapping:</p>\n\n<pre><code>COM1 &gt;&gt; /dev/ttyS0\nCOM2 &gt;&gt; /dev/ttyS1\n...\nCOM192 &gt;&gt; /dev/ttyS191\n</code></pre>\n\n<p>A good functional description can be found here:</p>\n\n<p><a href=\"https://blogs.msdn.microsoft.com/wsl/2017/04/14/serial-support-on-the-windows-subsystem-for-linux/\" rel=\"noreferrer\">https://blogs.msdn.microsoft.com/wsl/2017/04/14/serial-support-on-the-windows-subsystem-for-linux/</a></p>\n\n<blockquote>\n  <p><em>NOTE: At time of writing this feature is only available on the insider builds.</em></p>\n</blockquote>\n",
+      "score": 8,
+      "creation_date": "2017-07-07T17:39:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

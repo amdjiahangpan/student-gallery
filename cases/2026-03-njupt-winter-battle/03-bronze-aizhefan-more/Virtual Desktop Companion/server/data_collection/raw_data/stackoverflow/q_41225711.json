@@ -1,0 +1,24 @@
+{
+  "id": 41225711,
+  "title": "WSL run linux from windows without spawning a cmd-window",
+  "body": "<p>I have WSL bash running in a cmd. I don't use it for anything, it just hangs there to keep the WSL system alive.</p>\n\n<p>When I start X applications:</p>\n\n<pre><code>bash -c \"DISPLAY=:0 xmessage hello &amp;\"\n</code></pre>\n\n<p>I get this result:</p>\n\n<p><a href=\"https://i.sstatic.net/yjOsj.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/yjOsj.png\" alt=\"enter image description here\"></a></p>\n\n<p>I can close down the command window without any problems, but it's rather annoying.</p>\n\n<p>How can run commands without getting this cmd window every time?</p>\n",
+  "score": 19,
+  "answer_count": 6,
+  "view_count": 19260,
+  "tags": [
+    "windows",
+    "bash",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-12-19T15:16:00",
+  "answers": [
+    {
+      "id": 41229169,
+      "body": "<p>Here's a <strong>simpler solution</strong>, which, however, requires a <strong><a href=\"https://en.wikipedia.org/wiki/Windows_Script_Host\" rel=\"nofollow noreferrer\">WSH</a>-based helper script</strong>, <code>runHidden.vbs</code> (see bottom section):</p>\n<pre><code>wscript .\\runHidden.vbs bash -c &quot;DISPLAY=:0 xmessage 'hello, world'&quot;\n</code></pre>\n<p>To apply @davv's own launch-in-background technique to avoid creating a new <code>bash</code> instance every time:</p>\n<p><strong><em>One-time</em> action</strong> (e.g., at boot time): launch a hidden, stay-open <code>bash</code> window. This spawns <em>2</em> <code>bash</code> processes: the <em>Windows</em> <code>bash.exe</code> process that owns the console window, and the WSL <code>bash</code> process (owned by the WSL <code>init</code> singleton), which is then available for servicing <em>background commands</em>.</p>\n<pre><code>wscript .\\runHidden.vbs bash # hidden helper instance for servicing background commands\n</code></pre>\n<p><strong><em>For every X Window-launching command</em></strong>: Terminate each command with <code>&amp;</code> to have it be run by the hidden WSL <code>bash</code> instance <em>asynchronously</em>, without keeping the <em>invoking</em> <code>bash</code> instance alive:</p>\n<pre><code>wscript .\\runHidden.vbs bash -c &quot;DISPLAY=:0 xmessage 'hello, world' &amp;&quot;\n</code></pre>\n<hr />\n<h3><code>runHidden.vbs</code> source code:</h3>\n<pre class=\"lang-vb prettyprint-override\"><code>' Simple command-line help.\nselect case WScript.Arguments(0)\ncase &quot;-?&quot;, &quot;/?&quot;, &quot;-h&quot;, &quot;--help&quot;\n  WScript.echo &quot;Usage: runHidden executable [...]&quot; &amp; vbNewLine &amp; vbNewLine &amp; &quot;Runs the specified command hidden (without a visible window).&quot;\n  WScript.Quit(0)\nend select\n\n' Separate the arguments into the executable name\n' and a single string containing all arguments.\nexe = WScript.Arguments(0)\nsep = &quot;&quot;\nfor i = 1 to WScript.Arguments.Count -1\n  ' Enclose arguments in &quot;...&quot; to preserve their original partitioning, if necessary.\n  if Instr(WScript.Arguments(i), &quot; &quot;) &gt; 0 then\n    args = args &amp; sep &amp; &quot;&quot;&quot;&quot; &amp; WScript.Arguments(i) &amp; &quot;&quot;&quot;&quot;\n  else\n    args = args &amp; sep &amp; WScript.Arguments(i)\n  end if\n  sep = &quot; &quot;\nnext\n\n' Execute the command with its window *hidden* (0)\nWScript.CreateObject(&quot;Shell.Application&quot;).ShellExecute exe, args, &quot;&quot;, &quot;open&quot;, 0\n</code></pre>\n<p>Even when launched from a GUI app (such as via the <code>Run</code> dialog invoked with <kbd>Win+R</kbd>), this will not show a console window.</p>\n<p><strong>If your system is configured to execute <code>.vbs</code> scripts with <code>wscript.exe</code> by default</strong> (<code>wscript //h:wscript /s</code>, which, I think, is the default configuration), <strong>you can invoke <code>runHidden.vbs</code> directly, and if you put it in your <code>%PATH%</code>, by filename (root) only: <code>runHidden ...</code></strong>.</p>\n<p>Note that use of the script is not limited to <em>console</em> applications: even GUI applications can be run hidden with it.</p>\n",
+      "score": 26,
+      "creation_date": "2016-12-19T18:54:44"
+    }
+  ],
+  "source": "stackoverflow"
+}

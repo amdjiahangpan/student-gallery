@@ -1,0 +1,25 @@
+{
+  "id": 55842362,
+  "title": "How to launch a new WSL bash window from an existing WSL bash window",
+  "body": "<p>I am struggling to figure out how to launch a new \"command prompt\" window via a bash command in WSL. The goal is to launch a second prompt preferably already in bash.</p>\n\n<p>I have already tried running <code>cmd.exe</code> yet that just drops me to a standard windows command prompt cmd from with in the bash shell.<br>\n<a href=\"https://i.sstatic.net/f8leY.png\" rel=\"noreferrer\">https://i.sstatic.net/f8leY.png</a></p>\n\n<p>Running the <code>bash.exe</code> or <code>wsl.exe</code> commands just takes me to another bash shell from within that same bash shell.<br>\n<a href=\"https://i.sstatic.net/kA9Cw.png\" rel=\"noreferrer\">https://i.sstatic.net/kA9Cw.png</a></p>\n\n<p>I am using the <strong>Debian</strong> distribution for WSL though that should not matter.</p>\n\n<p>I know you can make a new window from the standard command prompt by putting the <code>start</code> command before the program. Yet I can not find the *nix equivalent or how to call a bash command from within WSL that does the same thing.</p>\n",
+  "score": 21,
+  "answer_count": 8,
+  "view_count": 34312,
+  "tags": [
+    "windows",
+    "bash",
+    "ubuntu",
+    "debian",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-04-25T05:28:32",
+  "answers": [
+    {
+      "id": 59654336,
+      "body": "<p>This works from a bash prompt in WSL.</p>\n\n<blockquote>\n  <p>cmd.exe /c start cmd.exe /c wsl.exe</p>\n</blockquote>\n\n<p>(Solution found <a href=\"https://github.com/Microsoft/WSL/issues/232#issuecomment-375924875\" rel=\"noreferrer\">here</a>)</p>\n",
+      "score": 23,
+      "creation_date": "2020-01-08T21:53:37"
+    }
+  ],
+  "source": "stackoverflow"
+}

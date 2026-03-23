@@ -1,0 +1,23 @@
+{
+  "id": 59868448,
+  "title": "rpc error: code = Unknown desc = failed to build LLB",
+  "body": "<p>I am working on this <code>docker build</code> which fails on this line:</p>\n\n<pre><code>RUN --mount=type=ssh pip install --no-cache-dir -r requirements.txt\n</code></pre>\n\n<p>The terminal output shows all the requirements being installed but then I get the following failure:</p>\n\n<pre><code>failed to solve with frontend dockerfile.v0: \nfailed to solve with frontend gateway.v0: \nrpc error: code = Unknown desc = failed to build LLB: \nexecutor failed running [/bin/sh -c pip install --no-cache-dir -r requirements.txt]: \nrunc did not terminate sucessfully\n</code></pre>\n\n<p>I am on Windows 10 + WSL (v1) + Ubuntu 18.04</p>\n\n<p>A colleague runs the same project on Mac OS and does not have any issues...</p>\n\n<p>Any idea what's going wrong? How do I debug it? </p>\n",
+  "score": 19,
+  "answer_count": 4,
+  "view_count": 38351,
+  "tags": [
+    "docker",
+    "dockerfile",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-01-22T21:22:32",
+  "answers": [
+    {
+      "id": 59868693,
+      "body": "<p>After a whole day of struggle, I fixed this by giving Docker more RAM (from 2Gb to 6Gb) and CPU (from 2 to 3)...</p>\n",
+      "score": 33,
+      "creation_date": "2020-01-22T21:43:52"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 66496890,
+  "title": "VS Code: NoPermissions (FileSystemError): Error: EACCES: permission denied",
+  "body": "<p>I'm trying to save a file called app.js on a folder called js.</p>\n<p>Vs Code pop up this:</p>\n<blockquote>\n<p>Failed to save 'app.js': Unable to write file 'vscode-remote://wsl+ubuntu-18.04/js/app.js'\n(NoPermissions (FileSystemError): Error: EACCES: permission denied, mkdir '/js')</p>\n</blockquote>\n<p>I tried:</p>\n<p><code>sudo chown -R user /mnt/c/Users/myUser/Documents/myFolder/proyectFolder</code></p>\n<p>but I still can't save this file.</p>\n",
+  "score": 65,
+  "answer_count": 11,
+  "view_count": 185359,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-03-05T17:20:51",
+  "answers": [
+    {
+      "id": 69262326,
+      "body": "<p>Try this, fixed it for me</p>\n<pre class=\"lang-bash prettyprint-override\"><code>sudo chown -R username path \n</code></pre>\n<p>Example:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>sudo chown -R emanuel /home/emanuel/test/\n</code></pre>\n",
+      "score": 222,
+      "creation_date": "2021-09-21T01:05:21"
+    }
+  ],
+  "source": "stackoverflow"
+}

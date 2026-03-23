@@ -1,0 +1,23 @@
+{
+  "id": 44869410,
+  "title": "Changing the hostname on WSL",
+  "body": "<p>sudo hostname XYZ does not seems to work in WSL.</p>\n<p>I recently reinstalled Windows 10 and my wsl hostname is DESKTOP-XXXXXX. I'm trying to change it to something else. I tried the following:</p>\n<pre><code>sudo hostname wsl\n</code></pre>\n<p>I also changed <code>/etc/hostname</code> to &quot;wsl&quot; and changed <code>/etc/hosts</code> to &quot;127.0.1.1 wsl.localdomain wsl&quot;.</p>\n<p>Every time I restart WSL, it resets the hostname to the windows name. How do I change the wsl hostname permanently?</p>\n",
+  "score": 38,
+  "answer_count": 2,
+  "view_count": 67341,
+  "tags": [
+    "ubuntu",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-07-02T09:40:01",
+  "answers": [
+    {
+      "id": 44914963,
+      "body": "<p>Try to change the host system's name from <code>System --&gt; Change Settings --&gt; Change</code>. In some sense, it makes sense for WSL to update its hostname to match that of the host computer.</p>\n",
+      "score": 27,
+      "creation_date": "2017-07-04T23:01:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

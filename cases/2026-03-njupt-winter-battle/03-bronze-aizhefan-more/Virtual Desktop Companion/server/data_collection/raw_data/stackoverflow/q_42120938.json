@@ -1,0 +1,25 @@
+{
+  "id": 42120938,
+  "title": "Exec format error 32-bit executable Windows Subsystem for Linux?",
+  "body": "<p>When I try to execute a 32-bit file compiled with <code>gcc -m32 main.c -o main</code> on <em>Windows Subsystem for Linux</em>, I get the following error: <code>bash: ./main: cannot execute binary file: Exec format error</code>.</p>\n\n<p>If I compile it <em>without</em> <code>-m32</code> it runs.</p>\n\n<p>Any solution for <strong>running 32-bit executable on WSL</strong>? </p>\n",
+  "score": 26,
+  "answer_count": 3,
+  "view_count": 34261,
+  "tags": [
+    "gcc",
+    "executable",
+    "windows-subsystem-for-linux",
+    "32-bit",
+    "executable-format"
+  ],
+  "creation_date": "2017-02-08T18:30:45",
+  "answers": [
+    {
+      "id": 49405605,
+      "body": "<p>QEMU and binfmt support light the way :)</p>\n\n<p><a href=\"https://github.com/microsoft/wsl/issues/2468#issuecomment-374904520\" rel=\"noreferrer\">https://github.com/microsoft/wsl/issues/2468#issuecomment-374904520</a></p>\n\n<p>After reading that the WSLInterop between WSL and Windows processes used binfmt, I was tinkering with QEMU to try some ARM development, and incidentally discovered how to get 32-bit support working.</p>\n\n<p>Edit: requires \"Fall Creators Update\", 1709, build 16299 or newer</p>\n\n<p>Install qemu and binfmt config:</p>\n\n<pre><code>sudo apt install qemu-user-static\nsudo update-binfmts --install i386 /usr/bin/qemu-i386-static --magic '\\x7fELF\\x01\\x01\\x01\\x03\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\x00\\x03\\x00\\x01\\x00\\x00\\x00' --mask '\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfc\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xf8\\xff\\xff\\xff\\xff\\xff\\xff\\xff'\n</code></pre>\n\n<p>You'll need to reactivate binfmt support every time you start WSL:</p>\n\n<pre><code>sudo service binfmt-support start\n</code></pre>\n\n<p>Enable i386 architecture packages:</p>\n\n<pre><code>sudo dpkg --add-architecture i386\nsudo apt update\nsudo apt install gcc:i386\n</code></pre>\n\n<p>Try it out:</p>\n\n<pre><code>$ file /usr/bin/gcc-5\n/usr/bin/gcc-5: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=2637bb7cb85f8f12b40f03cd015d404930c3c790, stripped\n\n$ /usr/bin/gcc-5 --version\ngcc-5 (Ubuntu 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609\nCopyright (C) 2015 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n$ gcc helloworld.c -o helloworld\n\n$ ./helloworld\nHello, world!\n\n$ file helloworld\nhelloworld: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=3a0c7be5c6a8d45613e4ef2b7b3474df6224a5da, not stripped\n</code></pre>\n\n<p>And to prove it really was working, disable i386 support and try again:</p>\n\n<pre><code>$ sudo service binfmt-support stop\n * Disabling additional executable binary formats binfmt-support [ OK ]\n\n$ ./helloworld\n-bash: ./helloworld: cannot execute binary file: Exec format error\n</code></pre>\n",
+      "score": 47,
+      "creation_date": "2018-03-21T11:50:21"
+    }
+  ],
+  "source": "stackoverflow"
+}

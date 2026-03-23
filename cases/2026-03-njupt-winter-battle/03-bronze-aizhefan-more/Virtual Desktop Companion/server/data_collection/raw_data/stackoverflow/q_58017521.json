@@ -1,0 +1,23 @@
+{
+  "id": 58017521,
+  "title": "VSCode + WSL Remote + Git : Synchronizing changes take forever",
+  "body": "<p>I'm using VSCode remotly into my project folder located (symlink) into WSL 2 VM. I cloned my repo from Bitbucket using SSH and the terminal.</p>\n\n<p>On the bottom left corner, it indicate <code>WSL: Ubuntu</code>, so I'm currently using it remotly. ALL GOOD<br>\nIf I click the Git branch indicator, I can see local branchs and remote one. ALL GOOD<br></p>\n\n<p><strong>The problem is</strong> that when I click to synchronize everything after a local commit, it spins forever. Well, not really, I lose patience before forever happen... Currently about 30 minutes on the current test.</p>\n\n<p>If I do <code>git push</code> into the terminal, everything goes as expected.</p>\n\n<p>Any one got an idea on why it's doing this? How can I solve that problem?</p>\n\n<p>My Git output into VSCode constantly return this <code>git rev-parse --show-toplevel</code>?<br>\nI did <code>git config</code> for both user.name and user.email<br>\nSSH key is set on Bitbucket. Windows and WSL 2 are using the same public/private key.</p>\n\n<p><strong>Thank you</strong></p>\n",
+  "score": 16,
+  "answer_count": 5,
+  "view_count": 17815,
+  "tags": [
+    "git",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-09-19T19:04:23",
+  "answers": [
+    {
+      "id": 58018734,
+      "body": "<p><strong>2021-02-05 UPDATE</strong></p>\n<p>This question got a lot of views recently and I felt like I needed to give a more thorough explanation. The original answer was written when WSL 2 was still in beta for testing purposes. Now that everything has evolved, removing the passphrase from an SSH-Key can lead to some vulnerabilities. So, before going any further with this, take a look at this post <a href=\"https://serverfault.com/a/142963/324818\">Is it okay to use a SSH key with an empty passphrase?</a></p>\n<p>Ask yourself if it safe for you to remove it.</p>\n<p>I don't know if there is still an issue with the orignal question. I gave up on WSL for web dev shortly after I wrote the question.</p>\n<p><strong>ORIGINAL ANWSER</strong></p>\n<p>I solved my issue. So, for thoses of you that want to give WSL 2 a try and encounter this, the issue is the passphrase of the SSH-key.</p>\n<p><a href=\"https://code.visualstudio.com/docs/remote/troubleshooting#_resolving-hangs-when-doing-a-git-push-or-sync-on-an-ssh-host\" rel=\"nofollow noreferrer\">https://code.visualstudio.com/docs/remote/troubleshooting#_resolving-hangs-when-doing-a-git-push-or-sync-on-an-ssh-host</a></p>\n<blockquote>\n<p><strong>Resolving hangs when doing a Git push or sync on an SSH host</strong><br>\nIf you clone a Git repository using SSH and your SSH key has a passphrase, VS Code's pull and sync features may hang when running remotely.\n<br><br>Either use an SSH key without a passphrase, clone using HTTPS, or run git push from the command line to work around the issue.</p>\n</blockquote>\n<p>If you want to remove your passphrase, use <code>$ ssh-keygen -p</code> as mentioned into this question: <a href=\"https://stackoverflow.com/a/112409/5543999\">https://stackoverflow.com/a/112409/5543999</a></p>\n",
+      "score": 11,
+      "creation_date": "2019-09-19T20:45:57"
+    }
+  ],
+  "source": "stackoverflow"
+}

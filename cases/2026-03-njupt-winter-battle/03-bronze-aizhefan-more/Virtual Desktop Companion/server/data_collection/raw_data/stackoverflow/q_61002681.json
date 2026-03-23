@@ -1,0 +1,23 @@
+{
+  "id": 61002681,
+  "title": "Connecting to WSL2 server via local network",
+  "body": "<p>I'm developing a rails app using WSL2/Ubuntu on my Windows 10 machine, which is great! <strong>The problem is I can't connect to my server from another computer in the same network</strong>.</p>\n\n<p>For further clarity, I am running a Puma server on localhost:3000</p>\n\n<p>I have tried the following:</p>\n\n<ol>\n<li>Directly connecting to the IP address assigned to Ethernet adapter vEthernet (WSL) -> 172.26.208.1:3000</li>\n<li>Directly connecting to the host machine's IPv4 address -> 192.168.0.115</li>\n<li>Adding a firewall exception (using Bitdefender)</li>\n<li>Binding the IPs above <code>rails s -b 172.26.208.1 -p 3000</code></li>\n</ol>\n\n<p>None of the above have worked thus far... What I'd like to do is:</p>\n\n<ul>\n<li>Test the website on another laptop/tablet/phone</li>\n<li>Use VScode from another computer</li>\n</ul>\n\n<p>Is there anything I'm missing to at least see the website correctly? (and any comments on the VScode part would be appreciated)</p>\n",
+  "score": 177,
+  "answer_count": 18,
+  "view_count": 361396,
+  "tags": [
+    "ruby-on-rails",
+    "puma",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-04-02T23:14:26",
+  "answers": [
+    {
+      "id": 63781351,
+      "body": "<p>See this video, it helped me:</p>\n<p><a href=\"https://www.youtube.com/watch?v=yCK3easuYm4\" rel=\"noreferrer\">https://www.youtube.com/watch?v=yCK3easuYm4</a></p>\n<pre><code>netsh interface portproxy add v4tov4 listenport=&lt;port-to-listen&gt; listenaddress=0.0.0.0 connectport=&lt;port-to-forward&gt; connectaddress=&lt;forward-to-this-IP-address&gt;\n</code></pre>\n<p>for example</p>\n<pre><code>netsh interface portproxy add v4tov4 listenport=3000 listenaddress=0.0.0.0 connectport=3000 connectaddress=172.30.16.3\n</code></pre>\n<p>Microsoft has published a little bit of information about this on their <a href=\"https://learn.microsoft.com/en-us/windows/wsl/compare-versions#accessing-a-wsl-2-distribution-from-your-local-area-network-lan\" rel=\"noreferrer\">WSL1 to WSL2 comparison page</a></p>\n",
+      "score": 200,
+      "creation_date": "2020-09-07T16:38:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

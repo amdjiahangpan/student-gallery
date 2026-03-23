@@ -1,0 +1,17 @@
+{
+  "id": 38794937,
+  "title": "Pointing bash to a python installed on windows",
+  "body": "<p>I am using Windows 10 and have Python installed. The new update brought bash to windows, but when I call python from inside bash, it refers to the Python installation which came with the bash, not to my Python installed on Windows. So, for example, I can't use the modules which I have already installed on Windows and would have to install them separately on the bash installation.</p>\n\n<p>How can I (and can I?) make bash point to my original Windows Python installation? I see that in /usr/bin I have a lot of links with \"python\" inside their name, but I am unsure which ones to change, and if changing them to Windows directories would even work because of different executable formats.</p>\n",
+  "score": 11,
+  "answer_count": 3,
+  "view_count": 8248,
+  "tags": [
+    "python",
+    "windows",
+    "bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-05T17:35:17",
+  "answers": [],
+  "source": "stackoverflow"
+}

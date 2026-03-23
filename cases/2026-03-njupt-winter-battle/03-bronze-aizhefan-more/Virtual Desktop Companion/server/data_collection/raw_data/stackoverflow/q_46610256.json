@@ -1,0 +1,24 @@
+{
+  "id": 46610256,
+  "title": "chmod WSL (Bash) doesn&#39;t work",
+  "body": "<p>Running bash on windows 10, the simple syntax below works when I SSH to my webserver, but not when I exit out and am on my local machine. It doesn't give me an error, but I can see permissions are unchanged. I have to checked that I am set up as an administrator on my computer. Is this an error or is this just a consequence of the local operating system being windows? IF the later, it makes me question the value of using bash on windows if common operations such as this won't work. </p>\n\n<pre><code>$chmod 644 filename \n</code></pre>\n",
+  "score": 111,
+  "answer_count": 3,
+  "view_count": 107831,
+  "tags": [
+    "bash",
+    "windows-10",
+    "chmod",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-10-06T16:35:31",
+  "answers": [
+    {
+      "id": 50856772,
+      "body": "<p>To enable changing file owners &amp; permissions, you need to edit <code>/etc/wsl.conf</code> and insert the below config options:</p>\n<pre><code>[automount]\noptions = &quot;metadata&quot;\n</code></pre>\n<p>Do this inside the WSL shell, potentially needing <code>sudo</code> to edit/create the file.</p>\n<p>This may require restarting WSL (such as with <code>wsl --shutdown</code> which is a Windows command, not one within WSL) or the host machine to take effect. This has been possible since 2018:</p>\n<blockquote>\n<p>You can now set the owner and group of files using chmod/chown and modify read/write/execute permissions in WSL. You can also create special files like fifos, unix sockets, and device files. We’re introducing new mounting options with DrvFs for projecting permissions onto files alongside providing new Linux metadata on files and folders.</p>\n</blockquote>\n<p>[cite: <a href=\"https://devblogs.microsoft.com/commandline/chmod-chown-wsl-improvements/\" rel=\"noreferrer\">Microsoft Dev Blog</a>]</p>\n<hr />\n<p>You can also temporarily re-mount a drive with the following commands:</p>\n<pre><code>sudo umount /mnt/c\nsudo mount -t drvfs C: /mnt/c -o metadata\n</code></pre>\n<p>...but please note, the command only takes effect in session scope. If you exit current bash, you'll lose your settings (credit: answerer Amade).</p>\n<hr />\n<p>Reference:</p>\n<p><a href=\"https://blogs.msdn.microsoft.com/commandline/2018/02/07/automatically-configuring-wsl/\" rel=\"noreferrer\">Automatically Configuring WSL</a></p>\n",
+      "score": 197,
+      "creation_date": "2018-06-14T11:43:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 62644034,
+  "title": "Permission issue with VSCode and WSL (code: command not found)",
+  "body": "<p>I am new to WSL and have installed VS code natively on Windows 10 with the installer. Currently, when I try to run VS Code command <code>code</code> from WSL, I receive the following message:</p>\n<p><code>bash: /mnt/c/Users/user/AppData/Local/Programs/Microsoft VS Code/bin/code: Permission denied</code></p>\n<p>Also, when I try to run VS Code Server for WSL, I am getting a similar message.</p>\n<pre><code>[2020-06-29 17:41:41.640] Launching C:\\windows\\System32\\wsl.exe -d Ubuntu sh -c '&quot;$VSCODE_WSL_EXT_LOCATION/scripts/wslServer.sh&quot; cd9ea6488829f560dc949a8b2fb789f3cdc05f5d stable .vscode-server 0  ' in c:\\Users\\user\\.vscode\\extensions\\ms-vscode-remote.remote-wsl-0.44.4}\n[2020-06-29 17:41:41.779] sh: 1: /mnt/c/Users/user/.vscode/extensions/ms-vscode-remote.remote-wsl-0.44.4/scripts/wslServer.sh: Permission denied\n[2020-06-29 17:41:41.780] VS Code Server for WSL closed unexpectedly.\n</code></pre>\n<p>I have tried configuring the permissions for wsl @ <code>wsl.conf</code>:</p>\n<pre><code>[automount]\nenabled = true\noptions = &quot;uid=1000,gid=1000,umask=022,fmask=11,metadata&quot;\n</code></pre>\n<p>Not sure if this is relevant, but I am able to run <code>code</code> from Windows Powershell.</p>\n<p>I am currently using <code>Microsoft Windows 1909 (OS Build 18363.836)</code> with <code>WSL v1</code>.</p>\n<p>Any help will be appreciated, thanks in advance!</p>\n",
+  "score": 13,
+  "answer_count": 9,
+  "view_count": 39910,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-29T17:56:40",
+  "answers": [],
+  "source": "stackoverflow"
+}

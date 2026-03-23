@@ -1,0 +1,24 @@
+{
+  "id": 62145379,
+  "title": "How to connect Android Studio running inside WSL2 with connected devices or android emulator running on host",
+  "body": "<p>I'm running Android Studio (currently in version 3.6.1) under Ubuntu 18.04 in WSL 2 (Windows 10 2004), which now supports GUI. Since virtualization inside WSL2 doesn't work, I need to keep running my emulator on the host and of course, connected devices which I use for debugging my android app appear on the host.</p>\n\n<p>How can Android Studio see the emulator and devices appearing on the host?</p>\n",
+  "score": 32,
+  "answer_count": 4,
+  "view_count": 64185,
+  "tags": [
+    "android-studio",
+    "android-emulator",
+    "adb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-02T05:20:38",
+  "answers": [
+    {
+      "id": 63530375,
+      "body": "<p>There is a way for the connected devices, but this has to be done one by one:</p>\n<ol>\n<li>on windows: <code>adb tcpip 5555</code></li>\n<li>on wsl2: <code>adb connect [ip device]:5555</code></li>\n</ol>\n<p>and in android studio should you see the device</p>\n",
+      "score": 28,
+      "creation_date": "2020-08-21T21:38:30"
+    }
+  ],
+  "source": "stackoverflow"
+}

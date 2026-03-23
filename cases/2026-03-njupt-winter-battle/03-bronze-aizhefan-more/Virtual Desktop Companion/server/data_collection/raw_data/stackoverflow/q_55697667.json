@@ -1,0 +1,22 @@
+{
+  "id": 55697667,
+  "title": "Redis &quot;This instance has cluster support disabled&quot; error?",
+  "body": "<p>I'm using WSL. I installed Redis through <code>apt-get</code>, built it from source, and installed it from a PPA. In all 3 cases, I get <code>This instance has cluster support disabled</code>. I have <code>cluster-enabled yes</code> in the config file. I restarted everything. How do I enable cluster support?</p>\n",
+  "score": 17,
+  "answer_count": 1,
+  "view_count": 11380,
+  "tags": [
+    "redis",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-04-15T21:46:56",
+  "answers": [
+    {
+      "id": 70960463,
+      "body": "<p>I think in addition to setting <code>cluster-enabled</code> to <code>yes</code> you have to actually configure a cluster. See <a href=\"https://redis.io/topics/cluster-tutorial\" rel=\"nofollow noreferrer\">the Redis cluster tutorial</a>, specifically the section &quot;Creating the cluster&quot;</p>\n",
+      "score": 3,
+      "creation_date": "2022-02-02T17:53:21"
+    }
+  ],
+  "source": "stackoverflow"
+}

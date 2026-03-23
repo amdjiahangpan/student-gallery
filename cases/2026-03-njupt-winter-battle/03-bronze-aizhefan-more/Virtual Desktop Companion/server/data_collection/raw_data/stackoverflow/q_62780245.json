@@ -1,0 +1,18 @@
+{
+  "id": 62780245,
+  "title": "Nodemon and webpack-dev-server hot reload not working under WSL 2 after Windows 10 resinstall",
+  "body": "<p>A few days ago I re-installed Windows 10. I am developing full stack web app with express as backend and React.js as frontend. I am using nodemon to realod the server and webpack-dev-server for the frontend. Worth mentioning is that I am using WSL2. I noticed that nodemon has no reaction upon saving a file. I had to manually type <code>rs</code> to reload. At first thought it is a problem with nodemon. Looked for similar question here, but all I found was <code>--watch</code>, which did not help. Not that I've tried webpack and the issue persists I am clueless. Here is some useful info:\n<strong>webpack command</strong>:\n<code>webpack-dev-server --host 0.0.0.0 --config ./webpack.config.js --mode development</code>.</p>\n<p><strong>webpack.config.js</strong>:</p>\n<pre><code>module.exports = {\n    entry: [&quot;babel-polyfill&quot;, &quot;./app/index.jsx&quot;],\n    module: {\n        rules: [\n            {\n                test: /\\.(js|jsx)$/,\n                exclude: /node_modules/,\n                use: [&quot;babel-loader&quot;],\n            },\n            { test: /\\.css$/, use: [&quot;style-loader&quot;, &quot;css-loader&quot;] },\n            {\n                test: /\\.(jpg|png|svg)$/,\n                loader: &quot;file-loader&quot;,\n                options: {\n                    name: &quot;[path][name].[hash].[ext]&quot;,\n                },\n            },\n        ],\n    },\n    resolve: {\n        alias: {\n            components: __dirname + &quot;/app/components&quot;,\n            reducers: __dirname + &quot;/app/reducers&quot;,\n            constants: __dirname + &quot;/app/constants&quot;,\n            actions: __dirname + &quot;/app/actions&quot;,\n            store: __dirname + &quot;/app/store&quot;,\n            styles: __dirname + &quot;/app/styles&quot;,\n            assets: __dirname + &quot;/app/assets/&quot;,\n            api: __dirname + &quot;/app/api/&quot;,\n        },\n        enforceExtension: false,\n        extensions: [&quot;.js&quot;, &quot;.jsx&quot;],\n    },\n    output: {\n        path: __dirname + &quot;/public&quot;,\n        publicPath: &quot;/&quot;,\n        filename: &quot;index.js&quot;,\n    },\n    devServer: {\n        contentBase: &quot;./public&quot;,\n        port: 8080,\n    },\n};\n</code></pre>\n<p>Also both of these are working fine on Linux laptop and were fine before the re-installation.</p>\n",
+  "score": 10,
+  "answer_count": 3,
+  "view_count": 12712,
+  "tags": [
+    "webpack",
+    "webpack-dev-server",
+    "windows-subsystem-for-linux",
+    "nodemon",
+    "hot-reload"
+  ],
+  "creation_date": "2020-07-07T16:55:10",
+  "answers": [],
+  "source": "stackoverflow"
+}

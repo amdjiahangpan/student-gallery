@@ -1,0 +1,23 @@
+{
+  "id": 62578458,
+  "title": "vim/nvim not filling windows terminal",
+  "body": "<p>I'm runing nvim through wsl2 on ubuntu. However if I use the windows terminal nvim or vim will not fill the whole terminal</p>\n<p><a href=\"https://i.sstatic.net/O73xC.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/O73xC.png\" alt=\"enter image description here\" /></a></p>\n<p>How can I get rid of those black borders?</p>\n<p>It works just fine if I use the Ubuntu terminal. But I'd prefer to use the Windows Terminal\n<a href=\"https://i.sstatic.net/heug2.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/heug2.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 15,
+  "answer_count": 8,
+  "view_count": 13602,
+  "tags": [
+    "vim",
+    "windows-subsystem-for-linux",
+    "windows-terminal"
+  ],
+  "creation_date": "2020-06-25T15:03:36",
+  "answers": [
+    {
+      "id": 62580857,
+      "body": "<p>In your profile in <code>settings.json</code> add this:\n<code>&quot;padding&quot; : &quot;0, 0, 0, 0&quot;</code></p>\n",
+      "score": 13,
+      "creation_date": "2020-06-25T17:17:11"
+    }
+  ],
+  "source": "stackoverflow"
+}

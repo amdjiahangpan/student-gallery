@@ -1,0 +1,22 @@
+{
+  "id": 59030287,
+  "title": "How can I install WSL without Windows Store?",
+  "body": "<p>I have Windows 10 Enterprise, and I figured it out that this version doesn’t have Windows Store.\nHow can I install Windows Subsystem for Linux (WSL) with Ubuntu?</p>\n",
+  "score": 18,
+  "answer_count": 4,
+  "view_count": 25698,
+  "tags": [
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-11-25T11:02:13",
+  "answers": [
+    {
+      "id": 59032110,
+      "body": "<p>I found a solution with PowerShell!</p>\n<p><strong>References</strong></p>\n<ul>\n<li><p><em><a href=\"https://learn.microsoft.com/en-us/windows/wsl/install-manual\" rel=\"nofollow noreferrer\">Manual installation steps for older versions of WSL</a></em></p>\n</li>\n<li><p><em><a href=\"https://learn.microsoft.com/he-il/windows/wsl/install-on-server?redirectedfrom=MSDN\" rel=\"nofollow noreferrer\">Windows Server Installation Guide</a></em></p>\n</li>\n</ul>\n<p><strong>PowerShell as Administrator</strong></p>\n<pre class=\"lang-none prettyprint-override\"><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux\n\ncd c:\\\n\nInvoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1604 -OutFile Ubuntu.appx -UseBasicParsing\n\nRename-Item ./Ubuntu.appx ./Ubuntu.zip\nExpand-Archive ./Ubuntu.zip ./Ubuntu\n\ncd ./Ubuntu\n\n.\\ubuntu1604.exe\n\n$userenv = [System.Environment]::GetEnvironmentVariable(&quot;Path&quot;, &quot;User&quot;)\n[System.Environment]::SetEnvironmentVariable(&quot;PATH&quot;, $userenv + &quot;;C:\\Ubuntu&quot;, &quot;User&quot;)\n</code></pre>\n",
+      "score": 32,
+      "creation_date": "2019-11-25T12:42:50"
+    }
+  ],
+  "source": "stackoverflow"
+}

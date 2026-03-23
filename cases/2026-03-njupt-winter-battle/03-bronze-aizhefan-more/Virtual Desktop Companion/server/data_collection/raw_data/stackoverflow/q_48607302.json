@@ -1,0 +1,16 @@
+{
+  "id": 48607302,
+  "title": "Using .env files to set environment variables in Windows",
+  "body": "<p>I am working on a set of projects that use .env files for configuration, where each .env file exports a number of environment variables. The files are setup like;</p>\n\n<p><code>export VARIABLE1=foo</code></p>\n\n<p>I use the Windows Linux subsystem a lot for this, but would like to also be able to run these projects on my windows machine. The projects in question are Golang.</p>\n\n<p>IS there any easy way to programatically set Windows environment variables (preferably termporarily) from these .env files? These is mostly so I can debug within VSCode. </p>\n",
+  "score": 13,
+  "answer_count": 6,
+  "view_count": 43799,
+  "tags": [
+    "go",
+    "environment-variables",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-02-04T10:53:14",
+  "answers": [],
+  "source": "stackoverflow"
+}

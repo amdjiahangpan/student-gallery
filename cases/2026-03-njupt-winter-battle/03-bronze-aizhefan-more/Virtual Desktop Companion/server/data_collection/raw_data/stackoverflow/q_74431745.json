@@ -1,0 +1,16 @@
+{
+  "id": 74431745,
+  "title": "Docker &quot;unable to calculate image disk size&quot;",
+  "body": "<p>When running docker desktop, it starts for 2 seconds and then closes.</p>\n<p>I have tried reinstalling and changing the configuartion but nothing has worked so far.</p>\n",
+  "score": 13,
+  "answer_count": 5,
+  "view_count": 34111,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-desktop"
+  ],
+  "creation_date": "2022-11-14T12:35:05",
+  "answers": [],
+  "source": "stackoverflow"
+}

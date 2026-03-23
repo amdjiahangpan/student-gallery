@@ -1,0 +1,23 @@
+{
+  "id": 54835516,
+  "title": "windows subsystem install mysql server",
+  "body": "<p>installing mysql-server on ubuntu 18.04 subsystem windows 10.</p>\n\n<pre><code>Cannot open /proc/net/unix: No such file or directory\nCannot stat file /proc/1/fd/5: Operation not permitted\nCannot stat file /proc/3/fd/7: Operation not permitted\n</code></pre>\n\n<p>help please</p>\n\n<p><a href=\"https://i.sstatic.net/Gklfi.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Gklfi.png\" alt=\"enter image description here\"></a></p>\n",
+  "score": 17,
+  "answer_count": 6,
+  "view_count": 14435,
+  "tags": [
+    "mysql",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-02-22T21:35:18",
+  "answers": [
+    {
+      "id": 60341312,
+      "body": "<p>I am using Ubuntu 18.04 under Windows 10 as a Subsystem, so You have to start off by adding repositories required by MariaDB by :</p>\n\n<blockquote>\n  <p>sudo apt-get install software-properties-common</p>\n</blockquote>\n\n<p>Then update your installation by :</p>\n\n<blockquote>\n  <p>sudo apt update</p>\n</blockquote>\n\n<p>Install MariaDB by :</p>\n\n<blockquote>\n  <p>sudo apt install mariadb-server</p>\n</blockquote>\n\n<p>You’ll be prompted to set a root password and wait for the installation to continue. Issue the following command once installation is complete:</p>\n\n<blockquote>\n  <p>sudo service mysql start</p>\n</blockquote>\n\n<p>That’s it and to check both your mysql and mariadb version try:</p>\n\n<blockquote>\n  <p>mysql --version</p>\n</blockquote>\n",
+      "score": 7,
+      "creation_date": "2020-02-21T15:02:46"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 77145066,
+  "name": "docker-android",
+  "full_name": "budtmo/docker-android",
+  "description": "Android in docker solution with noVNC supported and video recording",
+  "stars": 14285,
+  "forks": 1632,
+  "open_issues": 156,
+  "url": "https://github.com/budtmo/docker-android",
+  "clone_url": "https://github.com/budtmo/docker-android.git",
+  "readme_content": "",
+  "created_at": "2016-12-22T13:02:48Z",
+  "updated_at": "2026-02-18T16:23:45Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

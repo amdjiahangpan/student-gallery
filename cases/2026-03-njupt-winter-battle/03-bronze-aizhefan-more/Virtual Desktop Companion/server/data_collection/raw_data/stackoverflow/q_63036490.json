@@ -1,0 +1,24 @@
+{
+  "id": 63036490,
+  "title": "Docker is extremely slow when running Laravel on Nginx container wsl2",
+  "body": "<p>I've updated Windows 10 to 2004 latest version, installed wsl2 and updated it, installed docker, and ubuntu.</p>\n<p>When I create a simple <em>index.php</em> file with &quot;Hello World&quot; it's working perfectly ( response: 100-400ms ) but when I added my <em>Laravel</em> project it becomes miserable as it loads for <strong>7sec</strong> before performing the request and the response is <strong>4 - 7 seconds</strong>😢, even though <em>PHPMyAdmin</em> is running very smoothly (  response: 1 - 2 seconds ).</p>\n<p>my <strong>docker-compose.yml</strong> file:</p>\n<pre><code>version: '3.8'\nnetworks:\n  laravel:\n\nservices:\n  nginx:\n    image: nginx:stable-alpine\n    container_name: nginx\n    ports:\n      - &quot;8080:80&quot;\n    volumes:\n      - ./src:/var/www/html\n      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf\n    depends_on:\n      - php\n      - mysql\n      - phpmyadmin\n    networks:\n      - laravel\n\n  mysql:\n    image: mysql:latest\n    container_name: mysql\n    restart: unless-stopped\n    tty: true\n    ports:\n      - &quot;3306:3306&quot;\n    environment:\n      MYSQL_ROOT_PASSWORD: secret\n      SERVICE_TAGS: dev\n      SERVICE_NAME: mysql\n    networks:\n      - laravel\n\n  phpmyadmin:\n    image: phpmyadmin/phpmyadmin\n    restart: always\n    depends_on:\n      - mysql\n    ports:\n      - 8081:80\n    environment:\n      PMA_HOST: mysql\n      PMA_ARBITRARY: 1\n\n  php:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    container_name: php\n    volumes:\n      - ./src:/var/www/html\n    ports:\n      - &quot;9000:9000&quot;\n    networks:\n      - laravel\n\n  composer:\n    image: composer:latest\n    container_name: composer\n    volumes:\n      - ./src:/var/www/html\n    working_dir: /var/www/html\n    depends_on:\n      - php\n    networks:\n      - laravel\n\n  npm:\n    image: node:latest\n    container_name: npm\n    volumes:\n      - ./src:/var/www/html\n    working_dir: /var/www/html\n    entrypoint: ['npm']\n\n  artisan:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    container_name: artisan\n    volumes:\n      - ./src:/var/www/html\n    depends_on:\n      - mysql\n    working_dir: /var/www/html\n    entrypoint: ['php', '/var/www/html/artisan']\n    networks:\n      - laravel\n</code></pre>\n<p>I've been trying to fix this issue for 2 days but couldn't find the answer.</p>\n<p>Thanks</p>\n",
+  "score": 59,
+  "answer_count": 10,
+  "view_count": 65881,
+  "tags": [
+    "docker",
+    "docker-compose",
+    "windows-subsystem-for-linux",
+    "docker-for-windows"
+  ],
+  "creation_date": "2020-07-22T14:22:23",
+  "answers": [
+    {
+      "id": 63054672,
+      "body": "<p>It looks like you are mounting your Laravel project in your container. This could result in very poor file I/O if you are mounting these files from your Windows environment to WSL 2, since WSL 2 currently has a lot of problems accessing files that are on the Windows environment. This I/O issue exists as of July 2020, you can find the ongoing status of the issue on GitHub <a href=\"https://github.com/microsoft/WSL/issues/4197\" rel=\"noreferrer\">here</a>.</p>\n<p>There are three possible solutions I can think of that will resolve this issue for now.</p>\n<hr />\n<p><strong>Disable WSL 2 based engine for docker until the issue is resolved</strong></p>\n<p>Since this issue only occurs when WSL 2 tries to access the Windows filesystem, you could choose to disable WSL 2 docker integration and run your containers on your Windows environment instead. You can find the option to disable it in the UI of Docker Desktop here:\n<a href=\"https://i.sstatic.net/qo4t0.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/qo4t0.png\" alt=\"enter image description here\" /></a></p>\n<hr />\n<p><strong>Store your project in the Linux filesystem of WSL 2</strong></p>\n<p>Again, since this issue occurs when WSL 2 tries to access the mount points of the Windows filesystem under <code>/mnt</code>, you could choose to store your project onto the Linux filesystem of WSL 2 instead.</p>\n<hr />\n<p><strong>Build your own Dockerfiles</strong></p>\n<p>You could choose to create your own Dockerfiles and instead of mounting your project, you can <code>COPY</code> the desired directories into the docker images instead. This would result in poor build performance, since WSL 2 will still have to access your Windows filesystem in order to build these docker images, but the runtime performance will be much better, since it won't  have to retrieve these files from the Windows environment everytime.</p>\n",
+      "score": 44,
+      "creation_date": "2020-07-23T12:48:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

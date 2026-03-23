@@ -1,0 +1,22 @@
+{
+  "id": 66305717,
+  "title": "Adding path variable in wsl",
+  "body": "<p><a href=\"https://i.sstatic.net/aTJq9.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/aTJq9.png\" alt=\"enter image description here\" /></a></p>\n<p>I have added a path in bashrc, still, the command is not found. When tried in ubuntu it worked but not in WSL. Why this happen?.</p>\n<p>export PATH=\\wsl$\\Ubuntu\\usr\\local\\mbdyn\\bin:$PATH</p>\n<p>added same path in .bashrc</p>\n<p>error: command not found</p>\n<p>**Please see the attached image</p>\n",
+  "score": 14,
+  "answer_count": 2,
+  "view_count": 76102,
+  "tags": [
+    "path",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-02-21T18:34:20",
+  "answers": [
+    {
+      "id": 74477623,
+      "body": "<p>As you have been told, the forward slash to use is / and if you use the command</p>\n<pre><code>PATH=&quot;$PATH:/folder/subfolder/&quot; \n</code></pre>\n<p>that value will only last in the PATH for the duration of the session.\nTo include a value in the PATH permanently, edit the .bashrc file from your home</p>\n<pre><code>$ sudo vim ~/.bashrc\n</code></pre>\n<p>you add at the end</p>\n<pre><code>export PATH=&quot;$PATH:/folder/subfolder/&quot;\n</code></pre>\n<p>you save and you will have that value in the PATH in each session</p>\n",
+      "score": 28,
+      "creation_date": "2022-11-17T15:01:55"
+    }
+  ],
+  "source": "stackoverflow"
+}

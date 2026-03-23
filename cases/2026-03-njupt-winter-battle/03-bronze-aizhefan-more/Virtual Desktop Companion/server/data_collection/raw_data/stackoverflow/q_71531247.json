@@ -1,0 +1,17 @@
+{
+  "id": 71531247,
+  "title": "Error while trying to authenticate with `gcloud init`",
+  "body": "<p>I am trying to athenticate to the gcloud sdk using : <code>gcloud init</code>.</p>\n<p>I get a URL I'm supposed to access in order to copy a token and return it to the CLI... but instead of a token, I get this error :</p>\n<pre><code>Erreur d'autorisation\nErreur 400 : invalid_request\nMissing required parameter: redirect_uri\n</code></pre>\n<p>Is this a bug?</p>\n<p><code>gcloud version</code> info:</p>\n<pre><code>Google Cloud SDK 377.0.0\nalpha 2022.03.10\nbeta 2022.03.10\nbq 2.0.74\nbundled-python3-unix 3.8.11\ncore 2022.03.10\ngsutil 5.8\n</code></pre>\n<p>I am running <code>gcloud init</code> on wsl2 (Ubuntu 18.04). This error occurs right after the installation of gcloud with <code>sudo apt install google-cloud-sdk</code>.</p>\n",
+  "score": 11,
+  "answer_count": 6,
+  "view_count": 22794,
+  "tags": [
+    "google-cloud-platform",
+    "oauth-2.0",
+    "gcloud",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-03-18T17:52:44",
+  "answers": [],
+  "source": "stackoverflow"
+}

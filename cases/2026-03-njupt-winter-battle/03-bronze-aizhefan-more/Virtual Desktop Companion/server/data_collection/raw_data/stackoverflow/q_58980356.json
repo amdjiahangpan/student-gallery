@@ -1,0 +1,24 @@
+{
+  "id": 58980356,
+  "title": "VSCode in WSL: how to sudo a root file so I can edit it",
+  "body": "<p>WSL v.1 -- VSCode v1.40.1 (using 'Remote - WSL' extension 40.3)</p>\n\n<p><strong>How to open a root-owned file for edit using sudo and VSCode? (without running as root)</strong></p>\n\n<p>If I open a root file without <code>sudo</code>, I can't edit it (expected):\n    $ code /etc/profile.d/custom-profile.sh\n    $</p>\n\n<p><a href=\"https://i.sstatic.net/eNsXK.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/eNsXK.png\" alt=\"enter image description here\"></a></p>\n\n<p>But, if I try to <code>sudo code</code> the file, I get:</p>\n\n<pre><code>$ sudo code /etc/profile.d/custom-profile.sh\n[sudo] password for xxxx:\nsudo: code: command not found\n</code></pre>\n\n<p>Binarify's answer below shows that I can switch the default user to <code>root</code>, but I definitely don't want to be running as root, so I'm still looking for another solution.</p>\n",
+  "score": 63,
+  "answer_count": 13,
+  "view_count": 70356,
+  "tags": [
+    "visual-studio-code",
+    "sudo",
+    "windows-subsystem-for-linux",
+    "vscode-remote"
+  ],
+  "creation_date": "2019-11-21T17:16:01",
+  "answers": [
+    {
+      "id": 62423363,
+      "body": "<p>You can own the file you want to edit, then give it back the ownership afterwards</p>\n\n<pre><code>sudo chown myuser /path/to/file\ncode /path/to/file\nsudo chown root /path/to/file\n\n</code></pre>\n",
+      "score": 35,
+      "creation_date": "2020-06-17T07:11:23"
+    }
+  ],
+  "source": "stackoverflow"
+}

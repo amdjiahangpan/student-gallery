@@ -1,0 +1,23 @@
+{
+  "id": 56061534,
+  "title": "WSL Bash Permission denied to create files and directories",
+  "body": "<p>I've set up <code>WSL</code> (Windows Subsystem for Linux) on my Windows 10 to utilize Bash. I've created a Linux user, installed the latest updates and upgrades, and I know how to access the Windows files through <code>/mnt/c/Users</code> etc. When I try to create a new file on my desktop, it denies permission:</p>\n<pre><code>rupert@DESKTOP-GT4APR9:/mnt/c/Users/zolta/OneDrive/Desktop$ touch\nfile.txt touch: cannot touch 'file.txt': Permission denied\n</code></pre>\n<p>How can I grant my Linux Bash user permission to create and modify files and directories on my Windows user desktop? Is that possible at all?</p>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 51036,
+  "tags": [
+    "bash",
+    "windows-subsystem-for-linux",
+    "file-permissions"
+  ],
+  "creation_date": "2019-05-09T14:19:50",
+  "answers": [
+    {
+      "id": 63892769,
+      "body": "<p>I would use sudo, i.e. <code>sudo touch file.txt</code>. Works for me in WSL2 Ubuntu (which is Debian based)</p>\n",
+      "score": 2,
+      "creation_date": "2020-09-14T22:52:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

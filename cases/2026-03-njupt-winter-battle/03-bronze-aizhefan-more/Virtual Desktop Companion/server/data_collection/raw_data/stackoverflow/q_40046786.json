@@ -1,0 +1,25 @@
+{
+  "id": 40046786,
+  "title": "Windows Bash (WSL) - sudo: no tty present and no askpass program specified",
+  "body": "<p>After following <a href=\"http://www.omgubuntu.co.uk/2016/08/upgrade-bash-windows-10-ubuntu-16-04-lts\" rel=\"noreferrer\">this tutroial</a> I get the following error when trying to run the commands as user or even sudo:</p>\n\n<blockquote>\n  <p>sudo: no tty present and no askpass program specified</p>\n</blockquote>\n\n<p>The comments from <a href=\"http://www.omgubuntu.co.uk/2016/08/upgrade-bash-windows-10-ubuntu-16-04-lts#post-2819669254\" rel=\"noreferrer\">Lurdan</a> in this article state that you need to run </p>\n\n<pre><code>sudo -S &lt;YOUR_COMMAND&gt;\nchmod 0666 /dev/tty\n</code></pre>\n\n<p><code>chmod</code> doesn't work but <code>sudo -S</code> does, but surely there's another fix?</p>\n",
+  "score": 15,
+  "answer_count": 3,
+  "view_count": 12276,
+  "tags": [
+    "linux",
+    "bash",
+    "ubuntu",
+    "ubuntu-16.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-10-14T15:25:29",
+  "answers": [
+    {
+      "id": 40046787,
+      "body": "<p>So silly, after looking further down I see a solution from <a href=\"http://www.omgubuntu.co.uk/2016/08/upgrade-bash-windows-10-ubuntu-16-04-lts/#post-2822845588\" rel=\"noreferrer\">Beorat</a>:</p>\n\n<blockquote>\n  <p>To avoid the sudo tty issue and others, run these commands just before running do-release-upgrade:</p>\n</blockquote>\n\n<pre><code>sudo -S apt-mark hold sudo\nsudo -S apt-mark hold procps\nsudo -S apt-mark hold strace\n</code></pre>\n\n<blockquote>\n  <p>If you've already upgraded, run the above commands, then manually downgrade to the Trusty packages:</p>\n</blockquote>\n\n<pre><code>sudo -S wget http://mirrors.kernel.org/ubuntu/pool/main/s/sudo/sudo_1.8.9p5-1ubuntu1.1_amd64.deb\nsudo -S wget http://mirrors.kernel.org/ubuntu/pool/main/p/procps/procps_3.3.9-1ubuntu2_amd64.deb\nsudo -S wget http://mirrors.kernel.org/ubuntu/pool/main/s/strace/strace_4.8-1ubuntu5_amd64.deb\nsudo -S dpkg -i sudo_1.8.9p5-1ubuntu1.1_amd64.deb\nsudo -S dpkg -i procps_3.3.9-1ubuntu2_amd64.deb\nsudo -S dpkg -i strace_4.8-1ubuntu5_amd64.deb\n</code></pre>\n\n<p>More info here: <a href=\"https://github.com/Microsoft/BashOnWindows/issues/482\" rel=\"noreferrer\">https://github.com/Microsoft/BashOnWindows/issues/482</a></p>\n",
+      "score": 29,
+      "creation_date": "2016-10-14T15:25:29"
+    }
+  ],
+  "source": "stackoverflow"
+}

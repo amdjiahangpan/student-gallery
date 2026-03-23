@@ -1,0 +1,22 @@
+{
+  "id": 61920866,
+  "title": "Difference between &quot;WSL2+docker desktop windows&quot; and directly install docker on the WSL2 distro?",
+  "body": "<p>Why is it recommended to run WSL2+docker desktop windows, instead of directly install docker on the WSL2 distro ?</p>\n\n<p>It seems that both work but I read that the way to go is with docker desktop, I'm trying to understand why.</p>\n\n<p>Thank you</p>\n",
+  "score": 63,
+  "answer_count": 5,
+  "view_count": 51757,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-05-20T19:00:05",
+  "answers": [
+    {
+      "id": 61921030,
+      "body": "<p>The main difference between using Docker Desktop with the WSL2 integration and using docker directly in WSL2 without Docker Desktop is the level of integration with your tools.</p>\n\n<p>When you use Docker desktop, you have access to docker in powershell/cmd, have access to your file on windows, the possibility to switch to Windows container and to use it with your IDE.</p>\n\n<p>If you install docker inside your WSL2 distro, docker will not be accessible from Windows directly.</p>\n",
+      "score": 52,
+      "creation_date": "2020-05-20T19:09:05"
+    }
+  ],
+  "source": "stackoverflow"
+}

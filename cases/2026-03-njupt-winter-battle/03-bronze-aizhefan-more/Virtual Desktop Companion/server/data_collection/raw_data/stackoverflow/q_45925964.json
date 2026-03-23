@@ -1,0 +1,23 @@
+{
+  "id": 45925964,
+  "title": "How to use Git credential store on WSL (Ubuntu on Windows)?",
+  "body": "<p>I've tried following these instructions: <a href=\"https://stackoverflow.com/a/40312117/21728\">https://stackoverflow.com/a/40312117/21728</a> which basically do this:</p>\n\n<pre><code>sudo apt-get install libsecret-1-0 libsecret-1-dev\ncd /usr/share/doc/git/contrib/credential/libsecret\nsudo make\ngit config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret\n</code></pre>\n\n<p>But when I do any network operation, I get this error:</p>\n\n<pre><code>** (process:7902): CRITICAL **: could not connect to Secret Service: Cannot autolaunch D-Bus without X11 $DISPLAY\n</code></pre>\n\n<p>That's logical I guess as there is indeed no X11 display.</p>\n\n<p>How to make Git credentials caching work on Ubuntu on Windows (WSL)?</p>\n",
+  "score": 135,
+  "answer_count": 13,
+  "view_count": 138337,
+  "tags": [
+    "git",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-08-28T19:18:40",
+  "answers": [
+    {
+      "id": 47350274,
+      "body": "<p>If you installed Git for Windows there is a windows integrated credential manager installed on your system.</p>\n<p>You can run windows executables from WSL as found <a href=\"https://msdn.microsoft.com/en-us/commandline/wsl/interop#invoking-windows-binaries-from-wsl\" rel=\"noreferrer\">here</a>.</p>\n<p>To use it you can run the following command (assuming that your git for windows is installed on C:\\Program Files\\Git, and is version &lt; v2.36.1)</p>\n<pre><code>git config --global credential.helper &quot;/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe&quot;\n</code></pre>\n<p>For the latest paths, see the Microsoft tutorial: <a href=\"https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git</a></p>\n",
+      "score": 249,
+      "creation_date": "2017-11-17T12:04:41"
+    }
+  ],
+  "source": "stackoverflow"
+}

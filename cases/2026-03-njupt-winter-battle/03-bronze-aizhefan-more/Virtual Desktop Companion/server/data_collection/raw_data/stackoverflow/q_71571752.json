@@ -1,0 +1,16 @@
+{
+  "id": 71571752,
+  "title": "Wireshark does not display WSL2 loopback traffic",
+  "body": "<p>I try to send udp packet between on my WSL2 localhost client and server, i can sent data successfully but when want to analyze on wireshark, wireshark cannot capture anything at loopback traffic adapter and vEthernet capture. Running program and wireshark windows image at after the sender code.</p>\n<p>sender.cpp</p>\n<pre><code>#define PORT 50254\n\nint main(){\n    Client* client = new Client(&quot;127.0.0.1&quot;, PORT);\n    memset(&amp;client-&gt;serv_addr, 0, sizeof(client-&gt;serv_addr));\n    client-&gt;serv_addr.sin_family = AF_INET;\n    client-&gt;serv_addr.sin_port = htons(port);\n    client-&gt;serv_addr.sin_addr.s_addr = inet_addr(client-&gt;ipAddres);\n    if ((client-&gt;Socket = socket(AF_INET, SOCK_DGRAM, 0)) &lt; 0) {\n        perror(&quot;socket creation failed&quot;);\n        exit(EXIT_FAILURE);\n    }\n    if (connect(client-&gt;Socket, (struct sockaddr*)&amp;client-&gt;serv_addr, sizeof(client-&gt;serv_addr)) &lt; 0)\n    {\n        printf(&quot;\\n Error : Connect Failed \\n&quot;);\n        exit(0);\n    }\n    char* message = &quot;Hello Server&quot;;\n    cout &lt;&lt; &quot;Sent Size : &quot; &lt;&lt; send(client-&gt;Socket,message, 100, 0) &lt;&lt; endl;\n}\n</code></pre>\n<p><a href=\"https://i.sstatic.net/STqLu.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/STqLu.png\" alt=\"Wireshark and running program\" /></a></p>\n",
+  "score": 14,
+  "answer_count": 1,
+  "view_count": 5937,
+  "tags": [
+    "c++",
+    "windows-subsystem-for-linux",
+    "wireshark"
+  ],
+  "creation_date": "2022-03-22T12:02:25",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 62723987,
+  "title": "How to change directory within Ubuntu WSL in Windows format?",
+  "body": "<p>I have installed Cygwin on Windows. To change dir in Cygwin could be done in 2 ways:</p>\n<p><strong>In Unix format:</strong></p>\n<pre><code>cd /cygdrive/path/to/folder/\n</code></pre>\n<p><strong>In Windows format (surrounded by double quotes):</strong></p>\n<pre><code>cd &quot;C:\\Path\\To\\Folder\\&quot;\n</code></pre>\n<p>Is there a way to change dir in Ubuntu WSL like can be done on Cygwin, using Windows format?</p>\n<p>I get this error when trying on Ubuntu:</p>\n<pre><code>$ cd &quot;C:\\Path\\To\\Folder&quot;\n-bash: cd: C:\\Path\\To\\Folder\\: No such file or directory\n$ cd &quot;C:\\Path\\To\\Folder\\&quot;\n&gt;\n</code></pre>\n",
+  "score": 11,
+  "answer_count": 4,
+  "view_count": 47767,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "cd"
+  ],
+  "creation_date": "2020-07-04T00:04:39",
+  "answers": [],
+  "source": "stackoverflow"
+}

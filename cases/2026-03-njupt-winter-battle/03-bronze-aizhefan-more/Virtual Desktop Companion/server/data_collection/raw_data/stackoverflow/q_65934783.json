@@ -1,0 +1,16 @@
+{
+  "id": 65934783,
+  "title": "python debug adapter not being found in vscode - WSL:Ubuntu",
+  "body": "<p>I'm trying to debug a python script in vscode using the <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl\" rel=\"noreferrer\">Remote WSL</a> extension with Python 3.9.1.</p>\n<p>When I start debugging mode(F5), the below message is immediately shown:</p>\n<blockquote>\n<p>Couldn't find a debug adapter descriptor for debug type 'python' (extension might have failed to active)</p>\n</blockquote>\n<p>The message offers me to <strong>Open launch.json</strong>, I still don't know what I have to change in my json file, below are my current settings:</p>\n<pre><code>{\n    &quot;version&quot;: &quot;0.2.0&quot;,\n    &quot;configurations&quot;: [\n        {\n            &quot;name&quot;: &quot;Python: Current File&quot;,\n            &quot;type&quot;: &quot;python&quot;,\n            &quot;request&quot;: &quot;launch&quot;,\n            &quot;program&quot;: &quot;${file}&quot;,\n            &quot;console&quot;: &quot;integratedTerminal&quot;,\n            &quot;env&quot;: {\n                &quot;PYTHONPATH&quot;: &quot;c:/&lt;my_user_name&gt;/projects&quot;,\n            },\n        }\n    ]\n}\n</code></pre>\n<p>What I have tried until now:</p>\n<ul>\n<li>Re-installed <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-python.python\" rel=\"noreferrer\">Python</a> extension and read the <a href=\"https://code.visualstudio.com/docs/remote/wsl-tutorial\" rel=\"noreferrer\">doc</a>. However the doc does not help to solve the issue at all. These steps has been already suggest in another post <a href=\"https://stackoverflow.com/questions/49607174/how-to-configure-vscode-to-debug-python-using-wsl\">here</a> almost 3 years ago.</li>\n<li>Reload vscode in order to reload the extensions, as the error shows an extensions might have failed to active. No success.</li>\n</ul>\n",
+  "score": 13,
+  "answer_count": 3,
+  "view_count": 23660,
+  "tags": [
+    "python",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-28T09:59:07",
+  "answers": [],
+  "source": "stackoverflow"
+}

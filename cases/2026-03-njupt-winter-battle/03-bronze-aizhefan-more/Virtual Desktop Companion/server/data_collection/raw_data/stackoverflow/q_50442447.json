@@ -1,0 +1,23 @@
+{
+  "id": 50442447,
+  "title": "How to use dd on WSL?",
+  "body": "<p>How can I used the <code>dd</code> command to dump the contents of a removable disk in WSL?</p>\n\n<p>When I run,</p>\n\n<pre><code>dd if=/mnt/d of=sdDump bs=512 count=1\n</code></pre>\n\n<p>I get the error <code>dd: error reading '/mnt/d': Is a directory</code></p>\n\n<p>I followed the <a href=\"https://superuser.com/a/1209701\">steps shown here</a> to mount the disk:</p>\n\n<pre><code>sudo mkdir /mnt/d\nsudo mount -t drvfs D: /mnt/d\n</code></pre>\n\n<p>Doing this allows me to see the files on the disk via <code>ls</code>, but running <code>dd</code> yields the above error.</p>\n",
+  "score": 16,
+  "answer_count": 3,
+  "view_count": 35615,
+  "tags": [
+    "unix",
+    "dump",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-05-21T05:25:24",
+  "answers": [
+    {
+      "id": 50539409,
+      "body": "<p>This is a category error in usage. <code>dd</code> doesn't work with directories, it works with files. The files can be <a href=\"https://en.wikipedia.org/wiki/Device_file\" rel=\"noreferrer\">device files</a> (like <code>/dev/sda</code> or <code>/dev/urandom</code> on Linux), or regular files (like <code>echo foo &gt;&gt; myfile.txt</code>). What you're trying to pass is a directory in a mounted filesystem.</p>\n\n<p>Unfortunately, WSL doesn't seem to support accessing your block device files (i.e. it doesn't have <code>/dev</code>). You can follow <a href=\"https://github.com/Microsoft/WSL/issues/689\" rel=\"noreferrer\">this</a> feature request on their issue tracker to see when they will add support.</p>\n",
+      "score": 23,
+      "creation_date": "2018-05-26T04:45:34"
+    }
+  ],
+  "source": "stackoverflow"
+}

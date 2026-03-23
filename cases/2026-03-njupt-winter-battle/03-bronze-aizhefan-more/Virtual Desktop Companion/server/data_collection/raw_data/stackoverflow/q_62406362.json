@@ -1,0 +1,22 @@
+{
+  "id": 62406362,
+  "title": "ubuntu under windows subsystem for linux 2 (wsl2) has no internet access",
+  "body": "<p>I had an Ubuntu under  WSL 1 working fine and connecting to the internet.</p>\n<p>Just by upgrading to wsl2, I can't ping google.com from Bash.\nBut I can ping if I downgrade to wsl1.</p>\n<h2>Here is the issue:<a href=\"https://github.com/microsoft/WSL/issues/4731\" rel=\"noreferrer\">[WSL2] No network · Issue #4731 · microsoft/WSL</a></h2>\n<hr />\n<p>I tried this but it's not working.</p>\n<p>Step 1: open Hyper-V manager as admin</p>\n<p><a href=\"https://i.sstatic.net/kNadL.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/kNadL.png\" alt=\"enter image description here\" /></a></p>\n<p>Step 2: select Virtual Switch Manager From Actions</p>\n<p><a href=\"https://i.sstatic.net/5ulNK.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/5ulNK.png\" alt=\"enter image description here\" /></a></p>\n<p>Step 3: select WSL</p>\n<p><a href=\"https://i.sstatic.net/S97RR.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/S97RR.png\" alt=\"enter image description here\" /></a></p>\n<p>Step 4: select External Network; choose an adapter and connect to the internet</p>\n<p><a href=\"https://i.sstatic.net/McRvg.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/McRvg.png\" alt=\"enter image description here\" /></a></p>\n<hr />\n<p>My windows <code>ipconfig</code> Ethernet adapter vEthernet (WSL):</p>\n<pre><code>Ethernet adapter vEthernet (WSL):\n\n   Connection-specific DNS Suffix  . :\n   Link-local IPv6 Address . . . . . : fe80::30a4:2612:6ee3:2390%142\n   IPv4 Address. . . . . . . . . . . : 192.168.0.103\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\n   Default Gateway . . . . . . . . . : 192.168.0.1\n</code></pre>\n<p><code>ping 192.168.0.103</code> from Ubuntu:</p>\n<pre><code>xxxxxxxxx@xxxxxxxxxxx:~$ ping 192.168.0.103\nPING 192.168.0.103 (192.168.0.103) 56(84) bytes of data.\nFrom 172.22.131.55 icmp_seq=1 Destination Host Unreachable\nFrom 172.22.131.55 icmp_seq=2 Destination Host Unreachable\n</code></pre>\n<p><code>ip route</code> from Ubuntu:</p>\n<pre><code>xxxxxxxxx@xxxxxxxxxxx:~$ ip route\ndefault via 172.22.128.1 dev eth0 \n172.22.128.0/20 dev eth0  proto kernel  scope link  src 172.22.131.55\n</code></pre>\n<p>From Ubuntu, tried <code>sudo ip route add default via 192.168.0.103</code>:</p>\n<pre><code>xxxxxxxxx@xxxxxxxxxx:~$ sudo ip route add default via 192.168.0.103\nRTNETLINK answers: Network is unreachable\n</code></pre>\n",
+  "score": 30,
+  "answer_count": 8,
+  "view_count": 101045,
+  "tags": [
+    "hyper-v",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-16T10:28:04",
+  "answers": [
+    {
+      "id": 71756220,
+      "body": "<p>I tried many of the other suggestions here, but only the following worked for me (doing a networking reset, and rebooting Windows 11):</p>\n<p><a href=\"https://github.com/microsoft/WSL/issues/4275#issuecomment-846553905\" rel=\"noreferrer\">github.com/microsoft/WSL/issues/4275#issuecomment-846553905</a></p>\n<pre class=\"lang-sh prettyprint-override\"><code>wsl --shutdown\nnetsh winsock reset\nnetsh int ip reset all\nnetsh winhttp reset proxy\nipconfig /flushdns\nnetsh winsock reset\nshutdown /r \n</code></pre>\n",
+      "score": 26,
+      "creation_date": "2022-04-05T17:45:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

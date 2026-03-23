@@ -1,0 +1,23 @@
+{
+  "id": 62429828,
+  "title": "WSL (windows subsystem linux) breaks $PATH when the windows PATH has folder names with spaces",
+  "body": "<p>When I start WSL I cant add folders to path. I found out that this is because folders that are included in the windows PATH that has white spaces in their name break the linux $PATH.\n:\nFor instance, when putting $PATH in the command line I am getting \n....Some other folders...:/mnt/c/Program: no such file or directory.</p>\n\n<p>If this was a manual process, I would use either \"Program Files\" of Program\\ files but this is imported before ~/.bashrc kicks in so I dont know how to fix this.</p>\n\n<p>Thank you for helping</p>\n",
+  "score": 16,
+  "answer_count": 4,
+  "view_count": 16285,
+  "tags": [
+    "linux",
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-17T13:10:51",
+  "answers": [
+    {
+      "id": 63692202,
+      "body": "<p>I ran into the same problem when I created a second instance of Ubuntu 20.04 and set the default user through /etc/wsl.conf. Quoting $PATH in Line 6 ( export PATH=$PATH:${snap_bin_path} ) in /etc/profile.d/apps-bin-path.sh solved the problem for me.</p>\n",
+      "score": 4,
+      "creation_date": "2020-09-01T16:56:35"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,18 @@
+{
+  "id": 39136040,
+  "title": "Python3.4 error - Cannot enable executable stack as shared object requires: Invalid argument",
+  "body": "<p>I've been trying to install <a href=\"http://opencv.org/\" rel=\"noreferrer\">OpenCV</a> in a Bash on Windows (Windows Subsystem for Linux, wsl) environment and it's been proving very difficult.</p>\n\n<p>I think I'm getting very close, but upon entering python, <code>import cv2</code> gives the following error:</p>\n\n<pre><code>ImportError: libopencv_core.so.3.1: cannot enable executable stack as shared object requires: Invalid argument\n</code></pre>\n\n<p>How do I enable the library to execute on the stack?</p>\n\n<hr>\n\n<p>My OpenCV <code>*opencv*.so*</code> library files are located in <code>/usr/local/lib/</code>. In a normal Linux environment, I would grant these libraries the ability to execute on the stack using</p>\n\n<pre><code>execstack -c /usr/local/lib/*opencv*.so*\n</code></pre>\n\n<p>However, even though I can successfully download the <code>execstack</code> package, it isn't a recognized command I can run to allow execution on the stack. I suspect this has something to do with Data Execution Prevention, Window's version of Exec-Shield to prevent stack smashing attacks.</p>\n\n<p>But maybe I've just been too close to the problem to figure out what's wrong. Why can't I import this python package? I'm using Python v3.4 and OpenCV compiled from the <a href=\"https://github.com/opencv/opencv\" rel=\"noreferrer\">latest source code</a> (v.3.1).</p>\n",
+  "score": 12,
+  "answer_count": 4,
+  "view_count": 15262,
+  "tags": [
+    "python",
+    "windows",
+    "python-3.x",
+    "opencv",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-25T03:03:05",
+  "answers": [],
+  "source": "stackoverflow"
+}

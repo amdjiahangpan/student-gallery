@@ -1,0 +1,23 @@
+{
+  "id": 66862358,
+  "title": "git fatal error: Unsupported SSL backend &#39;schannel&#39;",
+  "body": "<p><em><strong>Note</strong>, this question was meant for Using <strong>Git Bash</strong> under <strong>WSL</strong> under <strong>Windows</strong> for the MS TFS Git server, and I am still not clear what environment the top voted answer is under, so I'm still keeping my chosen answer as the answer.</em></p>\n<p>Trying to access <code>git-bash</code> prepared git repo with canonical <code>git</code>, and I'm getting:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>$ git pull\nfatal: Unsupported SSL backend 'schannel'. Supported SSL backends:\n        gnutls\n</code></pre>\n<p>Following <a href=\"https://stackoverflow.com/questions/64762722/using-git-bash-under-wsl\">Using Git Bash under WSL</a>, I've done <code>git config http.sslBackend openssl</code>:</p>\n<pre><code>$ git config http.sslBackend \nopenssl\n\n$ git config --global http.sslBackend\nopenssl\n</code></pre>\n<p>Following tip <a href=\"https://www.reddit.com/r/git/comments/i7wjq9/git_fatalunsupported_ssl_backend_openssl/\" rel=\"noreferrer\">from reddit</a>, I've done:</p>\n<pre><code>sudo apt install -y gnutls-bin\n\n# and here are my installed packages:\nii gnutls-bin  amd64 GNU TLS library - commandline utilities\nii libcurl3-gnutls:amd64  amd64 easy-to-use client-side URL transfer library (GnuTLS flavour)\nii libgnutls-dane0:amd64  amd64 GNU TLS library - DANE security support\nii libgnutls30:amd64  amd64 GNU TLS library - main runtime library\n</code></pre>\n<p>What else I'm missing?</p>\n<pre><code>$ lsb_release -a\nNo LSB modules are available.\nDistributor ID: Debian\nDescription:    Debian GNU/Linux 10 (buster)\nRelease:        10\nCodename:       buster\n</code></pre>\n<p>Run within Windows WSL.</p>\n<p><strong>PS</strong>. After all above tweaking, <code>git-bash</code> can still <code>pull</code> this git repo just fine, so I guess the <code>SSL backend 'schannel'</code> is configured somewhere else in this repo.</p>\n<p><strong>PPS</strong>. Found that it has nothing to do with <em>&quot;<code>git-bash</code> prepared git repo&quot;</em>, as even cloning a fresh one will give me the exact same error.</p>\n<p>Here is my <code>git config --show-origin -l</code> output, let me know if I need to include more:</p>\n<pre><code>$ git config --show-origin -l | grep -E 'ssl|http'\nfile:/home/me/.gitconfig        http.sslbackend=openssl\nfile:.git/config        http.sslverify=false\nfile:.git/config        http.sslbackend=openssl\nfile:.git/config        http.emptyauth=true\nfile:.git/config        remote.origin.url=http://xxx:8080/tfs/DefaultCollection/xxx\nfile:.git/config        lfs.http://xxx:8080/tfs/DefaultCollection/xxx/info/lfs.access=ntlm\n</code></pre>\n",
+  "score": 25,
+  "answer_count": 9,
+  "view_count": 82710,
+  "tags": [
+    "git",
+    "configuration",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-03-29T22:16:19",
+  "answers": [
+    {
+      "id": 67625617,
+      "body": "<p>As the solution provided by @bk2204 didn't work for me i tried to change it manually to &quot;gnutls&quot; value and it worked.</p>\n<p>1- I tried @bk2204 fix but it didn't work for me.</p>\n<pre class=\"lang-bash prettyprint-override\"><code>git config --unset-all http.sslBackend\n</code></pre>\n<p>2- tried to set http.sslBackend to &quot;openssl&quot;</p>\n<pre class=\"lang-bash prettyprint-override\"><code>git config --global http.sslBackend &quot;openssl&quot;\n</code></pre>\n<p>Nope</p>\n<p>3- &quot;If the cmd is proposing gnutls, why not use it?</p>\n<pre class=\"lang-bash prettyprint-override\"><code>git config --global http.sslBackend &quot;gnutls&quot;\n</code></pre>\n<p>It doesn't work either</p>\n<p>4- Change it manually!</p>\n<pre class=\"lang-bash prettyprint-override\"><code>vim ~/.gitconfig\n</code></pre>\n<p>Replace the value of <code>http</code> <code>sslBackend</code> to <code>gnutls</code>:</p>\n<pre><code>[http]\n        sslBackend = gnutls\n</code></pre>\n<p>Tadá!</p>\n",
+      "score": 29,
+      "creation_date": "2021-05-20T17:53:34"
+    }
+  ],
+  "source": "stackoverflow"
+}

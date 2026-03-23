@@ -1,0 +1,21 @@
+{
+  "id": 102578345,
+  "name": "lede",
+  "full_name": "coolsnowwolf/lede",
+  "description": "Lean's LEDE source",
+  "stars": 31325,
+  "forks": 19508,
+  "open_issues": 819,
+  "url": "https://github.com/coolsnowwolf/lede",
+  "clone_url": "https://github.com/coolsnowwolf/lede.git",
+  "readme_content": "",
+  "created_at": "2017-09-06T07:39:03Z",
+  "updated_at": "2026-02-18T16:51:23Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

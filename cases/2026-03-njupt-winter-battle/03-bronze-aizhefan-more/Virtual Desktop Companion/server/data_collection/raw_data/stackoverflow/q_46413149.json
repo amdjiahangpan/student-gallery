@@ -1,0 +1,15 @@
+{
+  "id": 46413149,
+  "title": "Share folder between Windows and WSL",
+  "body": "<p>I am using XMing to run Emacs from WSL, which is working quite well. My issue is when trying to share folders between Windows and WSL. I have tried the following:</p>\n\n<ul>\n<li>Project located in the Windows file system, accessed  via /mnt/ in WSL</li>\n<li>Symlink (created in WSL bash) of project located in the Windows file system</li>\n<li>Copy the project to the WSL file system</li>\n</ul>\n\n<p>Out of the 3 listed options, only the last works with projectile (and likely other Emacs packages). But I need to be able to access/modify the files from Windows as well, so that is not a viable option.</p>\n\n<p>Has anyone found a good solution for this?</p>\n",
+  "score": 10,
+  "answer_count": 2,
+  "view_count": 43624,
+  "tags": [
+    "emacs",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-09-25T19:53:11",
+  "answers": [],
+  "source": "stackoverflow"
+}

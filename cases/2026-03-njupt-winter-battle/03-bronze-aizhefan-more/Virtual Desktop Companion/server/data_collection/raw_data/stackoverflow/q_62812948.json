@@ -1,0 +1,24 @@
+{
+  "id": 62812948,
+  "title": "Volume mounts not working Kubernetes and WSL 2 and Docker",
+  "body": "<p>I am unable to properly mount volumes using HostPath within Kubernetes running in Docker and WSL 2. This seems to be a WSL 2 issue when mounting volumes in Kubernetes running in Docker.  Anyone know how to fix this?</p>\n<p>Here are the steps:</p>\n<p>Deploy debug build to Kubernetes for my app.\nAttach Visual Studio Code using the Kubernetes extension\nNavigate to the project folder for my application that was attached using the volume mount &lt;= Problem Right Here</p>\n<p>When you go and look at the volume mount nothing is there.</p>\n<pre><code>C:\\Windows\\System32&gt;wsl -l -v\n\nNAME STATE VERSION\nUbuntu Running 2\ndocker-desktop-data Running 2\ndocker-desktop Running 2\nDocker Desktop v2.3.0.3\nKubernetes v1.16.5\nVisual Studio Code v1.46.1\n</code></pre>\n<pre><code>====================================================================\nDockerfile\n====================================================================\n#\n# Base image for deploying and running based on Ubuntu\n#\n# Support ASP.NET and does not include .NET SDK or NodeJs\n# \nFROM mcr.microsoft.com/dotnet/core/aspnet:3.1-bionic AS base\nWORKDIR /app\nEXPOSE 80\nEXPOSE 443\n#\n# Base image for building .NET based on Ubuntu\n#\n# 1. Uses .NET SDK image as the starting point \n# 2. Restore NuGet packages\n# 3. Build the ASP.NET Core application\n#\n# Destination is /app/build which is copied to /app later on\n#\nFROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic AS build\nWORKDIR /src\nCOPY [&quot;myapp.csproj&quot;, &quot;./&quot;]\nRUN dotnet restore &quot;./myapp.csproj&quot;\nCOPY . .\nWORKDIR &quot;/src/.&quot;\nRUN dotnet build &quot;myapp.csproj&quot; -c Release -o /app\n\nFROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic AS debug\nRUN curl --silent --location https://deb.nodesource.com/setup_12.x | bash -\nRUN apt-get install --yes nodejs\nENTRYPOINT [ &quot;sleep&quot;, &quot;infinity&quot; ]\n\n#\n# Base image for building React based on Node/Ubuntu\n#\n# Destination is /app/ClientApp/build which is copied to /clientapp later\n#\n# NOTE: npm run build puts the output in the build directory\n#\nFROM node:12.18-buster-slim AS clientbuild\nWORKDIR /src\nCOPY ./ClientApp /app/ClientApp\nWORKDIR &quot;/app/ClientApp&quot;\nRUN npm install\nRUN npm run build\n#\n# Copy clientbuild:/app/ClientApp to /app/ClientApp\n#\n# Copy build:/app to /app\n#\nFROM base as final\nWORKDIR /app/ClientApp\nCOPY --from=clientbuild /app/ClientApp .\nWORKDIR /app\nCOPY --from=build /app .\nENTRYPOINT [&quot;dotnet&quot;, &quot;myapp.dll&quot;]\n\n====================================================================\nKubernetes Manifest\n====================================================================\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp\nspec:\n  selector:\n    matchLabels:\n      app: myapp\n  replicas: 1\n  template:\n    metadata:\n      labels:\n        app: myapp\n    spec:\n      containers:\n      - name: myapp\n        image: localhost:6000/myapp\n        ports:\n        - containerPort: 5001\n        securityContext:\n          privileged: true\n        volumeMounts:\n        - mountPath: /local\n          name: local\n        resources: {}        \n      volumes:\n      - name: local\n        hostPath:\n          path: /C/dev/myapp\n          type: DirectoryOrCreate\n      hostname: myapp\n      restartPolicy: Always\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: myapp\nspec:\n  type: LoadBalancer\n  ports:\n  - name: http\n    protocol: TCP\n    port: 5001\n    targetPort: 5001\n  selector:\n    app: myapp\n</code></pre>\n",
+  "score": 20,
+  "answer_count": 2,
+  "view_count": 12173,
+  "tags": [
+    "windows",
+    "docker",
+    "kubernetes",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-07-09T10:35:30",
+  "answers": [
+    {
+      "id": 63524931,
+      "body": "<p>According to the following thread, hostPath volumes are not officially supported for wsl2, yet. They do suggest a workaround, though I had trouble getting it to work. I have found that prepending <code>/run/desktop/mnt/host/c</code> seems to work for me.</p>\n<pre><code>// C:\\someDir\\volumeDir\nhostPath:\n  path: /run/desktop/mnt/host/c/someDir/volumeDir\n  type: DirectoryOrCreate\n</code></pre>\n<p>Thread Source: <a href=\"https://github.com/docker/for-win/issues/5325\" rel=\"noreferrer\">https://github.com/docker/for-win/issues/5325</a><br />\nSuggested workaround from thread: <a href=\"https://github.com/docker/for-win/issues/5325#issuecomment-567594291\" rel=\"noreferrer\">https://github.com/docker/for-win/issues/5325#issuecomment-567594291</a></p>\n",
+      "score": 61,
+      "creation_date": "2020-08-21T14:39:34"
+    }
+  ],
+  "source": "stackoverflow"
+}

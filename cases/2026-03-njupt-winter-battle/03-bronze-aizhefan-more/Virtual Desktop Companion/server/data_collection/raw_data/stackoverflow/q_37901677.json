@@ -1,0 +1,25 @@
+{
+  "id": 37901677,
+  "title": "Can I get (the new) bash on Windows 10 to load .profile",
+  "body": "<p>I installed the new subsystem for Linux on Windows 10 (which comes with the Windows anniversary update), and started playing around with it.</p>\n\n<p>What I noticed is that starting the shell (ubuntu bash) does not load .profile or .bash_profile, even though the .profile file exists. Is there a fix?</p>\n\n<p>(And can someone with a lot of reputation make the windows-bash tag?)</p>\n",
+  "score": 22,
+  "answer_count": 1,
+  "view_count": 12656,
+  "tags": [
+    "windows",
+    "bash",
+    "ubuntu",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-06-18T21:11:47",
+  "answers": [
+    {
+      "id": 37901905,
+      "body": "<p>By default, this release of Ubuntu-on-windows loads the file named <code>.bashrc</code>.</p>\n\n<p>You can either put the script or add the below line to <code>.bashrc</code> (and create <code>.bashrc</code> if it is non-existent):</p>\n\n<pre><code>. ~/.profile\n</code></pre>\n\n<p>Note: If <code>.bashrc</code> is sourced from <code>.profile</code>, you may want to comment it out to prevent bash endlessly looping.</p>\n",
+      "score": 27,
+      "creation_date": "2016-06-18T21:42:40"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 67938331,
+  "title": "How to call PowerShell script from WSL?",
+  "body": "<p>In my Windows directory</p>\n<pre><code>C:\\Users\\jholmes\\pichak\\analytics\n</code></pre>\n<p>I have run1.ps1 code.\nI run wsl.exe, now my pwd is</p>\n<pre><code>   /mnt/c/WINDOWS/system32\n</code></pre>\n<p>How to point to the first path and execute the script?</p>\n",
+  "score": 20,
+  "answer_count": 6,
+  "view_count": 31005,
+  "tags": [
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-06-11T13:58:16",
+  "answers": [
+    {
+      "id": 69493187,
+      "body": "<p>In WSL2, using the <code>-File</code> option worked for me:</p>\n<pre><code>powershell.exe -File path/to/script.ps1\n</code></pre>\n",
+      "score": 17,
+      "creation_date": "2021-10-08T08:57:50"
+    }
+  ],
+  "source": "stackoverflow"
+}

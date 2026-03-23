@@ -1,0 +1,22 @@
+{
+  "id": 61686075,
+  "title": "How do I start Edge on Windows from WSL2?",
+  "body": "<p>I can run <code>code</code> to start VSCode from inside WSL2.</p>\n<p>How would I start Edge (the current Chromium based one)?</p>\n<p>I have tried:</p>\n<pre><code>~/Code/company/workshops-website$ cmd.exe /c 'start microsoft-edge:\\\\wsl$\\Ubuntu\\home\\mike\\Code\\company\\workshops-website\\index.html'\n'\\\\wsl$\\Ubuntu\\home\\mike\\Code\\company\\workshops-website'\nCMD.EXE was started with the above path as the current directory.\nUNC paths are not supported.  Defaulting to Windows directory.\n</code></pre>\n<p>It starts Edge but doesn't open <code>index.html</code> (instead Edge searches for it)</p>\n<p><strong>How would I start Edge (the Windows app) from inside WSL2?</strong></p>\n<p>I'm comfortable making bash aliases, functions, etc.</p>\n",
+  "score": 21,
+  "answer_count": 5,
+  "view_count": 23085,
+  "tags": [
+    "microsoft-edge",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-05-08T18:52:20",
+  "answers": [
+    {
+      "id": 61686296,
+      "body": "<p><code>$ wslview index.html</code></p>\n\n<p>Will open the file in your default browser on Windows.</p>\n\n<p>wslview is packaged in <a href=\"https://github.com/wslutilities/wslu#feature\" rel=\"noreferrer\">wslutilities</a> which comes pre-installed on Ubuntu on WSL and some other WSL distros.</p>\n",
+      "score": 38,
+      "creation_date": "2020-05-08T19:05:09"
+    }
+  ],
+  "source": "stackoverflow"
+}

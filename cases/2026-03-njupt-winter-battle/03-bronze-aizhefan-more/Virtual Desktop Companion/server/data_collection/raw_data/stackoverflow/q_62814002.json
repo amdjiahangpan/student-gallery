@@ -1,0 +1,22 @@
+{
+  "id": 62814002,
+  "title": "Start : This command cannot be run due to the error: The system cannot find the file specified",
+  "body": "<p>I installed wsl(Windows Subsystem for Linux) with ubuntu and jupyter notebook on it. When I run my jupyternote book, I get this error message. Could you give me some advice? Many thanks in advance!</p>\n<hr />\n<p>Start : This command cannot be run due to the error: The system cannot find the file specified.\nAt line:1 char:1</p>\n<ul>\n<li>Start &quot;file:///home/purit/.local/share/jupyter/runtime/nbserver-26-op ...</li>\n<li>\n<pre><code>  + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException\n  + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand\n</code></pre>\n</li>\n</ul>\n",
+  "score": 58,
+  "answer_count": 5,
+  "view_count": 39372,
+  "tags": [
+    "jupyter",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-07-09T11:39:18",
+  "answers": [
+    {
+      "id": 62896669,
+      "body": "<p>This one worked for me.</p>\n<pre><code>jupyter notebook --port=8889 --no-browser\n</code></pre>\n<p>You can also checkout <a href=\"https://stackoverflow.com/questions/50882266/using-jupyter-with-windows-subsystem-for-linux\">this thread</a> if any other solutions work out for you.</p>\n",
+      "score": 55,
+      "creation_date": "2020-07-14T13:45:54"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 52487644,
+  "title": "Install MariaDB in Windows subsystem Linux (WSL)",
+  "body": "<p>I'm trying to start MariaDB in the windows linux subsystem using</p>\n<pre class=\"lang-bash prettyprint-override\"><code>sudo apt-get update\nsudo apt-get install mariadb-server\nsudo service mysql start\n</code></pre>\n<p>but getting the following error:</p>\n<pre><code>ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2 &quot;No such file or directory&quot;)\n</code></pre>\n<p>I know, this is not a new question, I read a lot about other solutions under Ubuntu to fix this, but nothing worked so far. Has anybody an idea how to get it going?</p>\n<p>Merci A</p>\n",
+  "score": 15,
+  "answer_count": 5,
+  "view_count": 28183,
+  "tags": [
+    "mariadb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-09-24T21:30:12",
+  "answers": [
+    {
+      "id": 60286213,
+      "body": "<p>I'm encountered with the same problem. Fortunately I found a solution at <a href=\"https://github.com/microsoft/WSL/issues/745#issuecomment-237412792\" rel=\"nofollow noreferrer\">https://github.com/microsoft/WSL/issues/745#issuecomment-237412792</a></p>\n<pre class=\"lang-bash prettyprint-override\"><code>sudo /etc/init.d/mysql start\n</code></pre>\n<p>which works for me. Hope it works for you too.</p>\n",
+      "score": 26,
+      "creation_date": "2020-02-18T17:16:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

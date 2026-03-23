@@ -1,0 +1,25 @@
+{
+  "id": 52846489,
+  "title": "Can&#39;t clone repository from mounted drive",
+  "body": "<p>I am using Windows Subsystem for Linux (WSL) and have a mounted microSD card that I've been able to clone repositories into in the past. Recently, however, I am receiving this error when I try to clone from <code>/mnt/d/</code>:</p>\n\n<pre><code>Cloning into 'your_repo'...\nerror: chmod on /mnt/d/your_repo/.git/config.lock failed: Operation not permitted\nerror: chmod on /mnt/d/your_repo/.git/config.lock failed: Operation not permitted\nerror: chmod on /mnt/d/your_repo/.git/config.lock failed: Operation not permitted\nerror: chmod on /mnt/d/your_repo/.git/config.lock failed: Operation not permitted\nfatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n</code></pre>\n\n<p>If I change into any directory on <code>/mnt/c/</code> I can clone perfectly fine. When I clone I use SSH if that helps. Thank you.</p>\n",
+  "score": 15,
+  "answer_count": 2,
+  "view_count": 16561,
+  "tags": [
+    "linux",
+    "git",
+    "ubuntu",
+    "github",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-10-17T02:34:38",
+  "answers": [
+    {
+      "id": 52847682,
+      "body": "<p>Considering changes to <a href=\"https://blogs.msdn.microsoft.com/commandline/2018/01/12/chmod-chown-wsl-improvements/\" rel=\"noreferrer\">Chmod/Chown WSL Improvements</a>, you could try, as in <a href=\"https://github.com/Microsoft/WSL/issues/3172#issuecomment-389157376\" rel=\"noreferrer\">WSL issue 3172</a></p>\n\n<pre><code>sudo umount /mnt/d\nsudo mount -t drvfs D: /mnt/d -o metadata\n</code></pre>\n",
+      "score": 51,
+      "creation_date": "2018-10-17T05:14:32"
+    }
+  ],
+  "source": "stackoverflow"
+}

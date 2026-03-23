@@ -1,0 +1,22 @@
+{
+  "id": 62514756,
+  "title": "Selecting Python interpreter from WSL",
+  "body": "<p>I am using Windows 10 and want to set the the default VSCode interpreter for Python to be the same one used in my WSL 2 (Ubuntu), so that I'm always using &quot;one Python&quot;.</p>\n<p>When I click &quot;Select Python interpreter&quot; a prompt appears to find the interpreter path, but I'm not sure what the path would be.</p>\n",
+  "score": 32,
+  "answer_count": 3,
+  "view_count": 53319,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-22T12:44:36",
+  "answers": [
+    {
+      "id": 67551631,
+      "body": "<p>I think that, in order to use the WSL python, you need to be running VSCode in a WSL remote window. You need to install the Remote WSL extension first. Then, on the lower left there is a green button that will let you start a WSL window, or it will tell you that you are already in one.</p>\n<p><a href=\"https://i.sstatic.net/bqDLP.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/bqDLP.png\" alt=\"This shows that you are in a WSL window\" /></a></p>\n<p>If you are in a WSL window, you should be able to select your python interpreter pretty easily. It will either automatically detect it, or you can run <code>which python3</code> in an Ubuntu terminal to get the path. If you want to navigate to a file on your Windows file system from within this window, look in, e.g., <code>/mnt/c/Users/&lt;USER_NAME&gt;</code>.</p>\n",
+      "score": 43,
+      "creation_date": "2021-05-15T22:11:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

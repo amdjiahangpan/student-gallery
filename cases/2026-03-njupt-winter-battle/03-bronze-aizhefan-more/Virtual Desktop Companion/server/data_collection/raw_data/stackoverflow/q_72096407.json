@@ -1,0 +1,18 @@
+{
+  "id": 72096407,
+  "title": "How to install node.js and npm on Ubuntu terminal using WSL2 in windows 10",
+  "body": "<p>I have problem with installing node.js and npm on my Ubuntu terminal (WSL2).</p>\n<p>I tried to follow this instructions:</p>\n<p><a href=\"https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl</a></p>\n<p><a href=\"https://github.com/MicrosoftDocs/windows-uwp/blob/docs/hub/dev-environment/javascript/nodejs-on-wsl.md\" rel=\"noreferrer\">https://github.com/MicrosoftDocs/windows-uwp/blob/docs/hub/dev-environment/javascript/nodejs-on-wsl.md</a></p>\n<p>Also see some videos on YouTube, but every time I have same error.</p>\n<p>First, I run this command:</p>\n<p><code>sudo apt-get install curl</code></p>\n<p>after I am trying to install nvm, with this command :</p>\n<p><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</code></p>\n<p>after that it tells, that nvm is installed, but shows some errors(I will include img)\nand after that, I can't run this command to verify versions of node.js and npm :</p>\n<pre><code>command -v nvm  //or this command \nnvm ls\n\n</code></pre>\n<p>I already installed node.js in my windows, and when I open git bash and run this commands node -v and npm -v it shows me, which versions are installed.\nBut as I use Ubuntu terminal with fish, I wanted to install node.js and npm on it too. Can someone tell me what I am doing wrong?</p>\n<p><a href=\"https://i.sstatic.net/FJG25.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/FJG25.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 19284,
+  "tags": [
+    "node.js",
+    "npm",
+    "terminal",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-05-03T08:03:24",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,18 @@
+{
+  "id": 66321206,
+  "title": "ERROR: &quot;docker context create&quot; requires exactly 1 argument",
+  "body": "<p>I'm trying to deploy an application using docker-compose through Docker Context. I'm using this guide: <a href=\"https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/\" rel=\"noreferrer\">https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/</a></p>\n<p>The problem comes when I try to create a context. e.g.:  <code>docker context create test --docker &quot;host=ssh://user@remotehost&quot;</code>\nI get this:</p>\n<blockquote>\n<p>&quot;docker context create&quot; requires exactly 1 argument. See 'docker\ncontext create --help'.</p>\n</blockquote>\n<p>This only happens on Windows WSL, on Linux it works flawlessly.</p>\n<p>I'm using docker <strong>19.03.8</strong> with Experimental Features enabled.</p>\n",
+  "score": 11,
+  "answer_count": 3,
+  "view_count": 6415,
+  "tags": [
+    "docker",
+    "docker-compose",
+    "windows-subsystem-for-linux",
+    "remote-server",
+    "docker-desktop"
+  ],
+  "creation_date": "2021-02-22T18:16:20",
+  "answers": [],
+  "source": "stackoverflow"
+}

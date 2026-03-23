@@ -1,0 +1,21 @@
+{
+  "id": 24878875,
+  "name": "awesome-zsh-plugins",
+  "full_name": "unixorn/awesome-zsh-plugins",
+  "description": "A collection of ZSH frameworks, plugins, themes and tutorials.",
+  "stars": 17412,
+  "forks": 589,
+  "open_issues": 5,
+  "url": "https://github.com/unixorn/awesome-zsh-plugins",
+  "clone_url": "https://github.com/unixorn/awesome-zsh-plugins.git",
+  "readme_content": "",
+  "created_at": "2014-10-07T06:11:17Z",
+  "updated_at": "2026-02-19T02:49:23Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

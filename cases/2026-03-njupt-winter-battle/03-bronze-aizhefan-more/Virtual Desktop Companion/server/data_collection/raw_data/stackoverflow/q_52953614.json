@@ -1,0 +1,23 @@
+{
+  "id": 52953614,
+  "title": "Set environment variables in task.json in vscode for WSL",
+  "body": "<p>I tried to set environment variables for my Visual Studio Code tasks that will run in my Windows Subsystem Linux. However, it does not seem to work. Here is my tasks.json:</p>\n\n<pre><code>{\n    // See https://go.microsoft.com/fwlink/?LinkId=733558\n    // for the documentation about the tasks.json format\n    \"version\": \"2.0.0\",\n    \"tasks\": [\n        {\n            \"label\": \"test env\",\n            \"type\": \"shell\",\n            \"command\": \"echo\",\n            \"args\": [\n                \"$test\"\n            ],\n            \"options\": {\n                \"env\": {\n                    \"test\": \"test_string\"\n                }\n            }\n\n        },\n    ]\n}\n</code></pre>\n\n<p>The output is:</p>\n\n<pre><code>&gt; Executing task in folder ex12-test: echo $test &lt;\n\n\n\nTerminal will be reused by tasks, press any key to close it.\n</code></pre>\n\n<p>Note that by default shell has been manually modified to <code>C:\\WINDOWS\\SysNative\\bash.exe</code>for WSL, as recommended <a href=\"https://stackoverflow.com/questions/44450218/how-do-i-use-bash-on-ubuntu-on-windows-wsl-for-my-vs-code-terminal\">here</a> and <a href=\"https://github.com/Microsoft/vscode-cpptools/blob/master/Documentation/Debugger/gdb/Windows%20Subsystem%20for%20Linux.md\" rel=\"noreferrer\">here</a>.</p>\n",
+  "score": 20,
+  "answer_count": 3,
+  "view_count": 44659,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "vscode-tasks"
+  ],
+  "creation_date": "2018-10-23T16:15:14",
+  "answers": [
+    {
+      "id": 54257169,
+      "body": "<p>The options object goes outside of any task, so:</p>\n<pre><code>format\n  &quot;version&quot;: &quot;2.0.0&quot;,\n  &quot;options&quot;: {\n      &quot;env&quot;: {\n        &quot;test&quot;: &quot;test_string&quot;\n      }\n   }\n   &quot;tasks&quot;: [\n    {\n        &quot;label&quot;: &quot;test env&quot;,\n        &quot;type&quot;: &quot;shell&quot;,\n        &quot;command&quot;: &quot;echo&quot;,\n        &quot;args&quot;: [\n            &quot;$env:test&quot;\n        ],\n    },\n</code></pre>\n<p>And then access the options argsuments like so:</p>\n<pre><code>$env:test  or    ${env:test}\n</code></pre>\n",
+      "score": 24,
+      "creation_date": "2019-01-18T15:41:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

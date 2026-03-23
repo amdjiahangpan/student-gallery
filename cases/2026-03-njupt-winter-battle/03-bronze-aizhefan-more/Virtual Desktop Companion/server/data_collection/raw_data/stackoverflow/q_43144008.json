@@ -1,0 +1,23 @@
+{
+  "id": 43144008,
+  "title": "Copy to clipboard using Bash for Windows",
+  "body": "<p>How do I copy results from the commandline directly to the clipboard?</p>\n\n<p>On Windows's cmd.exe I can do simply <code>echo \"asd\" | clip</code> and it pipes output to the clipboard.</p>\n\n<p>I tried to install <code>xclip</code> for that, and though it compiled, when called it prints:</p>\n\n<pre><code>Error: Can't open display: (null)\n</code></pre>\n\n<p>Using mouse is not the solution.</p>\n",
+  "score": 55,
+  "answer_count": 5,
+  "view_count": 30886,
+  "tags": [
+    "windows",
+    "command-line",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-03-31T15:07:31",
+  "answers": [
+    {
+      "id": 43408226,
+      "body": "<p>In Build 14393 or later, if you want to copy something to clipboard in WSL console, just add '.exe' to what you do in Windows cmd.</p>\n\n<pre><code>echo \"aaa\"|clip.exe\n</code></pre>\n\n<p>To read from clipboard:</p>\n\n<pre><code>powershell.exe -command \"Get-Clipboard\"\n</code></pre>\n",
+      "score": 102,
+      "creation_date": "2017-04-14T08:48:12"
+    }
+  ],
+  "source": "stackoverflow"
+}

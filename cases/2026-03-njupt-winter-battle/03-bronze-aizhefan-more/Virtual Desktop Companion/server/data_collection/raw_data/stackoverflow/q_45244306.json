@@ -1,0 +1,25 @@
+{
+  "id": 45244306,
+  "title": "Mounting a windows share in Windows Subsystem for Linux",
+  "body": "<p>I'd like to mount a windows server from within <a href=\"https://github.com/Microsoft/BashOnWindows\" rel=\"noreferrer\">WSL</a> (Windows Subsystem for Linux). On Ubuntu (with unity interface) I can just type</p>\n\n<pre><code>gvfs-mount smb://domain\\;user@server/share\n</code></pre>\n\n<p>and everything mounts just fine.</p>\n\n<p>If I try this in WSL then I get the following error:</p>\n\n<pre><code>Error mounting location: volume doesn't implement mount\n</code></pre>\n",
+  "score": 40,
+  "answer_count": 6,
+  "view_count": 70859,
+  "tags": [
+    "linux",
+    "bash",
+    "ubuntu",
+    "mount",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-07-21T18:19:35",
+  "answers": [
+    {
+      "id": 46968030,
+      "body": "<p>Assuming the host Windows OS can access a file share at \"\\\\servername\\sharename\", try this command in bash. You will need to be root:</p>\n\n<pre><code>mkdir /mnt/mountedshare\nmount -t drvfs '\\\\servername\\sharename' /mnt/mountedshare\n</code></pre>\n\n<p>The single quotes are important!</p>\n\n<p>Worked for me with a SharePoint Online UNC path.  The permissions are screwy though.  I can navigate through the folders and see the filenames, but I can't read files.  So need to figure out the permissions thing.  Let me know if you get anywhere with that.</p>\n",
+      "score": 75,
+      "creation_date": "2017-10-27T05:23:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

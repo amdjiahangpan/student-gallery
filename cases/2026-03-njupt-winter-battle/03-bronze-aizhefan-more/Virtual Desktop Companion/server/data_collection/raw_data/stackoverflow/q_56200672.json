@@ -1,0 +1,23 @@
+{
+  "id": 56200672,
+  "title": "Can I use Redis installed on Windows Subsystem for Linux with a python app in Windows?",
+  "body": "<p>I would like to develop a python application on Windows that will use Redis as a broker for Celery.  Is it correct to assume that my application can interact with an instance of Redis that I have installed on the Windows Subsystem for Linux?</p>\n\n<p>I have enabled the Windows Subsystem for Linux on Windows 10, and installed Ubuntu and Redis onto it, and started the server.  On the Windows side, I'm using VSCode to write the python code.  As shown below, in my python code, I am trying to connect to Redis on localhost:6379</p>\n\n<pre class=\"lang-py prettyprint-override\"><code>from celery import Celery\n\nBROKER_URL = 'redis://localhost:6379/0'\n\napp = Celery('tasks', broker=BROKER_URL)\n</code></pre>\n\n<p>I am trying to confirm whether my Python code, written in Windows, can interact with the Redis server being run on Ubuntu.  Is this possible, and if so how can I confirm the connection?</p>\n",
+  "score": 19,
+  "answer_count": 2,
+  "view_count": 22278,
+  "tags": [
+    "python",
+    "redis",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-05-18T16:05:04",
+  "answers": [
+    {
+      "id": 56200847,
+      "body": "<p>Yes, you can use redis from wsl from windows. First, make sure you've installed and started the redis service:</p>\n\n<pre><code>sudo apt-get install redis-server\nsudo systemctl enable redis-server.service\n</code></pre>\n\n<p>if you already run a redis server on windows, you'll need to edit the port directive in /etc/redis/redis.conf (e.g. to 7379 like I've done for the commands below).</p>\n\n<p>Then start the service</p>\n\n<pre><code>sudo service redis-server start\n</code></pre>\n\n<p>and then run <code>redis-cli</code> and issue the <code>monitor</code> command (you can skip the <code>-p 7379</code> if you're using the default port):</p>\n\n<pre><code>bp@bjorn8:~$ redis-cli -p 7379\n127.0.0.1:6379&gt; monitor\nOK\n</code></pre>\n\n<p>now, from your windows command prompt, install the redis module from pypi (<a href=\"https://pypi.org/project/redis/\" rel=\"noreferrer\">https://pypi.org/project/redis/</a>):</p>\n\n<pre><code>pip install redis\n</code></pre>\n\n<p>then start python and issue a test command (again, use 6379 if you're using the default port):</p>\n\n<pre><code>&gt;&gt;&gt; import redis\n&gt;&gt;&gt; cn = redis.Redis('localhost', 7379, 0)\n&gt;&gt;&gt; cn.keys(\"*\")\n[]\n</code></pre>\n\n<p>in your wsl session you should now see something like:</p>\n\n<pre><code>1558196107.718695 \"KEYS\" \"*\"\n</code></pre>\n\n<p>Note: redis is not fuzzy about where the server is. If you have the cli tools installed on windows you can issue commands from dos to the server running on wsl:</p>\n\n<pre><code>c:\\srv&gt; redis-cli -p 7379\nredis 127.0.0.1:7379&gt; keys \"*\"\n(empty list or set)\nredis 127.0.0.1:7379&gt;\n</code></pre>\n\n<p>and vice-versa (redis-cli on wsl will happily connect to a redis service running on windows -- which is how I discovered I needed to specify different ports ;-)</p>\n",
+      "score": 47,
+      "creation_date": "2019-05-18T16:28:24"
+    }
+  ],
+  "source": "stackoverflow"
+}

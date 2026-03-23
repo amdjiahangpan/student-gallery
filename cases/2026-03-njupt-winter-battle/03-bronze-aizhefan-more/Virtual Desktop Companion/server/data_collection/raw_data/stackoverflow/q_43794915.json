@@ -1,0 +1,22 @@
+{
+  "id": 43794915,
+  "title": "Is there a way to get access to Windows environment variables in wsl?",
+  "body": "<p>I was thinking of adding something like this to my setup.bash script.</p>\n\n<pre><code>ln -s /mnt/c/Users/Ryan/Downloads $HOME/Downloads\n</code></pre>\n\n<p>But obviously that isn't always an accurate path so I was hoping to be able to do to <em>something</em> like </p>\n\n<pre><code>ln -s /mnt/c/Users/%USERNAME%/Downloads $HOME/Downloads\n</code></pre>\n\n<p>or</p>\n\n<pre><code>ln -s %USERPROFILE%/Downloads $HOME/Downloads\n</code></pre>\n\n<p>I know that obviously Windows % vars wouldn't work in bash but it would be cool if wsl could/does export those vars as <code>$Win32.HOME</code> or <code>$Win32.USER</code> or something.</p>\n\n<p>Any thoughts?</p>\n\n<p>Is there any way to do this already?</p>\n",
+  "score": 25,
+  "answer_count": 8,
+  "view_count": 25503,
+  "tags": [
+    "environment-variables",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-05-05T01:03:48",
+  "answers": [
+    {
+      "id": 50051520,
+      "body": "<p>Remembering that it's a shell's job to evaluate environment variables, and since you can invoke Windows exe's from within Linux on WSL, you can ask a Windows shell (Cmd or PowerShell) to expand out a Windows env-var. Here's how you'd do that with Cmd:</p>\n<pre><code>$ cmd.exe /c echo %username%\nrichturn\n$\n</code></pre>\n<p>Alternatively, you can choose to <a href=\"https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/\" rel=\"noreferrer\">project some of your Windows environment variables into WSL</a> if you prefer :)</p>\n",
+      "score": 22,
+      "creation_date": "2018-04-26T20:41:43"
+    }
+  ],
+  "source": "stackoverflow"
+}

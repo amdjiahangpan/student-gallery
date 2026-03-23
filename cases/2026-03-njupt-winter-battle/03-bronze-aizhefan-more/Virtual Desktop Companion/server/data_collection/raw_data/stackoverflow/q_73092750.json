@@ -1,0 +1,18 @@
+{
+  "id": 73092750,
+  "title": "How to show GUI apps from docker desktop container on windows 11",
+  "body": "<p>From this <a href=\"https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps\" rel=\"noreferrer\">article</a>, it states that windows 11 natively supports running of X11 and wayland applications on wsl.</p>\n<p>I tried to do the same through a docker container, setting the environment variable <code>DISPLAY=&quot;host.docker.internal:0.0&quot;</code>, and running a GUI application (like <code>gedit</code>). But instead I got this error:</p>\n<pre><code>Unable to init server: Could not connect: Connection refused\n\nGtk-WARNING **: 17:05:50.416: cannot open display: host.docker.internal:0.0\n</code></pre>\n",
+  "score": 13,
+  "answer_count": 3,
+  "view_count": 22749,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "x11",
+    "windows-11",
+    "wayland"
+  ],
+  "creation_date": "2022-07-23T17:12:16",
+  "answers": [],
+  "source": "stackoverflow"
+}

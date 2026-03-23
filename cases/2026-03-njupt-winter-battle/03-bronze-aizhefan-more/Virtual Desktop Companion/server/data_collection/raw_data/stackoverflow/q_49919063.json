@@ -1,0 +1,22 @@
+{
+  "id": 49919063,
+  "title": "Installing NPM/Node on Bash on Ubuntu on Windows (WSL). What architecture does Ubuntu/Bash use?",
+  "body": "<p>I'm using Bash on Ubuntu on Windows as the command line tool. </p>\n\n<p>I need to install Node and NPM, and on the <a href=\"https://nodejs.org/en/download/\" rel=\"noreferrer\">download page</a> for unix I need to choose between 5 different options: 32bits, 64 bits, ArmV6, ArmV7, Armv8. Arms themselves are either 32 or 64 bit so this left me a confused. </p>\n\n<p>Are Arm versions meant for mobile devices? I couldn't find Bash/Ubuntu in any directory, and not in the 64 bit program directory. </p>\n\n<p>If my Windows is 64 bit, can I assume that Bash/Ubuntu will be 64 bits as well, and that that is the right file to download? </p>\n",
+  "score": 31,
+  "answer_count": 7,
+  "view_count": 75620,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-04-19T10:41:35",
+  "answers": [
+    {
+      "id": 61976982,
+      "body": "<p>To install node and npm in Ubuntu on WSL you need to install nvm. It doesn't work with apt-install</p>\n<ol>\n<li>Install NVM</li>\n</ol>\n<p><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash</code></p>\n<ol start=\"2\">\n<li>Edit <code>~/.bashrc</code> or <code>~/.zshrc</code> depending on the Linux Shell you're using and add the following at the bottom</li>\n</ol>\n<p><code>export NVM_DIR=&quot;/home/yourusername/.nvm&quot; [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \\. &quot;$NVM_DIR/nvm.sh&quot;</code></p>\n<p>Now restart bash, and then run</p>\n<p><code>nvm install node</code></p>\n<p>That will install the latest, if you wish to install a specific version</p>\n<p><code>nvm install v6.11.5</code></p>\n<p>You're all set.</p>\n<p>Credit: <a href=\"https://winsmarts.com/how-to-install-node-on-linux-on-windows-wsl-65069ea5f83d\" rel=\"nofollow noreferrer\">https://winsmarts.com/how-to-install-node-on-linux-on-windows-wsl-65069ea5f83d</a></p>\n",
+      "score": 75,
+      "creation_date": "2020-05-23T18:44:03"
+    }
+  ],
+  "source": "stackoverflow"
+}

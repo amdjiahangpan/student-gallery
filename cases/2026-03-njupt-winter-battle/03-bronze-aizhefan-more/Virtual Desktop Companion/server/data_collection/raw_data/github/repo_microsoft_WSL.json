@@ -1,0 +1,21 @@
+{
+  "id": 55626935,
+  "name": "WSL",
+  "full_name": "microsoft/WSL",
+  "description": "Windows Subsystem for Linux",
+  "stars": 31102,
+  "forks": 1616,
+  "open_issues": 962,
+  "url": "https://github.com/microsoft/WSL",
+  "clone_url": "https://github.com/microsoft/WSL.git",
+  "readme_content": "",
+  "created_at": "2016-04-06T17:32:56Z",
+  "updated_at": "2026-02-19T02:58:44Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

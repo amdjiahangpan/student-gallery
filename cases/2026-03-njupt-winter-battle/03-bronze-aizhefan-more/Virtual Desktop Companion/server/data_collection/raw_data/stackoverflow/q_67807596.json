@@ -1,0 +1,25 @@
+{
+  "id": 67807596,
+  "title": "pyenv install: 3.x BUILD FAILED (Ubuntu 20.04 using python-build 20180424)",
+  "body": "<p>Trying to install a new <code>Python</code> - version with <a href=\"https://github.com/pyenv/pyenv\" rel=\"noreferrer\">pyenv</a> on <a href=\"https://ubuntu.com/wsl\" rel=\"noreferrer\">Ubuntu 20.04 WSL for Windows 10</a> fails with the following output:</p>\n<pre><code>username@hd1pcms0347:~$ pyenv install 3.9.4\nDownloading Python-3.9.4.tar.xz...\n-&gt; https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tar.xz\nInstalling Python-3.9.4...\npython-build: use readline from homebrew\n\nBUILD FAILED (Ubuntu 20.04 using python-build 20180424)\n\nInspect or clean up the working tree at /tmp/python-build.20210602162502.2268\nResults logged to /tmp/python-build.20210602162502.2268.log\n\nLast 10 log lines:\n  File &quot;/tmp/python-build.20210602162502.2268/Python-3.9.4/Lib/ensurepip/__init__.py&quot;, line 210, in _main\n    return _bootstrap(\n  File &quot;/tmp/python-build.20210602162502.2268/Python-3.9.4/Lib/ensurepip/__init__.py&quot;, line 129, in _bootstrap\n    return _run_pip(args + [p[0] for p in _PROJECTS], additional_paths)\n  File &quot;/tmp/python-build.20210602162502.2268/Python-3.9.4/Lib/ensurepip/__init__.py&quot;, line 38, in _run_pip\n    return subprocess.run([sys.executable, &quot;-c&quot;, code], check=True).returncode\n  File &quot;/tmp/python-build.20210602162502.2268/Python-3.9.4/Lib/subprocess.py&quot;, line 528, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/tmp/python-build.20210602162502.2268/Python-3.9.4/python', '-c', '\\nimport runpy\\nimport sys\\nsys.path = [\\'/tmp/tmp7aa5f7ml/setuptools-49.2.1-py3-none-any.whl\\', \\'/tmp/tmp7aa5f7ml/pip-20.2.3-py2.py3-none-any.whl\\'] + sys.path\\nsys.argv[1:] = [\\'install\\', \\'--no-cache-dir\\', \\'--no-index\\', \\'--find-links\\', \\'/tmp/tmp7aa5f7ml\\', \\'--root\\', \\'/\\', \\'--upgrade\\', \\'setuptools\\', \\'pip\\']\\nrunpy.run_module(&quot;pip&quot;, run_name=&quot;__main__&quot;, alter_sys=True)\\n']' returned non-zero exit status 1.\nmake: *** [Makefile:1255: install] Error 1\n</code></pre>\n<p><strong>EDIT:</strong>\nI had shared the log file earlier via GoogleDrive so that @Marlon Richert could give his nice answer based on its contents.</p>\n",
+  "score": 50,
+  "answer_count": 2,
+  "view_count": 64359,
+  "tags": [
+    "python",
+    "ubuntu",
+    "homebrew",
+    "windows-subsystem-for-linux",
+    "pyenv"
+  ],
+  "creation_date": "2021-06-02T14:56:04",
+  "answers": [
+    {
+      "id": 67853440,
+      "body": "<p>These are the relevant parts of your log:</p>\n<pre class=\"lang-none prettyprint-override\"><code>In file included from /tmp/python-build.20210602162502.2268/Python-3.9.4/Modules/_cursesmodule.c:113:\n./Include/py_curses.h:36:10: fatal error: curses.h: No such file or directory\n   36 | #include &lt;curses.h&gt;\n      |          ^~~~~~~~~~\ncompilation terminated.\n</code></pre>\n<pre class=\"lang-none prettyprint-override\"><code>/tmp/python-build.20210602162502.2268/Python-3.9.4/Modules/_ctypes/_ctypes.c:107:10: fatal error: ffi.h: No such file or directory\n  107 | #include &lt;ffi.h&gt;\n      |          ^~~~~~~\ncompilation terminated.\n\nPython build finished successfully!\nThe necessary bits to build these optional modules were not found:\n_bz2                  _curses_panel         _dbm\n_gdbm                 _lzma                 _sqlite3\n_tkinter              _uuid                 zlib\nTo find the necessary bits, look in setup.py in detect_modules() for the module's name.\n\nThe following modules found by detect_modules() in setup.py, have been\nbuilt by the Makefile instead, as configured by the Setup files:\n_abc                  atexit                pwd\ntime\n\nFailed to build these modules:\n_ctypes               _curses\n</code></pre>\n<pre class=\"lang-none prettyprint-override\"><code>Traceback (most recent call last):\n  File &quot;&lt;frozen zipimport&gt;&quot;, line 520, in _get_decompress_func\nModuleNotFoundError: No module named 'zlib'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File &quot;&lt;frozen zipimport&gt;&quot;, line 568, in _get_data\n  File &quot;&lt;frozen zipimport&gt;&quot;, line 523, in _get_decompress_func\nzipimport.ZipImportError: can't decompress data; zlib not available\n</code></pre>\n<p>It looks like you're missing the <a href=\"https://github.com/pyenv/pyenv/wiki#suggested-build-environment\" rel=\"nofollow noreferrer\">dependencies that <code>pyenv</code> requires for building <code>python</code></a>. Since you're using Ubuntu, run the following:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>sudo apt update\nsudo apt install \\\n    build-essential curl llvm make wget xz-utils {tk,zlib1g}-dev \\\n    lib{bz2,ffi,lzma,ncursesw5,readline,sqlite3,ssl,xml2,xmlsec1}-dev\n</code></pre>\n<p>Then try again.</p>\n",
+      "score": 126,
+      "creation_date": "2021-06-05T19:54:37"
+    }
+  ],
+  "source": "stackoverflow"
+}

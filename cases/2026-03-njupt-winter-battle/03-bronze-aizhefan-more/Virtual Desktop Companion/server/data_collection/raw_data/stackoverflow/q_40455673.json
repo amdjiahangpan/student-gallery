@@ -1,0 +1,18 @@
+{
+  "id": 40455673,
+  "title": "Using Windows Subsystem for Linux (WSL) from Sublime Text",
+  "body": "<p>I wanted to use <code>gcc</code>, <code>g++</code> and <code>make</code> from Sublime Text to be able to compile C and C++ code to Linux runnables on Windows. I couldn't run <code>bash.exe</code> from Sublime Text, as many other users on Stack Overflow.</p>\n",
+  "score": 13,
+  "answer_count": 6,
+  "view_count": 19388,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "sublimetext",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-11-06T23:18:30",
+  "answers": [],
+  "source": "stackoverflow"
+}

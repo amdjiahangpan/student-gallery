@@ -1,0 +1,22 @@
+{
+  "id": 62495999,
+  "title": "Installing MongoDB in WSL",
+  "body": "<p>I was trying to install MongoDB in WSL running Ubuntu 18.04 after seeing <a href=\"https://learn.microsoft.com/en-us/windows/python/databases\" rel=\"noreferrer\">this</a> documentation. But MongoDB says that:</p>\n<blockquote>\n<p>IMPORTANT<br/>The <code>mongodb</code> package provided by Ubuntu is not maintained by MongoDB Inc. and conflicts with the official <code>mongodb-org</code> package. If you have already installed the mongodb package on your Ubuntu system, you must first uninstall the mongodb package before proceeding with these instructions.</p>\n</blockquote>\n<p>MongoDB also says that WSL doesn't support <code>mongodb-org</code></p>\n<blockquote>\n<p>WINDOWS SUBSYSTEM FOR LINUX (WSL) - UNSUPPORTED<br/>MongoDB does not support the Windows Subsystem for Linux (WSL).</p>\n</blockquote>\n<p>So, I installed <code>mongod</code> using <code>sudo apt install mongodb</code> and when I ran <code>mongo</code> it shows the error:</p>\n<pre><code>connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&amp;gssapiServiceName=mongodb\n2020-06-21T13:33:40.606+0530 E  QUERY    [js] Error: couldn't connect to server 127.0.0.1:27017\n</code></pre>\n<p>Is there is a way to install the appropriate package and make it running?</p>\n",
+  "score": 23,
+  "answer_count": 8,
+  "view_count": 54944,
+  "tags": [
+    "mongodb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-21T08:07:21",
+  "answers": [
+    {
+      "id": 62496101,
+      "body": "<p>I have come across this situation recently.</p>\n<p>Even though MongoDB says that it is not supported in WSL, you can actually install it. So, I suggest you follow that steps given in MongoDB docs.</p>\n<p><strong>Note</strong> : If you have already installed <code>mongodb</code> please remove all those before you install <code>mongodb-org</code> since it may cause some issues during installation :</p>\n<pre><code>sudo dpkg --remove --force-remove-reinstreq mongo-tools\nsudo dpkg --remove --force-remove-reinstreq mongodb-server-core\nsudo apt-get --fix-broken install\n</code></pre>\n<p>For installing mongodb community edition, I have added the commands below:</p>\n<pre><code>wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -\nsudo apt-get install gnupg\nwget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -\necho &quot;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list\n\nsudo apt-get update\nsudo apt-get install -y mongodb-org\n</code></pre>\n<p>Now, to get mongoDB running,</p>\n<pre><code>sudo nano /etc/init.d/mongod\n</code></pre>\n<p>and paste the contents in this <a href=\"https://raw.githubusercontent.com/mongodb/mongo/master/debian/init.d\" rel=\"nofollow noreferrer\">link</a> into the file and save it.</p>\n<pre><code>#give permissions\nsudo chmod +x /etc/init.d/mongod\n\n#start the service\nsudo service mongod start\n</code></pre>\n<p>Now, you can run <code>mongo</code> to reach the database.</p>\n",
+      "score": 66,
+      "creation_date": "2020-06-21T08:17:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

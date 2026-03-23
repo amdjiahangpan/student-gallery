@@ -1,0 +1,23 @@
+{
+  "id": 61150350,
+  "title": "Intellij Windows Terminal as terminal (in ide)",
+  "body": "<p>I use WSL with Ubuntu 18.04.</p>\n\n<p>In Intellij i want to change terminal to Windows Terminal (or Ubuntu Terminal), but when I add <code>wt.exe</code> as shell path (File -> Settings -> Tools -> Terminal), ide returns new window with Windows Terminal (not on the bottom of ide). </p>\n\n<p>I also used Windows Terminal.exe path, but it doesn't work.</p>\n\n<pre><code>C:\\Users\\USER\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.WindowsTerminal_8wekyb3d8bbwe/wt.exe\n</code></pre>\n",
+  "score": 16,
+  "answer_count": 2,
+  "view_count": 14530,
+  "tags": [
+    "windows",
+    "intellij-idea",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-04-10T23:52:35",
+  "answers": [
+    {
+      "id": 61150396,
+      "body": "<p>You can't use GUI app as the terminal shell in IntelliJ IDEA, use the command line app like <code>cmd.exe</code>, <code>powershell.exe</code> or <code>c:\\Windows\\System32\\bash.exe</code>.</p>\n",
+      "score": 15,
+      "creation_date": "2020-04-10T23:58:17"
+    }
+  ],
+  "source": "stackoverflow"
+}

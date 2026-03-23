@@ -1,0 +1,23 @@
+{
+  "id": 62753270,
+  "title": "How to access docker containers on wsl 2",
+  "body": "<p>I am having Ubuntu 20.04 LTS running on wsl 2. I have installed docker according to this guide <a href=\"https://docs.docker.com/engine/install/ubuntu/\" rel=\"noreferrer\">https://docs.docker.com/engine/install/ubuntu/</a>. I have a stack with few services (basically I want to set up an environment to test my services before pushing to prod), the stack is running as expected on production, there are portainer and RabbitMq running on it and they are accessible on the network.</p>\n<p>However, when I deploy the same stack (via docker-compose.yml) on the docker that I have installed on the ubuntu on wsl 2 <strong>I can not access the RabbitMq and the Portainer services using localhost/127.0.0.1:&lt;the published port/s&gt;</strong>. The containers are running stable from what I see with &quot;docker container ls&quot;.</p>\n<p>I have tried to set an inbound rules in the firewall - nop luck.</p>\n<p>Here is the whole service setup from the docker-compose.yml:</p>\n<pre><code>  rabbitmq:\n    image: rabbitmq:3-management\n    logging:\n      driver: &quot;json-file&quot;\n      options:\n        max-file: 3\n        max-size: 5m\n    hostname: rabbitmq\n    deploy:\n      resources:\n        limits:\n          memory: 200M\n        reservations:\n          memory: 199M\n    ports:\n      - 15672:15672\n      - 5672:5672\n    env_file:\n      - .env\n    networks:\n      - webnet\n</code></pre>\n",
+  "score": 14,
+  "answer_count": 5,
+  "view_count": 49401,
+  "tags": [
+    "docker",
+    "ubuntu-20.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-07-06T09:38:54",
+  "answers": [
+    {
+      "id": 62871453,
+      "body": "<p>Alright, it turns out that I should have used the ip of the eth0 interface. Now I can access the services form the host/win.</p>\n<p>Just type <code>ifconfig</code> in the docker container:</p>\n<p>(if it return &quot;command not found&quot; you can install it with: <code>sudo apt install net-tools</code>)</p>\n<p><a href=\"https://i.sstatic.net/PnMQ4.png\" rel=\"nofollow noreferrer\"><img src=\"https://i.sstatic.net/PnMQ4.png\" alt=\"ipconfig results\" /></a></p>\n",
+      "score": 23,
+      "creation_date": "2020-07-13T07:53:24"
+    }
+  ],
+  "source": "stackoverflow"
+}

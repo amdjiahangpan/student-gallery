@@ -1,0 +1,15 @@
+{
+  "id": 41923864,
+  "title": "Karma and Firefox with WSL",
+  "body": "<p>I would like to run karma tests using Firefox under WSL. I have firefox installed via apt and it is working using VcXsrv in Windows. When I use karma-firefox-launcher, however, I get a \"Cannot start Firefox\" error. Has anybody successfully gotten this to work? If so, how?</p>\n",
+  "score": 10,
+  "answer_count": 1,
+  "view_count": 6797,
+  "tags": [
+    "karma-runner",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-01-29T17:32:55",
+  "answers": [],
+  "source": "stackoverflow"
+}

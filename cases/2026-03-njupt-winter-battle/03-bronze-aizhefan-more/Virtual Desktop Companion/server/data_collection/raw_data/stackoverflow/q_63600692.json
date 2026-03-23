@@ -1,0 +1,14 @@
+{
+  "id": 63600692,
+  "title": "Ubuntu on windows 10 wsl2 - chown chmod doesn&#39;t work on copied files",
+  "body": "<p>I just installed ubuntu 20.04.1 LTS on windows 10 (2004) WSL 2 from windows store.</p>\n<p>I want to switch from cygwin, so i copy cygwin ssh configuration from <code>/mnt/d</code> to <code>~</code>  with</p>\n<pre><code>cp -R /mnt/d/dev/cygwin64/root/home/myuser/.ssh/ .\n</code></pre>\n<p>my usual ssh connection doesn't work and it seems to come from file/folder permission of <code>~/.ssh</code></p>\n<p>a <code>ls</code> on this folder doesn't work</p>\n<pre><code>$ ls -al .ssh/\nls: cannot access '.ssh/id_rsa.pub': Permission denied\nls: cannot access '.ssh/id_rsa': Permission denied\nls: cannot access '.ssh/..': Permission denied\nls: cannot access '.ssh/.': Permission denied\nls: cannot access '.ssh/known_hosts': Permission denied\ntotal 0\nd????????? ? ? ? ?            ? .\nd????????? ? ? ? ?            ? ..\n-????????? ? ? ? ?            ? id_rsa\n-????????? ? ? ? ?            ? id_rsa.pub\n-????????? ? ? ? ?            ? known_hosts\n</code></pre>\n<p>i tried</p>\n<pre><code>sudo chown myuser:myuser .ssh\nsudo chown myuser:myuser .ssh/*\n</code></pre>\n<p><code>.ssh</code> is still the same with <code>????????</code></p>\n<p>here is a view of the home folder</p>\n<pre><code>$ ls -al\ntotal 44\ndrwxr-xr-x 5 myuser myuser 4096 Aug 25 10:54 .\ndrwxr-xr-x 3 root  root  4096 Aug 24 21:14 ..\n-rw------- 1 myuser myuser  974 Aug 25 11:12 .bash_history\n-rw-r--r-- 1 myuser myuser  220 Aug 24 21:14 .bash_logout\n-rw-r--r-- 1 myuser myuser 5026 Aug 25 10:53 .bashrc\ndrwxr-xr-x 2 myuser myuser 4096 Aug 24 21:19 .docker\ndrwxr-xr-x 2 myuser myuser 4096 Aug 24 21:15 .landscape\n-rw-r--r-- 1 myuser myuser    0 Aug 26 17:00 .motd_shown\n-rw-r--r-- 1 myuser myuser  807 Aug 24 21:14 .profile\ndrw-r--r-- 2 myuser myuser 4096 Aug 25 10:54 .ssh\n-rw-r--r-- 1 myuser myuser    0 Aug 24 21:16 .sudo_as_admin_successful\n-rw------- 1 myuser myuser  792 Aug 25 10:53 .viminfo\n</code></pre>\n<p>I tried to add a <code>wsl.conf</code> file with automount without success</p>\n<pre><code>$ cat /etc/wsl.conf\n[automount]\nenabled = true\noptions = &quot;metadata&quot;\n</code></pre>\n",
+  "score": 12,
+  "answer_count": 3,
+  "view_count": 21755,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-08-26T15:18:43",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 169677297,
+  "name": "v",
+  "full_name": "vlang/v",
+  "description": "Simple, fast, safe, compiled language for developing maintainable software. Compiles itself in <1s with zero library dependencies. Supports automatic C => V translation. https://vlang.io",
+  "stars": 37392,
+  "forks": 2235,
+  "open_issues": 1115,
+  "url": "https://github.com/vlang/v",
+  "clone_url": "https://github.com/vlang/v.git",
+  "readme_content": "",
+  "created_at": "2019-02-08T02:57:06Z",
+  "updated_at": "2026-02-19T05:37:01Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

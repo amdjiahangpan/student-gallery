@@ -1,0 +1,23 @@
+{
+  "id": 41774260,
+  "title": "Windows 10 Bash (Ubuntu) - How to scroll up?",
+  "body": "<p>I have bash installed on my W10 laptop, but one thing that is very frustrating is I can not scroll up. </p>\n\n<p>Does anyone know of a way to enable scrolling with the mouse wheel? I could not find anything after many google searches.</p>\n\n<p>Context: If I compile some C++ files and get a lot of errors, I can not scroll up to see all those errors.</p>\n",
+  "score": 73,
+  "answer_count": 5,
+  "view_count": 57719,
+  "tags": [
+    "bash",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-01-21T00:01:33",
+  "answers": [
+    {
+      "id": 42001860,
+      "body": "<p>You must set <code>Properties</code> → <code>Layout</code> → <code>Screen Buffer Size</code> → <code>Height</code> to the number of lines you want.</p>\n\n<p>The default was 50 lines. I set it to 1000 and that's enough for me.</p>\n\n<p><a href=\"https://i.sstatic.net/qnFEw.jpg\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/qnFEw.jpg\" alt=\"Properties menu\"></a></p>\n",
+      "score": 176,
+      "creation_date": "2017-02-02T12:07:40"
+    }
+  ],
+  "source": "stackoverflow"
+}

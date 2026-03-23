@@ -1,0 +1,25 @@
+{
+  "id": 76817989,
+  "title": "&lt;3&gt;WSL (358) ERROR: CreateProcessParseCommon:789: Failed to translate Z:/",
+  "body": "<p>I am having some problems using Windows Subsystem for Linux (Ubuntu 22.04.2 LTS). I need to access a folder I have accessed locally by mapping a network drive.</p>\n<p>I have installed both WSL and Ubuntu from the Microsoft App Store. I have been using this system for months and never encountered a problem.</p>\n<p>Since yesterday, when trying to open a Linux terminal for the folder in the drive I mapped, I get this error:</p>\n<pre><code>&lt;3&gt;WSL (358) ERROR: CreateProcessParseCommon:789: Failed to translate Z:/\n</code></pre>\n<p>I do not encounter the same problem when opening a Linux Terminal in any other folder such as Desktop, or anything local.</p>\n<p>I am not familiar with these kinds of errors, so anything to try would help a lot.</p>\n",
+  "score": 26,
+  "answer_count": 5,
+  "view_count": 39266,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-08-02T08:32:01",
+  "answers": [
+    {
+      "id": 77000249,
+      "body": "<p>You are most probably using Docker Desktop, Docker Dekstop makes it own distro and sets it as default, this is what causes the issue.</p>\n<p>To make the default distro you mount to you can change it using the following command</p>\n<pre class=\"lang-bash prettyprint-override\"><code>wsl --list\nwsl --setdefault &lt;DISTRO_NAME&gt;\n</code></pre>\n<p>This should solve your issue.</p>\n",
+      "score": 85,
+      "creation_date": "2023-08-29T12:33:52"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 291137,
+  "name": "ohmyzsh",
+  "full_name": "ohmyzsh/ohmyzsh",
+  "description": "🙃   A delightful community-driven (with 2,400+ contributors) framework for managing your zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool that makes it easy to keep up with the latest updates from the community.",
+  "stars": 184810,
+  "forks": 26286,
+  "open_issues": 520,
+  "url": "https://github.com/ohmyzsh/ohmyzsh",
+  "clone_url": "https://github.com/ohmyzsh/ohmyzsh.git",
+  "readme_content": "",
+  "created_at": "2009-08-28T18:15:37Z",
+  "updated_at": "2026-02-19T05:59:33Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

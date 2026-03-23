@@ -1,0 +1,23 @@
+{
+  "id": 68506873,
+  "title": "How to restart Docker Desktop after shutting down WSL?",
+  "body": "<p>I installed Docker Desktop for Win10 Home. Everything went fine and I was able to start up minikube.\nLater I decided to stop <code>Vmmem.exe</code> because I wanted to play a game.\nRan the following command:</p>\n<pre><code>wsl --shutdown\n</code></pre>\n<p>Now <code>Vmmem.exe</code> has stopped running but how do I restart it?</p>\n<p><code>minikube start</code> gives the following error</p>\n<pre><code>* minikube v1.22.0 on Microsoft Windows 10 Home Single Language 10.0.19041 Build 19041\n* Using the docker driver based on existing profile\n\nX Exiting due to PROVIDER_DOCKER_VERSION_EXIT_1: &quot;docker version --format -&quot; exit status 1: error during connect: In the default daemon configuration on Windows, the docker client must be run with elevated privileges to connect.: Get &quot;http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/version&quot;: open //./pipe/docker_engine: The system cannot find the file specified.\n* Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/\n</code></pre>\n<p><code>wsl -l -v</code> gives following</p>\n<pre><code>  NAME                   STATE           VERSION\n* Ubuntu-20.04           Stopped         2\n  docker-desktop-data    Stopped         2\n  docker-desktop         Stopped         2\n</code></pre>\n<p>What am I missing here? Any help is much appreciated</p>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 48405,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "minikube"
+  ],
+  "creation_date": "2021-07-24T03:58:28",
+  "answers": [
+    {
+      "id": 70054121,
+      "body": "<ol>\n<li>Open Docker Desktop</li>\n<li>Click 'Troubleshooting' icon in top bar (between settings and sign in)</li>\n<li>Click 'Restart' (first option)</li>\n</ol>\n<p>Now docker is restarted and you'll have it enabled in your wsl</p>\n",
+      "score": 30,
+      "creation_date": "2021-11-21T11:32:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

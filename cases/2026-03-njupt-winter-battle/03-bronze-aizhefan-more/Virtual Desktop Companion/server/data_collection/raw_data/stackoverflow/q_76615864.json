@@ -1,0 +1,18 @@
+{
+  "id": 76615864,
+  "title": "Cannot run any WSL commands/Not able to make WSL work with VS Code (Exec Format Error)",
+  "body": "<p>I tried setting up VS Code with WSL, when I tried running code, I was met with a &quot;Exec format error code&quot;, found it weird, tried to do other simpler stuff such as &quot;notepad.exe&quot; or any other normally accessible commands. Once again, it tries to run it and I am met with this error</p>\n<pre><code>newsofpe@DESKTOP-H6GRFEM:~$ code\n/mnt/c/Users/Newso/AppData/Local/Programs/Microsoft VS Code/bin/code: 61: /mnt/c/Users/Newso/AppData/Local/Programs/Microsoft VS Code/Code.exe: Exec format error\nnewsofpe@DESKTOP-H6GRFEM:~$ notepad.exe\n-bash: /mnt/c/WINDOWS/system32/notepad.exe: cannot execute binary file: Exec format error\n</code></pre>\n<p>I am pretty sure this is not a x86/x64 compatibility error.</p>\n<p>This is the version I am running:</p>\n<p>Linux DESKTOP-H6GRFEM 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux</p>\n<p>Tried looking it up online and search about similar situations such as mine and am met with no solution to my problem as it is such a niche/non researched thing for the moment.</p>\n",
+  "score": 12,
+  "answer_count": 2,
+  "view_count": 7350,
+  "tags": [
+    "linux",
+    "windows",
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "compatibility"
+  ],
+  "creation_date": "2023-07-04T21:02:36",
+  "answers": [],
+  "source": "stackoverflow"
+}

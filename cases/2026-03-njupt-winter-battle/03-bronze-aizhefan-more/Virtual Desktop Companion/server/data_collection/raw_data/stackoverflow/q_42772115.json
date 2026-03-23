@@ -1,0 +1,18 @@
+{
+  "id": 42772115,
+  "title": "Bash on Windows 10: where is .vimrc?",
+  "body": "<p>Where is .vimrc located when using Bash on Windows?  I'm trying to add settings to make Bash on Windows suitable for vim use and to allow performing git diff/merge, etc. with custom settings, i.e., ignore whitespace.</p>\n",
+  "score": 10,
+  "answer_count": 3,
+  "view_count": 30747,
+  "tags": [
+    "git",
+    "bash",
+    "vim",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-03-13T19:42:33",
+  "answers": [],
+  "source": "stackoverflow"
+}

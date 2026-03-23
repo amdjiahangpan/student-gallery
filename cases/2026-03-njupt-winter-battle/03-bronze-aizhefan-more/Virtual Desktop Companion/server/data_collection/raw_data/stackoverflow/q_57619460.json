@@ -1,0 +1,24 @@
+{
+  "id": 57619460,
+  "title": "Trying to sign commits on git using gpg on WSL but does not work",
+  "body": "<p>I have recently tried the Windows Subsystem for Linux lately and as I was attempting to sign my git commits with a recently generated GPG key it spewed out,</p>\n\n<pre><code>verticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ git commit -S -m \"gpg signing\"\nerror: gpg failed to sign the data\nfatal: failed to write commit object\n</code></pre>\n\n<p>I have used git long enough to know that I have to set the local or global variables on git to use my GPG key.</p>\n\n<p>After the first error, I tried to generate another key but that also did not work, including the subkeys.</p>\n\n<p>My GPGs were encrypted in RSA and RSA (default).</p>\n\n<p>I have tried using articles on help.github.com but to no avail.</p>\n\n<p>(Here are some specific sources.)\n<a href=\"https://help.github.com/en/articles/telling-git-about-your-signing-key\" rel=\"noreferrer\">https://help.github.com/en/articles/telling-git-about-your-signing-key</a></p>\n\n<p><a href=\"https://help.github.com/en/articles/signing-commits\" rel=\"noreferrer\">https://help.github.com/en/articles/signing-commits</a></p>\n\n<p>Here is most of the terminal log</p>\n\n<pre><code>verticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ git config --global commit.gpgsign true\nverticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ gpg2 --list-secret-keys --keyid-format LONG\ngpg: checking the trustdb\ngpg: marginals needed: 3  completes needed: 1  trust model: pgp\ngpg: depth: 0  valid:   2  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 2u\ngpg: next trustdb check due at 2021-08-22\n/home/verticalfile30/.gnupg/pubring.kbx\n---------------------------------------\nsec   rsa4096/498F47808959B459 2019-08-23 [SC] [expires: 2021-08-22]\n      A533C851D2905FC63C161831498F47808959B459\nuid                 [ultimate] Vert Simon (Key#3) &lt;stopmotion45c@gmail.com&gt;\nssb   rsa4096/E4E65BE559FFBE2C 2019-08-23 [E] [expires: 2021-08-22]\n\nsec   rsa4096/B3C88EE54DC15CC9 2019-08-23 [SC]\n      87F5399E6BFEF88C1C64794CB3C88EE54DC15CC9\nuid                 [ultimate] Vert S (Sop) &lt;stopmotion45c@gmail.com&gt;\nssb   rsa4096/E868623210106F9D 2019-08-23 [E]\n\nverticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ git config --global user.signingkey E868623210106F9D\nverticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ git commit -S -m \"gpg signing\"\nerror: gpg failed to sign the data\nfatal: failed to write commit object\nverticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ git config --global user.signingkey B3C88EE54DC15CC9\nverticalfile30@DESKTOP-U284V9I:~/cpo/wsltest$ git commit -S -m \"gpg signing\"\nerror: gpg failed to sign the data\nfatal: failed to write commit object\n</code></pre>\n\n<p>Many sources online, as well as other questions on Stack Overflow,  ended up saying the same thing, set the global variables.\nIs there something I am forgetting or getting wrong? Thanks.</p>\n",
+  "score": 27,
+  "answer_count": 4,
+  "view_count": 24706,
+  "tags": [
+    "git",
+    "github",
+    "gnupg",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-08-23T03:15:10",
+  "answers": [
+    {
+      "id": 57620087,
+      "body": "<p>That was followed in <a href=\"https://github.com/microsoft/WSL/issues/4029\" rel=\"noreferrer\">microsoft/WSL issue 4029</a></p>\n<p>But in that case, it was:</p>\n<blockquote>\n<p>My key has a passphrase but there is no prompt to enter the passphrase.</p>\n<p>But then I <a href=\"https://stackoverflow.com/a/55993078/6309\">read this</a>:</p>\n<p>Step 3 is <code>export GPG_TTY=$(tty)</code>, which sends the prompt to tty.<br />\nAfter entering my passphrase, everything works.</p>\n</blockquote>\n<p>Example: <a href=\"https://github.com/danhorst/dotfiles/commit/805a779fa51dee70ad3b983a4f5df9d3f0023d2b\" rel=\"noreferrer\"><code>danhorst/dotfiles</code> commit 805a779</a>, which follows <a href=\"https://stackoverflow.com/a/55993078/6309\">gpg failed to sign the data fatal: failed to write commit object [Git 2.10.0]</a>.</p>\n<hr />\n<p>You can also refer to &quot;<a href=\"https://www.39digits.com/signed-git-commits-on-wsl2-using-visual-studio-code\" rel=\"noreferrer\">How to sign your commits to GitHub using Visual Studio Code on Windows 10 and WSL2</a>&quot; from <a href=\"https://twitter.com/39digits\" rel=\"noreferrer\">Christopher Hamilton</a>.</p>\n<hr />\n<p>Q3 2024, the <a href=\"https://github.com/microsoft/WSL/issues/4029#issuecomment-2242607359\" rel=\"noreferrer\">issue 4029</a> mentioned before mentions:</p>\n<blockquote>\n<p>I figured out that my problem was the <code>~/.gnupg/gpp-agent.conf</code> file, in particular the line with <code>pinentry-program</code>, but on my host.<br />\nRemoving that resolved my issue 🚀</p>\n</blockquote>\n",
+      "score": 44,
+      "creation_date": "2019-08-23T04:53:59"
+    }
+  ],
+  "source": "stackoverflow"
+}

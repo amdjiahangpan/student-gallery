@@ -1,0 +1,23 @@
+{
+  "id": 50231989,
+  "title": "Running git commands on Debian &amp; Ubuntu on WSL is really slow for large projects",
+  "body": "<p>We have a very large project with almost 15.000 commits total. I run Debian <code>9.3</code> on my Windows machine using WSL. My git version is <code>2.17.0</code>. </p>\n\n<p>When I run commands such as <code>git status</code>, it takes at least 20 seconds to complete. Even if no changes were made.</p>\n\n<p>I have tried multiple older versions of git and even tried Ubuntu, but I still experience the same result. I've tried running a bunch of commands from various posts on here and on other sites, but none of them worked.</p>\n\n<p>Funny thing: When I open up <code>cmd.exe</code> or Git Bash on Windows, it takes less than a second to run <code>git status</code>.</p>\n\n<p>What could be causing this? What can I do to fix this?</p>\n",
+  "score": 31,
+  "answer_count": 8,
+  "view_count": 20755,
+  "tags": [
+    "git",
+    "git-bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-05-08T10:59:56",
+  "answers": [
+    {
+      "id": 68494429,
+      "body": "<p>I ended up adding a hack.</p>\n<pre><code>    alias git=git.exe\n</code></pre>\n<p>Now, it runs windows git executable in WSL with WSL config/SSH settings.</p>\n",
+      "score": 21,
+      "creation_date": "2021-07-23T05:27:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

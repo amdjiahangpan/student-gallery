@@ -1,0 +1,17 @@
+{
+  "id": 65944578,
+  "title": "How to get NGINX running in Docker to reload nginx.conf configuration",
+  "body": "<p>I am trying to get a NGINX based reverse proxy to work in Windows/WSL2 environment. I am very new to Docker and NGINX world. I am able to get the following command to work</p>\n<pre class=\"lang-bash prettyprint-override\"><code>docker run --name nginx-test -p 8080:80 -v /home/skotekar/nginx.conf:/etc/nginx/nginx.conf:ro -v /mnt/d/site1/wwwroot:/usr/share/nginx/html:ro -d nginx:alpine\n</code></pre>\n<p>I can then browse http://localhost:8080 and view my static content just fine. As you see from the command I have a default <strong>nginx.conf</strong> in my local <strong>/home</strong> folder which gets mapped into NGINX Docker when running. It works fine the first time.</p>\n<p>Now if I stop the container using:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>docker container stop nginx-test\n</code></pre>\n<p>Then make changes to the <strong>nginx.conf</strong> file in my <strong>/home</strong> directory and want to start the container with updated configuration using following command:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>docker container start nginx-test\n</code></pre>\n<p>But this command fails gives me a very confusing message:</p>\n<blockquote>\n<p>Error response from daemon: OCI runtime create failed: container_linux.go:370: starting container process caused: process_linux.go:459: container init caused: rootfs_linux.go:59: mounting &quot;/run/desktop/mnt/host/wsl/docker-desktop-bind-mounts/Ubuntu-20.04/c0d0caa87ff063ee46265048f5b1ee489a8945669d39c6f6110cd578b8cda1ed&quot; to rootfs at &quot;/var/lib/docker/overlay2/4e6b279945acb06200b3677272774f4b5fbb6a619214decbca8c594dbbe3b8ec/merged/etc/nginx/nginx.conf&quot; caused: no such file or directory: unknown</p>\n</blockquote>\n<p>Only way to get it back running is to delete the container and use the first command again. Any idea how to get this working. It will be easier if I could just restart my container after making changes to config until I figure out the correct reverse proxy settings I need.</p>\n<p>Thanks</p>\n",
+  "score": 11,
+  "answer_count": 1,
+  "view_count": 24329,
+  "tags": [
+    "docker",
+    "nginx",
+    "nginx-config",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-28T20:15:53",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 36466076,
+  "title": "apt-get command does not work on Ubuntu-On-Windows / Windows Subsystem for Linux",
+  "body": "<p>I just installed <a href=\"https://blogs.windows.com/windowsexperience/2016/04/06/announcing-windows-10-insider-preview-build-14316/\" rel=\"noreferrer\">Ubuntu-On-Windows</a> recently added on Windows 10 for peoples on the fast ring. However, when trying to install new applications using <code>apt-get</code>, the command seems to fail everytime. I'm getting this error:</p>\n\n<pre><code>Err http://security.ubuntu.com trusty-security Release.gpg\n  Could not resolve 'security.ubuntu.com'\nErr http://archive.ubuntu.com trusty Release.gpg\n  Could not resolve 'archive.ubuntu.com'\nErr http://archive.ubuntu.com trusty-updates Release.gpg\n  Could not resolve 'archive.ubuntu.com'\n</code></pre>\n\n<p>I know this is a beta and has just been released, but is there a fix for that out yet?</p>\n",
+  "score": 16,
+  "answer_count": 6,
+  "view_count": 37149,
+  "tags": [
+    "ubuntu",
+    "windows-10",
+    "apt-get",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-04-07T03:13:59",
+  "answers": [
+    {
+      "id": 36466084,
+      "body": "<p>To fix the issue, I ran the following command:</p>\n\n<p><code>apt-get update &amp;&amp; apt-get upgrade</code></p>\n\n<p>And now it works fine, even if I close and re-open the terminal.</p>\n",
+      "score": 25,
+      "creation_date": "2016-04-07T03:15:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

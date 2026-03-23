@@ -1,0 +1,24 @@
+{
+  "id": 60746121,
+  "title": "How to run docker-compose under WSL 2",
+  "body": "<p>According to <a href=\"https://docs.docker.com/docker-for-windows/wsl-tech-preview/\" rel=\"noreferrer\">Docker documentation</a>, using Docker under WSL v2 should be fairly simple:</p>\n<ol>\n<li>Install WSL 2 (make sure all the preconditions are met);</li>\n<li>Install Docker Desktop 2.2.0 or newer;</li>\n<li>In Docker Settings &gt; General enable 'Expose daemon on tcp://localhost:2375 without TLS' and 'Enable the experimental WSL 2 based engine';</li>\n<li>Make sure no Docker-related packages are installed in your Linux file system.</li>\n</ol>\n<p>Once all this is done, I should be able to run <code>docker</code> or <code>docker-compose</code> commands from my Linux Terminal. But I'm not. I keep getting <code>Command 'docker' not found, but can be installed with sudo apt install docker.io'</code>.</p>\n<p>What am I doing wrong?</p>\n",
+  "score": 20,
+  "answer_count": 4,
+  "view_count": 74237,
+  "tags": [
+    "docker",
+    "docker-compose",
+    "virtual-machine",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-03-18T19:13:54",
+  "answers": [
+    {
+      "id": 66081700,
+      "body": "<p>Did you check if the integration is enabled in Resources &gt; WSL Integration as below?</p>\n<p><a href=\"https://i.sstatic.net/RVu24.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/RVu24.png\" alt=\"Docker Desktop Settings Snapshot\" /></a></p>\n<p>For more details see: <a href=\"https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop\" rel=\"noreferrer\">Get started with Docker remote containers on WSL 2</a></p>\n",
+      "score": 25,
+      "creation_date": "2021-02-06T20:37:07"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 1065059442,
+  "name": "shannon",
+  "full_name": "KeygraphHQ/shannon",
+  "description": "Fully autonomous AI hacker to find actual exploits in your web apps. Shannon has achieved a 96.15% success rate on the hint-free, source-aware XBOW Benchmark.",
+  "stars": 23500,
+  "forks": 2333,
+  "open_issues": 22,
+  "url": "https://github.com/KeygraphHQ/shannon",
+  "clone_url": "https://github.com/KeygraphHQ/shannon.git",
+  "readme_content": "",
+  "created_at": "2025-09-27T01:51:47Z",
+  "updated_at": "2026-02-19T06:45:09Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

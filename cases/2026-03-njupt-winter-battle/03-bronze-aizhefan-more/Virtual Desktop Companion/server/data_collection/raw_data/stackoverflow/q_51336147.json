@@ -1,0 +1,25 @@
+{
+  "id": 51336147,
+  "title": "How to remove the Win10&#39;s PATH from WSL",
+  "body": "<p>I use Windows Subsystem Linux(Ubuntu 18.04) in my Win10, and I install a Maven in it. \nBesides, I install a maven in Win10 before.\nNow when I used <code>mvn compile</code> in WSL, it told me that maven compile fail.\nI use <code>which mvn</code> and find that it references to the Maven installed in Win10.</p>\n\n<p>Besides, I run <code>env</code> and find that Win10's Path is added to the WSL's Path.\nI don't want to use any thing in Win10's Path when I use WSL, how should I do?</p>\n",
+  "score": 95,
+  "answer_count": 4,
+  "view_count": 59488,
+  "tags": [
+    "linux",
+    "maven",
+    "path",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-07-14T07:06:33",
+  "answers": [
+    {
+      "id": 51345880,
+      "body": "<h2>For Windows builds <a href=\"https://learn.microsoft.com/en-us/windows/wsl/release-notes#build-17713\" rel=\"noreferrer\">HIGHER than 17713</a>:</h2>\n<p>WSL uses the file <a href=\"https://blogs.msdn.microsoft.com/commandline/2018/02/07/automatically-configuring-wsl/\" rel=\"noreferrer\"><code>/etc/wsl.conf</code></a> inside each Linux VM's filesystem to configure its behavior. Add the following configuration settings (<a href=\"https://learn.microsoft.com/en-us/windows/wsl/release-notes#build-17713\" rel=\"noreferrer\">explained here</a>) to <code>/etc/wsl.conf</code>, creating that file if necessary:</p>\n<pre class=\"lang-ini prettyprint-override\"><code>[interop]\nappendWindowsPath = false\n</code></pre>\n<p>Note that <code>appendWindowsPath</code> <em>must</em> be under <code>[interop]</code> for this to work. You may need to shutdown the current instance of WSL with <code>wsl --shutdown</code> or <code>wsl -t &lt;Distribution&gt;</code> for changes to take effect. You could also add the option <code>enabled = false</code>, also under the <code>[interop]</code> section, to disable the ability to launch Windows binaries from inside WSL.</p>\n<h2>For Windows builds LOWER than 17713:</h2>\n<p>WSL uses <a href=\"https://learn.microsoft.com/en-us/previous-versions/windows/desktop/api/wslapi/ne-wslapi-wsl_distribution_flags\" rel=\"noreferrer\">WSL_DISTRIBUTION_FLAGS Enumeration</a> to configure its behavior. Here is the code snippet from <code>wslapi.h</code> header file.</p>\n<pre class=\"lang-c prettyprint-override\"><code>/* Flags specifying WSL behavior */\ntypedef enum\n{\n  WSL_DISTRIBUTION_FLAGS_NONE                  = 0x0,\n  WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP        = 0x1,\n  WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH        = 0x2,\n  WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = 0x4\n} WSL_DISTRIBUTION_FLAGS;\n        \n#define WSL_DISTRIBUTION_FLAGS_VALID (WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP | WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH | WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING)\n#define WSL_DISTRIBUTION_FLAGS_DEFAULT (WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP | WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH | WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING)\n</code></pre>\n<p>At first launch, WSL uses the default <code>flag = 0x7</code> (i.e. 0+1+2+4). If that <code>flag = 0x5</code> (i.e. 0+1+4), the Windows NT path will not appended in the <code>$PATH</code> environment variable. To find that flag's registry value, open <code>HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Lxss</code> in Registry Editor aka. <code>regedit.exe</code>. Open each subkey with UID values and match <code>DistributionName</code> with your installed distribution name. Then edit/add the <code>Flags</code> DWORD registry value to <code>0x5</code>.</p>\n\n",
+      "score": 170,
+      "creation_date": "2018-07-15T06:30:46"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 64125085,
+  "title": "VS Code connect to WSL Ubuntu 20.04 LTS, fail with error: Could not fetch remote environment",
+  "body": "<p>A few days ago I was working just fine with VS Code connected to WSL Ubuntu 20.04, then I did some updating on WSL, Ubuntu 20.04 LTS and VS Code and now I can not connect to WSL 20.04, and I always got those two messages, even when no folder/workspace is selected/open.</p>\n<p>Could not fetch remote environment</p>\n<p>Failed to connect to the remote extension host server (Error: Connection error: Unauthorized client refused.)</p>\n<p>When I try to open a folder it shows the folder structure but it always said that: The path does not exists. And does not show any file in it but I can follow the folder structure up and down just fine.</p>\n<p>And on the other hand if I launch WSL with an older Ubuntu 18.04 distro, it works just fine.</p>\n<p>I imagine there is some security setting or access list that is wrong, but I can not figure it out, and web searching has not help either.</p>\n<p>Any idea what to do to get it working again ?.</p>\n",
+  "score": 38,
+  "answer_count": 20,
+  "view_count": 59816,
+  "tags": [
+    "ubuntu",
+    "visual-studio-code",
+    "vscode-remote",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-29T17:57:58",
+  "answers": [
+    {
+      "id": 65857544,
+      "body": "<p>I had the same error.\nAnd solved it by just shutting down the wsl using command</p>\n<p><code>wsl --shutdown</code></p>\n",
+      "score": 52,
+      "creation_date": "2021-01-23T09:20:06"
+    }
+  ],
+  "source": "stackoverflow"
+}

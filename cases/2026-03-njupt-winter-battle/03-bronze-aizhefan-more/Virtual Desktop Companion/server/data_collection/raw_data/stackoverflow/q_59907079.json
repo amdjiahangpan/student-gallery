@@ -1,0 +1,25 @@
+{
+  "id": 59907079,
+  "title": "Visual Studio Code&#39;s debugger &amp; pipenv",
+  "body": "<p>I would like to use Visual Studio Code's debugger to debug my python code, but exception occurs.\nI use Windows 10, WSL, Debian, Python 3.7.6. </p>\n\n<pre><code>Exception has occurred: ModuleNotFoundError\nNo module named 'flask'\n  File \"/home/kazu/test/main.py\", line 2, in &lt;module&gt;\n    from flask import Flask\n</code></pre>\n\n<p><a href=\"https://i.sstatic.net/kMhKU.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/kMhKU.png\" alt=\"ModuleNotFound\"></a></p>\n\n<p>This is python debugger console's record.</p>\n\n<pre><code>pyenv shell 3.7.6\n/home/kazu/.pyenv/versions/3.7.6/bin/python /home/kazu/.vscode-server/extensions/ms-python.python-2020.1.58038/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52440 /home/kazu/test/main.py \nkazu@D:~/test$ pyenv shell 3.7.6\nkazu@D~/test$ /home/kazu/.pyenv/versions/3.7.6/bin/python /home/kazu/.vscode-server/extensions/ms-python.python-2020.1.58038/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52440 /home/kazu/test/main.py \n</code></pre>\n\n<p>However, I have already installed flask using pipenv. When I don't use debugger, there isn't module error.</p>\n\n<p>This is my main.py</p>\n\n<pre><code>from __future__ import unicode_literals\nfrom flask import Flask\nfrom flask import render_template\nfrom flask import request\nfrom flask import send_file\nimport os\nimport youtube_dl\n\napp = Flask(__name__)\n\n@app.route(\"/\", methods=['POST', 'GET'])\ndef index():\n    if request.method == \"POST\":\n        if os.path.exists(\"/tmp/output.mp4\"):\n            os.remove(\"/tmp/output.mp4\")\n        else:\n            print(\"Can not delete the file as it doesn't exists\")\n        url = request.form['url']\n        ydl_opts = {'outtmpl': '/tmp/output.mp4', 'format':'bestvideo[ext=mp4]'}\n        with youtube_dl.YoutubeDL(ydl_opts) as ydl:\n            ydl.download([url])\n\n        return send_file(\"/tmp/output.mp4\",as_attachment=True)\n    else:\n        return render_template(\"index.html\")\n\nif __name__ == \"__main__\":\n    app.run()\n</code></pre>\n\n<p>I searched the Internet and found that I should put my .venv folder in the project directory. So, I operated this command.</p>\n\n<pre><code>export PIPENV_VENV_IN_PROJECT=1\n</code></pre>\n\n<p>and now my directory structure is this.</p>\n\n<pre><code>.\n├── main.py\n├── Pipfile\n├── Pipfile.lock\n├── .venv\n└── templates\n    └── index.html\n</code></pre>\n\n<p>However, I get same error message.</p>\n\n<p>Then, I searched the Internet again and this time I set vs code's python venv path, but I got the same error message.</p>\n\n<p><a href=\"https://i.sstatic.net/OkQGu.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/OkQGu.png\" alt=\"python_venv\"></a>\nCould you give me any information or suggestion?</p>\n\n<p>Thank you in advance.</p>\n\n<p>Sincerely, Kazu</p>\n",
+  "score": 18,
+  "answer_count": 4,
+  "view_count": 15405,
+  "tags": [
+    "python",
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "pipenv",
+    "vscode-debugger"
+  ],
+  "creation_date": "2020-01-25T07:00:29",
+  "answers": [
+    {
+      "id": 59957622,
+      "body": "<p>If you look in the bottom-left corner of your screen you will notice you are currently running against a pyenv install of Python and not a pipenv virtual environment. If you click on the interpreter name and select the appropriate environment where you installed flask it should fix your issue.</p>\n",
+      "score": 31,
+      "creation_date": "2020-01-28T21:56:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

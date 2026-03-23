@@ -1,0 +1,18 @@
+{
+  "id": 52545505,
+  "title": "How to synchronize code files on windows with WSL/linux?",
+  "body": "<p>Basically I have some C/C++ code that I need to build and debug on a Linux machine. Unfortunately, my windows laptop doesn't have enough free hard space to install some Linux dist nor does it have enough free RAM to comfortably run VM.</p>\n\n<p>Until now, I dealt with it rather comfortably using WSL, but the scale was rather small. It was easy to edit and debug 2-3 .c files through CLI and gdb, but it became really annoying on a large scale projects.</p>\n\n<p>I want something simple as \"edit code in windows IDE [X], compile it on remote Linux/WSL (the project uses Makefiles), and preferably debug it via gdb\".</p>\n\n<p>VS has something close to what I want, but it can't deal with existing Linux projects. It needs to create a new configuration which is alien to the project's Makefile.</p>\n",
+  "score": 12,
+  "answer_count": 3,
+  "view_count": 15555,
+  "tags": [
+    "c",
+    "linux",
+    "ide",
+    "remote-debugging",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-09-27T21:38:23",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 56846399,
+  "title": "How can I add Ubuntu as a profile option in Windows Terminal?",
+  "body": "<p>I just installed the new Windows Terminal from Windows stores. I also have installed Ubuntu 18.04 WSL. But I am getting only two types of terminal options in Windows Terminal. How I can get the option of Ubuntu terminal in it. Also, I want cmd to be my default terminal in it rather than PowerShell.</p>\n",
+  "score": 36,
+  "answer_count": 6,
+  "view_count": 62223,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "windows-terminal"
+  ],
+  "creation_date": "2019-07-02T06:17:28",
+  "answers": [
+    {
+      "id": 69267164,
+      "body": "<p>An even easier option: Go to <code>Settings</code> -&gt; <code>Apps</code> -&gt; <code>Apps and features</code> -&gt; find <code>Terminal</code> in the list -&gt; select <code>Advanced options</code> then choose <code>Reset</code>.</p>\n",
+      "score": 45,
+      "creation_date": "2021-09-21T10:14:35"
+    }
+  ],
+  "source": "stackoverflow"
+}

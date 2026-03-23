@@ -1,0 +1,21 @@
+{
+  "id": 65815011,
+  "title": "Moving files between different WSL2 instances?",
+  "body": "<p>If it is possible, how can I move files from one WSL instance to another directly? This would be useful when trying out new distributions, e.g. for copying /home from Ubuntu 18.04 to 20.04.</p>\n<p>I am weary of doing this through explorer by accessing <a href=\"https://stackoverflow.com/questions/64185560/where-are-the-files-inside-wsl2-physically-stored\"><code>\\\\wsl$</code> in the windows host</a>, it doesn't seem to reliably transfer all the files and feels wrong overall.</p>\n",
+  "score": 31,
+  "answer_count": 2,
+  "view_count": 24104,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-20T17:57:48",
+  "answers": [
+    {
+      "id": 65838203,
+      "body": "<h1>How to share data between different WSL instances</h1>\n<h2>1. Create shared directory which is not included in any WSL instances</h2>\n<pre><code>mkdir /mnt/wsl/share\n</code></pre>\n<p>This will create <code>/mnt/wsl/share</code> directory shared across all WSL instances. You can share data via this shared directory.</p>\n<p><strong>WARNING: the shared directory's filesystem lives in memory and thus a <code>wsl.exe --shutdown</code> would wipe them from existence.</strong></p>\n<p>However, it is still impossible to directly copy/paste data between WSL instances.</p>\n<h2>2. Create shared directory included in a WSL instance</h2>\n<p>You can make existing directory in WSL instance shared across other WSL instances by using bind mount.</p>\n<p>For example, you have two WSL instances, <em>Ubuntu-A</em> and <em>Ubuntu-B</em>.</p>\n<p><strong>1. Open <code>~/.profile</code> in <em>Ubuntu-A</em> and add below code.</strong></p>\n<pre><code># bind mount shared directory\nif [ ! -d /mnt/wsl/share-a ]; then\n  mkdir /mnt/wsl/share-a\n  wsl.exe -d Ubuntu-A -u root mount --bind / /mnt/wsl/share-a/\nfi\n</code></pre>\n<p><strong>2. Open <code>~/.profile</code> in <em>Ubuntu-B</em> and add below code.</strong></p>\n<pre><code># bind mount shared directory\nif [ ! -d /mnt/wsl/share-b ]; then\n  mkdir /mnt/wsl/share-b\n  wsl.exe -d Ubuntu-B -u root mount --bind / /mnt/wsl/share-b/\nfi\n</code></pre>\n<p>This will automatically mount the root directory (<code>/</code>) of <em>Ubuntu-A</em> to <code>/mnt/wsl/shared-a/</code> and do the same thing for <em>Ubuntu-B</em> when you launch WSL.</p>\n",
+      "score": 46,
+      "creation_date": "2021-01-22T01:37:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

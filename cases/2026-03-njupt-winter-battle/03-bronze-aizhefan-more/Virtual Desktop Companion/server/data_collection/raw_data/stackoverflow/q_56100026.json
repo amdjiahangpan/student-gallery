@@ -1,0 +1,14 @@
+{
+  "id": 56100026,
+  "title": "How to access my D:\\ drive from the Ubuntu command line on Windows 10",
+  "body": "<p>When I open the Ubuntu windows store app and the bash command line (if I am not wrong?) comes up it's working directory is /home/username . I want to run a script which on my Windows is located in D:\\University... . Can I do this and if so how?</p>\n\n<p>I have only tried cd D:\\ but I get \" -bash: cd: D:: No such file or directory\". I don't have any experience so far with Linux so I don't know if Ubuntu on Windows can only run in its own location or it can access all the files on my PC.</p>\n",
+  "score": 10,
+  "answer_count": 3,
+  "view_count": 25750,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-05-12T14:06:31",
+  "answers": [],
+  "source": "stackoverflow"
+}

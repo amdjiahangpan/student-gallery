@@ -1,0 +1,25 @@
+{
+  "id": 67938486,
+  "title": "After installing npm on WSL Ubuntu 20.04 I get the message &quot;/usr/bin/env: ‘bash\\r’: No such file or directory&quot;",
+  "body": "<p>I see the following message when running the <code>npm install</code> or <code>npm</code> command from the terminal. Executing <code>node</code> works as expected.</p>\n<pre><code>    &gt; npm install\n    /usr/bin/env: ‘bash\\r’: No such file or directory\n</code></pre>\n",
+  "score": 79,
+  "answer_count": 14,
+  "view_count": 76782,
+  "tags": [
+    "node.js",
+    "windows",
+    "ubuntu",
+    "npm",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-06-11T14:07:23",
+  "answers": [
+    {
+      "id": 67938487,
+      "body": "<p><strong>Update July 2023:</strong> Microsoft has a <a href=\"https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl#install-nvm-nodejs-and-npm\" rel=\"noreferrer\">guide for installing Node on WSL using NVM</a>. You likely won't have this issue if you follow their how to.</p>\n<p><strong>The fix that has worked for many:</strong> it may be a line endings issue causing problems, but not from Ubuntu. Make sure you have <code>node</code> and <code>npm</code> installed correctly:</p>\n<ol>\n<li>From WSL run <code>sudo apt install nodejs npm</code> to install node &amp; npm</li>\n<li>From PowerShell/CMD run <code>wsl --shutdown</code> to restart the WSL service</li>\n<li>From WSL run <code>which npm</code> to confirm it's installed (<em>output should be: /usr/bin/npm</em>)</li>\n</ol>\n<p>Does the problem persist? Try this next:</p>\n<p>Stop Windows path variables being shared with WSL by editing the <code>/etc/wsl.conf</code> file in WSL. If the file doesn't exist, execute <code>sudo touch /etc/wsl.conf</code> first. Edit the file with the command <code>sudo nano /etc/wsl.conf</code> and add the following configuration:</p>\n<pre class=\"lang-ini prettyprint-override\"><code>[interop]\nappendWindowsPath = false\n</code></pre>\n<p>Then restart WSL2 with command <code>wsl --shutdown</code> in Windows.</p>\n<p><em><strong>Note 1:</strong></em> <em>This will stop the PATH environment variables from Windows passing through to WSL. Known bug: this stops the VSCode <code>code .</code> command from working in WSL. If this is a problem, use NVM solution described here or switch to using node in a docker container.</em></p>\n<p><em><strong>Note 2:</strong></em> <em>this also affects <code>pyenv</code> command, see <a href=\"https://github.com/pyenv/pyenv/issues/1725#issuecomment-824054644\" rel=\"noreferrer\">/usr/bin/env: ‘bash\\r’: No such file or directory: Incompatible line-endings (WSL?)</a></em></p>\n<p><em><strong>Tip from @mike:</strong></em> &quot;I did not want to disable the ability to do <code>code .</code> so I just removed the windows nodejs path by adding this line to my ~/.bashrc PATH=$(echo &quot;$PATH&quot; | sed -e 's%:/mnt/c/Program Files/nodejs%%')&quot;</p>\n",
+      "score": 178,
+      "creation_date": "2021-06-11T14:07:23"
+    }
+  ],
+  "source": "stackoverflow"
+}

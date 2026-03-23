@@ -1,0 +1,17 @@
+{
+  "id": 62377865,
+  "title": "Docker for windows will not start",
+  "body": "<p>I have installed Docker for windows as a complete noob looking to try it out.\nI have ensured Hyper-V is enable, virtualisation is enabled also</p>\n<p>any time I try and run the docker desktop the whale icon is red and it states that it could not start, and if I try to run a command like from cmd I get teh following error</p>\n<blockquote>\n<p>error during connect: Get\nhttp://%2F%2F.%2Fpipe%2Fdocker_engine/v1.40/images/json: open\n//./pipe/docker_engine: The system cannot find the file specified. In\nthe default daemon configuration on Windows, the docker client must be\nrun elevated to connect. This error may also indicate that the docker\ndaemon is not running.</p>\n</blockquote>\n<p>I am at a loss as to how I can trouble shoot.</p>\n<p>I have also noticed that the STATE when i list my WSL devices is always set as &quot;Installing&quot; even if I completely uninstall Docker through Add/Remove programs</p>\n<p><a href=\"https://i.sstatic.net/jwiA5.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/jwiA5.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 13,
+  "answer_count": 6,
+  "view_count": 26727,
+  "tags": [
+    "windows",
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-for-windows"
+  ],
+  "creation_date": "2020-06-14T20:31:27",
+  "answers": [],
+  "source": "stackoverflow"
+}

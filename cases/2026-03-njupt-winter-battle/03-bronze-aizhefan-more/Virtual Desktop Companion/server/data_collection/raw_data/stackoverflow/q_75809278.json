@@ -1,0 +1,17 @@
+{
+  "id": 75809278,
+  "title": "Running docker desktop containers with --gpus tag hangs without any response in wsl",
+  "body": "<p>I used to use docker desktop with wsl2 integration and there was no problem running containers with gpu support.</p>\n<p>However, after a recent update to docker desktop v4.17.1 ( march 2023 ), any containers that I run specifically using the --gpus all tag on wsl hangs forever without any response. The same containers run without any issue unless if specified with the --gpus tag.</p>\n<p><a href=\"https://i.sstatic.net/1ToTj.png\" rel=\"noreferrer\">running cuda container with nvidia-smi on wsl hangs without any response</a></p>\n<p>Note: nvidia-smi works fine in wsl.\nSystem: windows 11.</p>\n<ol>\n<li>Tried fresh installing docker desktop.</li>\n<li>Tried fresh installation of all wsl distros.</li>\n<li>wsl distros have access to the gpu and nvidia cuda drivers.</li>\n<li>able to use the docker desktop within wsl without any issues unless running any container using the --gpus tag hangs without any errors or a response.</li>\n</ol>\n",
+  "score": 12,
+  "answer_count": 2,
+  "view_count": 3465,
+  "tags": [
+    "docker",
+    "containers",
+    "windows-subsystem-for-linux",
+    "nvidia-docker"
+  ],
+  "creation_date": "2023-03-22T07:10:27",
+  "answers": [],
+  "source": "stackoverflow"
+}

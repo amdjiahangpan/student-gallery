@@ -1,0 +1,21 @@
+{
+  "id": 644715009,
+  "name": "localGPT",
+  "full_name": "PromtEngineer/localGPT",
+  "description": "Chat with your documents on your local device using GPT models. No data leaves your device and 100% private. ",
+  "stars": 22183,
+  "forks": 2477,
+  "open_issues": 20,
+  "url": "https://github.com/PromtEngineer/localGPT",
+  "clone_url": "https://github.com/PromtEngineer/localGPT.git",
+  "readme_content": "",
+  "created_at": "2023-05-24T05:32:40Z",
+  "updated_at": "2026-02-18T16:42:49Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

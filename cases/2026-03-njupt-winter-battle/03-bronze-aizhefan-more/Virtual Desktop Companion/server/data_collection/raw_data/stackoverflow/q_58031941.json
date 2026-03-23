@@ -1,0 +1,25 @@
+{
+  "id": 58031941,
+  "title": "How to get VirtualBox 6.0 and WSL working at the same time",
+  "body": "<p>When I turn on Windows Subsystem for Linux option in Windows features on or off, VirtualBox outputs the following error every time I run a VM:</p>\n<pre><code>Call to WHvSetupPartition failed: ERROR_SUCCESS (Last=0xc000000d/87) (VERR_NEM_VM_CREATE_FAILED).\nResult Code: E_FAIL (0x80004005)\nComponent: ConsoleWrap\nInterface: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}\n</code></pre>\n<p>Is there a way to fix the VirtualBox error without turning off WSL?</p>\n",
+  "score": 42,
+  "answer_count": 3,
+  "view_count": 67910,
+  "tags": [
+    "windows",
+    "virtual-machine",
+    "virtualbox",
+    "windows-subsystem-for-linux",
+    "hyper-v"
+  ],
+  "creation_date": "2019-09-20T16:13:52",
+  "answers": [
+    {
+      "id": 58478688,
+      "body": "<p>I found it! After much research, and trial and error, here is what enabled me to run VMs in VirtualBox on Windows 10 with Windows Subsystem for Linux installed:</p>\n\n<p>In an elevated (admin) <code>cmd.exe</code> or PowerShell, do:</p>\n\n<p><code>bcdedit /set hypervisorlaunchtype off</code></p>\n\n<p>and make sure Hyper-V and Windows Sandbox are disabled in Windows Features (which you can get to by entering <code>OptionalFeatures.exe</code> at a command prompt, or via the Control Panel).</p>\n\n<p>Also, Virtualisation options should be enabled in the BIOS, and I <em>think</em> (I don't have time to test right now) that \"Virtual Machine Platform\" and \"Windows Hypervisor Platform\" should be enabled.</p>\n\n<p>VirtualBox 6.0.14,  Windows Version 10.0.18362.356.</p>\n",
+      "score": 49,
+      "creation_date": "2019-10-21T01:19:24"
+    }
+  ],
+  "source": "stackoverflow"
+}

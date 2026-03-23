@@ -1,0 +1,17 @@
+{
+  "id": 62641553,
+  "title": "Setup Cypress on WSL ubuntu for windows 10",
+  "body": "<p>I am trying to setup Cypress on WSL ubuntu for windows 10 machine. WSL ubuntu does not come up with its own display. Hence, we need to follow few steps before setting up Cypress. I followed all the steps mentioned in the blog here:\n<a href=\"https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress\" rel=\"noreferrer\">https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress</a>\nBut I keep getting the following error:</p>\n<pre><code>Cypress failed to start.\n\nThis is usually caused by a missing library or dependency.\n\nThe error below should indicate which dependency is missing.\n\nhttps://on.cypress.io/required-dependencies\n\nIf you are using Docker, we provide containers with all required dependencies installed.\n\n----------\n\n\n(Cypress:1690): Gtk-WARNING **: 10:15:51.766: cannot open display: 183.87.117.18:0.0\n\n----------\n\nPlatform: linux (Ubuntu Linux - 18.04)\nCypress Version: 4.6.0\n</code></pre>\n<p>I have also installed XLaunch for windows 10.\nWas anyone able to resolve this issue earlier ? Could anyone please help me resolve this ?</p>\n<p>Thanks</p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 12542,
+  "tags": [
+    "reactjs",
+    "windows-10",
+    "windows-subsystem-for-linux",
+    "xlaunch"
+  ],
+  "creation_date": "2020-06-29T15:31:53",
+  "answers": [],
+  "source": "stackoverflow"
+}

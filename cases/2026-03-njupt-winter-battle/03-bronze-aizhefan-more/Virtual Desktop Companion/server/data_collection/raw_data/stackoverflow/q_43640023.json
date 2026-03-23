@@ -1,0 +1,24 @@
+{
+  "id": 43640023,
+  "title": "Launch VS Code from WSL Bash",
+  "body": "<p>I have the Creators update installed. WSL is operational. I can execute most .exe files by simply calling <code>notepad.exe</code> But when it comes to VS Code.... I can't use the default <code>code</code> command or call <code>code.exe</code>... I have also tried <code>code</code> and <code>code.cmd</code>. Why doesn't VS Code execute like other programs? And is there a way to enable the <code>code</code> command?</p>\n\n<p>EDIT: I now get these errors:</p>\n\n<blockquote>\n  <p>me@mypc:/mnt/c/Users/me/Documents/project_folder$ code .\n  /mnt/c/Program Files (x86)/Microsoft VS Code/bin/code: line 7: realpath: comma\n  nd not found\n  /mnt/c/Program Files (x86)/Microsoft VS Code/bin/code: line 14: ./Code.exe: No\n   such file or directory</p>\n</blockquote>\n",
+  "score": 27,
+  "answer_count": 12,
+  "view_count": 40874,
+  "tags": [
+    "windows",
+    "bash",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-04-26T16:41:26",
+  "answers": [
+    {
+      "id": 43731307,
+      "body": "<p>The Creators update <em>did</em> install the interop functionality. However, it seems you need to install <code>realpath</code> in WSL in order for the path to be recognized. I'm not sure why this is the case but running <code>sudo apt-get install realpath</code> fixed it for me!</p>\n\n<p><strong>EDIT:</strong> After updating to the <em>Fall Creators Update</em> launching VSCode from WSL works out of the box 🎉 </p>\n",
+      "score": 28,
+      "creation_date": "2017-05-02T06:18:05"
+    }
+  ],
+  "source": "stackoverflow"
+}

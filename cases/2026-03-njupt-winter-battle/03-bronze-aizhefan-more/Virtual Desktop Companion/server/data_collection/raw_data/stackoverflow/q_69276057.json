@@ -1,0 +1,21 @@
+{
+  "id": 69276057,
+  "title": "WSL 2 , React not reloading with file changes?",
+  "body": "<p>I recently installed WSL 2 but when I create an app using create-react-app and use npm start the app is not reloaded when I edit some file. Am I missing something?</p>\n",
+  "score": 15,
+  "answer_count": 3,
+  "view_count": 13160,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-09-21T22:08:15",
+  "answers": [
+    {
+      "id": 69277786,
+      "body": "<p>In my experience, this occurs when your source is on a Windows drive (e.g. <code>/mnt/c</code>) since the driver that WSL uses for those drives doesn't yet support inotify.  See <a href=\"https://stackoverflow.com/a/63455155/11810933\">this answer</a> for more details on a related issue.</p>\n<p>There are at least two possible solutions:</p>\n<ul>\n<li><p>The recommended solution if you need WSL2 is to place your files on the ext4 root filesystem for WSL.  E.g. somewhere under <code>/home/</code>, for instance.  This has the added advantage of being <em>much</em> faster than the Windows drive.</p>\n</li>\n<li><p>Or you can convert your instance to WSL1, which <em>does</em> support inotify on the Windows drives, and is much faster when dealing with files there.  You can also keep a WSL1 and a WSL2 copy around if you want.  They both serve different purposes, but for most React/web development, I think you'll find WSL1 a better fit.</p>\n<p>You can back up your existing distribution with <code>wsl --export &lt;distroname&gt; &lt;filename.tar&gt;</code>, and then change to WSL1 with <code>wsl --set-version &lt;distroname&gt; 1</code>.  Or you can re-import the backup as <code>wsl --import &lt;newDistroName&gt; &lt;directory&gt; &lt;filename.tar&gt; --version 1</code>.</p>\n</li>\n<li><p>Also, in my testing for that other answer, when running VSCode and running a watcher in the VSCode terminal, it <em>seemed</em> to work for me.  I'm still suspicious this was a &quot;false positive&quot; of sorts, but you might want to give it a shot.</p>\n</li>\n</ul>\n",
+      "score": 20,
+      "creation_date": "2021-09-22T03:22:12"
+    }
+  ],
+  "source": "stackoverflow"
+}

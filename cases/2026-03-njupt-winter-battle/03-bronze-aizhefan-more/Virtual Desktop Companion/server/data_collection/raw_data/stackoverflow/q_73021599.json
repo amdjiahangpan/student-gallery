@@ -1,0 +1,23 @@
+{
+  "id": 73021599,
+  "title": "How to enable cgroup v2 in WSL2?",
+  "body": "<p>The easiest way to get access to cgroup v2 capable system having only a Windows machine is to spawn WSL2 instance hosting Ubuntu 22.04.\nUnfortunately, there is an issue. Removal of v1 controllers doesn't result in that controllers added in v2 hierarchy.</p>\n<p>By default, WSL2 has both <em>cgroup v1</em> and <em>cgroup v2</em> hierarchies enabled, with all controllers sitting in <em>v1</em>:</p>\n<pre><code>$ mount -l | grep cgroup\ntmpfs on /sys/fs/cgroup type tmpfs (rw,nosuid,nodev,noexec,relatime,mode=755)\ncgroup2 on /sys/fs/cgroup/unified type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate)\ncgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)\ncgroup on /sys/fs/cgroup/cpu type cgroup (rw,nosuid,nodev,noexec,relatime,cpu)\ncgroup on /sys/fs/cgroup/cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct)\ncgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)\ncgroup on /sys/fs/cgroup/memory type cgroup (rw,nosuid,nodev,noexec,relatime,memory)\ncgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)\ncgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)\ncgroup on /sys/fs/cgroup/net_cls type cgroup (rw,nosuid,nodev,noexec,relatime,net_cls)\ncgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)\ncgroup on /sys/fs/cgroup/net_prio type cgroup (rw,nosuid,nodev,noexec,relatime,net_prio)\ncgroup on /sys/fs/cgroup/hugetlb type cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)\ncgroup on /sys/fs/cgroup/pids type cgroup (rw,nosuid,nodev,noexec,relatime,pids)\ncgroup on /sys/fs/cgroup/rdma type cgroup (rw,nosuid,nodev,noexec,relatime,rdma)\n</code></pre>\n<p>I tried removing <em>v1</em> controllers with <code>$ umount /sys/fs/cgroup/*</code>. This seems removes <em>cgroup v1</em> controllers from <code>$ mount | grep cgroup</code> list.\nBut then nothing is being added to <em>v2</em> (<code>/sys/fs/cgroup/unified</code>).</p>\n<p>If I understand the <a href=\"https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#mounting\" rel=\"noreferrer\">cgroup v2 official documentation</a> correctly, a controller may be moved to <em>cgroup v2</em> only when no more processes are handled by that controller.</p>\n<p>How do I enable controllers like &quot;cpu&quot; and &quot;memory&quot; to <em>cgroup v2</em>?</p>\n",
+  "score": 39,
+  "answer_count": 1,
+  "view_count": 26754,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "cgroups"
+  ],
+  "creation_date": "2022-07-18T11:27:57",
+  "answers": [
+    {
+      "id": 73376219,
+      "body": "<p>Since Linux v5.0, kernel boot option <code>cgroup_no_v1=&lt;list_of_controllers_to_disable&gt;</code> can be used to disable <code>cgroup v1</code> hierarchies. As a result, your machine should start as cgroup v2 only.</p>\n<p>By following <a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig\" rel=\"noreferrer\">WSL documentation</a>, we have to append <code>%UserProfile%\\.wslconfig</code> file with:</p>\n<pre><code>[wsl2]\nkernelCommandLine = cgroup_no_v1=all\n</code></pre>\n<p>That's it.<br />\nJust make sure you <em>reboot</em> your WSL instance with the <code>&gt; wsl.exe --shutdown</code> command to pick up new settings.<br />\nYou can check the list of enabled controllers in <code>&lt;cgroup_fs_mount_point&gt;/cgroup.controllers</code> file.</p>\n<h3>Extra tweaks:</h3>\n<ol>\n<li>By default, cgroup2 will likely be mounted at <code>/sys/fs/cgroup/unified</code>. Some apps might not like it (docker in particular). Move it to the conventional place with:</li>\n</ol>\n<pre><code>$ mount --move /sys/fs/cgroup/unified /sys/fs/cgroup\n</code></pre>\n<ol start=\"2\">\n<li>You can achieve similar effect by editing <code>/etc/fstab</code> file:</li>\n</ol>\n<pre><code>cgroup2 /sys/fs/cgroup cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate 0 0\n</code></pre>\n<p>The receipt #2 has one side-effect where the original cgroup mount point at <code>/sys/fs/cgroup/unified</code> keps &quot;dangling&quot;. You could check that by running <code>$ mount | grep cgroup2</code> or look at <code>/proc/self/mountinfo</code> file.\nThe upside of #2 is that <em>docker</em> service now starts without issues. So, if you can tolerate dangling mounts, the <code>/etc/fstab</code> method is preferred.</p>\n",
+      "score": 59,
+      "creation_date": "2022-08-16T15:05:08"
+    }
+  ],
+  "source": "stackoverflow"
+}

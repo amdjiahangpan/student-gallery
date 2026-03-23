@@ -1,0 +1,22 @@
+{
+  "id": 73232593,
+  "title": "Ubuntu 20.04 LTS WslRegisterDistribution failed with error: 0x800701bc",
+  "body": "<p>Error when installing Ubuntu 22.04 LTS.</p>\n<p>Possible solutions:</p>\n<ol>\n<li>Enable CPU virtualization in the bios.</li>\n<li>Install the linux kernel updates. (worked for me!): <a href=\"https://learn.microsoft.com/ru-ru/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package\" rel=\"noreferrer\">Install update on linux</a>. After installation, open Windows PowerShell and write <code>wsl --set-default-version 2</code> and done! Problem solved!</li>\n</ol>\n",
+  "score": 44,
+  "answer_count": 3,
+  "view_count": 196545,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-08-04T08:20:12",
+  "answers": [
+    {
+      "id": 75525348,
+      "body": "<p>I typed <code>wsl --update</code> and the new version of wsl is installed.\nThen I installed Ubuntu by <code>wsl --install -d ubuntu</code> and it worked.</p>\n",
+      "score": 112,
+      "creation_date": "2023-02-21T20:00:51"
+    }
+  ],
+  "source": "stackoverflow"
+}

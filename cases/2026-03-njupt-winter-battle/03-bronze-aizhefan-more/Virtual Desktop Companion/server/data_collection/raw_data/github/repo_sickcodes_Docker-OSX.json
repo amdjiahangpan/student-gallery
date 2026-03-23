@@ -1,0 +1,21 @@
+{
+  "id": 269336148,
+  "name": "Docker-OSX",
+  "full_name": "sickcodes/Docker-OSX",
+  "description": "Run macOS VM in a Docker! Run near native OSX-KVM in Docker! X11 Forwarding! CI/CD for OS X Security Research! Docker mac Containers.",
+  "stars": 52166,
+  "forks": 2901,
+  "open_issues": 414,
+  "url": "https://github.com/sickcodes/Docker-OSX",
+  "clone_url": "https://github.com/sickcodes/Docker-OSX.git",
+  "readme_content": "",
+  "created_at": "2020-06-04T11:01:37Z",
+  "updated_at": "2026-02-19T02:27:25Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": 62154016,
+  "title": "Docker on WSL2 very slow",
+  "body": "<p>After having read about the performance improvements when running Docker on WSL2, I have been waiting for the official release of Windows 10 that supports WSL2.\nI updated Windows and Docker and switched on the Docker flag to use WSL2 and was hoping for some performance boost for my Oracle Database running in a Docker container but unfortunately the change slowed down the container and my laptop dramatically.\nThe performance of the container is about 10x slower and my laptop is pretty much stuck when starting the container.\nIt seems as if the memory consumption would completely use up my 8GB and heavy memory swapping starts to take place.\nIs there anything I can do to improve the performance of Docker on WSL2 or at least to better understand what's wrong in my setup?</p>\n<p>My environment:</p>\n<ul>\n<li>Processor: Intel(R) Core(TM) i7-2620M CPU @ 2.70GHz, 2 Core(s)</li>\n<li>Installed Physical Memory (RAM): 8.00 GB</li>\n<li>Microsoft Windows 10 Pro Version 10.0.19041 Build 19041</li>\n<li>Docker version 19.03.8, build afacb8b</li>\n</ul>\n",
+  "score": 101,
+  "answer_count": 12,
+  "view_count": 129589,
+  "tags": [
+    "docker",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-02T14:12:32",
+  "answers": [
+    {
+      "id": 62354359,
+      "body": "<p>This comes from the &quot;vmmem&quot; which consumes as much resource as it can.\nTo solve the problem just go to your user file\nfor me in</p>\n<blockquote>\n<p>C:\\Users\\userName</p>\n</blockquote>\n<p>In this directory create a file named &quot;<strong>.wslconfig</strong>&quot; in which you will configure how many resources can consume WSL2:</p>\n<pre><code>[wsl2] \nmemory=900MB    #Limits VM memory in WSL 2 to 900MB \nprocessors=1    #Makes the WSL 2 VM use one virtual processors\n</code></pre>\n<p>Now close your docker and wait for &quot;vmmem&quot; to close in the task manager.</p>\n<p>then You can restart docker and normally &quot;vmmem&quot; will not exceed the limit you have set (here 900MB)\nIf don't work restart your computer.</p>\n<p>I hope it helped you.</p>\n",
+      "score": 95,
+      "creation_date": "2020-06-13T01:00:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 68016708,
+  "title": "On WSL2 `pip install virtualenv` comand hangs for too long",
+  "body": "<p>Under WSL2 running Ubuntu 20.04 I've tried to install virtualenv with pip running <code>pip install virtualenv</code> but the command just hangs printing nothing.</p>\n<p>I terminated it and ran it again with <code>python3 -v -m pip install virtualenv</code> as advised <a href=\"https://stackoverflow.com/a/67744064/13789930\">here</a> and it hangs on <code>import 'keyring.backends.OS_X'</code> line:</p>\n<pre><code>[...]\n# /usr/lib/python3/dist-packages/keyring/backends/__pycache__/_OS_X_API.cpython-38.pyc matches /usr/lib/python3/dist-packages/keyring/backends/_OS_X_API.py\n# code object from '/usr/lib/python3/dist-packages/keyring/backends/__pycache__/_OS_X_API.cpython-38.pyc'\n# destroy keyring.backends._OS_X_API\nimport 'keyring.backends.OS_X' # &lt;_frozen_importlib_external.SourceFileLoader object at 0x7fa66c4b4610&gt;\n</code></pre>\n<p>I've tried running <code>python -m pip install some_package_you_want</code> as answered <a href=\"https://stackoverflow.com/a/33930410/13789930\">here</a> but the same problem occurs.</p>\n<p>Also, I've tried exporting <code>PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring</code> environment variable as advised <a href=\"https://github.com/pypa/pip/issues/9061#issuecomment-717721223\" rel=\"noreferrer\">here</a> but unfortunately it did not solve the problem either.</p>\n<p>EDIT: The <code>python3 -v -m pip install virtualenv</code> command eventually succeeded after hanging for about 5 minutes.</p>\n<p>EDIT2: I think the problem is with the WSL2 being too slow as commented <a href=\"https://github.com/microsoft/WSL/issues/6643\" rel=\"noreferrer\">here</a>. Eventually I've installed the virtualenv (venv) with <code>sudo apt-get install python3-venv</code> and activated the virtual environment with <code>python3 -v -m venv venv</code> command and the similar hang problem occurred now on the line <code>import 'argparse' # &lt;_frozen_importlib_external.SourceFileLoader object at 0x7ff1bc5f1c40&gt;</code> hanging here for about 2 minutes. This supports the WSL2 slowness problem.</p>\n",
+  "score": 16,
+  "answer_count": 3,
+  "view_count": 8400,
+  "tags": [
+    "python",
+    "pip",
+    "windows-subsystem-for-linux",
+    "python-keyring"
+  ],
+  "creation_date": "2021-06-17T09:36:04",
+  "answers": [
+    {
+      "id": 69011313,
+      "body": "<p>Is the <code>DISPLAY</code> environment variable set? If so, clearing it first before running pip worked for me:</p>\n<pre><code>export DISPLAY=\npip install &lt;packagename&gt;\n</code></pre>\n<p>(Or, as a one-liner: <code>DISPLAY= pip install &lt;packagename&gt;</code>)</p>\n",
+      "score": 41,
+      "creation_date": "2021-09-01T09:40:07"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 53365643,
+  "title": "Windows Subsystem for Linux not recognizing JAVA_HOME Environmental Variable",
+  "body": "<p>I'm trying to get WSL to recognize my windows installed environmental variable of JAVA_HOME. I attached of what I have in my bashrc and what I have in my windows environmental variables along with outputs from cmd and bash.\n<a href=\"https://i.sstatic.net/Y2hcZ.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Y2hcZ.png\" alt=\"JAVA_HOME Env. Var.\"></a></p>\n\n<p><a href=\"https://i.sstatic.net/i7j86.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/i7j86.png\" alt=\"&lt;code&gt;enter image description here&lt;/code&gt;\"></a></p>\n\n<p>What's at the end of my bashrc:</p>\n\n<pre><code>export JAVA_HOME=\"/mnt/d/Program Files/Java/jdk-11.0.1\"\nexport PATH=\"/mnt/d/Program Files/Java/jdk-11.0.1/bin:$PATH\"\n</code></pre>\n\n<p>CMD INPUT/OUTPUT:</p>\n\n<pre><code>C:\\Users\\jaall&gt;javac --version\njavac 11.0.1\n</code></pre>\n\n<p>BASH INPUT/OUTPUT:</p>\n\n<pre><code>myubuntu_name@DESKTOP-LUK3BII:~$ javac --version\n\nCommand 'javac' not found, but can be installed with:\n\nsudo apt install default-jdk\nsudo apt install openjdk-11-jdk-headless\nsudo apt install ecj\nsudo apt install openjdk-8-jdk-headless\n</code></pre>\n\n<p>I've been stuck on this for awhile and can't figure it out or find a working solution online. Thanks!</p>\n",
+  "score": 33,
+  "answer_count": 4,
+  "view_count": 77397,
+  "tags": [
+    "java",
+    "ubuntu",
+    "environment-variables",
+    "development-environment",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-11-18T21:28:04",
+  "answers": [
+    {
+      "id": 53574705,
+      "body": "<p>As Biswapriyo suggested, you should use WSLENV.</p>\n<ol>\n<li><p>Open PowerShell. Then set <code>JAVA_HOME</code> to the path to your java installation.</p>\n</li>\n<li><p>In your case, run  <code>setx JAVA_HOME &quot;D:\\Program Files\\Java\\jdk-11.0.1&quot;</code></p>\n</li>\n</ol>\n<p>You should see a message that says &quot;SUCCESS: Specified value was saved&quot;.</p>\n<ol start=\"3\">\n<li>Then run <code>setx WSLENV &quot;JAVA_HOME/p&quot;</code>.</li>\n</ol>\n<p>You should see the success message again.</p>\n<ol start=\"4\">\n<li>Type 'env' into your WSL bash prompt.</li>\n</ol>\n<p>You should see <code>JAVA_HOME</code> correctly set at this point.</p>\n<p>Note: If step 2 doesn't work, you might want to changing the path to <code>JAVA_HOME</code> to include the <code>\\bin</code> folder.</p>\n",
+      "score": 36,
+      "creation_date": "2018-12-01T20:19:27"
+    }
+  ],
+  "source": "stackoverflow"
+}

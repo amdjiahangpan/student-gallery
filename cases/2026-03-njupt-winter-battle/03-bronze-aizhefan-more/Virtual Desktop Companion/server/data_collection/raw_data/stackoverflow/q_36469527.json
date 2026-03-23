@@ -1,0 +1,25 @@
+{
+  "id": 36469527,
+  "title": "Installing Apache on Windows Subsystem for Linux",
+  "body": "<p>Having just updated to the newest Windows 10 release (build 14316), I immediately started playing with WSL, the Windows Subsystem for Linux, which is supposed to run an Ubuntu installation on Windows.</p>\n\n<p>Maybe I'm trying the impossible by trying to install Apache on it, but then someone please explain me why this won't be possible.</p>\n\n<p>At any rate, during installation (sudo apt-get install apache2), I received the following error messages after the dependencies were downloaded and installed correctly:</p>\n\n<pre><code>initctl: Unable to connect to Upstart: Failed to connect to socket /com/ubuntu/upstart: No such file or directory\nrunlevel:/var/run/utmp: No such file or directory\n * Starting web server apache2                                                 *\n * The apache2 configtest failed.\nOutput of config test was:\nmktemp: failed to create directory via template '/var/lock/apache2.XXXXXXXXXX': No such file or directory\nchmod: missing operand after '755'\nTry 'chmod --help' for more information.\ninvoke-rc.d: initscript apache2, action \"start\" failed.\nSetting up ssl-cert (1.0.33) ...\nProcessing triggers for libc-bin (2.19-0ubuntu6.7) ...\nProcessing triggers for ureadahead (0.100.0-16) ...\nProcessing triggers for ufw (0.34~rc-0ubuntu2) ...\nWARN: / is group writable!\n</code></pre>\n\n<p>Now, I understand that there seem to be some folders and files missing for Apache2 to work. Before I start changing anything that will mess with my Windows installation, I want to ask whether there's a different way? Also, should I worry about / being group writable or is this just standard Windows behaviour?</p>\n",
+  "score": 31,
+  "answer_count": 4,
+  "view_count": 49150,
+  "tags": [
+    "linux",
+    "windows",
+    "apache2",
+    "subsystem",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-04-07T07:31:54",
+  "answers": [
+    {
+      "id": 37000732,
+      "body": "<p>In order to eliminate this warning</p>\n\n<pre><code>Invalid argument: AH00076: Failed to enable APR_TCP_DEFER_ACCEP\n</code></pre>\n\n<p>Add this to the end of <code>/etc/apache2/apache2.conf</code></p>\n\n<pre><code>AcceptFilter http none\n</code></pre>\n",
+      "score": 63,
+      "creation_date": "2016-05-03T09:42:46"
+    }
+  ],
+  "source": "stackoverflow"
+}

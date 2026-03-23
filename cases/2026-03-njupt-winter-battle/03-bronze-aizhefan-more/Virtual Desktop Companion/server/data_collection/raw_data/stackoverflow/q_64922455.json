@@ -1,0 +1,21 @@
+{
+  "id": 64922455,
+  "title": "WSL2 stopped working with error The system cannot find the path specified",
+  "body": "<p>WSL2 stopped working suddenly. If I do a new installation of linux distros. Then it throws the following error, when I click launch button for the linux distro from play store:</p>\n<pre><code>Installing, this may take a few minutes... \nWslRegisterDistribution failed with error: 0x80070003\nError: 0x80070003 The system cannot find the path specified.\n</code></pre>\n<p>the <code>wsl --help</code> command works properly. All other wsl command hangs or throws error as shown below\nlike <code>wsl -l</code> command throws this error\nThe system cannot find the path specified.</p>\n",
+  "score": 27,
+  "answer_count": 10,
+  "view_count": 52994,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-20T01:28:50",
+  "answers": [
+    {
+      "id": 67704292,
+      "body": "<p>I had the same thing happening to me after I moved the directory of my distro.</p>\n<p>You have to unregister the distro from WSL;</p>\n<pre><code>wslconfig /u Ubuntu-20.04\n</code></pre>\n<p>and then just execute the installed exe and install the whole distro to WSL again.</p>\n",
+      "score": 41,
+      "creation_date": "2021-05-26T11:50:36"
+    }
+  ],
+  "source": "stackoverflow"
+}

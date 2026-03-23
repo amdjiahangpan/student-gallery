@@ -1,0 +1,23 @@
+{
+  "id": 63012885,
+  "title": "docker: unrecognized service",
+  "body": "<p>I am getting this error while running</p>\n<pre><code>&gt;service docker start                                                       \ndocker: unrecognized service\n&gt;service docker.io start                                                    \ndocker.io: unrecognized service\n</code></pre>\n<p>I am struggling with docker in order to run it. I got <code>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</code> error. thereafter I tried several things but it did not work.</p>\n<pre><code>&gt;docker pull pstothard/cgview                                               \nUsing default tag: latest                                                                                      \nCannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n\n &gt;sudo docker run hello-world                                                \n docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.\n\n&gt;systemctl start docker.service                                             \nSystem has not been booted with systemd as init system (PID 1). Can't operate.\n\n&gt;docker images                                                             \nGot permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: \nGet http://%2Fvar%2Frun%2Fdocker.sock/v1.40/images/json: dial unix /var/run/docker.sock: connect: permission denied \n\n&gt;snap stop docker                                                           \nInteracting with snapd is not yet supported on Windows Subsystem for Linux.                                      \nThis command has been left available for documentation purposes only.\n</code></pre>\n<p>I'm using ubuntu 18.04 app in windows system. what should I do?</p>\n",
+  "score": 27,
+  "answer_count": 5,
+  "view_count": 111060,
+  "tags": [
+    "docker",
+    "shell",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-07-21T10:49:39",
+  "answers": [
+    {
+      "id": 63014477,
+      "body": "<p>Seems like WSL cannot connect to the docker daemon running through Docker for Windows, probably because it is not exposed or is not running.</p>\n<p><strong>WSL1</strong></p>\n<p>In case you are using WSL 1, you can expose the docker daemon through this option in Docker for Windows:\n<a href=\"https://i.sstatic.net/sh2yf.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/sh2yf.png\" alt=\"enter image description here\" /></a>\nI recommend <a href=\"https://stackoverflow.com/questions/61592709/docker-not-running-on-ubuntu-wsl-cannot-connect-to-the-docker-daemon-at-unix\">this</a> article for a detailed guide.</p>\n<p>I would highly recommend running docker within WSL 2 instead, since it provides faster boot times and allows docker to use CPU/RAM dynamically instead of you having to preallocate it.</p>\n<p><strong>WSL2</strong></p>\n<p>In case you are using WSL 2, you will have to enable the WSL 2 back-end for docker through Docker for Windows. The docker team has an extensive guide on this <a href=\"https://docs.docker.com/docker-for-windows/wsl/\" rel=\"noreferrer\">here</a>.</p>\n",
+      "score": 9,
+      "creation_date": "2020-07-21T12:22:46"
+    }
+  ],
+  "source": "stackoverflow"
+}

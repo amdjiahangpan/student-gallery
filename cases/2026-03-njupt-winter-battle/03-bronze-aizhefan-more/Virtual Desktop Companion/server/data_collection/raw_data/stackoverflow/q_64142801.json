@@ -1,0 +1,22 @@
+{
+  "id": 64142801,
+  "title": "I am unable make file or directory in Visual Studio Code in Win Subsystem for Linux",
+  "body": "<p>I use this <a href=\"https://code.visualstudio.com/docs/cpp/config-wsl#_add-a-source-code-file\" rel=\"noreferrer\">guide</a>. When I take the step &quot;Add a source code file&quot;, I am shown this report:</p>\n<pre><code>Unable to write file 'vscode-remote://wsl+ubuntu-20.04/home/alex/TEST/helloworld/helloworld' (NoPermissions (FileSystemError): Error: EACCES: permission denied, open '/home/alex/TEST/helloworld/helloworld')\n</code></pre>\n<p>I don't know what to do, can some one help me?</p>\n",
+  "score": 42,
+  "answer_count": 5,
+  "view_count": 69768,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-30T17:28:25",
+  "answers": [
+    {
+      "id": 64281748,
+      "body": "<p>The VScode needs permissions thus</p>\n<p>Try this command on your WSL terminal</p>\n<pre><code>sudo chown -R username /path/to/working/directory\n</code></pre>\n<p>Replace :</p>\n<p>'username' with your username and the path of your directory</p>\n",
+      "score": 123,
+      "creation_date": "2020-10-09T14:11:35"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 1141704318,
+  "name": "awesome-openclaw-skills",
+  "full_name": "VoltAgent/awesome-openclaw-skills",
+  "description": "The awesome collection of OpenClaw Skills. Formerly known as Moltbot, originally Clawdbot.",
+  "stars": 16754,
+  "forks": 1691,
+  "open_issues": 4,
+  "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+  "clone_url": "https://github.com/VoltAgent/awesome-openclaw-skills.git",
+  "readme_content": "",
+  "created_at": "2026-01-25T09:22:32Z",
+  "updated_at": "2026-02-19T06:50:20Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

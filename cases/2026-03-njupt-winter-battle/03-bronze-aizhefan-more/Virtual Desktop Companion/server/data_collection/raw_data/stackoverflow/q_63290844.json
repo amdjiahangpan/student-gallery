@@ -1,0 +1,25 @@
+{
+  "id": 63290844,
+  "title": "How to run Selenium ChromeDriver from python3 on wsl2?",
+  "body": "<p>I'm trying to headless open Chrome from WSL2 (Ubuntu 18.04) using python 3.</p>\n<p>On Windows I'm using Chrome 84. I've downloaed Chrome Driver 84 from <a href=\"https://chromedriver.storage.googleapis.com/index.html?path=84.0.4147.30/\" rel=\"noreferrer\">ChromeDriver - WebDriver for Chrome</a>. And installed the .exe under C:\\ChromeDriver\\chromedriver.exe</p>\n<p>I've set a symbolic link from my Windows Chrome and ChromeDriver to WSL2:</p>\n<pre><code>sudo ln -s '/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' /usr/bin/google-chrome\nsudo ln -s /mnt/c/ChromeDriver/chromedriver.exe /usr/bin/chromedriver\n</code></pre>\n<p>Both Chromes are set to be executable by any user on WSL2.</p>\n<p>On WSL2, when I enter in the console:</p>\n<pre><code>google-chrome --use-gl=swiftshader\n</code></pre>\n<p>Chrome starts on windows.</p>\n<p>Here is my script:</p>\n<pre><code>from selenium import webdriver\nbrowser = webdriver.Chrome()    # fails\n# browser = webdriver.Chrome('/usr/bin/chromedriver') fails\n# browser = webdriver.Chrome('/mnt/c/ChromeDriver/chromedriver.exe') fails\nbrowser.get('https://stackoverflow.com')\n</code></pre>\n<p>It fails with error:</p>\n<blockquote>\n<p>raise WebDriverException(&quot;Can not connect to the Service %s&quot; %\nself.path) selenium.common.exceptions.WebDriverException: Message: Can\nnot connect to the Service chromedriver (* OR /usr/bin/chromedriver OR /mnt/c/ChromeDriver/chromedriver.exe depending on how I start webdriver.Chrome())</p>\n</blockquote>\n<p>How to be able to start Chrome Driver from WSL2 using python3 and selenium?</p>\n",
+  "score": 27,
+  "answer_count": 5,
+  "view_count": 36837,
+  "tags": [
+    "python-3.x",
+    "selenium",
+    "google-chrome",
+    "selenium-chromedriver",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-08-06T19:53:50",
+  "answers": [
+    {
+      "id": 65643515,
+      "body": "<p>For those who have not yet found the solution.\nFollow this tutorial: <a href=\"https://www.gregbrisebois.com/posts/chromedriver-in-wsl2/\" rel=\"noreferrer\">chromedriver in WSL2</a>\nMany are similar, but what did the trick for me was to place the chromedriver in the corresponding group and user:</p>\n<pre><code>sudo chown root:root /usr/bin/chromedriver\n</code></pre>\n",
+      "score": 9,
+      "creation_date": "2021-01-09T14:03:01"
+    }
+  ],
+  "source": "stackoverflow"
+}

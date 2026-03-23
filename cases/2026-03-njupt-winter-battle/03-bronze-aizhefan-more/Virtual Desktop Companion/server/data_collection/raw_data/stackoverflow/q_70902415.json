@@ -1,0 +1,15 @@
+{
+  "id": 70902415,
+  "title": "WSL PowerShell always returns Processing fstab with mount -a failed",
+  "body": "<p>I've installed WSL for my Windows 11 distribution and also Ubuntu 20.04. I saw that many people say that I can use commands without opening a distro with the <code>wsl</code> command.</p>\n<p>Somehow that does not work for me. As soon as I type in a command with <code>wsl</code> the result is:</p>\n<pre><code>Processing fstab with mount -a failed.\n</code></pre>\n<p>So for example: <code>wsl rsync -r -v /mnt/d/DUMMY_SOURCE/ /mnt/e/DUMMY_DESTINATION</code></p>\n<p>The only wsl command that really works is <code>wsl -l -v</code></p>\n<pre><code>  NAME                   STATE           VERSION\n* docker-desktop-data    Stopped         2\n  docker-desktop         Stopped         2\n  Ubuntu-20.04           Stopped         2\n</code></pre>\n<p>What is wrong with my setup?</p>\n",
+  "score": 12,
+  "answer_count": 1,
+  "view_count": 12860,
+  "tags": [
+    "powershell",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-01-29T04:58:20",
+  "answers": [],
+  "source": "stackoverflow"
+}

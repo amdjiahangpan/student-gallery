@@ -1,0 +1,17 @@
+{
+  "id": 68894557,
+  "title": "Azure CLI in WSL2 uses Windows home directory",
+  "body": "<p>Running this in WSL2 (current folder <code>/home/my-linux-user/</code>):</p>\n<p><code>az aks get-credentials --resource-group my-resource-group --name cluster-name</code></p>\n<p>Outputs:</p>\n<p><code>Merged &quot;cluster-name&quot; as current context in C:\\Users\\my-windows-user\\.kube\\config</code></p>\n<p>What do I need to do to get Azure CLI to put the kube config in the Linux home folder in WSL instead?</p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 7741,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "azure-aks",
+    "azure-cli",
+    "windows-terminal"
+  ],
+  "creation_date": "2021-08-23T14:36:57",
+  "answers": [],
+  "source": "stackoverflow"
+}

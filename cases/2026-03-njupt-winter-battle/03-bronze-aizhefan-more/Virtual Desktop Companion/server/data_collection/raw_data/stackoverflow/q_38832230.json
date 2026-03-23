@@ -1,0 +1,25 @@
+{
+  "id": 38832230,
+  "title": "Copy Paste in Bash on Ubuntu on Windows",
+  "body": "<p>How to execute a copy paste operation from Windows 10 to the Bash on Ubuntu on Windows environment?</p>\n\n<p>I tried the following:</p>\n\n<ul>\n<li><kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>v</kbd></li>\n<li>right click to paste</li>\n</ul>\n\n<p>Any suggestions?</p>\n",
+  "score": 273,
+  "answer_count": 13,
+  "view_count": 257088,
+  "tags": [
+    "bash",
+    "ubuntu",
+    "command-line",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-08T14:45:37",
+  "answers": [
+    {
+      "id": 38925880,
+      "body": "<p><strong>Update 2019/04/16:</strong> It seems copy/paste is now officially supported in Windows build &gt;= 17643. Take a look at <a href=\"https://stackoverflow.com/a/50050642/2047843\">Rich Turner's answer</a>. This can be enabled through the same settings menu described below by clicking the checkbox next to &quot;Use Ctrl+Shift+C/V as Copy/Paste&quot;.</p>\n<hr />\n<p>Another solution would be to enable &quot;QuickEdit Mode&quot; and then you can paste by right-clicking in the terminal.</p>\n<p>To enable QuickEdit Mode, right-click on the toolbar (or simply click on the icon in the upper left corner), select Properties, and in the Options tab, click the checkbox next to QuickEdit Mode.</p>\n<p>With this mode enabled, you can also copy text in the terminal by clicking and dragging. Once a selection is made, you can press Enter or right-click to copy.</p>\n",
+      "score": 212,
+      "creation_date": "2016-08-12T20:18:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

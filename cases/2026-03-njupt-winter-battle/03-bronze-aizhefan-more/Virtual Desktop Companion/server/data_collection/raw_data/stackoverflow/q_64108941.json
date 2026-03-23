@@ -1,0 +1,15 @@
+{
+  "id": 64108941,
+  "title": "Visual Studio Code not running/working on WSL 2",
+  "body": "<p>Somehow when I run <code>code .</code> inside the WSL, it simply doesn't do anything. If I <code>which code</code> it does return the VS Code path on windows, but still nothing happens.</p>\n",
+  "score": 10,
+  "answer_count": 6,
+  "view_count": 37038,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-28T20:06:43",
+  "answers": [],
+  "source": "stackoverflow"
+}

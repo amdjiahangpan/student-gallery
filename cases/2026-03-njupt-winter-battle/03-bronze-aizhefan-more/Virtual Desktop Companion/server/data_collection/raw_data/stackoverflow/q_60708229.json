@@ -1,0 +1,24 @@
+{
+  "id": 60708229,
+  "title": "Why am I getting a &quot;Cannot connect to the Docker daemon&quot; error in WSL2?",
+  "body": "<p>Here is my setup:</p>\n<ul>\n<li><code>Windows 10 PRO - build 19041.153</code> - insider program - slow ring</li>\n<li><code>Ubuntu 18.04LTS</code> subsystem in WSL2 mode</li>\n<li><code>Docker for desktop 2.2.0.4</code> - enabled WSL2 integration with my Ubuntu subsystem</li>\n</ul>\n<p>I am currently forced to use Windows for development, so I became a\nMicrosoft insider member and installed ubuntu with WSL2 mode. Docker desktop supports integration for WSL2, so I tried it...</p>\n<p>For a week it worked flawlessly. Today after a PC restart, I can't get docker running again. Ubuntu can see the injected binaries from Docker desktop, but it can't connect to windows hosted docker daemon anymore.</p>\n<p>When I call in the WSL terminal <code>docker info</code> it returns</p>\n<pre><code>$ docker info\nClient:\n Debug Mode: false\n\nServer:\nERROR: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\nerrors pretty printing info\n</code></pre>\n<p>or with <code>docker-compose up</code></p>\n<pre><code>ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?\n\nIf it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.\n</code></pre>\n<p>What I've tried already:</p>\n<ul>\n<li>expose daemon without TLS with envs like <code>DOCKER_HOST=localhost:2375</code>, <code>DOCKER_HOST=tcp://localhost:2375</code>, <code>DOCKER_HOST=127.0.0.1:2375</code>, <code>DOCKER_HOST=tcp://127.0.0.1:2375</code> =&gt; same result</li>\n<li>uninstall Docker desktop and install previous version</li>\n<li>turn off windows firewall</li>\n</ul>\n<p>I really, really need this to work. Thanks for any ideas. Weirdest thing is it worked yesterday and I didn't make any changes in system from then...</p>\n",
+  "score": 81,
+  "answer_count": 18,
+  "view_count": 131158,
+  "tags": [
+    "docker",
+    "docker-desktop",
+    "windows-subsystem-for-linux",
+    "docker-daemon"
+  ],
+  "creation_date": "2020-03-16T14:55:49",
+  "answers": [
+    {
+      "id": 61377519,
+      "body": "<p>If it helps anyone else that is having this issue, for me it turned out that my subsystem was suddenly (and \"on its own\") ticked off in docker's RESOURCES > WSL INTEGRATION settings.</p>\n",
+      "score": 84,
+      "creation_date": "2020-04-23T00:51:17"
+    }
+  ],
+  "source": "stackoverflow"
+}

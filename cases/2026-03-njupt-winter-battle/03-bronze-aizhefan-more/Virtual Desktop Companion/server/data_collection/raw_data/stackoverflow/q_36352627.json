@@ -1,0 +1,25 @@
+{
+  "id": 36352627,
+  "title": "How to enable Bash in Windows 10 developer preview?",
+  "body": "<p>I am using windows 10 developer preview Build 14295. From the Build conference I understood that we can enable bash in windows 10. But its not clear how to enable bash in windows 10. </p>\n\n<p>Please find below the blog post for running bash in windows 10. \nLink : <a href=\"http://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx\">http://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx</a> </p>\n\n<blockquote>\n  <p>After turning on Developer Mode in Windows Settings and adding the\n  Feature, run you bash and are prompted to get Ubuntu on Windows from\n  Canonical via the Windows Store</p>\n</blockquote>\n\n<p><a href=\"https://i.sstatic.net/pUGqp.png\"><img src=\"https://i.sstatic.net/pUGqp.png\" alt=\"enter image description here\"></a></p>\n\n<p>I enabled the developer mode. But I am not sure how to add a feature and run the bash. Kindly help. </p>\n",
+  "score": 64,
+  "answer_count": 6,
+  "view_count": 82211,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-04-01T09:25:57",
+  "answers": [
+    {
+      "id": 36465000,
+      "body": "<p>To enable bash in <strong>Windows 10</strong>: </p>\n\n<ol>\n<li>Click the Start button , click Control Panel, click Programs, and then click Turn Windows features on or off.</li>\n<li>Enable Windows Subsystem for Linux</li>\n<li>To get Bash installed, open Command Prompt and type “bash”</li>\n</ol>\n\n<p><a href=\"https://i.sstatic.net/F0v8A.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/F0v8A.png\" alt=\"Enable Windows Subsystem for Linux\"></a>\n<a href=\"https://i.sstatic.net/zBozw.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/zBozw.png\" alt=\"Installing Ubuntu on Windows using windows store \"></a>\n<a href=\"https://i.sstatic.net/N0SDj.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/N0SDj.png\" alt=\"Start Bash\"></a></p>\n\n<p>For More Information visit : </p>\n\n<ol>\n<li><a href=\"https://blogs.windows.com/windowsexperience/2016/04/06/announcing-windows-10-insider-preview-build-14316/\" rel=\"noreferrer\">Announcing Windows 10 Insider Preview Build 14316</a></li>\n<li><a href=\"https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/\" rel=\"noreferrer\">Run Bash on Ubuntu on Windows</a></li>\n</ol>\n\n<p>In some cases, attempting to turn on Developer Mode on may crash the Settings app. If this happens, the workaround is to use these steps here to <a href=\"https://msdn.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development\" rel=\"noreferrer\">enable Developer Mode</a></p>\n",
+      "score": 103,
+      "creation_date": "2016-04-07T01:13:22"
+    }
+  ],
+  "source": "stackoverflow"
+}

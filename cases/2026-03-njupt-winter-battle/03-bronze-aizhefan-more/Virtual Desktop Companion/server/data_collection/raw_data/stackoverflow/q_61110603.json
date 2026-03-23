@@ -1,0 +1,24 @@
+{
+  "id": 61110603,
+  "title": "How to set up working X11 forwarding on WSL2",
+  "body": "<p>When moving from WSL1 to WSL2 many things change; apparently this applies to X11 forwarding as well.<br>\nWhat steps do I need to make in order to use X11 forwarding with WSL2 on Windows 10 as I did with WSL1?</p>\n",
+  "score": 198,
+  "answer_count": 23,
+  "view_count": 368090,
+  "tags": [
+    "windows-10",
+    "x11",
+    "x11-forwarding",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-04-08T21:49:59",
+  "answers": [
+    {
+      "id": 61110604,
+      "body": "<h3>TL;DR:</h3>\n<p>Add the following to your <code>~/.bashrc</code>:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>export DISPLAY=$(ip route list default | awk '{print $3}'):0\nexport LIBGL_ALWAYS_INDIRECT=1\n</code></pre>\n<p><strong>Enable Public Access</strong> on your X11 server for Windows.*</p>\n<p>Add a separate <strong>inbound rule</strong> for <strong>TCP port 6000</strong> to the windows firewall in order to allow WSL access to the X server, as described by the <a href=\"https://github.com/cascadium/wsl-windows-toolbar-launcher#firewall-rules\" rel=\"noreferrer\">wsl-windows-toolbar-launcher</a> people.</p>\n<hr />\n<p>As pointed out <a href=\"https://www.reddit.com/r/bashonubuntuonwindows/comments/dq541z/megathread_if_you_are_using_wsl2_networking_is/\" rel=\"noreferrer\">by WSL_subreddit_mod on reddit</a> and as you can read in <a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl2-faq#will-wsl-2-be-able-to-use-networking-applications\" rel=\"noreferrer\">Microsoft's documentation on WSL2</a>, the WSL2 architecture uses virtualized network components. This means that WSL2 has a different IP address than the host machine.\nThis explains why the X11 forwarding settings of WSL1 cannot simply be transferred to WSL2.</p>\n<p>On the Ubuntu Wiki page about WSL you can already find a configuration adapted for WSL2 under <a href=\"https://wiki.ubuntu.com/WSL#Running_Graphical_Applications\" rel=\"noreferrer\">Running Graphical Applications</a>. A similar configuration is also suggested by the above mentioned Reddit User, who also contributes another part of the solution: Enable Public Access on the X11 server under Windows.</p>\n<p>This means add the following to your <code>~/.bashrc</code>:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>export DISPLAY=$(ip route list default | awk '{print $3}'):0\nexport LIBGL_ALWAYS_INDIRECT=1\n</code></pre>\n<p>And <strong>Enable Public Access</strong> on your X11 server for Windows.*</p>\n<p>The most important part to enable X11 forwarding for WSL2 on Windows 10 is still missing: the Windows firewall blocks connections via the network interface configured for WSL by default.<br />\nA separate <strong>inbound rule</strong> for <strong>TCP port 6000</strong> is required to allow WSL access to the X server. After the rule has been created, as described by the <a href=\"https://github.com/cascadium/wsl-windows-toolbar-launcher#firewall-rules\" rel=\"noreferrer\">wsl-windows-toolbar-launcher</a> people, the IP address range can be restricted to the WSL subnet in the settings of the newly created rule, under <strong>Scope</strong>: <em>172.16.0.0/12</em>.</p>\n<p>*: If you use <a href=\"https://sourceforge.net/projects/vcxsrv/\" rel=\"noreferrer\">VcXSrv</a> you can enable public access for your X server by disabling Access Control on the Extra Settings:<br />\n<a href=\"https://i.sstatic.net/6C7AT.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/6C7AT.png\" alt=\"Disable access control VcXSrv\" /></a><br />\nOr by calling <code>vcxsrv.exe</code> directly with the <code>ac</code> flag: <code>vcxsrv.exe -ac</code> as pointed out by <a href=\"https://github.com/microsoft/WSL/issues/4106#issuecomment-502989345\" rel=\"noreferrer\">ameeno</a> on the github issue.</p>\n<p>Alternatively <a href=\"https://stackoverflow.com/a/66768217/9343156\">this SO answer</a> shows how to share keys via .Xauthority files, leaving you with intact access control.</p>\n",
+      "score": 257,
+      "creation_date": "2020-04-08T21:49:59"
+    }
+  ],
+  "source": "stackoverflow"
+}

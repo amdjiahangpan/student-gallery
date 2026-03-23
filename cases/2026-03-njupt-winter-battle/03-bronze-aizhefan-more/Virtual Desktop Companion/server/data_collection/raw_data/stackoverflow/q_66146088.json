@@ -1,0 +1,25 @@
+{
+  "id": 66146088,
+  "title": "Docker gets error &quot;failed to compute cache key: not found&quot; - runs fine in Visual Studio",
+  "body": "<p>I've generated a Dockerfile with Visual Studio. It runs in Visual Studio just fine and now I'm trying to build it from Windows itself (<code>docker build .</code>, and I tried many combinations). Yet I get the following error:</p>\n<pre><code>&gt; [build 3/7] COPY [client/client.csproj, client/]:\n------\nfailed to compute cache key: &quot;/client/client.csproj&quot; not found: not found\n</code></pre>\n<p>When I change copy to <code>./client.csproj</code> it does continue and then I get:</p>\n<pre><code> =&gt; ERROR [build 7/7] RUN dotnet build &quot;client.csproj&quot; -c Release -o /app/build                3.3s\n------\n&gt; [build 7/7] RUN dotnet build &quot;client.csproj&quot; -c Release -o /app/build:\n#15 0.652 Microsoft (R) Build Engine version 16.8.3+39993d9d for .NET\n#15 0.652 Copyright (C) Microsoft Corporation. All rights reserved.\n#15 0.652\n#15 1.169   Determining projects to restore...\n#15 1.483   All projects are up-to-date for restore.\n#15 3.231 CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point [/src/client/client.csproj]\n#15 3.240\n#15 3.240 Build FAILED.\n#15 3.240\n#15 3.240 CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point [/src/client/client.csproj]\n#15 3.240     0 Warning (5)\n#15 3.240     1 Error (5)\n#15 3.240\n#15 3.240 Time Elapsed 00:00:02.51\n-----\nexecutor failed running [/bin/sh -c dotnet build &quot;client.csproj&quot; -c Release -o /app/build]: exit code: 1\n</code></pre>\n<p>What am I doing wrong? I changed Docker Linux to Windows, changed <a href=\"https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux\" rel=\"noreferrer\">WSL</a>, and restarted everything.</p>\n<pre><code>#See https://aka.ms/containerfastmode to understand how Visua...\n\nFROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base\nWORKDIR /app\nEXPOSE 80\nEXPOSE 443\n\nFROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build\nWORKDIR /src\nCOPY [&quot;client/client.csproj&quot;, &quot;client/&quot;]\nRUN dotnet restore &quot;client/client.csproj&quot;\nCOPY . .\nWORKDIR &quot;/src/client&quot;\nRUN dotnet build &quot;client.csproj&quot; -c Release -o /app/build\n\nFROM build AS publish\nRUN dotnet publish &quot;client.csproj&quot; -c Release -o /app/publish\n\nFROM base AS final\nWORKDIR /app\nCOPY --from=publish /app/publish .\nENTRYPOINT [&quot;dotnet', &quot;client.dll&quot;]\n</code></pre>\n",
+  "score": 373,
+  "answer_count": 33,
+  "view_count": 630130,
+  "tags": [
+    "windows",
+    "visual-studio",
+    "docker",
+    "command-line-interface",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-02-10T22:32:45",
+  "answers": [
+    {
+      "id": 67928771,
+      "body": "<p>Check your <code>.dockerignore</code> file. Possible it ignores needed files for copy command and you get failed to compute cache key error.</p>\n<p><code>.dockerignore</code> may be configured to minimize the files sent to docker for performance and security:</p>\n<pre><code>* \n!dist/\n</code></pre>\n<p>The first line <code>*</code> disallows all files.  The second line <code>!dist/</code> allows the <code>dist</code> folder</p>\n<p>This can cause unexpected behavior:</p>\n<pre><code>FROM nginx:latest\n\n# Fails because of * in .dockerignore\n# failed to compute cache key: &quot;/nginx.conf.spa&quot; not found: not found\n# Fix by adding `!nginx.conf.spa`  to .dockerignore\nCOPY nginx.conf.spa /etc/nginx/nginx.conf\n\nRUN mkdir /app\n\n# Works because of !dist/ in .dockerignore\nCOPY dist/spa /app\n</code></pre>\n<p>Belts and suspenders.</p>\n",
+      "score": 530,
+      "creation_date": "2021-06-10T21:42:47"
+    }
+  ],
+  "source": "stackoverflow"
+}

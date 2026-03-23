@@ -1,0 +1,24 @@
+{
+  "id": 64680855,
+  "title": "How to Install Homebrew on Windows WSL Ubuntu, and fix &quot;zsh: brew command not found&quot; error",
+  "body": "<p><strong>Installation was a series of 5 simple steps:</strong></p>\n<p>first, install homebrew itself from command in the <a href=\"https://brew.sh/\" rel=\"noreferrer\">home page</a>:</p>\n<pre><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;\n</code></pre>\n<p>After that, following instructions <a href=\"https://docs.brew.sh/Homebrew-on-Linux\" rel=\"noreferrer\">in this page</a>, and changing <code>~/.bash_profile</code> to <code>~/.profile</code> as I am using Ubuntu as my wsl distro, i had to give these commands:</p>\n<pre><code>test -d ~/.linuxbrew &amp;&amp; eval $(~/.linuxbrew/bin/brew shellenv)\ntest -d /home/linuxbrew/.linuxbrew &amp;&amp; eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\ntest -r ~/.profile &amp;&amp; echo &quot;eval \\$($(brew --prefix)/bin/brew shellenv)&quot; &gt;&gt;~/.profile\necho &quot;eval \\$($(brew --prefix)/bin/brew shellenv)&quot; &gt;&gt;~/.profile\n</code></pre>\n<p>But now, when I try to run brew, I get <code>command not found</code> error.</p>\n",
+  "score": 15,
+  "answer_count": 2,
+  "view_count": 27600,
+  "tags": [
+    "windows",
+    "homebrew",
+    "windows-subsystem-for-linux",
+    "ubuntu-20.04"
+  ],
+  "creation_date": "2020-11-04T13:18:34",
+  "answers": [
+    {
+      "id": 64680905,
+      "body": "<p>In a wsl environment, brew is installed at location: <code>/home/linuxbrew/.linuxbrew/</code> which is <strong>not</strong> part of the path.</p>\n<p>So we simply need to add that to path, and it works. I am using zsh as my shell, so I add these lines to my <code>~/.zshrc</code> file (in ubuntu file system) :</p>\n<pre><code>export BREW_HOME=&quot;/home/linuxbrew/.linuxbrew/bin&quot;\nexport PATH=&quot;$PATH:$BREW_HOME&quot;\n</code></pre>\n",
+      "score": 45,
+      "creation_date": "2020-11-04T13:21:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

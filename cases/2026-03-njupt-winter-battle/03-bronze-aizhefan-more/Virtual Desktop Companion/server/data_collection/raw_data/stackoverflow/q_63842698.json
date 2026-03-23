@@ -1,0 +1,23 @@
+{
+  "id": 63842698,
+  "title": "Develop against folder in WSL in Visual Studio 2019",
+  "body": "<p>I've tried to find any information on this, but failed.</p>\n<p>Is it possible to use Visual Studio 2019 to develop against a folder on WSL?</p>\n<p>I know that it's possible with VS Code and the remote WSL extension, but I really prefer working in Visual Studio.</p>\n<p>I also prefer having the code in a folder in WSL since I do a lot of work in the terminal and I've experienced a lot of file locks and other problems when having the code in a folder on the Windows host.</p>\n",
+  "score": 19,
+  "answer_count": 1,
+  "view_count": 5992,
+  "tags": [
+    ".net-core",
+    "visual-studio-2019",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-11T07:36:29",
+  "answers": [
+    {
+      "id": 67476545,
+      "body": "<p>In Visual Studio 2019 there is no such equivalent to the remote WSL extension, therefore, it is (still) not possible to open a folder from WSL or WSL2.</p>\n<p>However, it is possible to work on a Windows local folder and compile, debug and execute in WSL2. You can follow <a href=\"https://devblogs.microsoft.com/cppblog/c-with-visual-studio-2019-and-windows-subsystem-for-linux-wsl/\" rel=\"nofollow noreferrer\">this tutorial</a> to set it up (also possible with WSL2 without SSH, just tried it and works perfectly). Moreover in the WSL terminal you can navigate to Windows directories mounted in /mnt/[your_disk_name] and execute linux terminal commands.</p>\n<p><strong>EDIT:</strong>\nIn VS 2022 is now possible. See <a href=\"https://devblogs.microsoft.com/cppblog/build-and-debug-c-with-wsl-2-distributions-and-visual-studio-2022/\" rel=\"nofollow noreferrer\">this</a></p>\n",
+      "score": 2,
+      "creation_date": "2021-05-10T19:25:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

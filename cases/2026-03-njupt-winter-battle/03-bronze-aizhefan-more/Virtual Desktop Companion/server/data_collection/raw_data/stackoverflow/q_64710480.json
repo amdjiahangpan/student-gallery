@@ -1,0 +1,22 @@
+{
+  "id": 64710480,
+  "title": "Docker client under WSL2 doesn&#39;t work without sudo",
+  "body": "<p>On WSL2 (Ubuntu 20.04), I'm trying to connect to the Docker daemon that's running on Windows.</p>\n<pre><code>$ docker ps\nCannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?\n(exit code 1)\n\n$ sudo docker ps\nCONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES\n(exit code 0)\n</code></pre>\n<p>Why does it work with sudo, but not without sudo? How can I make it work without sudo?</p>\n<p>I have done</p>\n<pre><code>$ sudo usermod -aG docker $USER \n</code></pre>\n<p>which ran successfully, but didn't help with the issue.</p>\n<p>I have also restarted everything many times, which didn't help.</p>\n",
+  "score": 22,
+  "answer_count": 3,
+  "view_count": 13941,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-06T07:33:03",
+  "answers": [
+    {
+      "id": 65174777,
+      "body": "<p>Weird solution for this one - but go ahead and try:</p>\n<blockquote>\n<p>unset DOCKER_HOST</p>\n</blockquote>\n<p>And if that works, you can make the fix permanent by going back and commenting out the &quot;export DOCKER_HOST=tcp://localhost:2375&quot; in your .bashrc file. I think it has something to do with how docker is configured in WSL 2 vs. WSL 1, but Docker never updated their documentation to reflect this.</p>\n",
+      "score": 34,
+      "creation_date": "2020-12-07T00:57:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

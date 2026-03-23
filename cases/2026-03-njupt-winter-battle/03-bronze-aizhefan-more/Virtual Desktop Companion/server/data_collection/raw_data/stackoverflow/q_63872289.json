@@ -1,0 +1,22 @@
+{
+  "id": 63872289,
+  "title": "WSL2: Why do I have to shutdown WSL to restart WSL after restarting PC",
+  "body": "<p>I have my windows set up WSL with Ubuntu. It has been working fine for a while, until I upgraded to WSL2.</p>\n<p>The problem is: every time I start up my PC (or restarting my PC), it lost the connection from Ubuntu to Windows drives.</p>\n<p>I got the message like this:</p>\n<pre><code>cd: Input/output error: /mnt/d/\n</code></pre>\n<p>The above problem could be solved easily by running this:</p>\n<pre><code>wsl.exe --shutdown\n</code></pre>\n<p>I want to solve this problem permanently, instead of shutting down WSL every time I got the problem.</p>\n<p>Any idea how to fix this permanently?</p>\n",
+  "score": 26,
+  "answer_count": 4,
+  "view_count": 118655,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-13T15:08:15",
+  "answers": [
+    {
+      "id": 66793101,
+      "body": "<p>This sounds like a fast startup problem. Try disabling it in the Control Panel.<a href=\"https://i.sstatic.net/mTeBq.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/mTeBq.png\" alt=\"enter image description here\" /></a></p>\n",
+      "score": 5,
+      "creation_date": "2021-03-25T04:28:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

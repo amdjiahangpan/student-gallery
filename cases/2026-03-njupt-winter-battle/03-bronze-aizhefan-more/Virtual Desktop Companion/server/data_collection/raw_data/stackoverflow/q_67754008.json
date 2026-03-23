@@ -1,0 +1,16 @@
+{
+  "id": 67754008,
+  "title": "Can&#39;t enter my password when trying to create a Laravel project with Sail on Windows",
+  "body": "<p>I want to create a new Laravel 8 project and I followed the documentation with docker and Sail on Windows: <a href=\"https://laravel.com/docs/8.x#getting-started-on-windows\" rel=\"noreferrer\">https://laravel.com/docs/8.x#getting-started-on-windows</a></p>\n<p>After I installed everything, I tried executing the command to create the project:</p>\n<pre><code>curl -s https://laravel.build/example-app | bash\n</code></pre>\n<p>It asked me for my password. I entered it and pressed enter, but nothing happened. When I press CTRL+C, I can see that it tried to execute my password as a command.</p>\n",
+  "score": 11,
+  "answer_count": 4,
+  "view_count": 5331,
+  "tags": [
+    "laravel-8",
+    "windows-subsystem-for-linux",
+    "laravel-sail"
+  ],
+  "creation_date": "2021-05-29T17:14:09",
+  "answers": [],
+  "source": "stackoverflow"
+}

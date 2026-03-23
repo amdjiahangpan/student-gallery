@@ -1,0 +1,21 @@
+{
+  "id": 77498634,
+  "title": "WSL Networking Error code: Wsl/Service/CreateInstance/CreateVm/ConfigureNetworking/HNS/0x80070424",
+  "body": "<p>I encountered an error starting WSL with Ubuntu 22.04.3 LTS (GNU/Linux 5.15.133.1-microsoft-standard-WSL2 x86_64)</p>\n<p><strong>Details:</strong></p>\n<blockquote>\n<p>Falha ao configurar a rede (networkingMode Nat). Para desabilitar a rede, defina 'wsl2.networkingMode=None' no C:\\Users\\usuario\\.wslconfig\nError code: Wsl/Service/CreateInstance/CreateVm/ConfigureNetworking/HNS/0x80070424</p>\n</blockquote>\n<p>I've successfully resolved this issue and wanted to share the solution for anyone who might face a similar problem.</p>\n<p><strong>Solution:</strong></p>\n<ol>\n<li>remove Optional Features: Hyper-v platform and Hyper-V management tool</li>\n<li>reboot</li>\n<li>start WSL: terminal: <code>wsl.exe --install --no-distribution</code></li>\n<li>reboot</li>\n</ol>\n<p><em>Similar issues can be caused by software that is using port 53 (ex. Acrylic DNS, Technitium DNS Server) You can disable it or use workaround, more details <a href=\"https://github.com/microsoft/WSL/issues/4364#issuecomment-766760961\" rel=\"noreferrer\">here</a></em></p>\n<p><a href=\"https://github.com/microsoft/WSL/issues/10755\" rel=\"noreferrer\">Source</a></p>\n<p>If anyone has experienced this error or has additional insights, feel free to share your thoughts!</p>\n",
+  "score": 14,
+  "answer_count": 3,
+  "view_count": 55097,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-11-16T23:50:53",
+  "answers": [
+    {
+      "id": 77501825,
+      "body": "<p>Found an easier solution from <a href=\"https://github.com/microsoft/WSL/issues/10495\" rel=\"noreferrer\">https://github.com/microsoft/WSL/issues/10495</a>:</p>\n<ul>\n<li>Enable &quot;Virtual Machine Platform&quot; on Windows features and restart.</li>\n</ul>\n<blockquote>\n<p>Select Start, enter Windows features, and select Turn Windows features on or off from the list of results.\nIn the Windows Features window that just opened, find Virtual Machine Platform and select it.\nSelect OK. You might need to restart your PC.</p>\n</blockquote>\n",
+      "score": 17,
+      "creation_date": "2023-11-17T12:54:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

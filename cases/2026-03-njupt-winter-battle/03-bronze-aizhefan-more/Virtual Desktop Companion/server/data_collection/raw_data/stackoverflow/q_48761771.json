@@ -1,0 +1,24 @@
+{
+  "id": 48761771,
+  "title": "My WSL terminal lost color",
+  "body": "<p>For some reason when I start the Ubuntu terminal in Windows, it doesn't show colors until I type bash. What could be the reason and how do I fix it?\nWhen I installed WSL it always showed colors.</p>\n\n<p><a href=\"https://i.sstatic.net/OlwHE.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/OlwHE.png\" alt=\"enter image description here\"></a></p>\n",
+  "score": 64,
+  "answer_count": 5,
+  "view_count": 44801,
+  "tags": [
+    "ubuntu",
+    "colors",
+    "terminal",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-02-13T07:44:18",
+  "answers": [
+    {
+      "id": 52093987,
+      "body": "<p>The reason could be a modified <code>.bash_profile</code> file.\nTry putting these lines to <code>~/.bash_profile</code></p>\n\n<pre><code>source ~/.bashrc\n</code></pre>\n\n<p>Or a better way is to run the below command from your terminal</p>\n\n<pre><code>echo \"source ~/.bashrc\" &gt;&gt; ~/.bash_profile\n</code></pre>\n\n<p>To know more about how do we set environment-variables and what role do files like <code>.bashrc</code>, <code>.bash_profile</code> play, you may want to read: </p>\n\n<ul>\n<li><a href=\"https://superuser.com/questions/171035/profile-or-bash-profile\">.profile or .bash_profile</a></li>\n<li><a href=\"https://apple.stackexchange.com/questions/99835/how-to-create-bash-profile-and-profile\">How to create ~/.bash_profile and ~/.profile</a></li>\n<li><a href=\"https://askubuntu.com/questions/510709/i-cannot-find-bash-profile-in-ubuntu\">I cannot find .bash_profile in ubuntu</a></li>\n</ul>\n",
+      "score": 171,
+      "creation_date": "2018-08-30T09:47:33"
+    }
+  ],
+  "source": "stackoverflow"
+}

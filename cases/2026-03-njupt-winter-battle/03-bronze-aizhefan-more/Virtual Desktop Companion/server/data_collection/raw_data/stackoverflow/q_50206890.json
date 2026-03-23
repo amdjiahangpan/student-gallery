@@ -1,0 +1,25 @@
+{
+  "id": 50206890,
+  "title": "Intermittent, random &#39;file not found&#39; errors under Windows Subsystem for Linux (WSL)",
+  "body": "<p>I'm getting intermitting 'fatal error: ... file not found' errors building C++ application using either gcc 4.8 or clang 3.8 under Ubuntu 16.04.2 running in Windows Subsystem for Linux (WSL), when including C++ header files, but only since installing the Windows 10 April update (Version 1803, OS Build 17134.1) a few days ago.</p>\n\n<p>Example error message from clang compiler:</p>\n\n<p><code>fatal error: 'boost/preprocessor/list/fold_left.hpp' file not found</code></p>\n\n<p>Example error message from gcc compiler:</p>\n\n<p><code>fatal error: boost/mpl/aux_/at_impl.hpp: No such file or directory</code></p>\n\n<p>I say the error is intermittent because if I re-run the build, the particular error that interrupted the build disappears, and the build runs for a while longer until it either builds successfully or randomly fails to include some other file with the same kind of 'file not found' error.</p>\n\n<p>The timing of this fault and the randomness of it make me suspect it is a new bug in WSL. Anyone else seeing this or have suggestions on how to fix it?</p>\n\n<p>The error is not always in a Boost include, but often is simply because Boost comprises a large proportion of the overall include files. The files being built exist on a shared volume under /mnt/d/.</p>\n",
+  "score": 22,
+  "answer_count": 3,
+  "view_count": 1921,
+  "tags": [
+    "c++",
+    "gcc",
+    "boost",
+    "clang",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-05-07T03:56:33",
+  "answers": [
+    {
+      "id": 50370263,
+      "body": "<p>This has been identified as a multithreading bug (<a href=\"https://learn.microsoft.com/en-us/windows/wsl/release-notes#build-17655-skip-ahead\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/wsl/release-notes#build-17655-skip-ahead</a>) and should get fixed in a future windows update.</p>\n\n<p>Since it's a multithreading bug, it might be possible to work around it by not using multithreaded builds.</p>\n\n<p>If in a hurry, it might be possible to just get to the windows insider program and use one of the preview builds.</p>\n",
+      "score": 17,
+      "creation_date": "2018-05-16T11:54:32"
+    }
+  ],
+  "source": "stackoverflow"
+}

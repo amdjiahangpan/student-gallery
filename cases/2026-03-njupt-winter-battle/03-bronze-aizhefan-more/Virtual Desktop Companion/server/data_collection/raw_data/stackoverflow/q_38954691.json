@@ -1,0 +1,25 @@
+{
+  "id": 38954691,
+  "title": "Is usb supported on Bash on Ubuntu on Windows 10?",
+  "body": "<ul>\n<li>I have no files or paths about usb on dev/</li>\n<li>When I plug in a flash disk, nothing appears on dev/ or mnt/ or media/ about it. </li>\n<li><p><code>sudo lsusb</code> returns: </p>\n\n<pre><code>unable to initialize libusb: -99\n</code></pre></li>\n</ul>\n\n<p>What should i do to enable usb access on bash?</p>\n",
+  "score": 29,
+  "answer_count": 3,
+  "view_count": 53971,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-15T12:00:28",
+  "answers": [
+    {
+      "id": 44001783,
+      "body": "<p>Good news, it is now possible to mount USB media (including FAT formated) and network shares with drvfs on Windows 10:</p>\n\n<p>Mount removable media: (e.g. D:)</p>\n\n<pre><code>$ sudo mkdir /mnt/d\n$ sudo mount -t drvfs D: /mnt/d\n</code></pre>\n\n<p>To safely unmount</p>\n\n<pre><code>$ sudo umount /mnt/d\n</code></pre>\n\n<p>You can also mount network shares without smbfs:</p>\n\n<pre><code>$ sudo mount -t drvfs '\\\\server\\share' /mnt/share\n</code></pre>\n\n<p>You need at least Build 16176 so you might have to opt-in to the Windows Insider programm and then update Windows. Source: <a href=\"https://blogs.msdn.microsoft.com/wsl/2017/04/18/file-system-improvements-to-the-windows-subsystem-for-linux/\" rel=\"noreferrer\">https://blogs.msdn.microsoft.com/wsl/2017/04/18/file-system-improvements-to-the-windows-subsystem-for-linux/</a></p>\n",
+      "score": 44,
+      "creation_date": "2017-05-16T12:41:57"
+    }
+  ],
+  "source": "stackoverflow"
+}

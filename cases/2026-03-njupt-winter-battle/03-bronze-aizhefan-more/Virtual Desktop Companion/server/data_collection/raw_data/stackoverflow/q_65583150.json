@@ -1,0 +1,22 @@
+{
+  "id": 65583150,
+  "title": "wsl --set-default-version 2 The service cannot be started, either because it is disabled or because it has no enabled devices associated with it",
+  "body": "<p>I'm trying to install again Ubuntu on my Windows 10 Home Version 20H2 OS Build 19042.685 using WSL2.</p>\n<p>The problem is the WSL2 installation is not finished.\nI received the following message doing Step 5 - Set WSL 2 as your default version</p>\n<pre><code>PS C:\\WINDOWS\\system32&gt; wsl\nThe service cannot be started, either because it is disabled or because it has no enabled devices associated with it.\n</code></pre>\n<p>Previous steps done:</p>\n<pre><code>PS C:\\WINDOWS\\system32&gt; dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart\n\nDeployment Image Servicing and Management tool\nVersion: 10.0.19041.572\n\nImage Version: 10.0.19042.685\n\nEnabling feature(s)\n[==========================100.0%==========================]\nThe operation completed successfully.\nPS C:\\WINDOWS\\system32&gt; dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart\n\nDeployment Image Servicing and Management tool\nVersion: 10.0.19041.572\n\nImage Version: 10.0.19042.685\n\nEnabling feature(s)\n[==========================100.0%==========================]\nThe operation completed successfully.\nPS C:\\WINDOWS\\system32&gt;\n</code></pre>\n<p>Then I restarted Windows and</p>\n<pre><code>execute wsl_update_x64.msi\n</code></pre>\n",
+  "score": 19,
+  "answer_count": 2,
+  "view_count": 44036,
+  "tags": [
+    "failed-installation",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-05T16:50:27",
+  "answers": [
+    {
+      "id": 67093602,
+      "body": "<p>I had the same issue:</p>\n<pre><code>C:\\WINDOWS\\system32&gt; wsl --set-default-version 2\nThe service cannot be started, either because it is disabled or because it has no enabled devices associated with it.\n</code></pre>\n<p>The problem was Kaspersky. The solution is simple: open <code>cmd.exe</code> <strong>as administrator</strong> and run the following code</p>\n<pre><code>sc config LxssManager start=auto\n</code></pre>\n<p>Kaspersky will give you a pop-up about a potential thread. Tell Kaspersky to ignore the alert. Please don't click on &quot;Fix it&quot; button for Kaspersky or you will undo the solution.</p>\n<p>That should fix it.</p>\n",
+      "score": 73,
+      "creation_date": "2021-04-14T14:23:58"
+    }
+  ],
+  "source": "stackoverflow"
+}

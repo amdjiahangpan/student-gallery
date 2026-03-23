@@ -1,0 +1,23 @@
+{
+  "id": 65258771,
+  "title": "In Ubuntu WSL, how can you store permanent environment variables?",
+  "body": "<p>I've tried but every time I restart my system my variables are gone.</p>\n<p>How can I store my environment variables in a permanent way on Ubuntu WSL2?</p>\n",
+  "score": 21,
+  "answer_count": 8,
+  "view_count": 60920,
+  "tags": [
+    "ubuntu",
+    "environment-variables",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-12-11T21:21:41",
+  "answers": [
+    {
+      "id": 65258772,
+      "body": "<p>So this is the way that worked for me:</p>\n<p><code>~/.bash_profile</code> is the correct file for permanent environment variables if using Bash on Ubuntu WSL2, however make sure you add the <code>export</code> keyword before your variables, like so:</p>\n<pre><code>export THISVAR=thisIsAVar\nexport ANOTHERVAR=anotherVar\n</code></pre>\n<p>To add the variable(s) use the command <code>sudo nano ~/.bash_profile</code> (if you prefer Nano editor) or <code>sudo vim ~/.bash_profile</code> (if you prefer Vim). After you have entered your variables into the <code>.bash_profile</code> save the file and then enter <code>source ~/.bash_profile</code> to have the variables available in the terminal.</p>\n",
+      "score": 27,
+      "creation_date": "2020-12-11T21:21:41"
+    }
+  ],
+  "source": "stackoverflow"
+}

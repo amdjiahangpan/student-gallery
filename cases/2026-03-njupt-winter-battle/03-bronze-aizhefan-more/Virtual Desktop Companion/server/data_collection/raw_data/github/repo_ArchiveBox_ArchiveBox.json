@@ -1,0 +1,21 @@
+{
+  "id": 90356372,
+  "name": "ArchiveBox",
+  "full_name": "ArchiveBox/ArchiveBox",
+  "description": "🗃 Open source self-hosted web archiving. Takes URLs/browser history/bookmarks/Pocket/Pinboard/etc., saves HTML, JS, PDFs, media, and more...",
+  "stars": 26874,
+  "forks": 1479,
+  "open_issues": 207,
+  "url": "https://github.com/ArchiveBox/ArchiveBox",
+  "clone_url": "https://github.com/ArchiveBox/ArchiveBox.git",
+  "readme_content": "",
+  "created_at": "2017-05-05T08:50:14Z",
+  "updated_at": "2026-02-19T01:23:38Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

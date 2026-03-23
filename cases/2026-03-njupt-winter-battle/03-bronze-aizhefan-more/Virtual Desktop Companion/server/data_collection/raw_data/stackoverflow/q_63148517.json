@@ -1,0 +1,24 @@
+{
+  "id": 63148517,
+  "title": "How to install Powerline fonts on WSL?",
+  "body": "<p>I'm using <a href=\"https://learn.microsoft.com/en-us/windows/wsl/\" rel=\"noreferrer\">Windows Subsystem for Linux (WSL 2)</a> with <a href=\"https://github.com/ohmyzsh/ohmyzsh\" rel=\"noreferrer\">Oh My Zsh</a> to pimp my bash, but I can't make the Ubuntu terminal render the Powerline fonts properly. Any idea on how to set up WSL to work with these fonts?</p>\n<p><a href=\"https://i.sstatic.net/UcBNE.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/UcBNE.png\" alt=\"enter image description here\" /></a></p>\n",
+  "score": 40,
+  "answer_count": 4,
+  "view_count": 60021,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "oh-my-zsh",
+    "powerline",
+    "vim-powerline"
+  ],
+  "creation_date": "2020-07-29T07:33:11",
+  "answers": [
+    {
+      "id": 63148518,
+      "body": "<p>I was installing the fonts in the Ubuntu system, but it is Windows that is rendering the characters from the terminal, so I should install the fonts on Windows (facepalm).</p>\n<p>I followed <a href=\"https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58\" rel=\"noreferrer\">this blog post</a> to install the Powerline fonts on Windows, and then I had to change the font in the settings of the WSL terminal:</p>\n<p><a href=\"https://i.sstatic.net/5nmsW.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/5nmsW.png\" alt=\"enter image description here\" /></a></p>\n<p>I selected the font DejaVu Sans Mono for Powerline, which works well with the robbyrussell theme of Oh My Zsh, but there are other options.</p>\n<p>Running the same command now rendered the characters as expected:</p>\n<p><a href=\"https://i.sstatic.net/ChDwg.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/ChDwg.png\" alt=\"enter image description here\" /></a></p>\n<p>The shell command I used to test the Powerline fonts came from <a href=\"https://gist.github.com/gdetrez/5845092\" rel=\"noreferrer\">this GitHub gist</a>.</p>\n",
+      "score": 69,
+      "creation_date": "2020-07-29T07:33:11"
+    }
+  ],
+  "source": "stackoverflow"
+}

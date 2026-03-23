@@ -1,0 +1,16 @@
+{
+  "id": 54818373,
+  "title": "How do I connect to a local Windows SQL Server Instance from WSL?",
+  "body": "<p>I'm new to WSL, and running Ubuntu. I have a local instance of SQL Server 2017 installed in Windows, and want to connect to it from WSL. I have remote connections enabled, however, I can't seem to get connected from ubuntu locally.</p>\n\n<p>I installed the db tools for ubuntu, and I'm using sqlcmd:</p>\n\n<pre><code>sqlcmd -S localhost -U sa -P &lt;my password&gt;\n</code></pre>\n\n<p>This keeps failing. How do I format/configure this to allow SQL Server in Windows to be available to Ubuntu?</p>\n\n<p>Thanks!</p>\n\n<p><strong>EDIT</strong></p>\n\n<p>I'm using the default instance of SQL Server</p>\n\n<p>Here's the error I'm getting</p>\n\n<pre><code>Sqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : Login timeout expired.\nSqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : TCP Provider: Error code 0x2749.\nSqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : A network-related or instance-specific error has occurred while establishing a connection to SQL Server. Server is not found or not accessible. Check if instance name is correct and if SQL Server is configured to allow remote connections. For more information see SQL Server Books Online..\n</code></pre>\n\n<p>Pinging localhost:</p>\n\n<pre><code>$ ping localhost\nPING localhost (127.0.0.1) 56(84) bytes of data.\n64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=128 time=0.248 ms\n64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=128 time=0.497 ms\n64 bytes from localhost (127.0.0.1): icmp_seq=3 ttl=128 time=0.517 ms\n</code></pre>\n",
+  "score": 13,
+  "answer_count": 2,
+  "view_count": 15995,
+  "tags": [
+    "sql-server",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-02-22T00:40:29",
+  "answers": [],
+  "source": "stackoverflow"
+}

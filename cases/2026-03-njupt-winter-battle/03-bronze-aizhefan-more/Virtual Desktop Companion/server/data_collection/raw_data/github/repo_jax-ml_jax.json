@@ -1,0 +1,21 @@
+{
+  "id": 154739597,
+  "name": "jax",
+  "full_name": "jax-ml/jax",
+  "description": "Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more",
+  "stars": 34902,
+  "forks": 3426,
+  "open_issues": 2215,
+  "url": "https://github.com/jax-ml/jax",
+  "clone_url": "https://github.com/jax-ml/jax.git",
+  "readme_content": "",
+  "created_at": "2018-10-25T21:25:02Z",
+  "updated_at": "2026-02-19T04:56:17Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

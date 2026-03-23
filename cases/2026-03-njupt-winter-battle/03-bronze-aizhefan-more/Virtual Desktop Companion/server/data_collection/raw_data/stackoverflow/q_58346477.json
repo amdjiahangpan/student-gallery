@@ -1,0 +1,17 @@
+{
+  "id": 58346477,
+  "title": "can&#39;t remove &quot;permission denied&quot; file - even with &quot;sudo&quot; and proper user/group set",
+  "body": "<p>I couldn't delete a file even I change its mode, its user, group properties to proper ones, and even I tried sudo it. I keep receiving \"permission denied\". Looked online and this forum to no avail.</p>\n\n<p>This happened in a Ubuntu v.18.04 subsystem for Windows. (WSL).</p>\n\n<p>can you help?</p>\n\n<pre><code>jon@competition:~/projects/medium-blog-kafka-udemy/udemy-reviews-producer/target/classes/avro$ ls -l\ntotal 4\n-rw-rw-rw- 0 jon jon 1320 Oct 11 12:28 udemy-review.avsc\njon@competition:~/projects/medium-blog-kafka-udemy/udemy-reviews-producer/target/classes/avro$ sudo rm -rf udemy-review.avsc\nrm: cannot remove 'udemy-review.avsc': Permission denied\n</code></pre>\n",
+  "score": 11,
+  "answer_count": 1,
+  "view_count": 17045,
+  "tags": [
+    "sudo",
+    "ubuntu-18.04",
+    "windows-subsystem-for-linux",
+    "permission-denied"
+  ],
+  "creation_date": "2019-10-11T18:09:13",
+  "answers": [],
+  "source": "stackoverflow"
+}

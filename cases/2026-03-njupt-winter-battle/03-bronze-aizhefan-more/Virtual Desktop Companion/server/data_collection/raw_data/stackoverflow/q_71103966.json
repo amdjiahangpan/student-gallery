@@ -1,0 +1,22 @@
+{
+  "id": 71103966,
+  "title": "WSL vscode command returning error &quot;not found&quot;",
+  "body": "<p>I have this message whenever I try to type <code>code .</code></p>\n<p><a href=\"https://i.sstatic.net/6cQOm.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/6cQOm.png\" alt=\"Screen capture containing an output obtained probably at a Unix-based WSL 2 terminal running on Windows. The output text is quoted exactly in the rest of the question for accessibility.\" /></a></p>\n<pre class=\"lang-bash prettyprint-override\"><code>/mnt/c/Users/jerom/.vscode/extensions/ms-vscode-remote.remote-wsl-0.63.13/scripts/wslCode.sh: 69: /home/jerome/.vscode-server-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326/bin/code: not found\n</code></pre>\n<p>Can someone help me please?</p>\n<p>Thanks in advance</p>\n",
+  "score": 28,
+  "answer_count": 21,
+  "view_count": 100052,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-02-13T19:04:24",
+  "answers": [
+    {
+      "id": 73439567,
+      "body": "<p>I just now had the same issue on WSL2 Kali. I tried everything given here: <a href=\"https://github.com/microsoft/vscode-remote-release/issues/2962\" rel=\"noreferrer\">https://github.com/microsoft/vscode-remote-release/issues/2962</a>.</p>\n<p>My problem was VS Code was not on Kali's path. Here's how I fixed it :)</p>\n<pre class=\"lang-bash prettyprint-override\"><code>echo $PATH\n# Confirm PATH is missing this: \n/mnt/c/Users/wcd/AppData/Local/Programs/Microsoft VS Code/bin/\n\n# Confirm VS Code's location then export:\nexport PATH=$PATH:&quot;/mnt/c/Users/wcd/AppData/Local/Programs/Microsoft VS Code/bin/&quot; \n# It's temporarily added to path...\necho $PATH\n# This should now trigger VS Code Server install,\n# then open ~/ in VS Code. \ncode .\n\n# If above works, make it permanent:\necho 'export PATH=$PATH:&quot;/mnt/c/Users/wcd/AppData/Local/Programs/Microsoft VS Code/bin/&quot;' &gt;&gt; ~/.bashrc\n\n# Restart shell + test\nexec &quot;$SHELL&quot;\ncode .\n</code></pre>\n",
+      "score": 42,
+      "creation_date": "2022-08-22T02:10:53"
+    }
+  ],
+  "source": "stackoverflow"
+}

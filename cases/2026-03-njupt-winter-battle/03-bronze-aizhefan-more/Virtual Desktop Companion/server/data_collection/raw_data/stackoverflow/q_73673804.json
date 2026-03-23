@@ -1,0 +1,23 @@
+{
+  "id": 73673804,
+  "title": "npm show &quot;NPM ELF : not found error&quot; in WSL",
+  "body": "<p>i got error when running npm, i've allready try to reinstall with</p>\n<p><code>sudo apt-get remove nodejs npm -y &amp;&amp; sudo apt-get install nodejs npm -y</code></p>\n<p>this problem still exist</p>\n<pre><code>/usr/bin/node: 1: ELF: not found\n/usr/bin/node: 2: : not found\n/usr/bin/node: 4: Syntax error: Unterminated quoted string\n</code></pre>\n<p>im using Ubuntu WSL</p>\n<pre><code>Distributor ID: Ubuntu\nDescription:    Ubuntu 22.04.1 LTS\nRelease:        22.04\nCodename:       jammy\n\nLinux localhost 4.4.0-19041-Microsoft #1237-Microsoft Sat Sep 11 14:32:00 PST 2021 x86_64 x86_64 x86_64 GNU/Linux\n</code></pre>\n<p>npm -v command</p>\n<pre><code>npm -v\n-bash: /usr/bin/node: cannot execute binary file: Exec format error\n</code></pre>\n",
+  "score": 16,
+  "answer_count": 3,
+  "view_count": 14667,
+  "tags": [
+    "node.js",
+    "npm",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-09-10T17:20:24",
+  "answers": [
+    {
+      "id": 75408337,
+      "body": "<p>This was an issue for me on Windows 10, using WSL2 and Ubuntu 22.04 LTS. The other solutions in this post did not help, and I was unwilling to downgrade to Ubuntu 20. Instead, I managed to fix it by removing all node-related packages with apt and then installing node via nvm as per <a href=\"https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl\" rel=\"noreferrer\">this guide by Microsoft</a>.</p>\n<p>So to remove the packages:</p>\n<pre><code>sudo apt-get remove --purge nodejs npm\n</code></pre>\n<p>Then install nvm...</p>\n<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash\n</code></pre>\n<p><strong>Restart the terminal.</strong> Then, make sure nvm is installed:</p>\n<pre><code>nvm --version\n</code></pre>\n<p>Finally, use nvm to install the latest version of node and npm:</p>\n<pre><code>nvm install node\n</code></pre>\n<p>Check to make sure node and npm are installed:</p>\n<pre><code>node --version\nnpm --version\n</code></pre>\n<p>Hope this helps!</p>\n",
+      "score": 44,
+      "creation_date": "2023-02-10T08:01:04"
+    }
+  ],
+  "source": "stackoverflow"
+}

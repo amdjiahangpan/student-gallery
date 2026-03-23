@@ -1,0 +1,21 @@
+{
+  "id": 22657662,
+  "name": "docker-cheat-sheet",
+  "full_name": "wsargent/docker-cheat-sheet",
+  "description": "Docker Cheat Sheet",
+  "stars": 22497,
+  "forks": 4652,
+  "open_issues": 7,
+  "url": "https://github.com/wsargent/docker-cheat-sheet",
+  "clone_url": "https://github.com/wsargent/docker-cheat-sheet.git",
+  "readme_content": "",
+  "created_at": "2014-08-05T20:04:20Z",
+  "updated_at": "2026-02-18T22:19:44Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

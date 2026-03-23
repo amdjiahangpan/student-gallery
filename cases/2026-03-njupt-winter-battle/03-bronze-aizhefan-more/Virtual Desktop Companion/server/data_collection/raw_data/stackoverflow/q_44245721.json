@@ -1,0 +1,22 @@
+{
+  "id": 44245721,
+  "title": "Launching Explorer from WSL",
+  "body": "<p><code>start .</code> is used to launch an explorer window from cmd.</p>\n\n<p>When doing the same from wsl, I get</p>\n\n<blockquote>\n  <p>$ start . start: Unable to connect to system bus: Failed to connect to\n  socket /var/run/dbus/system_bus_socket: No such file or directory</p>\n</blockquote>\n\n<p>Is there an easy way to fix this?</p>\n",
+  "score": 30,
+  "answer_count": 2,
+  "view_count": 13282,
+  "tags": [
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-05-29T15:12:18",
+  "answers": [
+    {
+      "id": 44284048,
+      "body": "<p>Since Creators Update you can call Windows executables from WSL if you add the extension file. You can open the present folder like this.</p>\n<p><code>explorer.exe .</code></p>\n<p>If you still need start then you can create an alias</p>\n<p><code>alias start='cmd.exe /c start'</code></p>\n<p>then <code>start .</code> will work too.</p>\n",
+      "score": 62,
+      "creation_date": "2017-05-31T11:51:24"
+    }
+  ],
+  "source": "stackoverflow"
+}

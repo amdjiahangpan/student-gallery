@@ -1,0 +1,21 @@
+{
+  "id": 160083795,
+  "name": "serenity",
+  "full_name": "SerenityOS/serenity",
+  "description": "The Serenity Operating System 🐞",
+  "stars": 32902,
+  "forks": 3302,
+  "open_issues": 738,
+  "url": "https://github.com/SerenityOS/serenity",
+  "clone_url": "https://github.com/SerenityOS/serenity.git",
+  "readme_content": "",
+  "created_at": "2018-12-02T19:28:41Z",
+  "updated_at": "2026-02-19T06:44:06Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

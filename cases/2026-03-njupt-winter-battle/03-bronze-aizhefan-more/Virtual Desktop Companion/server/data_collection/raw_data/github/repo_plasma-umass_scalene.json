@@ -1,0 +1,21 @@
+{
+  "id": 228700143,
+  "name": "scalene",
+  "full_name": "plasma-umass/scalene",
+  "description": "Scalene: a high-performance, high-precision CPU, GPU, and memory profiler for Python with AI-powered optimization proposals",
+  "stars": 13280,
+  "forks": 431,
+  "open_issues": 155,
+  "url": "https://github.com/plasma-umass/scalene",
+  "clone_url": "https://github.com/plasma-umass/scalene.git",
+  "readme_content": "",
+  "created_at": "2019-12-17T20:56:28Z",
+  "updated_at": "2026-02-18T23:19:26Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

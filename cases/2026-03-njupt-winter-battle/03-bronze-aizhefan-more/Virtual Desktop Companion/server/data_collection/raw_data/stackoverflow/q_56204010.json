@@ -1,0 +1,15 @@
+{
+  "id": 56204010,
+  "title": "Permission Denied while installing Node on WSL using NVM",
+  "body": "<p>I tried to install Node LTS on WSL using NVM.\nWhile I successfully installed nvm, Node installation using <code>nvm install --lts</code> made some errors:</p>\n\n<pre><code>mv: cannot move '/home/anesin1109/.nvm/.cache/bin/node-v10.15.3-linux-x64/files/bin' to '/home/anesin1109/.nvm/versions/node/v10.15.3/bin': Permission denied\nmv: cannot move '/home/anesin1109/.nvm/.cache/bin/node-v10.15.3-linux-x64/files/include' to '/home/anesin1109/.nvm/versions/node/v10.15.3/include': Permission denied\nmv: cannot move '/home/anesin1109/.nvm/.cache/bin/node-v10.15.3-linux-x64/files/lib' to '/home/anesin1109/.nvm/versions/node/v10.15.3/lib': Permission denied\nmv: cannot move '/home/anesin1109/.nvm/.cache/bin/node-v10.15.3-linux-x64/files/share' to '/home/anesin1109/.nvm/versions/node/v10.15.3/share': Permission denied\n</code></pre>\n\n<p>I tried to move these files manually, but it also ended with those errors.</p>\n",
+  "score": 13,
+  "answer_count": 3,
+  "view_count": 7639,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "nvm"
+  ],
+  "creation_date": "2019-05-19T01:08:38",
+  "answers": [],
+  "source": "stackoverflow"
+}

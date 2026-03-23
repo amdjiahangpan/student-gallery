@@ -1,0 +1,22 @@
+{
+  "id": 38859145,
+  "title": "Detect &quot;Ubuntu on Windows&quot; vs native Ubuntu from bash script",
+  "body": "<p>Can a bash script detect if it's running in \"Ubuntu on Windows\" vs native Ubuntu? If so, how?</p>\n\n<p>I ran <code>env</code> on both machines and didn't see any obvious environmental variable differences. I could test for the existence of the <code>/mnt/c</code> directory, but that is not foolproof because that directory could potentially also be present on native Ubuntu.</p>\n",
+  "score": 53,
+  "answer_count": 1,
+  "view_count": 10983,
+  "tags": [
+    "bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-09T19:40:40",
+  "answers": [
+    {
+      "id": 38859331,
+      "body": "<p>It looks like <code>/proc/version</code> in Ubuntu on Windows contains:</p>\n<blockquote>\n<p><code>Linux version 3.4.0-Microsoft (Microsoft@Microsoft.com) (gcc version 4.7 (GCC) ) #1 SMP PREEMPT Wed Dec 31 14:42:53 PST 2014</code></p>\n</blockquote>\n<p>and my version of Ubuntu has:</p>\n<blockquote>\n<p><code>Linux version 4.4.0-31-generic (buildd@lgw01-16) (gcc version 5.3.1 20160413 (Ubuntu 5.3.1-14ubuntu2.1) ) #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016</code></p>\n</blockquote>\n<p>This code is working for me to detect which version of Ubuntu the script is running on:</p>\n<pre><code>if grep -qi microsoft /proc/version; then\n  echo &quot;Ubuntu on Windows&quot;\nelse\n  echo &quot;native Linux&quot;\nfi\n</code></pre>\n",
+      "score": 89,
+      "creation_date": "2016-08-09T19:53:17"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,23 @@
+{
+  "id": 48008675,
+  "title": "Run Docker on Ubuntu on Windows Subsystem for Linux",
+  "body": "<p>I've tried to run Docker on WSL unsuccessfully. I've installed Docker on WSL following the steps given to <a href=\"https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/\" rel=\"noreferrer\">install Docker on Ubuntu</a> but when I execute <code>docker ps</code> I get the following error:</p>\n\n<pre><code>docker ps    \nCannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n</code></pre>\n\n<p>Watching docker logs I found this:</p>\n\n<pre><code>level=warning msg=\"Running modprobe nf_nat failed with message: `modprobe: ERROR: ../libkmod/libkmod.c:586 kmod_search_moddep() could not open moddep file '/lib/modules/4.4.0-43-Microsoft/modules.dep.bin'\\nmodprobe: WARNING: Module nf_nat not found in directory /lib/modules/4.4.0-43-Microsoft`, error: exit status 1\"\ntime=\"2017-12-28T12:07:23.227671600+01:00\" level=warning msg=\"Running modprobe xt_conntrack failed with message: `modprobe: ERROR: ../libkmod/libkmod.c:586 kmod_search_moddep() could not open moddep file '/lib/modules/4.4.0-43-Microsoft/modules.dep.bin'\\nmodprobe: WARNING: Module xt_conntrack not found in directory /lib/modules/4.4.0-43-Microsoft`, error: exit status 1\"\nError starting daemon: Error initializing network controller: error obtaining controller instance: failed to create NAT chain: iptables failed: iptables -t nat -N DOCKER: iptables v1.6.0: can't initialize iptables table `nat': Table does not exist (do you need to insmod?)\nPerhaps iptables or your kernel needs to be upgraded.\n (exit status 3)\n</code></pre>\n\n<p>Any idea how can I run Docker on WSL?</p>\n",
+  "score": 39,
+  "answer_count": 13,
+  "view_count": 68243,
+  "tags": [
+    "windows",
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-12-28T13:48:56",
+  "answers": [
+    {
+      "id": 48008676,
+      "body": "<p>Finally, I could run Docker on WSL in an easy way: You need first to install and run Docker Engine on Windows and then just create a symbolic link on Ubuntu bash pointing to the Windows executable:</p>\n\n<pre><code>sudo ln -s /mnt/c/Program\\ Files/Docker/Docker/resources/bin/docker.exe /usr/bin/docker\n</code></pre>\n\n<p>This link works because from version <strong><em>Windows 10 Creators Update</em></strong> it's possible to run Windows executables from Bash. If your Windows version is previous to Windows 10 Creators Update you can try the <a href=\"https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/\" rel=\"noreferrer\">solution explained in this blog</a></p>\n",
+      "score": 33,
+      "creation_date": "2017-12-28T13:48:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

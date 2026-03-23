@@ -1,0 +1,23 @@
+{
+  "id": 65625762,
+  "title": "WSL2 use &quot;localhost&quot; to access Windows service",
+  "body": "<p>I'm using WSL2 on Windows 10.</p>\n<p>My dev stack is using a local webserver (localwp or wamp) on the host OS.\nI use WSL2 as the main terminal (SSH, Git, SASS, automation tools, ...).</p>\n<p>What I need is a way to connect to my host services (MySql) from the WSL2 system using a server name instead of a random IP address.</p>\n<p>It is already possible for the Windows host to connect to WSL2 services with &quot;localhost&quot;. Is there a solution to do it the other way?</p>\n",
+  "score": 18,
+  "answer_count": 4,
+  "view_count": 26060,
+  "tags": [
+    "windows-10",
+    "local",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-08T08:39:56",
+  "answers": [
+    {
+      "id": 69498558,
+      "body": "<p>You should use <code>hostname.local</code> to access Windows from WSL2 because that will use the correct IP. Note that <code>hostname</code> should be replaced with the result of the <code>hostname</code> command run in WSL2.\nYou can check the IP by running <code>ping $(hostname).local</code> from WSL2.</p>\n<p>You also need to add a firewall rule to allow traffic from WSL2 to Windows. In an elevated PowerShell prompt run this:</p>\n<pre><code>New-NetFirewallRule -DisplayName &quot;WSL&quot; -Direction Inbound  -InterfaceAlias &quot;vEthernet (WSL)&quot;  -Action Allow\n</code></pre>\n<p>The command above should allow you to access anything exposed by Windows from WSL, no matter what port, however bear in mind that any apps you've launched get an automated rule created for them when you first launch them, blocking access from public networks (this is when you get a prompt from Windows Firewall, asking whether the app should be allowed to accept connections from public networks).</p>\n<p>If you don't explicitly allow, they will be blocked by default, which also blocks connections from WSL. So you might need to find that inbound rule, and change it from block to allow (or just delete it).</p>\n<p>See info here:</p>\n<p><a href=\"https://github.com/microsoft/WSL/issues/4585#issuecomment-610061194\" rel=\"noreferrer\">https://github.com/microsoft/WSL/issues/4585#issuecomment-610061194</a></p>\n",
+      "score": 20,
+      "creation_date": "2021-10-08T15:48:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

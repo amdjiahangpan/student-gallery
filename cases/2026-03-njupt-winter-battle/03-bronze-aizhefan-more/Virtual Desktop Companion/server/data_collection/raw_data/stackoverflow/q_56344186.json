@@ -1,0 +1,24 @@
+{
+  "id": 56344186,
+  "title": "Unable to start debugging : The value of miDebuggerPath is invalid",
+  "body": "<p>I recently started working on vscode. I wanted to debug my C code. But the moment I am launching the debugger getting Error : Unable to start debugging. The value of miDebuggerPath is invalid.</p>\n\n<p>I have my gdb installed on wsl . It's path is /usr/bin/gdb. I have copied same path to launch.json in miDebuggerPath.</p>\n\n<p>Here is my launch.json : </p>\n\n<pre><code>{\n// Use IntelliSense to learn about possible attributes.\n// Hover to view descriptions of existing attributes.\n// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387\n\"version\": \"0.2.0\",\n\"configurations\": [\n\n\n    {\n        \"name\": \"(gdb) Launch\",\n        \"type\": \"cppdbg\",\n        \"request\": \"launch\",\n        \"program\": \"${workspaceFolder}/bin/main\",\n        \"args\": [],\n        \"stopAtEntry\": false,\n        \"cwd\": \"${workspaceFolder}\",\n        \"environment\": [],\n        \"externalConsole\": true,\n        \"MIMode\": \"gdb\",\n        \"miDebuggerPath\": \"/usr/bin/gdb\",\n        \"setupCommands\": [\n            {\n                \"description\": \"Enable pretty-printing for gdb\",\n                \"text\": \"-enable-pretty-printing\",\n                \"ignoreFailures\": true\n            }\n        ]\n    }\n]\n</code></pre>\n\n<p>}</p>\n\n<p>It should not throw the error and I should able to launch my debugger.</p>\n",
+  "score": 57,
+  "answer_count": 8,
+  "view_count": 133646,
+  "tags": [
+    "visual-studio",
+    "visual-studio-code",
+    "gdb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-05-28T14:12:56",
+  "answers": [
+    {
+      "id": 60800710,
+      "body": "<p>So this happened to me on WSL-Ubuntu. In my case gdb was broken because of unmet dependencies. Took a while to fix but once I reinstalled gdb properly in my WSL-Ubuntu, I finally got it working.</p>\n\n<p>Installing gdb can be done on shell as</p>\n\n<pre><code>sudo apt-get install gdb\n</code></pre>\n\n<p>There can be multiple reasons why it could end up as broken, but once you fix gdb, vscode-debugging should be running. At the very least, you won't see that error popping.</p>\n",
+      "score": 85,
+      "creation_date": "2020-03-22T14:43:32"
+    }
+  ],
+  "source": "stackoverflow"
+}

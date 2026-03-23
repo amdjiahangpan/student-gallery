@@ -1,0 +1,23 @@
+{
+  "id": 64963848,
+  "title": "curl: (6) Could not resolve host: on WSL",
+  "body": "<p>I have installed Ubuntu 20.04 LTS on WSL.</p>\n<p>I'm trying to run the following command:</p>\n<pre><code>curl https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch\n</code></pre>\n<p>It fails with error:</p>\n<blockquote>\n<p>curl: (6) Could not resolve host: developer.mozilla.org</p>\n</blockquote>\n<p>I have tried something else, and it worked, e.g.</p>\n<pre><code>$ curl https://google.com\n&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;\n&lt;TITLE&gt;301 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;\n&lt;H1&gt;301 Moved&lt;/H1&gt;\nThe document has moved\n&lt;A HREF=&quot;https://www.google.com/&quot;&gt;here&lt;/A&gt;.\n&lt;/BODY&gt;&lt;/HTML&gt;\n</code></pre>\n<p>Here's some details:</p>\n<pre><code>$ nslookup developer.mozilla.org\nServer:         127.0.0.1\nAddress:        127.0.0.1#53\n\nNon-authoritative answer:\ndeveloper.mozilla.org   canonical name = d1avawhiqh9uo1.cloudfront.net.\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 52.84.112.124\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 52.84.112.61\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 52.84.112.82\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 52.84.112.105\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:8e00:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:9c00:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:a000:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:d800:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:f600:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:200:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:1c00:13:e62f:2040:93a1\nName:   d1avawhiqh9uo1.cloudfront.net\nAddress: 2600:9000:203c:4e00:13:e62f:2040:93a1\n</code></pre>\n<p>Please help to understand the problem.</p>\n",
+  "score": 22,
+  "answer_count": 7,
+  "view_count": 50377,
+  "tags": [
+    "curl",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-23T07:05:19",
+  "answers": [
+    {
+      "id": 75746102,
+      "body": "<p>The accepted solution didn't work for me.</p>\n<p>Searching a little bit more made me land on\n<a href=\"https://stackoverflow.com/questions/74635959/wsl-throws-6-could-not-resolve-host-raw-githubusercontent-com-when-trying-to\">WSL throws (6) Could not resolve host: raw.githubusercontent.com when trying to install NVM and cant ping google.com</a></p>\n<p>and it worked for me. See the answer quoted below</p>\n<blockquote>\n<p>you can try running this</p>\n<pre><code>sudo rm /etc/resolv.conf\nsudo bash -c 'echo &quot;nameserver 8.8.8.8&quot; &gt; /etc/resolv.conf'\nsudo bash -c 'echo &quot;[network]&quot; &gt;&gt; /etc/wsl.conf'\nsudo bash -c 'echo &quot;generateResolvConf = false&quot; &gt;&gt; /etc/wsl.conf'\nsudo chattr +i /etc/resolv.conf\n</code></pre>\n<p>it deletes your resolve.config file thats automatically generated when\nu run WSL then creates a new file and puts &quot;nameserver 8.8.8.8&quot;, then\ncreates a wsl.conf file and adds [network] and generateResolveConf =\nfalse to prevent auto generation of that file</p>\n<p>then</p>\n<p>ping google.com</p>\n</blockquote>\n<p><strong>update 2024-04-15-1333</strong>\nMade the script append to wsl.conf as it can contain other settings that should be discarded</p>\n",
+      "score": 31,
+      "creation_date": "2023-03-15T14:27:16"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 68096922,
+  "title": "Does WSL use LF line endings or CRLF line endings?",
+  "body": "<p>Unix uses LF line endings.\nWindows uses CRLF line endings.\nWhat about WSL?</p>\n",
+  "score": 12,
+  "answer_count": 1,
+  "view_count": 11013,
+  "tags": [
+    "git",
+    "command-line",
+    "terminal",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-06-23T09:13:20",
+  "answers": [],
+  "source": "stackoverflow"
+}

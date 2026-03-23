@@ -1,0 +1,21 @@
+{
+  "id": 62681041,
+  "title": "Ubuntu 18.04 on WSL2: &quot;Logon failure: the user has not been granted the requested logon type at this computer.&quot;",
+  "body": "<p>After restarting my Windows machine, I received this error trying to open my Ubuntu 18.04 WSL2 instance.</p>\n<blockquote>\n<p>Logon failure: the user has not been granted the requested logon type at this computer.<br />\nPress any key to continue...</p>\n</blockquote>\n<p>It had been working totally normally before the restart.</p>\n",
+  "score": 82,
+  "answer_count": 9,
+  "view_count": 95843,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-07-01T16:14:04",
+  "answers": [
+    {
+      "id": 65736070,
+      "body": "<p>Restarting the vmcompute service worked for me. From an elevated PowerShell (close WSL2 first though!):</p>\n<pre><code>Get-Service vmcompute | Restart-Service\n</code></pre>\n<p>And then run WSL2 again.</p>\n",
+      "score": 220,
+      "creation_date": "2021-01-15T12:23:41"
+    }
+  ],
+  "source": "stackoverflow"
+}

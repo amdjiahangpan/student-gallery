@@ -1,0 +1,24 @@
+{
+  "id": 61824177,
+  "title": "Visual-Block mode not working in Vim with C-v on WSL@Windows 10",
+  "body": "<p>I use WSL Ubuntu and Vim inside the new Windows Terminal, but if I have to enter the <strong>visual-block mode</strong> with C-v, I can't since it acts as paste.</p>\n<p>I am okay with rebinding it to something else but I don't happen to have found the command that I have to add to <code>.vimrc</code>, I think it has something to do with <strong>inoremap</strong>.</p>\n<p>Any advice?</p>\n",
+  "score": 53,
+  "answer_count": 5,
+  "view_count": 32105,
+  "tags": [
+    "vim",
+    "copy-paste",
+    "windows-subsystem-for-linux",
+    "windows-terminal"
+  ],
+  "creation_date": "2020-05-15T16:35:06",
+  "answers": [
+    {
+      "id": 62956033,
+      "body": "<p><code>CTRL+v</code> is bound to paste in Windows Terminal by default. As of now, the only thing that's working is to disable that behaviour in the <a href=\"https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file\" rel=\"noreferrer\"><code>settings.json</code></a>. You can do that by pressing <code>CTRL+SHIFT+,</code>.</p>\n<p>From version 1.4</p>\n<pre><code>  &quot;actions&quot;: [\n    ...\n    // { &quot;command&quot;: {&quot;action&quot;: &quot;paste&quot;, ...}, &quot;keys&quot;: &quot;ctrl+v&quot; }, &lt;------ THIS LINE\n</code></pre>\n<p>Pre version 1.4</p>\n<pre><code>  &quot;keybindings&quot;: [\n    ...\n    // { &quot;command&quot;: &quot;paste&quot;, &quot;keys&quot;: &quot;ctrl+v&quot; }, &lt;------ THIS LINE\n</code></pre>\n<p>After doing this, you can switch to visual block mode as usual and paste with <code>CTRL+SHIFT+v</code>.</p>\n<p>I've found these issues on the project's GitHub about this problem:</p>\n<p><a href=\"https://github.com/microsoft/terminal/issues/5790\" rel=\"noreferrer\">https://github.com/microsoft/terminal/issues/5790</a></p>\n<p><a href=\"https://github.com/microsoft/terminal/issues/5641\" rel=\"noreferrer\">https://github.com/microsoft/terminal/issues/5641</a></p>\n<p>Info about the keybindings/actions change: <a href=\"https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/terminal/customize-settings/actions</a></p>\n<blockquote>\n<p>As of Windows Terminal version 1.4, the keybindings array has been renamed to actions inside the settings.json file. Support for the keybindings array still exists for backward compatibility, however the terminal will not automatically rename keybindings to actions inside your settings.json file.</p>\n</blockquote>\n",
+      "score": 77,
+      "creation_date": "2020-07-17T14:24:55"
+    }
+  ],
+  "source": "stackoverflow"
+}

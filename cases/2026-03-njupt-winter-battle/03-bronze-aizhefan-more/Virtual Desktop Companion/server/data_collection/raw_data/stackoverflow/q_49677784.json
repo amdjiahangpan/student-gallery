@@ -1,0 +1,18 @@
+{
+  "id": 49677784,
+  "title": "How to use Android Studio with WSL (bash) as your shell Terminal?",
+  "body": "<p>Is it possible to use Android Studio and configure Windows Subsystem for Linux as a Terminal? I really don't like to work with Windows <code>cmd.exe</code>, but when I try to switch to <code>bash.exe</code>, which seems to work, it cannot build the project because there are missing e.g. <code>Android/sdk/build-tools/27.0.3/aidl'</code>.</p>\n\n<p>This file is there, but it is with <code>.exe</code> suffix as it was downloaded for Windows. Any workaround to use *unix like bash for Terminal in Android Studio while being on Windows 10?</p>\n",
+  "score": 14,
+  "answer_count": 2,
+  "view_count": 19361,
+  "tags": [
+    "android",
+    "bash",
+    "shell",
+    "android-studio",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-04-05T17:01:56",
+  "answers": [],
+  "source": "stackoverflow"
+}

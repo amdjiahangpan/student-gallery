@@ -1,0 +1,23 @@
+{
+  "id": 71315783,
+  "title": "Running &#39;code .&#39; in terminal in wsl produces an error",
+  "body": "<p>I recently installed wsl and running <code>code .</code> in the terminal I get this error:</p>\n<pre><code>Updating VS Code Server to version f80445acd5a3dadef24aa209168452a3d97cc326\nRemoving previous installation...\nInstalling VS Code Server for x64 (f80445acd5a3dadef24aa209168452a3d97cc326)\nDownloading: 100%\nFailed\n--2022-03-01 20:19:21--  https://update.code.visualstudio.com/commit:f80445acd5a3dadef24aa209168452a3d97cc326/server-linux-x64/stable\nResolving update.code.visualstudio.com (update.code.visualstudio.com)... 40.64.128.224\nConnecting to update.code.visualstudio.com (update.code.visualstudio.com)|40.64.128.224|:443... connected.\nHTTP request sent, awaiting response... 302 Found\nLocation: https://az764295.vo.msecnd.net/stable/f80445acd5a3dadef24aa209168452a3d97cc326/vscode-server-linux-x64.tar.gz [following]\n--2022-03-01 20:19:25--  https://az764295.vo.msecnd.net/stable/f80445acd5a3dadef24aa209168452a3d97cc326/vscode-server-linux-x64.tar.gz\nResolving az764295.vo.msecnd.net (az764295.vo.msecnd.net)... failed: Temporary failure in name resolution.\nwget: unable to resolve host address ‘az764295.vo.msecnd.net’\nERROR: Failed to download https://update.code.visualstudio.com/commit:f80445acd5a3dadef24aa209168452a3d97cc326/server-linux-x64/stable to /home/burbanox/.vscode-server/bin/f80445acd5a3dadef24aa209168452a3d97cc326-1646176740.tar.gz\n</code></pre>\n<p>I need to know how I can solve it to be able to open visual studio code</p>\n",
+  "score": 18,
+  "answer_count": 8,
+  "view_count": 15213,
+  "tags": [
+    "ubuntu",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-03-01T23:28:03",
+  "answers": [
+    {
+      "id": 76841961,
+      "body": "<ol>\n<li>Open VS Code from Windows</li>\n<li>Open command palette <code>Ctrl + Shift + p</code></li>\n<li>Type <code>WSL</code> and select option <code>WSL: connect to WSL using Distro</code></li>\n<li>Select your distro, for example <code>Ubuntu-22.04</code></li>\n</ol>\n<p>Now if you try command <code>code .</code> from WSL it should work.</p>\n<p>This seems to me a network issue in WSL. By doing the above steps, the vscode gets updated from the windows side instead from inside WSL which was failing previously.</p>\n",
+      "score": 17,
+      "creation_date": "2023-08-05T13:52:29"
+    }
+  ],
+  "source": "stackoverflow"
+}

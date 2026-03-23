@@ -1,0 +1,15 @@
+{
+  "id": 58905555,
+  "title": "Cannot connect to MySQL database (running on WSL2) from Windows Desktop Application &quot;MySQL Workbench&quot;",
+  "body": "<p>I set up MySQL on Windows Subsystem for Linux (WSL2 version).  I'm relatively new to MySQL, but I have confirmed the following: </p>\n\n<ul>\n<li>It is running (<code>ps ax | grep mysqld</code> returns a value)</li>\n<li>It is running on default host <code>127.0.0.1</code></li>\n<li>It is running on default port <code>3306</code></li>\n</ul>\n\n<p>To login to the mysql shell, I use the command <code>sudo mysql -u root -p</code>.  Without sudo, I am unable to login to the shell.</p>\n\n<p>I assume that this issue has something to do with the host that the MySQL service is running on, but I have no idea how to change that and properly connect.  Below is a screenshot of the connection setup in MySQL Workbench.</p>\n\n<p><a href=\"https://i.sstatic.net/Bmcmp.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Bmcmp.png\" alt=\"enter image description here\"></a></p>\n\n<p>And below is the error that I get when I use the settings shown and my <code>root</code> user password.</p>\n\n<p><a href=\"https://i.sstatic.net/eMLi6.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/eMLi6.png\" alt=\"connect to mysql workbench 2\"></a></p>\n\n<p><a href=\"https://i.sstatic.net/4AcAY.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/4AcAY.png\" alt=\"enter image description here\"></a></p>\n",
+  "score": 13,
+  "answer_count": 6,
+  "view_count": 30441,
+  "tags": [
+    "mysql-workbench",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-11-17T21:51:23",
+  "answers": [],
+  "source": "stackoverflow"
+}

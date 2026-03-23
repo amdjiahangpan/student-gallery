@@ -1,0 +1,15 @@
+{
+  "id": 49627826,
+  "title": "Calling WSL bash.exe from C#",
+  "body": "<p>Mostly just as a curiosity, I wrote a little app to start up Terminator shell on Windows, using Ubuntu/WSL and Xming window server.</p>\n\n<p>Doing things manually from the shell, I can run Firefox, gedit, Terminator, etc on Windows, it's pretty cool.</p>\n\n<p>So I checked the location of <code>bash.exe</code> using <code>where bash</code> and it returned...</p>\n\n<pre><code>C:\\Windows\\System32\\bash.exe\n</code></pre>\n\n<p>However when I tried to run this code...</p>\n\n<pre><code>using (var xminProc = new Process())\n{\n    xminProc.StartInfo.FileName = @\"C:\\Program Files (x86)\\Xming\\Xming.exe\";\n    xminProc.StartInfo.Arguments = \":0 -clipboard -multiwindow\";\n    xminProc.StartInfo.CreateNoWindow = true;\n    xminProc.Start();\n}\nusing (var bashProc = new Process())\n{\n    bashProc.StartInfo.FileName = @\"C:\\Windows\\System32\\bash.exe\";\n    bashProc.StartInfo.Arguments = \"-c \\\"export DISPLAY=:0; terminator; \\\"\";\n    bashProc.StartInfo.CreateNoWindow = true;\n    bashProc.Start();\n}\n</code></pre>\n\n<p>I get the error...</p>\n\n<pre><code>System.ComponentModel.Win32Exception: 'The system cannot find the file specified'\n</code></pre>\n\n<p>And checking my entire system for <code>bash.exe</code> reveals it really be in another place altogether...</p>\n\n<p><a href=\"https://i.sstatic.net/OgZFf.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/OgZFf.png\" alt=\"bash.exe location\"></a></p>\n\n<p>I'm not sure if this location is one that I can rely on, I'm worried it's ephemeral and can change during a Windows Store update, although I may be wrong about that.</p>\n\n<p>Why does the command prompt show <code>bash.exe</code> to be in <code>System32</code> but it's really in another location altogether?</p>\n\n<p>Can I get C# to also use the <code>System32</code> location?</p>\n",
+  "score": 11,
+  "answer_count": 1,
+  "view_count": 6491,
+  "tags": [
+    "c#",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-04-03T10:30:27",
+  "answers": [],
+  "source": "stackoverflow"
+}

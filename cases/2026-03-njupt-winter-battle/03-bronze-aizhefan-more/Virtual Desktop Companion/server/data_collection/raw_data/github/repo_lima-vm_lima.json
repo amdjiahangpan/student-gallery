@@ -1,0 +1,21 @@
+{
+  "id": 367284699,
+  "name": "lima",
+  "full_name": "lima-vm/lima",
+  "description": "Linux virtual machines, with a focus on running containers",
+  "stars": 20250,
+  "forks": 814,
+  "open_issues": 422,
+  "url": "https://github.com/lima-vm/lima",
+  "clone_url": "https://github.com/lima-vm/lima.git",
+  "readme_content": "",
+  "created_at": "2021-05-14T07:30:56Z",
+  "updated_at": "2026-02-19T06:37:37Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

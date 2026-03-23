@@ -1,0 +1,16 @@
+{
+  "id": 48795674,
+  "title": "VSCode constantly asks me to Restore",
+  "body": "<p>VSCode 1.20.0 on Windows 10, with C# extension ms-vscode.csharp 1.14.0.\nVSCode Terminal points to bash (Windows Subsystem for Linux)\nVSCode is opened on a folder containing a .NET CORE 2.0 C# project</p>\n\n<p>Everything is fine, intellisense works, project references are understood.</p>\n\n<p>Whenever I switch focus to the VS Code terminal and type \"dotnet build\" or \"dotnet test\", VSCode gets confused. Red Squigglies underline every line of source code, intellisense stops working, and VSCode opens two info boxes that say</p>\n\n<p><code>Info: There are unresolved dependencies from src\\Project.csproj. Please execute the restore command to continue.\nInfo: There are unresolved dependencies from test\\Project.Tests.csproj. Please execute the restore command to continue.</code></p>\n\n<p>When I click the \"Restore\" button inside the info box, about 15 seconds later the project works again. But why, this happens all the time, I tend to dotnet build frequently. Can I configure VS Code differently to avoid this problem? It doesn't seem right that building code would break the editor functionality so I must be doing something wrong.</p>\n\n<p><strong>EDIT:</strong></p>\n\n<p>This problem seems to repro only if I <code>dotnet build</code> or <code>dotnet test</code> in WSL\\bash (whether Internal or External Terminal). It doesn't seem to repro when I build or test in an external cmd.exe</p>\n\n<p><strong>EDIT:</strong></p>\n\n<p><code>cmd.exe dotnet --info</code></p>\n\n<p>.NET Command Line Tools (2.1.4)</p>\n\n<p>Product Information:\n Version:            2.1.4\n Commit SHA-1 hash:  5e8add2190</p>\n\n<p>Runtime Environment:\n OS Name:     Windows\n OS Version:  10.0.16299\n OS Platform: Windows\n RID:         win10-x64\n Base Path:   C:\\Program Files\\dotnet\\sdk\\2.1.4\\</p>\n\n<p>Microsoft .NET Core Shared Framework Host</p>\n\n<p>Version  : 2.0.5\n  Build    : 17373eb129b3b05aa18ece963f8795d65ef8ea54</p>\n\n<p><code>WSL\\bash $ dotnet --info</code></p>\n\n<p>.NET Command Line Tools (2.0.3)</p>\n\n<p>Product Information:\n Version:            2.0.3\n Commit SHA-1 hash:  eb1d5ee318</p>\n\n<p>Runtime Environment:\n OS Name:     ubuntu\n OS Version:  16.04\n OS Platform: Linux\n RID:         ubuntu.16.04-x64\n Base Path:   /usr/share/dotnet/sdk/2.0.3/</p>\n\n<p>Microsoft .NET Core Shared Framework Host</p>\n\n<p>Version  : 2.0.3\n  Build    : a9190d4a75f4a982ae4b4fa8d1a24526566c69df</p>\n",
+  "score": 11,
+  "answer_count": 1,
+  "view_count": 6027,
+  "tags": [
+    "visual-studio-code",
+    ".net-core",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-02-14T20:29:44",
+  "answers": [],
+  "source": "stackoverflow"
+}

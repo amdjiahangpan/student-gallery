@@ -1,0 +1,18 @@
+{
+  "id": 40576522,
+  "title": "Enable vi mouse wheel scrolling using bash on ubuntu on windows 10",
+  "body": "<p>I'm using bash on ubuntu on windows 10 and would like to enable scrolling using the mouse wheel in vi or vim. I've tried entering the following command in vim and added it to the .vimrc file and /usr/share/vim/vim74/debian.vim</p>\n\n<pre><code>set mouse=a\n</code></pre>\n\n<p>However I still can't scroll with the mouse.</p>\n",
+  "score": 13,
+  "answer_count": 4,
+  "view_count": 14851,
+  "tags": [
+    "bash",
+    "vim",
+    "windows-10",
+    "vi",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-11-13T17:08:08",
+  "answers": [],
+  "source": "stackoverflow"
+}

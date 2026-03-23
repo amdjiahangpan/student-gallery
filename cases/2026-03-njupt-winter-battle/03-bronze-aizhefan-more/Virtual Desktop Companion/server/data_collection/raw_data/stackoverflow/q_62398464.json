@@ -1,0 +1,24 @@
+{
+  "id": 62398464,
+  "title": "How to run Android emulator on windows while using WSL2 with zsh?",
+  "body": "<p>I'm based on this answer: <a href=\"https://stackoverflow.com/a/58229368/13495096\">https://stackoverflow.com/a/58229368/13495096</a></p>\n<p>I need to develop using <code>react-native</code> in Windows through WSL2.</p>\n<p>I did exactly what the answer says and after a few hours of solving some errors, got to the point where:</p>\n<ul>\n<li>WSL2 is installed and running (Ubuntu 20.04 LTS)</li>\n<li>Android Studio is installed on Windows 10 (Pro x64);</li>\n<li>ADB is with the same version in both WSL2 and Windows (1.0.32);</li>\n<li>$PATH is configured properly (below) in my .zshrc file:</li>\n</ul>\n<pre class=\"lang-sh prettyprint-override\"><code># Android SDK\n\nexport JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\nexport JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/\nexport ANDROID_SDK_ROOT=/usr/lib/android-sdk\nexport ANDROID_HOME=/Android/Sdk\nexport PATH=$PATH:$ANDROID_HOME/emulator\nexport PATH=$PATH:$ANDROID_HOME/tools\nexport PATH=$PATH:$ANDROID_HOME/tools/bin\nexport PATH=$PATH:$ANDROID_HOME/platform-tools\nexport PATH=$PATH:$JAVA_HOME/bin\nexport PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$PATH\n</code></pre>\n<p>I start a device on Android Studio (Windows) and in Powershell, when running <code>adb devices</code>, it returns:</p>\n<pre><code>List of devices attached\nemulator-5554   device\n</code></pre>\n<p>When I run <code>adb devices</code> on my WSL terminal, it returns only <code>List of devices attached</code>, with nothing else.</p>\n<p>Based on the linked answer, <strong>it's possible to do it</strong> but I can't. How can I make that happen? What am I missing?</p>\n<p>I'm moving from OS X to Windows and I never tried Linux.</p>\n",
+  "score": 24,
+  "answer_count": 4,
+  "view_count": 45931,
+  "tags": [
+    "android",
+    "linux",
+    "react-native",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-15T23:11:05",
+  "answers": [
+    {
+      "id": 75862095,
+      "body": "<p>This question is already resolve in this <a href=\"https://stackoverflow.com/a/71414575/4133408\">topic</a>, and the solution for this problem is very simple:</p>\n<p>for example, my SDK PATH in windows is in this location:</p>\n<p><code>/mnt/d/Android/Sdk/platform-tools/adb.exe</code></p>\n<p>then in my wsl bash console I need to install adb:</p>\n<p><code>sudo apt install adb</code></p>\n<p>the default installation PATH in wsl is this:</p>\n<p><code>/usr/bin/adb</code></p>\n<p>now change the adb to adb_bk inside the wsl installation PATH:</p>\n<p><code>sudo mv /usr/bin/adb /usr/bin/adb_bk</code></p>\n<p>finally change the PATH inside your wsl installation for the windows PATH installation with the adb.exe:</p>\n<p><code>sudo ln -s /mnt/d/Android/Sdk/platform-tools/adb.exe /usr/bin/adb</code></p>\n<p>And when I run my ADB device in my windows this device is attached in my wsl adb:</p>\n<p><code>adb devices</code></p>\n",
+      "score": 23,
+      "creation_date": "2023-03-28T03:26:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

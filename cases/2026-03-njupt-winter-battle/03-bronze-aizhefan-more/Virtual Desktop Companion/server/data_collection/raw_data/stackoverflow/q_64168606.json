@@ -1,0 +1,16 @@
+{
+  "id": 64168606,
+  "title": "Which WSL distro is using AppData\\Local\\Docker\\wsl\\data\\ext4.vhdx after docker-desktop-data was exported and unregistered",
+  "body": "<p>Due to increasing space consumption of WSL I was forced to move my WSL distros to another disk.<br />\n<em>Ubuntu<br />\ndocker-desktop<br />\ndocker-desktop-data</em></p>\n<p>I used these commands. <br />\n<code>wsl --shutdown</code> <br />\n<code>wsl --export (on all three of those distros)</code> <br />\n<code>wsl --import (already on another disk)</code></p>\n<p>Now my environment is running fine but the <em>ext4.vhdx</em> in <em>AppData\\Local\\Docker\\wsl\\data</em> is still present and I can't remove it due to it still being used.</p>\n<p>When I look at process hadnles\n<a href=\"https://i.sstatic.net/894Aq.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/894Aq.png\" alt=\"enter image description here\" /></a></p>\n<p>Its still being used by system which is not telling much.</p>\n<p>If I run <code>WSL --shutdown</code> all virtual disks present on disk <em>E:</em> lose their handles and the one on disk <em>C:</em> is still being used.</p>\n<p><a href=\"https://i.sstatic.net/3CpVb.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/3CpVb.png\" alt=\"enter image description here\" /></a></p>\n<p>Would you know how to find out what part of WSL or if it even is WSL is using?\nSince shutting down WSL does not remove that handle it might be used by something else.\nIts not docker-for-desktop that one uses different disk.</p>\n<p>Thanks for your suggestions.</p>\n",
+  "score": 11,
+  "answer_count": 3,
+  "view_count": 11740,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "diskspace",
+    "docker-desktop"
+  ],
+  "creation_date": "2020-10-02T08:44:13",
+  "answers": [],
+  "source": "stackoverflow"
+}

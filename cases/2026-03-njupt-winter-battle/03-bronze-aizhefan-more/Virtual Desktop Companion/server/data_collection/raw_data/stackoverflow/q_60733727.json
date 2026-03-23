@@ -1,0 +1,23 @@
+{
+  "id": 60733727,
+  "title": "Unable to stop my Docker container with Ctrl-C",
+  "body": "<p>I'm using WSL2 on Windows 10 using an Ubuntu image, and Docker for Desktop Windows (2.2.2.0) with the WSL integration.</p>\n\n<p>I have a Rust TCP server. When I run it with <code>cargo run</code> (or the binary after <code>cargo install</code>), it does the right thing, and I can send <kbd>Ctrl</kbd>-<kbd>C</kbd> to it to terminate. I don't do any explicit signal handling in the code.</p>\n\n<p>I turned it into a Docker image. Here's the Dockerfile.</p>\n\n<pre class=\"lang-none prettyprint-override\"><code>FROM rust:1.40 as builder\nCOPY . .\nRUN cargo install --path . --root .\n\nFROM debian:buster-slim\nCOPY --from=builder ./bin/myserver ./myserver\nEXPOSE 8080\nENTRYPOINT [\"./myserver\"]\n</code></pre>\n\n<p>I then do:</p>\n\n<pre class=\"lang-none prettyprint-override\"><code>docker build -t myserver .\ndocker run -it --rm -p 8080:8080 myserver\n</code></pre>\n\n<p>Attempting to <kbd>Ctrl</kbd>-<kbd>C</kbd> the process shows the <code>^C</code> character in the terminal, but the signal doesn't seem to reach the process. I <em>have</em> to use <code>docker kill</code>. I've read other posts like <a href=\"https://forums.docker.com/t/docker-run-cannot-be-killed-with-ctrl-c/13108\" rel=\"noreferrer\">this</a> and <a href=\"https://stackoverflow.com/questions/37515686/stop-a-running-docker-container-by-sending-sigterm\">this</a>. It suggests that a combination of <code>-it</code> and using the array parameter version of <code>ENTRYPOINT</code> or <code>CMD</code> should allow the signal to reach it, however these don't seem to be helping me.</p>\n\n<p>To see if it was something to do with my setup (Docker for Desktop, WSL, etc.) or my Dockerfile, I followed the README for <a href=\"https://github.com/mendhak/docker-http-https-echo\" rel=\"noreferrer\">docker-http-https-echo</a>, and I'm able to <kbd>Ctrl</kbd>-<kbd>C</kbd> the process. Inspecting the Dockerfile doesn't show that it's doing anything different than me, but clearly I'm missing something.</p>\n",
+  "score": 22,
+  "answer_count": 2,
+  "view_count": 8295,
+  "tags": [
+    "docker",
+    "rust",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-03-18T04:54:03",
+  "answers": [
+    {
+      "id": 60812082,
+      "body": "<p>The reason for your problem is that the kernel treats a process with PID 1 specially, and does not, by default, kill the process when receiving the <code>SIGTERM</code> or <code>SIGINT</code> signals.</p>\n\n<p>You have two options:</p>\n\n<ol>\n<li>Add <code>--init</code> flag to <code>docker run</code> command. By that a special process with PID 1 will be created, which will be a parent for your process and will proxy all signals and properly reap your processes.</li>\n<li>Add explicit signal handling to your app, which is good if you want to do graceful shutdown.</li>\n</ol>\n\n<p>The good practice is to combine both methods.</p>\n",
+      "score": 28,
+      "creation_date": "2020-03-23T10:49:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

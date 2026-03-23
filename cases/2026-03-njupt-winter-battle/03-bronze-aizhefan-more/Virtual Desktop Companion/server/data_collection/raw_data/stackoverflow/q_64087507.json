@@ -1,0 +1,24 @@
+{
+  "id": 64087507,
+  "title": "Can&#39;t make a virtual env in PyCharm using a WSL Python interpreter",
+  "body": "<p>I'm trying to use a Python interpreter in WSL to make virtual environments, buy it doesn't show any Python file.</p>\n<p>I used <code>where python3</code> to find the interpreter. It says <code>/usr/bin/python3</code> but as you can see it shows nothing in PyCharm.</p>\n<p><a href=\"https://i.sstatic.net/z1zCb.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/z1zCb.png\" alt=\"enter image description here\" /></a></p>\n<p>I also tried uninstalling and reinstalling PyCharm and it didn't work.</p>\n<p>Also when I create a virtual env from WSL terminal using <code>virtualenv -p python3 venv</code> I can't import that in PyCharm because it doesn't recognize Python in <code>~/venv/bin/...</code></p>\n",
+  "score": 14,
+  "answer_count": 5,
+  "view_count": 14078,
+  "tags": [
+    "python",
+    "pycharm",
+    "virtualenv",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-27T10:39:01",
+  "answers": [
+    {
+      "id": 66731965,
+      "body": "<p>You can set up venv inside wsl:</p>\n<pre><code>python3 -m venv /usr/venv/project1\n</code></pre>\n<p>And add this to pycharm:\n<a href=\"https://i.sstatic.net/4qlGh.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/4qlGh.png\" alt=\"image\" /></a></p>\n",
+      "score": 9,
+      "creation_date": "2021-03-21T11:52:54"
+    }
+  ],
+  "source": "stackoverflow"
+}

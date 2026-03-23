@@ -1,0 +1,18 @@
+{
+  "id": 55258430,
+  "title": "&quot;E: Invalid operation update&quot; error while running shell scripts in WSL",
+  "body": "<p>I have a shell script called <code>setup_wsl.sh</code> which contains:</p>\n\n<pre><code>#!/bin/bash\n\necho \"hai\"\nsudo apt-get update\nsudo apt-get install \\\n    apt-transport-https \\\n    ca-certificates \\\n    curl \\\n    gnupg-agent \\\n    software-properties-common\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\nsudo apt-key fingerprint 0EBFCD88\nsudo add-apt-repository \\\n   \"deb [arch=amd64] https://download.docker.com/linux/ubuntu \\\n   $(lsb_release -cs) \\\n   stable\"  \nsudo apt-get update\nsudo apt-get install docker-ce docker-ce-cli containerd.io\n</code></pre>\n\n<p>When i run the script as ./setup_wsl.sh in WSL ( installed distro is ubuntu 18.04), errors occur as:</p>\n\n<pre><code>hai\nE: Invalid operation update\nE: Unable to locate package\n./setup_wsl.sh: 4: ./setup_wsl.sh: apt-transport-https: not found\n./setup_wsl.sh: 5: ./setup_wsl.sh: ca-certificates: not found\ncurl: (3) Illegal characters found in URL\n./setup_wsl.sh: 7: ./setup_wsl.sh: gnupg-agent: not found\n: not found ./setup_wsl.sh: software-properties-common\n: not found ./setup_wsl.sh:\n</code></pre>\n\n<p>The first command of the script works fine as it gives output \"hai\".</p>\n\n<p>Can someone help me to find why these errors occured?  </p>\n",
+  "score": 11,
+  "answer_count": 5,
+  "view_count": 20383,
+  "tags": [
+    "file",
+    "sh",
+    "sudo",
+    "ubuntu-18.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-03-20T10:22:03",
+  "answers": [],
+  "source": "stackoverflow"
+}

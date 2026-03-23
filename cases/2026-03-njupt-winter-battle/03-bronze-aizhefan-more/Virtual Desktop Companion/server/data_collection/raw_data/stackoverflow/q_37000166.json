@@ -1,0 +1,23 @@
+{
+  "id": 37000166,
+  "title": "Getting PyCharm to recognize python on the windows linux subsystem (bash on windows)",
+  "body": "<p>While running Linux versions of python, pip etc. \"natively\" on windows is amazing, I'd like to do so using a proper IDE. Since SSHD compatibility has not been implemented yet, I'm trying get PyCharm to recognize Linux python as a local interpreter.</p>\n\n<p>After installing the Windows Linux subsystem, typing</p>\n\n<pre><code>bash -c python\n</code></pre>\n\n<p>from the windows command line will drop you into a python shell.</p>\n\n<pre><code>bash -c \"echo \\\"print 'hello world'\\\" | python\" \n</code></pre>\n\n<p>works as well, producing \"hello world\" as output in the windows shell!</p>\n\n<p>I'm trying to wrap this up as a .bat file and present it to PyCharm as a local interpreter, i.e.</p>\n\n<p>python.bat:</p>\n\n<pre><code>C:\\Windows\\System32\\bash.exe -c \"echo %1 | python\" \n</code></pre>\n\n<p>But I keep getting \"the sdk seems invalid\" for any variation I try. Since I'm not sure exactly what PyCharm is doing to \"validate\" the SDK, this is hard to overcome.</p>\n",
+  "score": 47,
+  "answer_count": 7,
+  "view_count": 40622,
+  "tags": [
+    "python",
+    "pycharm",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-05-03T09:15:28",
+  "answers": [
+    {
+      "id": 41726855,
+      "body": "<p><strong>Using PyCharm Professional with WSL Python on Win10</strong>\nStarting SSH</p>\n\n<p>PyCharm can only be configured to use WSL Python as a Remote Interpreter (this is due to lack of other public API).</p>\n\n<ul>\n<li>Install Win10 build 14361  or later. You also can upgrade your current Insider Preview.</li>\n<li>Install wsl (something like <code>lxrun /install` &amp;&amp; lxrun /update</code> )</li>\n<li>Run <code>bash.exe</code> </li>\n<li>Update to latest version <code>sudo apt-get update &amp;&amp; sudo apt-get upgrade</code> </li>\n<li>Open <code>/etc/ssh/sshd_config</code>\n\n<ul>\n<li>Enable password authentication (unless you want to use public keys). Open <code>/etc/ssh/sshd_config</code> , and set <code>PasswordAuthentication yes</code>.</li>\n<li>Since <code>chroot</code> is not implemented in WSL (yet), you also need to set <code>UsePrivilegeSeparation no</code></li>\n<li>Save and close it</li>\n</ul></li>\n<li>Type <code>sudo $(sudo which sshd) -d</code> to run OpenSSH on foreground (it is much easier for debug). You should see something like <code>Server listening on 0.0.0.0 port 22</code></li>\n<li>From another <code>bash.exe</code> session try <code>ssh 127.0.0.1</code></li>\n<li><p>If you see message about ECDSA finger print, answer <code>y</code> . You should see password prompt. If you see it, then your server works correctly. </p></li>\n<li><p>Turn it off with <kbd>CTRL</kbd>+<kbd>C</kbd>, and start server in daemon mode (<code>sudo service ssh start</code>). Looks like upstart is broken on current WSL, so you would need to run <code>bash.exe</code>, start <code>sshd</code> and keep console window opened since WSL stops when the last client disconnects. You may create <code>wsl_ssh.bat</code> file like <code>bash.exe -c \"sudo service ssh start &amp;&amp;&amp; sleep 999d\"</code>  and use it to launch ssh.</p></li>\n</ul>\n\n<p>Configuring PyCharm\nPyCharm should be configured to use WSL as a remote interpreter but without deployment, since each drive on Windows is mapped to an appropriate folder in <code>/mnt/&lt;DRIVE_NAME&gt;</code>  in WSL.  So, you only need to configure the mapping. For remote interpreters, see <a href=\"https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-python-interpreters.html\" rel=\"nofollow noreferrer\">configuration-remote-python-interpreters</a> . You should use <code>127.0.0.1</code>  as hostname, and login and password you entered after first <code>lxrun /install</code>. You also should set <code>C:\\</code> to  <code>/mnt/c/</code> in your mappings. See the video from the previous post.</p>\n\n<p>Author: Ilya Kazakevich<br>\n14 Jun 2016, 17:20</p>\n\n<p><a href=\"https://youtrack.jetbrains.com/issue/PY-19129#comment=27-1469350\" rel=\"nofollow noreferrer\">https://youtrack.jetbrains.com/issue/PY-19129#comment=27-1469350</a></p>\n",
+      "score": 34,
+      "creation_date": "2017-01-18T18:29:43"
+    }
+  ],
+  "source": "stackoverflow"
+}

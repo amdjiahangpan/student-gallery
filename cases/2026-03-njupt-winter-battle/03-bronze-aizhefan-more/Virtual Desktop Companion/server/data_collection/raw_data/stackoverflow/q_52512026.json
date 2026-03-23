@@ -1,0 +1,22 @@
+{
+  "id": 52512026,
+  "title": "Is it possible install Ubuntu in Windows 10 WSL without Microsoft Store?",
+  "body": "<p>On my work are not allowed to install apps from the Microsoft Store. Yes, this is a bank, that not supported Windows 10 (it's hell).</p>\n\n<p>Is it possible to install Ubuntu in WSL without downloading it from the app store?</p>\n\n<p>Or is it possible to download Ubuntu app without Microsoft Store and then install it?</p>\n",
+  "score": 128,
+  "answer_count": 6,
+  "view_count": 229763,
+  "tags": [
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-09-26T07:15:23",
+  "answers": [
+    {
+      "id": 52512523,
+      "body": "<p>Yes, it is possible to download the app without the Store. Some available distributions are listed in the Manual Installation section of the MS guide (<a href=\"https://learn.microsoft.com/en-us/windows/wsl/install-manual\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/wsl/install-manual</a>)</p>\n\n<p>The actual manual installation instructions are hidden in the Server Install section of the manual (<a href=\"https://learn.microsoft.com/en-us/windows/wsl/install-on-server\" rel=\"noreferrer\">https://learn.microsoft.com/en-us/windows/wsl/install-on-server</a>), but my understanding is that you can just run the .appx file you downloaded and it should work anyway.</p>\n\n<p>Whether it's wise to install WSL/Ubuntu on a work computer that you don't control is another question, but one which only you can answer.</p>\n",
+      "score": 132,
+      "creation_date": "2018-09-26T07:45:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

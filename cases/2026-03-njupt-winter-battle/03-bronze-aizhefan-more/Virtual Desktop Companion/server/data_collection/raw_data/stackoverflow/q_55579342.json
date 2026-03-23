@@ -1,0 +1,25 @@
+{
+  "id": 55579342,
+  "title": "why systemd is disabled in WSL?",
+  "body": "<p>None of the systemd commands are working inside WSL( Ubuntu Bash 18.04). When I ran <code>sudo systemctl is-active kubelet</code>, error is <code>output: System has not been booted with systemd as init system (PID 1). Can't operate.\n: running command: sudo systemctl is-active kubelet</code></p>\n\n<p>How to enable systemd feature in WSL? Whats the way to get rid of <code>System has not been booted with systemd</code></p>\n",
+  "score": 58,
+  "answer_count": 6,
+  "view_count": 124521,
+  "tags": [
+    "ubuntu",
+    "kubernetes",
+    "ubuntu-18.04",
+    "windows-subsystem-for-linux",
+    "minikube"
+  ],
+  "creation_date": "2019-04-08T18:08:34",
+  "answers": [
+    {
+      "id": 61887923,
+      "body": "<p>When using WSL2 you can use:</p>\n<pre><code>sudo service docker start\n</code></pre>\n<p>This command basically execute the script <code>/etc/init.d/docker</code>.</p>\n<p>Some customization, like specifying HTTP proxy, is possible via the script <code>/etc/default/docker</code>.</p>\n",
+      "score": 46,
+      "creation_date": "2020-05-19T09:41:49"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 53343801,
+  "title": "How do I get the man command?",
+  "body": "<p>I just installed Windows Subsystem for Linux for the first time and downloaded the Debian distribution from the Windows Store.</p>\n\n<p>The first thing I tried to do was use the \"mv\" command. The second thing was to run \"man mv\" because I don't remember how to use it. But I received the error:</p>\n\n<pre><code>-bash: man: command not found\n</code></pre>\n\n<p>It <em>looks</em> like the package I want is called manpages. But I can't install that:</p>\n\n<pre><code>sudo apt-get install manpages\n[sudo] password for pi:\nReading package lists... Done\nBuilding dependency tree\nReading state information... Done\nPackage manpages is not available, but is referred to by another package.\nThis may mean that the package is missing, has been obsoleted, or is only available from another source\n\nE: Package 'manpages' has no installation candidate\n</code></pre>\n\n<p>How do I get the man command up and running?</p>\n",
+  "score": 22,
+  "answer_count": 2,
+  "view_count": 20216,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-11-16T18:53:35",
+  "answers": [
+    {
+      "id": 53343934,
+      "body": "<p><code>apt update</code> to update the local package lists followed by <code>apt install man-db</code> to install the actual package.</p>\n",
+      "score": 36,
+      "creation_date": "2018-11-16T19:04:49"
+    }
+  ],
+  "source": "stackoverflow"
+}

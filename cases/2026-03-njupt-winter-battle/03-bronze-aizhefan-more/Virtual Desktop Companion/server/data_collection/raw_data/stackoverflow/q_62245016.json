@@ -1,0 +1,16 @@
+{
+  "id": 62245016,
+  "title": "How to git clone in wsl?",
+  "body": "<p>I try to clone a repo from a brand new Windows Install with wsl (Ubuntu 20.04). \nWhat I did : generate SSH key and add public key to both github and framagit.\nTried </p>\n\n<pre><code>ssh -i -T git@github.com\n</code></pre>\n\n<p>And</p>\n\n<pre><code>ssh -i -T git@framagit.org\n</code></pre>\n\n<p>Both of them saied \"Hello my pseudo, you're authentified\"</p>\n\n<p>But when I try to clone I have the following : \nWithout sudo : </p>\n\n<pre><code>Cloning into 'testaaa'...\nerror: chmod on /mnt/d/dev/dev/testaaa/.git/config.lock failed: Operation not permitted\nfatal: could not set 'core.filemode' to 'false'\n</code></pre>\n\n<p>With sudo : </p>\n\n<pre><code>Cloning into 'testaaa'...\nssh: connect to host framagit.org port 22: Network is unreachable\nfatal: Could not read from remote repository.\nPlease make sure you have the correct access rights\nand the repository exists.\n</code></pre>\n\n<p>What can I do to solve my issue?</p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 53993,
+  "tags": [
+    "windows",
+    "git",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-07T12:02:46",
+  "answers": [],
+  "source": "stackoverflow"
+}

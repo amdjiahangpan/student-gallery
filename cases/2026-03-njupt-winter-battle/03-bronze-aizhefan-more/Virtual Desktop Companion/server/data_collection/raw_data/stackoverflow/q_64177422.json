@@ -1,0 +1,24 @@
+{
+  "id": 64177422,
+  "title": "Unable to produce to Kafka topic that is running on WSL 2 from Windows",
+  "body": "<p>I am running the latest Kafka on Ubuntu WSL2 successfully. I can start zookeeper, kafka server, create topics, console produce and console consume just fine from within the Ubuntu that I have running on the WSL. However, when I go into my Intellij on Windows and create a simple Java Producer it does not seem to be able to connect to the broker</p>\n<p><strong>Versions &amp; Hostname</strong></p>\n<pre><code>    Java version: 1.8\n    Kafka Version: 2.6\n    hostname (from Ubuntu): KDAAPPDEV04\n    hostname (from Powershell): KDAAPPDEV04\n    java.net.InetAddress.getLocalHost().getHostName() = KDAAPPDEV04\n    java.net.InetAddress.getLocalHost().getCanonicalHostName() = KDAAPPDEV04\n    netstat from CMD:\n        TCP    [::1]:9092             [::]:0                 LISTENING\n</code></pre>\n<p><strong>server.properties</strong>\nI found this settings on another SO answer but these did not work for me.</p>\n<pre><code>advertised.listeners=PLAINTEXT://127.0.0.1:9092\nlistener.security.protocol.map=PLAINTEXT:PLAINTEXT\nlisteners=PLAINTEXT://0.0.0.0:9092\n</code></pre>\n<p>then tried (and restarted zookeeper and kafka)</p>\n<pre><code>advertised.listeners=PLAINTEXT://KDAAPPDEV04:9092\nlistener.security.protocol.map=PLAINTEXT:PLAINTEXT\nlisteners=PLAINTEXT://0.0.0.0:9092\n</code></pre>\n<p><strong>Producer</strong></p>\n<p>I run this producer with three different values: hostname, localhost and 127.0.0.1 but it never connects to the broker</p>\n<pre><code>    public class ProducerDemo{\n\n    private static Logger logger = LoggerFactory.getLogger(ProducerDemo.class);\n\n    public static void main(String[] args) throws UnknownHostException{\n\n        System.out.println(InetAddress.getLocalHost().getHostName());\n        System.out.println(InetAddress.getLocalHost().getCanonicalHostName());\n\n        String bootstrapServers = &quot;127.0.0.1:9092&quot;;\n//        String bootstrapServers = &quot;localhost:9092&quot;;\n//        String bootstrapServers = &quot;KDAAPPDEV04:9092&quot;;\n\n        //create Producer properties\n        Properties properties = new Properties();\n        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);\n        properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());\n        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());\n\n        //create the producer\n        KafkaProducer&lt;String,String&gt; producer = new KafkaProducer&lt;String, String&gt;(properties);\n\n        //create a producer record\n        ProducerRecord&lt;String,String&gt; record = new ProducerRecord&lt;String, String&gt;(&quot;first-topic&quot;,&quot;hola mundo&quot;);\n\n        //send data\n        producer.send(record);\n\n        //flush + close\n        producer.flush();\n        producer.close();\n    }\n}\n</code></pre>\n<p><strong>Error</strong></p>\n<pre><code>[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.6.0\n[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 62abe01bee039651\n[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1601666175706\n[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Connection to node -1 (KDAAPPDEV04/my-ipconfig-address-here:9092) could not be established. Broker may not be available.\n</code></pre>\n",
+  "score": 14,
+  "answer_count": 10,
+  "view_count": 12363,
+  "tags": [
+    "java",
+    "apache-kafka",
+    "kafka-producer-api",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-10-02T19:45:36",
+  "answers": [
+    {
+      "id": 66379094,
+      "body": "<p>Had this same issue. The root cause seems to be that WSL2 is broken with regards to IPv6 and localhost (See: <a href=\"https://github.com/microsoft/WSL/issues/4851\" rel=\"noreferrer\">https://github.com/microsoft/WSL/issues/4851</a>)</p>\n<p>The only fix I found that doesn't involve changing configs every time you reboot (per the &quot;172.*&quot; suggestion above) is to use the IPv6 loopback address ::1 in both the Kafka server config running in Linux and the Java client in Windows.</p>\n<p>In server.properties I have this:</p>\n<pre><code>listeners=PLAINTEXT://[::1]:9092\n</code></pre>\n<p>And likewise in my Java client bootstrap server config I use</p>\n<pre><code>&quot;[::1]:9092&quot;\n</code></pre>\n",
+      "score": 32,
+      "creation_date": "2021-02-26T02:04:14"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,23 @@
+{
+  "id": 73088358,
+  "title": "Why won&#39;t Docker Desktop Start",
+  "body": "<p>I am trying to install Docker Desktop for Windows and once I have completed the entire process as mentioned in their official documentation, including installing and enabling the wsl 2 on Windows. However, when I try to launch the application, nothing happens except for a process showing up in the task manager. Even the taskbar icon is not coming up.\nI have already browsed for information regarding this issue and tried the following solutions, but to no avail:</p>\n<ol>\n<li>Reinstalling Docker Desktop</li>\n<li>Removing the settings.json file in %APPDATA%\\Roaming\\Docker</li>\n<li>Running Docker Installer as Administrator</li>\n<li>Checking the WSL Feature in Windows Features is on.</li>\n<li>Installing an older version of Docker, on which the same issue persisted</li>\n</ol>\n<p>System Specifications:</p>\n<ul>\n<li>Dell Inspiron 5521 running Windows 10 Pro (Version 21H1, Build 19043.1826)</li>\n<li>Intel i7 3rd gen processor, 16GB RAM</li>\n<li>Docker version 20.10.17, build 100c701</li>\n</ul>\n<p>This is the log file generated:\n<a href=\"https://drive.google.com/file/d/1641dD_foF3fUO9yd3C9KxNHpHAhm7iNx/view?usp=sharing\" rel=\"noreferrer\">Docker generated Log file</a></p>\n<p>Can someone please guide me regarding this?</p>\n<p>Edit: When I installed docker on my friend's computer, and running the <code>wsl -l -v</code> command, he gets 3 entries namely Ubuntu, Docker desktop and docker desktop data, but on my pc it is only showing Ubuntu.</p>\n",
+  "score": 38,
+  "answer_count": 16,
+  "view_count": 167373,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-desktop"
+  ],
+  "creation_date": "2022-07-23T05:49:45",
+  "answers": [
+    {
+      "id": 77473083,
+      "body": "<p>It might be because an instance of Docker Desktop is running in the background, try opening you Task Manager/Activity Monitor, searching for &quot;Docker Desktop&quot;, then quitting all of those processes.</p>\n",
+      "score": 25,
+      "creation_date": "2023-11-13T10:07:13"
+    }
+  ],
+  "source": "stackoverflow"
+}

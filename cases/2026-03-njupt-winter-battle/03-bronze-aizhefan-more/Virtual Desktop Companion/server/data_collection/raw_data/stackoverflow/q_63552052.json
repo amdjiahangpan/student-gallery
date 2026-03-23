@@ -1,0 +1,25 @@
+{
+  "id": 63552052,
+  "title": "Docker volumes on WSL2 using Docker Desktop",
+  "body": "<p>I'm just trying out WSL 2 with Docker for Windows and I'm having an issues with mounted volumes :</p>\n<pre class=\"lang-yaml prettyprint-override\"><code>version: &quot;3.7&quot;\n\nservices:\n    node:\n        build: .\n        container_name: node\n        hostname: node\n        volumes: \n            - ./app:/app\n        stdin_open: true\n</code></pre>\n<p>the container build and start well, I access it with docker exec nicely but the <code>/app</code> folder inside the container isn't bound to my laptop <code>app</code> folder. However the right path is actually correctly mounted on the running container :</p>\n<p>(here I do pwd on the host to if it matches perfectly with what is mounted on the container)</p>\n<pre><code>➜  app pwd   \n/mnt/c/Users/willi/devspace/these/app\n</code></pre>\n<p>And this is screen of portainer telling me what path are mounted where in the container and everything matches.</p>\n<p><a href=\"https://i.sstatic.net/gaZf1.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/gaZf1.png\" alt=\"docker volume from portainer\" /></a></p>\n<p>The file I create int he app folder on the host are not visible in the app folder of the container and vice-versa. This is weird and I don't know how to debug it.</p>\n<p>Complementary infos:</p>\n<ul>\n<li>Windows 10 Pro 10.0.19041</li>\n<li>Docker for Windows version : 2.3.0.4</li>\n<li><code>docker version</code> output in WSL : 19.03.12</li>\n<li><code>docker-compose version</code> : 1.26.2</li>\n</ul>\n<p>Thanks</p>\n",
+  "score": 22,
+  "answer_count": 3,
+  "view_count": 65286,
+  "tags": [
+    "docker",
+    "docker-compose",
+    "windows-subsystem-for-linux",
+    "docker-volume",
+    "docker-desktop"
+  ],
+  "creation_date": "2020-08-23T21:12:41",
+  "answers": [
+    {
+      "id": 64238886,
+      "body": "<p>As @Pablo mentioned, the Best-Practice seems to be using WSL File system for mapping Volumes.</p>\n<p>Take a look at the <a href=\"https://docs.docker.com/docker-for-windows/wsl/#best-practices\" rel=\"noreferrer\">Docker Documentation concerning WSL2</a>:</p>\n<h1>Best practices</h1>\n<ol>\n<li>To get the best out of the file system performance when bind-mounting files:\n<ul>\n<li>Store source code and other data that is bind-mounted into Linux containers (i.e., with <code>docker run -v &lt;host-path&gt;:&lt;container-path&gt;</code>) in the Linux filesystem, rather than the Windows filesystem.</li>\n<li>Linux containers only receive file change events (“inotify events”) if the original files are stored in the Linux filesystem.</li>\n<li>Performance is much higher when files are bind-mounted from the Linux filesystem, rather than remoted from the Windows host. Therefore avoid <code>docker run -v /mnt/c/users:/users</code> (where <code>/mnt/c</code> is mounted from Windows).</li>\n<li>Instead, from a Linux shell use a command like <code>docker run -v ~/my-project:/sources &lt;my-image&gt;</code> where <code>~</code> is expanded by the Linux shell to <code>$HOME</code>.</li>\n</ul>\n</li>\n<li>If you have concerns about the size of the docker-desktop-data VHDX, or need to change it, take a look at the WSL tooling built into Windows.</li>\n<li>If you have concerns about CPU or memory usage, you can configure limits on the memory, CPU, Swap size allocated to the WSL 2 utility VM.</li>\n<li>To avoid any potential conflicts with using WSL 2 on Docker Desktop, you must uninstall any previous versions of Docker Engine and CLI installed directly through Linux distributions before installing Docker Desktop.</li>\n</ol>\n",
+      "score": 25,
+      "creation_date": "2020-10-07T07:03:54"
+    }
+  ],
+  "source": "stackoverflow"
+}

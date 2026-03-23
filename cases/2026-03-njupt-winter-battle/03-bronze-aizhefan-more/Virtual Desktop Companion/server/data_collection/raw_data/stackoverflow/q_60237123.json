@@ -1,0 +1,23 @@
+{
+  "id": 60237123,
+  "title": "Is there any method to run perf under WSL?",
+  "body": "<p>When I wanted to run perf under WSL, I met the follow question:</p>\n\n<blockquote>\n  <p>WARNING: perf not found for kernel 4.4.0-18362</p>\n  \n  <p>You may need to install the following packages for this specific kernel:</p>\n  \n  <p>linux-tools-4.4.0-18362-Microsoft</p>\n  \n  <p>linux-cloud-tools-4.4.0-18362-Microsoft</p>\n  \n  <p>You may also want to install one of the following packages to keep up to date:</p>\n  \n  <p>linux-tools-Microsoft</p>\n  \n  <p>linux-cloud-tools-Microsoft</p>\n</blockquote>\n\n<p>But I can't find packages called <code>linux-tools-4.4.0-18362-Microsoft</code> or <code>linux-cloud-tools-4.4.0-18362-Microsoft</code>. I guess the package names are generated automatically.</p>\n\n<p>I also tried to use perf in docker container. However, docker container use the same kernel as the hosts.</p>\n\n<p>Is there any method to run perf under WSL?</p>\n\n<hr>\n\n<p>I heard that perf can be used in WSL2. But after I upgraded to WSL2, it shows the similar error message:</p>\n\n<blockquote>\n  <p>WARNING: perf not found for kernel 4.19.84-microsoft</p>\n  \n  <p>You may need to install the following packages for this specific\n  kernel:</p>\n\n<pre><code>linux-tools-4.19.84-microsoft-standard\n\nlinux-cloud-tools-4.19.84-microsoft-standard\n</code></pre>\n  \n  <p>You may also want to install one of the following packages to keep\n  up to date:</p>\n\n<pre><code>linux-tools-standard\n\nlinux-cloud-tools-standard\n</code></pre>\n</blockquote>\n",
+  "score": 65,
+  "answer_count": 7,
+  "view_count": 51495,
+  "tags": [
+    "linux",
+    "windows-subsystem-for-linux",
+    "perf"
+  ],
+  "creation_date": "2020-02-15T08:36:18",
+  "answers": [
+    {
+      "id": 60276918,
+      "body": "<blockquote>\n<p>WARNING: perf not found for kernel 4.19.84-microsoft</p>\n</blockquote>\n<p>Because WSL2 uses custom Linux kernel. Its source code can be found here\n<a href=\"https://github.com/microsoft/WSL2-Linux-Kernel.git\" rel=\"noreferrer\">microsoft/WSL2-Linux-Kernel</a>. We have to compile perf tools from it.</p>\n<h2>Procedure</h2>\n<ul>\n<li>Install required build packages. If you are using Ubuntu in WSL2 this is the\nrequired command:</li>\n</ul>\n\n<pre><code>sudo apt install build-essential flex bison libssl-dev libelf-dev\n</code></pre>\n<ul>\n<li>Clone the WSL2 Linux kernel repository:</li>\n</ul>\n\n<pre><code>git clone --depth=1 https://github.com/microsoft/WSL2-Linux-Kernel.git\n</code></pre>\n<ul>\n<li>Go to perf folder and compile it:</li>\n</ul>\n\n<pre><code>cd WSL2-Linux-Kernel/tools/perf\nmake\n</code></pre>\n<p><code>perf</code> executable file will be in that folder.</p>\n\n",
+      "score": 99,
+      "creation_date": "2020-02-18T08:46:30"
+    }
+  ],
+  "source": "stackoverflow"
+}

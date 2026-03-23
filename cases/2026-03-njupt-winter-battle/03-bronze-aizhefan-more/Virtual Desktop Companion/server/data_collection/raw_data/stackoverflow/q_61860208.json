@@ -1,0 +1,24 @@
+{
+  "id": 61860208,
+  "title": "Running graphical Linux desktop applications from WSL 2 – &quot;Error E233: cannot open display&quot;",
+  "body": "<p>How can I run graphical Linux desktop applications from the command line of Windows Subsystem for Linux (WSL)?</p>\n<p>First, I installed WSL 2 following <a href=\"https://learn.microsoft.com/en-us/windows/wsl/install-win10?redirectedfrom=MSDN\" rel=\"noreferrer\">these steps on how to install Linux on Windows with WSL</a> :</p>\n<ol>\n<li><p>I installed Windows 10 Pro Insider Preview Build 19619.</p>\n</li>\n<li><p>I installed the Ubuntu Linux distribution.</p>\n</li>\n<li><p>I changed the distribution version from WSL 1 to WSL 2.</p>\n</li>\n</ol>\n<p>Second, to enable graphical Linux desktop applications from the Bash shell of WSL, I followed <a href=\"https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/\" rel=\"noreferrer\">these steps on how to run graphical Linux desktop applications from Windows 10’s Bash shell</a> :</p>\n<ol start=\"4\">\n<li><p>I installed an X Server that is Xming.</p>\n</li>\n<li><p>As a test I installed the graphical GTK-based editor Vim :</p>\n<p><code>sudo apt-get install vim-gtk</code></p>\n</li>\n<li><p>I set my display environment variable :</p>\n<p><code>export DISPLAY=:0</code></p>\n</li>\n<li><p>I tried to launch the application :</p>\n<p><code>gvim</code></p>\n<p>However, this did not launch the application. I got the following errors :</p>\n<pre><code>E233: cannot open display\nPress ENTER or type command to continue\nE852: The child process failed to start the GUI\nPress ENTER or type command to continue\n</code></pre>\n</li>\n</ol>\n<p>Any idea why this error is occurring?</p>\n",
+  "score": 75,
+  "answer_count": 8,
+  "view_count": 303199,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "xserver",
+    "xming"
+  ],
+  "creation_date": "2020-05-17T23:38:20",
+  "answers": [
+    {
+      "id": 66398613,
+      "body": "<p>The networking subsystem in WSL2 is different than the used in WSL1. You must <a href=\"https://learn.microsoft.com/en-us/windows/wsl/compare-versions#accessing-network-applications\" rel=\"noreferrer\">consider the differences</a> to access networking apps running on Windows and on Linux:</p>\n<ul>\n<li>In WSL1, Linux uses the same IP addresses than the Windows host, then, you can access the applications using <code>localhost</code> or <code>127.0.0.1</code></li>\n<li>In WSL2, Linux runs on a lightweight virtual machine and has a different IP address. To access networking apps running on the Windows Host you must use the Windows IP address.</li>\n</ul>\n<h2>Checking the IP address of the Windows host</h2>\n<p>There are many ways to determine the IP addresses in the Windows host. You may run the following commands in your WSL Linux:</p>\n<ul>\n<li><code>cat /etc/resolv.conf</code> shows the IP address of the <code>eth0</code> interface in Windows</li>\n<li><code>ipconfig.exe</code> shows the all the IP configuration in the Windows host</li>\n<li><code>route.exe print</code> shows the network routing configuration in the Windows host</li>\n</ul>\n<h2>Setting the DISPLAY variable for WSL2</h2>\n<p>Based on the Microsoft documentation, you may set the DISPLAY variable checking the <code>nameserver</code> in the <code>/etc/resolv.conf</code> file. (<a href=\"https://stackoverflow.com/users/1775492/fquinner\">@fqquiner</a> and <a href=\"https://stackoverflow.com/users/12571294/vpraharsha\">@VPraharsha</a> already mentioned this)</p>\n<pre><code>export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0\n</code></pre>\n<p>However, I had problems using this solution, probably because I use my notebook with a WiFi connection and multiple virtual networks. Instead of the previous solution, I determine the Windows IP address using <code>route.exe</code> and checking the interface used in the default gateway.</p>\n<pre><code>export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0\n</code></pre>\n<h2>Setting the DISPLAY variable in the <code>.profile</code></h2>\n<p>You may set the DISPLAY variable in your <code>~/.profile</code> file. I used the following code:</p>\n<pre><code># set DISPLAY to use X terminal in WSL\n# in WSL2 the localhost and network interfaces are not the same than windows\nif grep -q WSL2 /proc/version; then\n    # execute route.exe in the windows to determine its IP address\n    DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0\n\nelse\n    # In WSL1 the DISPLAY can be the localhost address\n    if grep -q icrosoft /proc/version; then\n        DISPLAY=127.0.0.1:0.0\n    fi\n\nfi\n</code></pre>\n",
+      "score": 135,
+      "creation_date": "2021-02-27T12:02:07"
+    }
+  ],
+  "source": "stackoverflow"
+}

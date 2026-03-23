@@ -1,0 +1,21 @@
+{
+  "id": 929121414,
+  "name": "Archon",
+  "full_name": "coleam00/Archon",
+  "description": "Beta release of Archon OS - the knowledge and task management backbone for AI coding assistants.",
+  "stars": 13711,
+  "forks": 2368,
+  "open_issues": 151,
+  "url": "https://github.com/coleam00/Archon",
+  "clone_url": "https://github.com/coleam00/Archon.git",
+  "readme_content": "",
+  "created_at": "2025-02-07T21:04:12Z",
+  "updated_at": "2026-02-19T06:05:44Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

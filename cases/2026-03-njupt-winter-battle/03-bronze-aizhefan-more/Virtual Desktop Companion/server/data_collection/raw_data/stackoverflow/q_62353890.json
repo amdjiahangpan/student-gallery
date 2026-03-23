@@ -1,0 +1,18 @@
+{
+  "id": 62353890,
+  "title": "Windows Subsystem for Linux (WSL 2) and Jupyter Lab : How to open a Jupyter Notebook saved at the Linux file system?",
+  "body": "<p>I have a Jupyter lab installed on Windows. I installed Jupyter Lab on WSL Ubuntu. I can lunch Jupyter Lab from Linux terminal.  This will open Jupyter Lab on Chrome browser from which I can start a new Jupyter Notebook with Python [conda env:root]*. However, it only shows the windows file system. I try to open my note book that is saved on the Linux file system using: <br>\n<code>$ jupyter lab my_linux_folder/my_notebook.ipynb</code></p>\n\n<p>Jupyter lab lunches successfully, but cannot open the notebook that is on the Linux file system and gives an error:</p>\n\n<blockquote>\n  <p>Cannot open <br>\n  Could not find path: /my_notebook.ipynb</p>\n</blockquote>\n\n<p>Is it possible to open a notebook that is on the Linux file system \"\\wsl$\\\" and how? <br>\nHow to go to \"\\wsl$\\\" from JupyterLab file browser? <br>\nOr more generally how to open a notebook that is saved under \"\\wsl$\\\"  ? </p>\n",
+  "score": 13,
+  "answer_count": 7,
+  "view_count": 36459,
+  "tags": [
+    "python",
+    "jupyter-notebook",
+    "filesystems",
+    "windows-subsystem-for-linux",
+    "jupyter-lab"
+  ],
+  "creation_date": "2020-06-12T23:38:56",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 70205270,
+  "title": "How to Configure Poetry Environments in Pycharm With Windows + WSL2?",
+  "body": "<p><strong>TL;DR:</strong> can't configure a Python Interpreter on PyCharm (Windows) using an existing Poetry environment in WSL. When trying to set the Poetry environment path under <code>Add Python Interpreter &gt; Poetry Environment &gt; Existing Environment</code>, the needed Python executable simply does not show. What am I doing wrong?</p>\n<p>====================================================</p>\n<p><strong>Details:</strong> <br> <br>\nI'm using PyCharm Pro 2021.3 on Windows 11, with Python running on WSL2 (Ubuntu 20.04). I am trying to add a python interpreter for an existing Poetry environment I created on WSL2, and it just does not seem to work.</p>\n<p>PyCharm's current support of Poetry is via <a href=\"https://www.jetbrains.com/pycharm/whatsnew/#poetry-support\" rel=\"noreferrer\">adopting</a> this <a href=\"https://plugins.jetbrains.com/plugin/14307-poetry\" rel=\"noreferrer\">plugin</a>. From what I could gather from the plugin's <a href=\"https://plugins.jetbrains.com/plugin/14307-poetry\" rel=\"noreferrer\">official documentation</a>, in order to define an interpreter with an existing Poetry environment, I go to <code>Python Interpreter &gt; Add &gt; Poetry Environment</code>, choose <code>Existing environment</code>, and put in the path to that specific environment:\n<a href=\"https://i.sstatic.net/xOzPC.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/xOzPC.png\" alt=\"enter image description here\" /></a></p>\n<p>In order to find the path to that environment, I run &quot;<a href=\"https://python-poetry.org/docs/managing-environments/#displaying-the-environment-information\" rel=\"noreferrer\">poetry env info</a>&quot;, which gives a path in the following pattern:</p>\n<p><code>\\\\wsl$\\Ubuntu-20.04\\home\\$USER$\\.cache\\pypoetry\\virtualenvs\\my-pretty-project-&lt;some-hash&gt;-py3.8\\</code></p>\n<p>When running <code>which python</code> in the environment, I see the python executable is at:</p>\n<p><code>\\\\wsl$\\Ubuntu-20.04\\home\\$USER$\\.cache\\pypoetry\\virtualenvs\\my-pretty-project-&lt;some-hash&gt;-py3.8\\bin\\python</code></p>\n<p>However - when I browse to that location in PyCharm, the Python file simple does not show. The <code>bin</code> directory appears as empty - as also described in <a href=\"https://stackoverflow.com/questions/65413557/using-pycharm-professonal-with-wsl2-as-python-interpreter-does-not-have-access\">this</a> question. However - and similarly to what described in <a href=\"https://stackoverflow.com/questions/65413557/using-pycharm-professonal-with-wsl2-as-python-interpreter-does-not-have-access\">said question</a> - if I try to redefine the default interpreter path for WSL to be the path to that Poetry environment, the Python executable is there and kicking:\n<a href=\"https://i.sstatic.net/Uasqe.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Uasqe.png\" alt=\"enter image description here\" /></a></p>\n<p>(The solution described in the aforementioned question, sadly, does not work for my problem, as I am already using the patch to the Poetry environment).</p>\n<p>What can I do to make this work?</p>\n",
+  "score": 19,
+  "answer_count": 3,
+  "view_count": 8861,
+  "tags": [
+    "python",
+    "pycharm",
+    "ubuntu-20.04",
+    "windows-subsystem-for-linux",
+    "python-poetry"
+  ],
+  "creation_date": "2021-12-02T19:17:13",
+  "answers": [
+    {
+      "id": 78176484,
+      "body": "<p>I &quot;solved&quot; it by setting <code>Add Python interpreter =&gt; WSL =&gt; Python interpreter path:</code> to</p>\n<p><code>/home/user/.cache/pypoetry/virtualenvs/project-name-1yjHsXUg-py3.10/bin/python</code></p>\n<p>The path above is the poetry environment obtained by</p>\n<pre><code>$ poetry shell\n$ which python\n</code></pre>\n",
+      "score": 1,
+      "creation_date": "2024-03-17T18:39:25"
+    }
+  ],
+  "source": "stackoverflow"
+}

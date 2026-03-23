@@ -1,0 +1,17 @@
+{
+  "id": 38921079,
+  "title": "External HDD on bash on ubuntu on windows",
+  "body": "<p>How do I access an external hard drive through bash-on-Ubuntu-on-windows. It doesn't seem to appear in either <code>/media</code>, <code>/mnt</code> or <code>/dev</code>, which seem the common places that people say to look for them in Ubuntu systems. </p>\n\n<p>Note: the hard drive is HFS+ formatted: I use Paragon's HFS+ for windows and have already done an <code>apt-get install hfsprogs</code> which I think should allow the Linux part to read the HFS+ format. I have also tried with normal USB sticks, no of which seemed to appear anywhere.</p>\n\n<p>The drive does appear in <code>/cygdrive</code> in cygwin, but when I navigate to cygdrive in bash it doesn't appear. Clearly it is not properly mounted there, but is some form of symbolical link that bash cannot see.</p>\n\n<p>I'm not really sure if this is a Linux or a Windows issue, but there doesn't seem to be anything from Microsoft about it, though I realise it is early days for them. </p>\n",
+  "score": 14,
+  "answer_count": 1,
+  "view_count": 15550,
+  "tags": [
+    "windows",
+    "mount",
+    "windows-subsystem-for-linux",
+    "hfs+"
+  ],
+  "creation_date": "2016-08-12T15:04:20",
+  "answers": [],
+  "source": "stackoverflow"
+}

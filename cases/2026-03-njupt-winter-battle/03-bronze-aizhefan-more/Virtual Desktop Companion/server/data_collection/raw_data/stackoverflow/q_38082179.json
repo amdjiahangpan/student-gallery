@@ -1,0 +1,23 @@
+{
+  "id": 38082179,
+  "title": "How to translate a Windows path for Windows Subsystem for Linux",
+  "body": "<p>I'm looking for a way to translate Win32 paths into POSIX paths, preferably using Win32 tools.</p>\n<p><strong>Background</strong></p>\n<p>The latest Windows 10 Insider Build introduced the Windows Subsystem for Linux (WSL) including a native <code>bash</code> provided by Canonical, the company behind Ubuntu. Their implementation of <code>bash</code> goes by the rather complicated name of <a href=\"https://msdn.microsoft.com/en-us/commandline/wsl/about\" rel=\"noreferrer\"><em>Bash on Ubuntu on Windows</em></a>, which I will refer to as <code>bash.exe</code> in the following.</p>\n<p>The equivalent of accessing the Windows path <code>C:\\Users\\me\\Desktop</code> in <code>bash.exe</code> is <code>/mnt/c/Users/me/Desktop</code>.</p>\n<p>I'm trying to pass a path to <code>bash.exe</code> from the Windows Command Prompt (e.g. <code>bash -c ls /mnt/me/Desktop</code>). Since that requires me to pass a POSIX path, I was wondering if Microsoft offers any tools to translate Win32 paths programmatically into POSIX paths (like <code>cygpath</code> does in Cygwin, or <code>winepath</code> on Wine)</p>\n<p><strong>Alternatives</strong></p>\n<p>Unless Windows ships with any tools for translation, I'm open to alternatives to determine the path, e.g. using Node or Python.</p>\n",
+  "score": 14,
+  "answer_count": 5,
+  "view_count": 11051,
+  "tags": [
+    "bash",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-06-28T17:00:52",
+  "answers": [
+    {
+      "id": 69510047,
+      "body": "<p>The <a href=\"https://github.com/wslutilities/wslu\" rel=\"noreferrer\">WSL Utilities</a> package now provides this capability via the <code>wslpath</code> command.</p>\n<p>WSLU is installed by default with the Ubuntu distribution, but may need to be added manually to other distributions.  Instructions for package installation are on the Github page linked above.</p>\n<p>Example usage from Bash or other POSIX shells:</p>\n<pre><code>cd $(wslpath 'C:\\Users\\&lt;username&gt;\\Desktop')\n</code></pre>\n<p>... will change to <code>/mnt/c/Users/&lt;username&gt;/Desktop</code>.</p>\n<p>The reverse conversion is also possible with the <code>-w</code> option:</p>\n<pre><code>mspaint.exe $(wslpath -w ~/profile.jpg)\n</code></pre>\n<p>... will open the file <code>\\\\wsl$\\&lt;distroname&gt;\\home\\&lt;username&gt;\\profile.jpg</code> in the Paint application.</p>\n",
+      "score": 12,
+      "creation_date": "2021-10-09T19:41:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

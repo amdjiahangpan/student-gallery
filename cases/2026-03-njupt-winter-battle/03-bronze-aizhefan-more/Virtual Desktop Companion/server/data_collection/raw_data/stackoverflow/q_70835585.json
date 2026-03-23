@@ -1,0 +1,24 @@
+{
+  "id": 70835585,
+  "title": "how to install gcc-12 on ubuntu",
+  "body": "<pre class=\"lang-sh prettyprint-override\"><code>$ sudo apt search gcc-12\nSorting... Done\nFull Text Search... Done\n$ uname -a\nLinux Han 5.10.81.1-microsoft-standard-WSL2 #1 SMP Mon Nov 22 18:52:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux\n</code></pre>\n<p>I am using the default sources.list file, I want to install gcc-12 but I can't find it in the mirror source, what should I do!</p>\n",
+  "score": 36,
+  "answer_count": 4,
+  "view_count": 127159,
+  "tags": [
+    "linux",
+    "ubuntu",
+    "gcc",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-01-24T14:39:49",
+  "answers": [
+    {
+      "id": 72828475,
+      "body": "<p>gcc-12 is not available in ubuntu 20.04, so we need to compile it from source code, here are the steps which I borrowed from <a href=\"https://www.youtube.com/watch?v=TCcUa1FPU80\" rel=\"nofollow noreferrer\">this video</a>:</p>\n<ul>\n<li><strong>Step 1</strong>: clone gcc source code and checkout gcc-12 branch</li>\n</ul>\n<pre><code>$ git clone https://gcc.gnu.org/git/gcc.git gcc-source\n$ cd gcc-source/\n$ git branch -a\n$ git checkout remotes/origin/releases/gcc-12\n</code></pre>\n<ul>\n<li><strong>Step 2</strong>: make another build dir</li>\n</ul>\n<p>Note this is important as running <code>./configure</code> from within the source directory is not supported as documented <a href=\"https://gcc.gnu.org/wiki/InstallingGCC\" rel=\"nofollow noreferrer\">here</a>.</p>\n<pre><code>$ mkdir ../gcc-12-build\n$ cd ../gcc-12-build/\n$ ./../gcc-source/configure --prefix=$HOME/install/gcc-12 --enable-languages=c,c++\n</code></pre>\n<ul>\n<li><strong>Step 3</strong>: installing GCC prequisites and run configure again</li>\n</ul>\n<p>The missing libraries will be shown in above <code>./confgiure</code> output, search and install them one by one.</p>\n<pre><code>$ apt-cache search MPFR\n$ sudo apt-get install libmpfrc++-dev\n$ apt-cache search MPC | grep dev\n$ sudo apt-get install libmpc-dev\n$ apt-cache search GMP | grep dev\n$ sudo apt-get install libgmp-dev\n$ sudo apt-get install gcc-multilib\n$ ./../gcc-source/configure --prefix=$HOME/install/gcc-12 --enable-languages=c,c++\n</code></pre>\n<p>An alternative is to run the download_prerequisites script.</p>\n<pre><code>$ cd ../\n$ cd gcc-source/\n$ ./contrib/download_prerequisites\n$ ./../gcc-source/configure --prefix=$HOME/install/gcc-12 --enable-languages=c,c++\n</code></pre>\n<ul>\n<li><strong>Step 4</strong>: compile gcc-12</li>\n</ul>\n<pre><code>$ make -j16\n</code></pre>\n<p>Still flex is missing:</p>\n<pre><code>$ sudo apt-get install flex\n$ ./../gcc-source/configure --prefix=$HOME/install/gcc-12 --enable-languages=c,c++\n$ make -j16\n$ make install\n</code></pre>\n<p>Another way is to use Ubuntu 22.04 where gcc-12 is available. In Ubuntu 22.04, gcc-12 can be installed with <code>apt</code>:</p>\n<pre><code>$ sudo apt install gcc-12\n</code></pre>\n",
+      "score": 50,
+      "creation_date": "2022-07-01T11:18:59"
+    }
+  ],
+  "source": "stackoverflow"
+}

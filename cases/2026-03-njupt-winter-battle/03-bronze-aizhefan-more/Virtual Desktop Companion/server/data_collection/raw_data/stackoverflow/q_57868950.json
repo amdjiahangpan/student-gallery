@@ -1,0 +1,23 @@
+{
+  "id": 57868950,
+  "title": "WSL2 terminal does not recognize Visual Studio Code",
+  "body": "<p>When I try to execute code from WSL, like this:</p>\n\n<pre><code>cmd.exe\nwsl code .\n</code></pre>\n\n<p>I get the following error:</p>\n\n<pre><code>/bin/bash: code: command not found\n</code></pre>\n\n<p>However, if I execute the same command but first run cmd.exe as an Administrator, vscode opens as expected.</p>\n\n<p>The question is why \"code\" is not recognizable when I run as non-admin, and how can I solve it?</p>\n\n<p>Additional info: \nWSL2 version 41959\nvscode version 1.38\nvscode Remote WSL extension version 0.39.5</p>\n",
+  "score": 19,
+  "answer_count": 5,
+  "view_count": 28265,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "vscode-remote"
+  ],
+  "creation_date": "2019-09-10T10:33:22",
+  "answers": [
+    {
+      "id": 57887086,
+      "body": "<p>As @Biswapriyo mentioned, this is an open <a href=\"http://github.com/microsoft/WSL/issues/4377\" rel=\"noreferrer\">bug</a> where WSL cannot access Windows C drive.\nWorkaround that helped me is to restart WSL like this:</p>\n\n<pre><code>wsl --shutdown\nwsl\n</code></pre>\n",
+      "score": 34,
+      "creation_date": "2019-09-11T10:25:49"
+    }
+  ],
+  "source": "stackoverflow"
+}

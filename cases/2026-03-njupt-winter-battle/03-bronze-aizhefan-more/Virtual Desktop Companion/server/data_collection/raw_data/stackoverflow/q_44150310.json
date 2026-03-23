@@ -1,0 +1,25 @@
+{
+  "id": 44150310,
+  "title": "openAi-gym NameError",
+  "body": "<p>I am trying to use the famous 'Gym' module from OpenAI on WSL and executing code on python 3.5.2.<br />\nWhen I try to run an environment <a href=\"https://gym.openai.com/docs\" rel=\"noreferrer\">as explained here</a>, using the code:</p>\n<pre><code>import gym\nenv = gym.make('CartPole-v0')\nfor i_episode in range(20):\n    observation = env.reset()\n    for t in range(100):\n        env.render()\n        print(observation)\n        action = env.action_space.sample()\n        observation, reward, done, info = env.step(action)\n        if done:\n            print(&quot;Episode finished after {} timesteps&quot;.format(t+1))\n            break\n</code></pre>\n<p>this happens:</p>\n<pre><code>Traceback (most recent call last):\n  File &quot;&lt;stdin&gt;&quot;, line 4, in &lt;module&gt;\n  File &quot;/home/DrHofstadter/gym/gym/core.py&quot;, line 153, in render\n    return self._render(mode=mode, close=close)\n  File &quot;/home/DrHofstadter/gym/gym/core.py&quot;, line 285, in _render\n    return self.env.render(mode, close)\n  File &quot;/home/DrHofstadter/gym/gym/core.py&quot;, line 153, in render\n    return self._render(mode=mode, close=close)\n  File &quot;/home/DrHofstadter/gym/gym/envs/classic_control/cartpole.py&quot;, line 114, in _render\n    from gym.envs.classic_control import rendering\n  File &quot;/home/DrHofstadter/gym/gym/envs/classic_control/rendering.py&quot;, line 23, in &lt;module&gt;\n    from pyglet.gl import *\n  File &quot;/home/DrHofstadter/.local/lib/python3.5/site-packages/pyglet/gl/__init__.py&quot;, line 224, in &lt;module&gt;\n    del base\nNameError: name 'base' is not defined\n</code></pre>\n<p>The problem is similar to <a href=\"https://stackoverflow.com/questions/40036512/run-openai-gym-with-google-compute-engine\">this question</a>\nnothing is being rendered. (The gitterforum link given in question doesn't work anymore.)</p>\n",
+  "score": 29,
+  "answer_count": 3,
+  "view_count": 6674,
+  "tags": [
+    "python",
+    "python-3.x",
+    "nameerror",
+    "windows-subsystem-for-linux",
+    "openai-gym"
+  ],
+  "creation_date": "2017-05-24T06:13:39",
+  "answers": [
+    {
+      "id": 60897409,
+      "body": "<p>This may not be a perfect answer to this question but this is my experience how I resolved this problem.</p>\n\n<p>I was getting the same error when I running my programme from the spyder. but when <strong>I execute the same code from the terminal it didn't throw any error</strong>. \nbut make your locale is correctly configured for the gym environment.</p>\n",
+      "score": 1,
+      "creation_date": "2020-03-28T04:56:23"
+    }
+  ],
+  "source": "stackoverflow"
+}

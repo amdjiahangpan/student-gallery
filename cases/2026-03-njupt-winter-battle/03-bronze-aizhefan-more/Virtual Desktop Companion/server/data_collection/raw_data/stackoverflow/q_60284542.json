@@ -1,0 +1,24 @@
+{
+  "id": 60284542,
+  "title": "WSL - GEDIT Unable to init server: Could not connect: Connection refused",
+  "body": "<p>I'm using Ubuntu 18.04 as Windows Subsystem for Linux on my Windows 10 machine.<br>\nI've installed <code>gedit</code> without any errors or warnings.  </p>\n\n<p>But whenever I try to use the command <code>gedit something</code> (here something is a filename)<br>\nI get this error:  </p>\n\n<pre><code>Unable to init server: Could not connect: Connection refused\n\n(gedit:48): Gtk-WARNING **: 21:03:26.729: cannot open display:\n</code></pre>\n",
+  "score": 30,
+  "answer_count": 3,
+  "view_count": 192226,
+  "tags": [
+    "linux",
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "gedit"
+  ],
+  "creation_date": "2020-02-18T15:39:29",
+  "answers": [
+    {
+      "id": 60285940,
+      "body": "<p>You need an X server to run graphical applications like <code>gedit</code>. \nI use <a href=\"https://sourceforge.net/projects/vcxsrv/\" rel=\"noreferrer\">VcXsrv</a> or <a href=\"https://sourceforge.net/projects/xming/\" rel=\"noreferrer\">Xming</a> on my Windows desktops, both are very small and easy to install,\nbut there exist other servers like <a href=\"https://x.cygwin.com/\" rel=\"noreferrer\">Cygwin/X</a>.</p>\n\n<p>Short instructions for VcXsrv/Xming:</p>\n\n<ul>\n<li>download and install the Windows package</li>\n<li>start XLaunch or Xming</li>\n<li><p>export the DISPLAY variable in your WSL terminal and start gedit</p>\n\n<pre><code>export DISPLAY=0:0\ngedit\n</code></pre></li>\n</ul>\n\n<p>I have the problem that some checkboxes in gedit's preferences are not working (dconf error, I don't care), but other than that the editor is usable.</p>\n\n<p>Related:</p>\n\n<ul>\n<li><a href=\"https://askubuntu.com/questions/993225/whats-the-easiest-way-to-run-gui-apps-on-windows-subsystem-for-linux-as-of-2018\">What's the easiest way to run GUI apps on Windows Subsystem for Linux as of 2018?</a> (askubuntu.com)</li>\n</ul>\n",
+      "score": 23,
+      "creation_date": "2020-02-18T16:59:13"
+    }
+  ],
+  "source": "stackoverflow"
+}

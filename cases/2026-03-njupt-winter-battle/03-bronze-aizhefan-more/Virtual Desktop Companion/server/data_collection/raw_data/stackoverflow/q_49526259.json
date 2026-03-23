@@ -1,0 +1,22 @@
+{
+  "id": 49526259,
+  "title": "Start WSL Ubuntu in specific or current folder on Windows",
+  "body": "<p>When installing Subsystem for Linux and Ubuntu from store on his development machine I can switch (or start) to Ubuntu shell by simply</p>\n\n<p><a href=\"https://i.sstatic.net/RgSmf.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/RgSmf.png\" alt=\"enter image description here\"></a></p>\n\n<p>But the Ubuntu shell start in <code>/home/techsupp</code> folder by default. Is it possible to force it to start in same folder than the one I use my <code>Ubuntu</code> command?</p>\n\n<p>So in my example I should be in </p>\n\n<pre><code>/mnt/h\n</code></pre>\n\n<p>Thank you.</p>\n\n<p><strong>What I already tried:</strong></p>\n\n<pre><code>H:\\&gt;ubuntu help\nLaunches or configures a linux distribution.\n\nUsage:\n    &lt;no args&gt;\n      - Launches the distro's default behavior. By default, this launches your default shell.\n\n    run &lt;command line&gt;\n      - Run the given command line in that distro, using the default configuration.\n      - Everything after `run ` is passed to the linux LaunchProcess call.\n\n    config [setting [value]]\n      - Configure certain settings for this distro.\n      - Settings are any of the following (by default)\n        - `--default-user &lt;username&gt;`: Set the default user for this distro to &lt;username&gt;\n\n    clean\n      - Uninstalls the distro. The appx remains on your machine. This can be\n        useful for \"factory resetting\" your instance. This removes the linux\n        filesystem from the disk, but not the app from your PC, so you don't\n        need to redownload the entire tar.gz again.\n\n    help\n      - Print this usage message.\n</code></pre>\n\n<p>I also discover this request on uservoice: <a href=\"https://wpdev.uservoice.com/forums/266908-command-prompt-console-windows-subsystem-for-l/suggestions/13421103-let-us-right-click-open-bash-here-from-explorer?tracking_code=8a8bc624c72a8336565fcd6d5737d712\" rel=\"noreferrer\">https://wpdev.uservoice.com/forums/266908-command-prompt-console-windows-subsystem-for-l/suggestions/13421103-let-us-right-click-open-bash-here-from-explorer?tracking_code=8a8bc624c72a8336565fcd6d5737d712</a></p>\n\n<p>Please vote for it.</p>\n",
+  "score": 116,
+  "answer_count": 11,
+  "view_count": 125672,
+  "tags": [
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-03-28T04:45:04",
+  "answers": [
+    {
+      "id": 56567066,
+      "body": "<p>I'm on Windows 10 Home with May Update and have Ubuntu 18.04 for WSL installed, I can open the console in any folder with <strong>Shift + Right Click</strong> and selecting the <em>Open Linux shell here</em> option</p>\n<p><img src=\"https://i.sstatic.net/sDgJF.png\" alt=\"\" /></p>\n",
+      "score": 120,
+      "creation_date": "2019-06-12T16:56:02"
+    }
+  ],
+  "source": "stackoverflow"
+}

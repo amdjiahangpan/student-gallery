@@ -1,0 +1,17 @@
+{
+  "id": 70686909,
+  "title": "Read input when debugging console in wsl2 in VS2022",
+  "body": "<p>I have created a console application in Visual Studio 2022 that is just the two lines WriteLine and ReadLine. When Debugging it for Windows, a console opens that shows the output and waits for the input. However, if I switch it to debugging for WSL, I get the output in the “Output” window, but I do not find any way of entering any data to stdin of the program, thus getting stuck at the readline. Is there a way of doing this? Maybe have Visual Studio open a console window instead of using the output window in Visual Studio as it does for the Windows application?</p>\n",
+  "score": 12,
+  "answer_count": 2,
+  "view_count": 2630,
+  "tags": [
+    "visual-studio",
+    "windows-subsystem-for-linux",
+    ".net-6.0",
+    "visual-studio-2022"
+  ],
+  "creation_date": "2022-01-12T18:51:26",
+  "answers": [],
+  "source": "stackoverflow"
+}

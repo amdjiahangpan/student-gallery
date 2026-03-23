@@ -1,0 +1,25 @@
+{
+  "id": 41281112,
+  "title": "Crontab Not Working with Bash on Ubuntu on Windows",
+  "body": "<p>I am trying to schedule a bash script to run with Bash on Ubuntu on Windows in Windows 10. Every time that I to write the cron, I get the following error messages in the terminal:</p>\n\n<pre><code>crontab: installing new crontab\n/var/spool/cron/: mkstemp: Permission denied\ncrontab: edits left in /tmp/crontab.4q0z3i/crontab\n</code></pre>\n\n<p>Here is what the crontab entry looks like:</p>\n\n<pre><code># m h  dom mon dow   command\n27 10 * * * /home/admin/test.sh &gt; /home/admin/logs/test.log 2&gt;&amp;1   \n</code></pre>\n\n<p>What exactly is going on here? </p>\n",
+  "score": 33,
+  "answer_count": 9,
+  "view_count": 38616,
+  "tags": [
+    "windows",
+    "bash",
+    "ubuntu",
+    "cron",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-12-22T10:35:50",
+  "answers": [
+    {
+      "id": 42819381,
+      "body": "<p>You need to add yourself to the crontab group.  </p>\n\n<pre><code>usermod -a -G crontab (username)\n</code></pre>\n\n<p>Once you have done this, you also need to make sure that cron is running.  Usually this is started with <code>start cron</code> however upstart does not work on WSL from what I can tell, but <code>sudo cron</code> does the job.</p>\n\n<p>One caveat to this is that once you close all bash windows, cron will stop running even though your computer runs.  However, as long as you have a bash window open and cron running, it will perform as expected. </p>\n",
+      "score": 52,
+      "creation_date": "2017-03-15T19:49:24"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 65546108,
+  "title": "where is hostconfig.json (Docker desktop + WSL2 environment)",
+  "body": "<p>As I know, docker doesn't support any command that change port mapping after make container.<br />\nBut this answer said that by changing the hostconfig.json file, I can change port mapping.</p>\n<p><a href=\"https://stackoverflow.com/questions/19335444/how-do-i-assign-a-port-mapping-to-an-existing-docker-container\">How do I assign a port mapping to an existing Docker container?</a><br />\nI'm using docker desktop in windows + WSL2.So path of hostconfig.json is different with other answers.<br />\nWhere is hostconfig.json?<br />\nIn my case, (\\wsl$\\docker-desktop-data\\mnt\\wsl\\docker-desktop-data\\data, /var/lib/docker(in wsl)) directories are not exist.</p>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 11381,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-03T02:26:30",
+  "answers": [
+    {
+      "id": 67687019,
+      "body": "<h2>Where it can be accessed</h2>\n<p><code>hostconfig.json</code> for a container can be found in WSL2 using Windows Explorer at the hidden network path <code>\\\\wsl$\\docker-desktop-data\\version-pack-data\\community\\docker\\containers\\{containerid}\\hostconfig.json</code></p>\n<p><a href=\"https://i.sstatic.net/5DAej.png\" rel=\"noreferrer\">Windows Explorer Screenshot with hostconfig.json</a></p>\n<h2>Where it is not (but may be expected)</h2>\n<p>The subdirectories of <code>/mnt/wsl/docker-desktop-data/version-pack-data</code> are not exposed to WSL (for some reason):</p>\n<pre><code>deno@DeonJ-T570:/mnt/wsl/docker-desktop-data/version-pack-data$ sudo ls -al\n[sudo] password for deno: \ntotal 0\ndrwxr-xr-x 2 root root  40 May 25 12:09 .\ndrwxr-xr-x 6 root root 120 May 25 12:09 ..\ndeno@DeonJ-T570:/mnt/wsl/docker-desktop-data/version-pack-data$ \n</code></pre>\n",
+      "score": 23,
+      "creation_date": "2021-05-25T11:27:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

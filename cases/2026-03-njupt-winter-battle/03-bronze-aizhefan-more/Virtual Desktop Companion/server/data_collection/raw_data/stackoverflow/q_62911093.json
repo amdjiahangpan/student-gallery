@@ -1,0 +1,16 @@
+{
+  "id": 62911093,
+  "title": "virtualenvwrapper Command &#39;&#39; not found, but can be installed with",
+  "body": "<p>I'm on Ubuntu WSL and installed <code>virtualenvwrapper</code> using <code>sudo apt install</code>.</p>\n<p>As required, variable <code>WORKON_HOME</code> is correctly set to my virtual envs directory.</p>\n<p>When I run <code>mkvirtualenv myawesomeproject</code> I get the following error :</p>\n<pre><code>created virtual environment CPython3.8.2.final.0-64 in 760ms\n  creator CPython3Posix(dest=/home/fred/venvs/myawesomeproject, clear=False, global=False)\n  seeder FromAppData(download=False, CacheControl=latest, appdirs=latest, certifi=latest, chardet=latest, colorama=latest, contextlib2=latest, distlib=latest, distro=latest, html5lib=latest, idna=latest, ipaddr=latest, lockfile=latest, msgpack=latest, packaging=latest, pep517=latest, pip=latest, pkg_resources=latest, progress=latest, pyparsing=latest, pytoml=latest, requests=latest, retrying=latest, setuptools=latest, six=latest, urllib3=latest, webencodings=latest, wheel=latest, via=copy, app_data_dir=/home/fred/.local/share/virtualenv/seed-app-data/v1.0.1.debian)\n  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator\n\nCommand '' not found, but can be installed with:\n\nsudo apt install mailutils-mh  # version 1:3.7-2.1, or\nsudo apt install meshio-tools  # version 4.0.4-1\nsudo apt install mmh           # version 0.4-2\nsudo apt install nmh           # version 1.7.1-6\nsudo apt install termtris      # version 1.3-1\n</code></pre>\n<p>Any idea ?</p>\n",
+  "score": 10,
+  "answer_count": 2,
+  "view_count": 8426,
+  "tags": [
+    "windows-subsystem-for-linux",
+    "virtualenvwrapper",
+    "ubuntu-20.04"
+  ],
+  "creation_date": "2020-07-15T08:52:23",
+  "answers": [],
+  "source": "stackoverflow"
+}

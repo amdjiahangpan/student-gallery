@@ -1,0 +1,24 @@
+{
+  "id": 60166965,
+  "title": "ADB device list empty using WSL2",
+  "body": "<p>I'm trying to debug / connect up a device for development using WSL2 (Ubuntu). I've followed steps on this post <a href=\"https://stackoverflow.com/a/58229368/21061\">https://stackoverflow.com/a/58229368/21061</a> which sets up ADB on both Windows and Linux using the same ADB version.</p>\n\n<p>Once I've done that however, I get an empty list of devices in the Ubuntu terminal. I've tried killing and restarting the ADB server from the Windows command line and that doesn't seem to make any difference. Is this not possible in WSL2 or is there something I'm missing?</p>\n\n<p><a href=\"https://i.sstatic.net/CEHHL.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/CEHHL.png\" alt=\" \"></a></p>\n",
+  "score": 45,
+  "answer_count": 11,
+  "view_count": 81899,
+  "tags": [
+    "android",
+    "windows",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-02-11T10:38:07",
+  "answers": [
+    {
+      "id": 65242444,
+      "body": "<p>This <a href=\"https://stackoverflow.com/a/63530375/10244759\">answer</a> worked for me using WSL 2:</p>\n<p>On Windows:</p>\n<pre><code>adb tcpip 5555\n</code></pre>\n<p>Then on WSL 2:</p>\n<pre><code>adb connect $phone_ip:5555\n</code></pre>\n<p>If it's the first time, it's going to ask you for permission in your phone, make sure to check the box to always grant permission. Then restart adb and connect again:</p>\n<pre><code>adb kill-server\nadb connect $phone_ip:5555\n</code></pre>\n<p>You can get your $phone_ip from: Settings &gt; About device &gt; Status, but it may be different for your phone. It has a form like: 170.100.100.100. Note that the host PC with WSL needs to be connected on the same network.</p>\n",
+      "score": 58,
+      "creation_date": "2020-12-10T21:16:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 66832570,
+  "title": "How to check allocated memory for WSL Docker?",
+  "body": "<p>I want to increase allocated RAM for WSL. I have created in my root /users/ .wslconfig. How does it looks:</p>\n<pre><code>[wsl2]\nmemory=6GB\nswap=0\nlocalhostForwarding=true\n</code></pre>\n<p>I did <code>wsl --shutdown</code> and then started WSL to apply changes.\nBut I don't know how to check if allocated RAM is changed. How do I check it?</p>\n",
+  "score": 20,
+  "answer_count": 2,
+  "view_count": 52037,
+  "tags": [
+    "windows",
+    "docker",
+    "ram",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-03-27T14:44:41",
+  "answers": [
+    {
+      "id": 66835751,
+      "body": "<p>One way you can check is from inside the WSL2 environment with standard Linux commands. See which WSL environments you have by running this in Powershell: <code>wslconfig /list</code> and if you have WSL2 properly configured, you can access the shell with <code>wsl</code> also in Powershell.</p>\n<pre><code>$ free -mh\n              total        used        free      shared  buff/cache   available\nMem:          7.8Gi       552Mi       5.9Gi       400Mi       1.3Gi       6.6Gi\nSwap:         2.0Gi          0B       2.0Gi\n</code></pre>\n<p>I have 16GB RAM on my machine and my wsl2 config is this:</p>\n<pre><code>[wsl2]\nmemory=8GB # Limits VM memory in WSL 2 to 8 GB\n</code></pre>\n<p>There are a handful of other commands you could use too, including:</p>\n<pre class=\"lang-sh prettyprint-override\"><code># print memory usage statistics\n$ vmstat -s\n\n# print top processes with memory information\n$ top\n\n# fancy top\n$ htop\n</code></pre>\n",
+      "score": 38,
+      "creation_date": "2021-03-27T20:26:44"
+    }
+  ],
+  "source": "stackoverflow"
+}

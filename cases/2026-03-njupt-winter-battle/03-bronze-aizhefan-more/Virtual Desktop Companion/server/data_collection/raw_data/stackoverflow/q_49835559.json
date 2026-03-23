@@ -1,0 +1,25 @@
+{
+  "id": 49835559,
+  "title": "Access a web server which is running on WSL (Windows Subsystem for Linux) from the local network",
+  "body": "<p>After installing <a href=\"https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29\" rel=\"noreferrer\">Ubuntu</a> as <a href=\"https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux\" rel=\"noreferrer\">WSL</a> (Windows Subsystem for Linux), I've run (as root):</p>\n<pre class=\"lang-none prettyprint-override\"><code>cd ~\npython3 -m http.server\n</code></pre>\n<p>Output:</p>\n<pre class=\"lang-none prettyprint-override\"><code>Serving HTTP on 0.0.0.0 port 8000 ...\n</code></pre>\n<p>And I tried to access to this web server from my windows machine, <code>http://0.0.0.0:8000</code> or <code>http://192.168.1.178:8000</code>, but without any success. The web server is available only by the address <code>http://127.0.0.1:8000</code> or <code>http://localhost:8000</code>. It means that I can't connect to this web server from another PC in my network. Is it possible to get access to WSL from the outside?</p>\n",
+  "score": 102,
+  "answer_count": 15,
+  "view_count": 204904,
+  "tags": [
+    "linux",
+    "windows",
+    "ubuntu",
+    "webserver",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-04-14T19:51:43",
+  "answers": [
+    {
+      "id": 64159675,
+      "body": "<p>In your VM, execute <code>ifconfig</code>.</p>\n<p>You will see your IP address in the first section (eth0:) inet x.x.x.x</p>\n<p>This x.x.x.x is the IP address you have to put in your browser.</p>\n",
+      "score": 51,
+      "creation_date": "2020-10-01T16:34:33"
+    }
+  ],
+  "source": "stackoverflow"
+}

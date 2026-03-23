@@ -1,0 +1,15 @@
+{
+  "id": 77548924,
+  "title": "can run wsl command anymore `Failed to attach disk &#39;C:\\Users\\aib\\AppData\\Local\\Docker\\wsl\\distro\\ext4.vhdx&#39; to WSL2`",
+  "body": "<p>Empting space of my computer, I can anymore run wsl, how can I deal with this problem?</p>\n<p>in command line I tried to run wsl to use linux command line but I got this error:</p>\n<pre><code>Failed to attach disk 'C:\\Users\\aib\\AppData\\Local\\Docker\\wsl\\distro\\ext4.vhdx' to WSL2: The system cannot find the path specified.\nError code: Wsl/Service/CreateInstance/MountVhd/HCS/ERROR_PATH_NOT_FOUND\n</code></pre>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 27154,
+  "tags": [
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-11-25T17:37:00",
+  "answers": [],
+  "source": "stackoverflow"
+}

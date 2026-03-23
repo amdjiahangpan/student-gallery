@@ -1,0 +1,24 @@
+{
+  "id": 46801941,
+  "title": "windows 10 bash tcpdump: socket: Invalid argument",
+  "body": "<p>I am using windows 10 bash to use tcpdump\nFrom tutorial i found that to listen to a interface command is:</p>\n\n<pre><code>tcpdump -i eth0 //eth0 is ethernet interface\ntcpdump -i any // to listen to any interface\n</code></pre>\n\n<p>In both cases I am getting tcpdump: socket: Invalid argument error.\nNOTE: </p>\n\n<pre><code>tcpdump -D\n</code></pre>\n\n<p>does not print anything on console.</p>\n",
+  "score": 18,
+  "answer_count": 2,
+  "view_count": 24954,
+  "tags": [
+    "network-programming",
+    "tcpdump",
+    "windows-subsystem-for-linux",
+    "network-tools"
+  ],
+  "creation_date": "2017-10-18T02:32:37",
+  "answers": [
+    {
+      "id": 47015755,
+      "body": "<p>Based on <a href=\"https://github.com/Microsoft/WSL/issues/69\" rel=\"noreferrer\">https://github.com/Microsoft/WSL/issues/69</a>, this is a limitation of the current Windows Subsystem for Linux.  The Fall Creators update added a lot of functionality, but tcpdump still does not work.</p>\n",
+      "score": 37,
+      "creation_date": "2017-10-30T12:51:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

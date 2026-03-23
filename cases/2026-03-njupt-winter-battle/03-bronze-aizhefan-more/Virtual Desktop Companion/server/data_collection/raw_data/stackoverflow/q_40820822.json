@@ -1,0 +1,24 @@
+{
+  "id": 40820822,
+  "title": "Location of .bashrc for &quot;Bash on Ubuntu on Windows&quot; in Windows 10",
+  "body": "<p>Microsoft just introduced a Linux subsystem in its Windows 10 Anniversary Edition. The installation is pretty straight forward, but I could not locate bash files on Windows.</p>\n\n<p>How does it work? What does <code>~</code> refer to in Windows? Where to find <code>.bashrc</code>?</p>\n",
+  "score": 42,
+  "answer_count": 7,
+  "view_count": 76976,
+  "tags": [
+    "linux",
+    "windows",
+    "bash",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-11-26T17:06:38",
+  "answers": [
+    {
+      "id": 49196815,
+      "body": "<p>Since the Windows 10 Fall Creators Update, the location changed to:</p>\n\n<pre><code>C:\\Users\\USERNAME\\AppData\\Local\\Packages\\{DIST}\\LocalState\\rootfs\\home\\{LINUXUSER}\\\n</code></pre>\n\n<p>Where:</p>\n\n<ul>\n<li><code>{DIST}</code> is equal to <code>CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc</code></li>\n<li><code>{LINUXUSER}</code> is the user for which you are looking for the .bashrc file</li>\n</ul>\n\n<p>Just for anyone wondering that came here from Google.</p>\n",
+      "score": 61,
+      "creation_date": "2018-03-09T15:16:14"
+    }
+  ],
+  "source": "stackoverflow"
+}

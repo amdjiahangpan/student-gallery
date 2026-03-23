@@ -1,0 +1,25 @@
+{
+  "id": 57185946,
+  "title": "How to run VScode in sudo mode in WSL2?",
+  "body": "<p>I was configuring the new Windows subsystem for Linux 2 developing environment. I have installed VSCode in Windows and WSL2 distribution of Ubuntu 18.04. I can open VSCode in Ubuntu(accessed through Windows Terminal) normally when logged as normal user, using command as follows:</p>\n\n<pre><code>simp1e@ZhuXian:/mnt/c/WINDOWS/system32$ code . \n</code></pre>\n\n<p>But when I add sudo command in the front, the error occurs as follows:</p>\n\n<pre><code>simp1e@ZhuXian:/mnt/c/WINDOWS/system32$ sudo code .\nsudo: code: command not found                                                                                                                                                           \n</code></pre>\n\n<p>At first, the problem remains after I switched to root user. Later I found that the PATH of root user didn't contain VSCode. So I add the VSCode path to /etc/environment. After that root user can open VSCode normally, but <code>sudo code .</code> still have the problem.\nWhat should I do? Is this still related to the PATH?</p>\n",
+  "score": 30,
+  "answer_count": 2,
+  "view_count": 26656,
+  "tags": [
+    "ubuntu",
+    "visual-studio-code",
+    "sudo",
+    "windows-subsystem-for-linux",
+    "windows-terminal"
+  ],
+  "creation_date": "2019-07-24T15:01:38",
+  "answers": [
+    {
+      "id": 60132834,
+      "body": "<p>The answer here helped me: \n<a href=\"https://stackoverflow.com/questions/58980356/vscode-in-wsl-how-to-sudo-a-root-file-so-i-can-edit-it/60052328#60052328\">VSCode in WSL: how to sudo a root file so I can edit it</a></p>\n\n<p>For some reason starting as root vs logging in and then switching to root worked for me</p>\n",
+      "score": 7,
+      "creation_date": "2020-02-09T01:46:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

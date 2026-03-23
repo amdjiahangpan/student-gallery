@@ -1,0 +1,21 @@
+{
+  "id": 74000168,
+  "title": "Running an express server from WSL (UNC paths are not supported)",
+  "body": "<p>I’m trying to run an express server from a WSL terminal in Visual Studio Code.</p>\n<p>However, whenever, I run the command <code>npm run dev</code>, I get the following error:</p>\n<pre><code>'\\\\wsl$\\Ubuntu\\home\\simao\\legalize-backend'\nCMD.EXE was started with the above path as the current directory.\nUNC paths are not supported.  Defaulting to Windows directory.\n</code></pre>\n<p>I assume it has something to do with the path from windows to the folder in the WSL directory.</p>\n<p>Which one is the right path format or what should I do to make this one valid?</p>\n<p>Searching, I found that you can:</p>\n<blockquote>\n<p>You can solve this problem (UNC Paths not supported) by mapping a normal drive letter to the path that has the UNC path.</p>\n</blockquote>\n<p>But how do I map a normal drive letter to the path?</p>\n",
+  "score": 23,
+  "answer_count": 9,
+  "view_count": 29446,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-10-08T19:59:26",
+  "answers": [
+    {
+      "id": 75407212,
+      "body": "<p>I confronted the same situation yesterday. I assume maybe it was something wrong with my npm. Then I checked the npm path with <code>which npm</code>, and I found that my npm was mounted <code>D:\\nodejs\\npm</code> in Windows (exactly <code>/mnt/d/nodejs/npm</code> in screen).</p>\n<p>I guess WSL uses CMD.exe to start npm from Windows described in <code>CMD.EXE was started with the above path as the current directory.</code></p>\n<p>So maybe I can just install a new npm in WSL to solve this. Node Version Manager (nvm), is the most popular way to install multiple versions of Node.js. And each version of nodejs has its own version of npm. Just follow the link below.</p>\n<p><a href=\"https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl\" rel=\"noreferrer\">Install nvm, node.js, and npm</a></p>\n<p>Plus, if you have <code>Permission denied</code>, use <code>npm uninstall xxx</code> to remove your dependencies you've installed, and install your dependencies again.</p>\n",
+      "score": 21,
+      "creation_date": "2023-02-10T05:13:10"
+    }
+  ],
+  "source": "stackoverflow"
+}

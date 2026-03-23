@@ -1,0 +1,21 @@
+{
+  "id": 808045485,
+  "name": "ladybird",
+  "full_name": "LadybirdBrowser/ladybird",
+  "description": "Truly independent web browser",
+  "stars": 58606,
+  "forks": 2672,
+  "open_issues": 646,
+  "url": "https://github.com/LadybirdBrowser/ladybird",
+  "clone_url": "https://github.com/LadybirdBrowser/ladybird.git",
+  "readme_content": "",
+  "created_at": "2024-05-30T09:18:10Z",
+  "updated_at": "2026-02-19T06:32:24Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

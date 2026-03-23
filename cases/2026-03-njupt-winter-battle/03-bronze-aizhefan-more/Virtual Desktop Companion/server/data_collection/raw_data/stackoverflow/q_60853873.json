@@ -1,0 +1,23 @@
+{
+  "id": 60853873,
+  "title": "EACCESS error when installing packages on WSL",
+  "body": "<p>I'm getting this error trying to NPM INSTALL packages on WSL from VS Code.</p>\n\n<pre><code>npm ERR! Error: EACCES: permission denied, rename '/mnt/d/DEVRepo/PWS/functions/node_modules/cssstyle' -&gt; '/mnt/d/DEVRepo/PWS/functions/node_modules/.cssstyle.DELETE'\nnpm ERR!  [OperationalError: EACCES: permission denied, rename '/mnt/d/DEVRepo/PWS/functions/node_modules/cssstyle' -&gt; '/mnt/d/DEVRepo/PWS/functions/node_modules/.cssstyle.DELETE'] {     \nnpm ERR!   cause: [Error: EACCES: permission denied, rename '/mnt/d/DEVRepo/PWS/functions/node_modules/cssstyle' -&gt; '/mnt/d/DEVRepo/PWS/functions/node_modules/.cssstyle.DELETE'] {        \nnpm ERR!     errno: -13,\nnpm ERR!     code: 'EACCES',\nnpm ERR!     syscall: 'rename',\nnpm ERR!     path: '/mnt/d/DEVRepo/PWS/functions/node_modules/cssstyle',\nnpm ERR!     dest: '/mnt/d/DEVRepo/PWS/functions/node_modules/.cssstyle.DELETE'\nnpm ERR!   },\nnpm ERR!   stack: \"Error: EACCES: permission denied, rename '/mnt/d/DEVRepo/PWS/functions/node_modules/cssstyle' -&gt; '/mnt/d/DEVRepo/PWS/functions/node_modules/.cssstyle.DELETE'\",\nnpm ERR!   errno: -13,\nnpm ERR!   code: 'EACCES',\nnpm ERR!   syscall: 'rename',\nnpm ERR!   path: '/mnt/d/DEVRepo/PWS/functions/node_modules/cssstyle',\nnpm ERR!   dest: '/mnt/d/DEVRepo/PWS/functions/node_modules/.cssstyle.DELETE',\nnpm ERR!   parent: 'functions'\nnpm ERR! }\n</code></pre>\n",
+  "score": 33,
+  "answer_count": 13,
+  "view_count": 37222,
+  "tags": [
+    "npm",
+    "windows-subsystem-for-linux",
+    "vscode-remote"
+  ],
+  "creation_date": "2020-03-25T17:11:10",
+  "answers": [
+    {
+      "id": 60853874,
+      "body": "<p>The problem is that VSCode WSL extension locks files and that generates the error.</p>\n\n<p>The solution is to close the WSL connection on VSCode o just close the whole IDE and run the npm install command again.</p>\n",
+      "score": 63,
+      "creation_date": "2020-03-25T17:11:10"
+    }
+  ],
+  "source": "stackoverflow"
+}

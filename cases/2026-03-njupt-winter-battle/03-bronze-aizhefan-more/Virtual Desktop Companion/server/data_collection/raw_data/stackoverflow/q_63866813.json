@@ -1,0 +1,25 @@
+{
+  "id": 63866813,
+  "title": "What is the proper way of using JDK on WSL2 on Windows 10?",
+  "body": "<p>I have installed Ubuntu 20.4 LTS on WSL. My windows 10 already have the JDK installed. Do I need to install JDK on ubuntu on WSL or can I use the Windows 10 JDK in the Ubuntu? How you do Java programming on WSL? Which is the proper way?</p>\n<p>I was just wondering if I need to install all the development tools and binaries again on Linux won't it take a lot of space &amp; hog a lot of CPU/Ram resources?</p>\n",
+  "score": 61,
+  "answer_count": 7,
+  "view_count": 110093,
+  "tags": [
+    "java",
+    "linux",
+    "java-8",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-13T03:14:59",
+  "answers": [
+    {
+      "id": 65014677,
+      "body": "<p>Run the following commands as a user with sudo privileges or root to update the packages index and install the OpenJDK 11 JDK package:</p>\n<pre><code>$ sudo apt update\n$ sudo apt install openjdk-11-jdk\n</code></pre>\n<p>Once the installation is complete, you can verify it by checking the Java version:</p>\n<pre><code>$ java -version\n</code></pre>\n<p>The output should look something like this:</p>\n<pre><code>openjdk version &quot;11.0.7&quot; 2020-04-14\nOpenJDK Runtime Environment (build 11.0.7+10-post-Ubuntu-3ubuntu1)\nOpenJDK 64-Bit Server VM (build 11.0.7+10-post-Ubuntu-3ubuntu1, mixed mode, sharing)\n</code></pre>\n<p>Set JAVA_HOME Environment Variable:\nOpenJDK 11 is located at /usr/lib/jvm/java-11-openjdk-amd64/bin/java</p>\n<p>Once you found the path of your preferred Java installation, open the /etc/environment file:</p>\n<pre><code>$ sudo nano /etc/environment\n</code></pre>\n<p>Assuming you want to set JAVA_HOME to point to OpenJDK 11, add the following line, at the end of the file:</p>\n<pre><code>JAVA_HOME=&quot;/usr/lib/jvm/java-11-openjdk-amd64&quot;\n</code></pre>\n<p>For changes to take effect on your current shell you can either log out and log in or run the following source command:</p>\n<pre><code>$ source /etc/environment\n</code></pre>\n<p>Verify that the JAVA_HOME environment variable was correctly set:</p>\n<pre><code>$ echo $JAVA_HOME\n</code></pre>\n<p>You should see the path to the Java installation:</p>\n<pre><code>/usr/lib/jvm/java-11-openjdk-amd64\n</code></pre>\n<p>for reference you can follow this link below\n<a href=\"https://linuxize.com/post/install-java-on-ubuntu-20-04/\" rel=\"noreferrer\">How to Install Java on Ubuntu 20.04</a></p>\n",
+      "score": 75,
+      "creation_date": "2020-11-26T00:47:57"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 66067901,
+  "title": "Update VS Code and Kaspersky certificate",
+  "body": "<p>I just wanted to start VS Code on Windows Subsystem Linux but VS Code updates automatically. The issue is a certificate which VS Code wants to access but it is blocked by kaspersky. Kaspersky is installed on Windows 10. I have the Total Securiy Version. Does somebody have a hint? What should I change?</p>\n<blockquote>\n<p>micha@LAPTOP-TD50FJUH:/mnt/c/WINDOWS/system32$ code .\nUpdating VS Code Server to version 8490d3dde47c57ba65ec40dd192d014fd2113496\nRemoving previous installation... Installing VS Code Server for x64\n(8490d3dde47c57ba65ec40dd192d014fd2113496) Downloading: 100% Failed\n--2021-02-05 18:15:16--  <a href=\"https://update.code.visualstudio.com/commit:8490d3dde47c57ba65ec40dd192d014fd2113496/server-linux-x64/stable\" rel=\"noreferrer\">https://update.code.visualstudio.com/commit:8490d3dde47c57ba65ec40dd192d014fd2113496/server-linux-x64/stable</a>\nResolving update.code.visualstudio.com\n(update.code.visualstudio.com)... 51.144.164.215 Connecting to\nupdate.code.visualstudio.com\n(update.code.visualstudio.com)|51.144.164.215|:443... connected.\nERROR: cannot verify update.code.visualstudio.com's certificate,\nissued by ‘CN=Kaspersky Anti-Virus Personal Root Certificate,O=AO\nKaspersky Lab’:   Self-signed certificate encountered. To connect to\nupdate.code.visualstudio.com insecurely, use `--no-check-certificate'.\nERROR: Failed to download\n<a href=\"https://update.code.visualstudio.com/commit:8490d3dde47c57ba65ec40dd192d014fd2113496/server-linux-x64/stable\" rel=\"noreferrer\">https://update.code.visualstudio.com/commit:8490d3dde47c57ba65ec40dd192d014fd2113496/server-linux-x64/stable</a>\nto\n/home/micha/.vscode-server/bin/8490d3dde47c57ba65ec40dd192d014fd2113496-1612545315.tar.gz Please install missing certificates. Debian/Ubuntu:  sudo apt-get\ninstall ca-certificates</p>\n</blockquote>\n<p>I have already installed ca-certificates without any Problem.</p>\n",
+  "score": 10,
+  "answer_count": 4,
+  "view_count": 8534,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "kaspersky"
+  ],
+  "creation_date": "2021-02-05T17:31:17",
+  "answers": [],
+  "source": "stackoverflow"
+}

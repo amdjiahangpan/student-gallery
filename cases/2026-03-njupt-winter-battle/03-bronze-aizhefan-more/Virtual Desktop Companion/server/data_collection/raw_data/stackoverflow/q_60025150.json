@@ -1,0 +1,25 @@
+{
+  "id": 60025150,
+  "title": "Jupyter Notebooks in VS Code using WSL 2 are not working",
+  "body": "<p>I want to use Jupyter Notebooks inside VS Code running within WSL 2. Regular Python works within WSL without a problem, that means the base conda enviroment is connected and I can run .py files. Moreover, I’m able to run the command <code>jupyter notebook</code> which will start the notebook server within WSL exposing the localhost to the Windows system.</p>\n\n<p>However, I want to test the new Jupyter Notebook feature within VS Code, which is not working for me; VS Code shows: <code>Jupyter Server: No Kernel</code> and <code>Python: Not Started</code> (see screenshot below).</p>\n\n<p>My testing machine is:</p>\n\n<ul>\n<li>WSL 2 (using Pengwin distribution) on Windows 20H1 (19041.21)</li>\n<li>VS Code 1.41 (having the Python extension installed)</li>\n<li>Anaconda</li>\n</ul>\n\n<p>What I did:</p>\n\n<ol>\n<li>Open WSL</li>\n<li>Open VS Code in my target directory (<code>code .</code>)</li>\n<li>Create a new Notebook file from the command palette <code>Python: Create New Blank Jupyter Notebook</code></li>\n<li>Create dummy <code>print(\"test\")</code></li>\n<li>Run Cell will trigger the warning:</li>\n</ol>\n\n<p><a href=\"https://i.sstatic.net/qLvo8.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/qLvo8.png\" alt=\"enter image description here\"></a></p>\n\n<p>Is there anything I’m missing?</p>\n",
+  "score": 16,
+  "answer_count": 4,
+  "view_count": 26978,
+  "tags": [
+    "python",
+    "visual-studio-code",
+    "jupyter-notebook",
+    "windows-subsystem-for-linux",
+    "pengwin"
+  ],
+  "creation_date": "2020-02-02T10:22:59",
+  "answers": [
+    {
+      "id": 76345221,
+      "body": "<p>The VSCode extensions on the windows side and the WSL side are independent of each other, and you need to install the python extension on the WSL side.</p>\n<p>VSCode will prompt you to install them when you run .py file on the WSL side, but running .ipynb will not. This is probably the source of the problem.</p>\n",
+      "score": 7,
+      "creation_date": "2023-05-27T03:35:22"
+    }
+  ],
+  "source": "stackoverflow"
+}

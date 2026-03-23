@@ -1,0 +1,25 @@
+{
+  "id": 61528500,
+  "title": "Installing venv for python3 in WSL (Ubuntu)",
+  "body": "<p>I am trying to configure <code>venv</code> on Windows Subsystem for Linux with Ubuntu.</p>\n\n<p>What I have tried:</p>\n\n<p>1) Installing <code>venv</code> through <code>pip</code> (<code>pip3</code>, to be exact)</p>\n\n<pre><code>pip3 install venv\n</code></pre>\n\n<p>I get the following error</p>\n\n<pre><code>ERROR: Could not find a version that satisfies the requirement venv (from versions: none)\nERROR: No matching distribution found for venv\n</code></pre>\n\n<p>2) Installing <code>venv</code> through <code>apt</code> and <code>apt-get</code></p>\n\n<pre><code>sudo apt install python3-venv\n</code></pre>\n\n<p>In this case the installation seems to complete, but when I try to create a virtual environment with <code>python3 -m venv ./venv</code>, I get an error, telling me to do <code>apt-get install python3-venv</code> (which I just did!)</p>\n\n<pre><code>The virtual environment was not created successfully because ensurepip is not\navailable.  On Debian/Ubuntu systems, you need to install the python3-venv\npackage using the following command.\n\n    apt-get install python3-venv\n\nYou may need to use sudo with that command.  After installing the python3-venv\npackage, recreate your virtual environment.\n\nFailing command: ['/mnt/c/Users/Vicubso/.../code/venv/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']\n</code></pre>\n\n<p>I have also read the following posts \n<a href=\"https://stackoverflow.com/questions/34271982/install-python3-venv-module-on-linux-mint\">post 1</a>, \n<a href=\"https://stackoverflow.com/questions/37390827/install-venv-for-python3\">post 2</a>, and several others. None of these seem to solve my problem.</p>\n\n<p>Any help would be much appreciated.</p>\n",
+  "score": 53,
+  "answer_count": 6,
+  "view_count": 101532,
+  "tags": [
+    "python",
+    "python-3.x",
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "python-venv"
+  ],
+  "creation_date": "2020-04-30T16:41:59",
+  "answers": [
+    {
+      "id": 63716116,
+      "body": "<p>Nothing here worked for me, but this did in WSL2:</p>\n<pre><code>sudo apt-get update\nsudo apt-get install libpython3-dev\nsudo apt-get install python3-venv\npython3 -m venv whatever\n</code></pre>\n<p>Good luck!</p>\n",
+      "score": 87,
+      "creation_date": "2020-09-03T02:54:39"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 1103012935,
+  "name": "openclaw",
+  "full_name": "openclaw/openclaw",
+  "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 ",
+  "stars": 209567,
+  "forks": 38686,
+  "open_issues": 7924,
+  "url": "https://github.com/openclaw/openclaw",
+  "clone_url": "https://github.com/openclaw/openclaw.git",
+  "readme_content": "",
+  "created_at": "2025-11-24T10:16:47Z",
+  "updated_at": "2026-02-19T06:53:16Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

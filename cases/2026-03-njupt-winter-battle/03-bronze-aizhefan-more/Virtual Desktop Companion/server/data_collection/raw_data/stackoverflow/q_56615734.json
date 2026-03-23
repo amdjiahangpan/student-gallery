@@ -1,0 +1,24 @@
+{
+  "id": 56615734,
+  "title": "R package &#39;ps&#39; fails to install because permission denied to mv in final step of install",
+  "body": "<p>I'm trying to install R: devtools, and a single dependency (ps) is failing to install, cascading into lack of dependencies. I'm using WSL Ubuntu on Windows 10, R 3.6, and the current RStudio version.</p>\n\n<p>It fails in all situations (using RStudio, accessing through command prompt, starting all the above in admin mode, starting R using sudo). I've also tried turning off my firewall as suggested by other questions around similar issues. Finally, I've tried installing it to other <code>.libPaths()</code> locations. Other packages install just fine. I haven't tried installing from source- because I'd need devtools to do so.</p>\n\n<p>Based on the error messages, the command mv does not have permission to move the installed package from its temporary install directory to the final location in my package library (but the installation utility has no trouble making directories or writing files). Anyone have any ideas why this could happen with just this single package? I'm baffled.</p>\n\n<pre class=\"lang-r prettyprint-override\"><code>&gt; install.packages('ps')\nInstalling package into ‘/usr/lib/R/library’\n(as ‘lib’ is unspecified)\ntrying URL 'https://cloud.r-project.org/src/contrib/ps_1.3.0.tar.gz'\nContent type 'application/x-gzip' length 261887 bytes (255 KB)\n==================================================\ndownloaded 255 KB\n* installing *source* package ‘ps’ ...\n** package ‘ps’ successfully unpacked and MD5 sums checked\n** using staged installation\n** libs\ngcc -std=gnu99 -g -O2 -fdebug-prefix-map=/build/r-base-VjHo9C/r-base-3.6.0=. - fstack-protector-strong -Wformat -Werror=format-security -Wdate-time - D_FORTIFY_SOURCE=2 -g  -Wall px.c -o px\n</code></pre>\n\n<p>a bunch of other code that I am too no0b to understand</p>\n\n<pre><code>gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o ps.so init.o api-common.o common.o extra.o dummy.o posix.o api-posix.o linux.o api-linux.o -L/usr/lib/R/lib -lR\ninstalling via 'install.libs.R' to /usr/lib/R/library/00LOCK-ps/00new/ps\n** R\n** inst\n** byte-compile and prepare package for lazy loading\n** help\n*** installing help indices\n** building package indices\n** testing if installed package can be loaded from temporary location\n** checking absolute paths in shared objects and dynamic libraries\nmv: cannot move '/usr/lib/R/library/00LOCK-ps/00new/ps' to\n'/usr/lib/R/library/ps': Permission denied\nERROR:   moving to final location failed\nThe downloaded source packages are in\n‘/tmp/Rtmpm7SpMt/downloaded_packages’\nUpdating HTML index of packages in '.Library'\nMaking 'packages.html' ... done\nWarning message:\nIn install.packages(\"ps\") :\ninstallation of package ‘ps’ had non-zero exit status\n</code></pre>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 5719,
+  "tags": [
+    "r",
+    "ubuntu",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-06-16T02:59:28",
+  "answers": [
+    {
+      "id": 56744653,
+      "body": "<p>Setting this before installing <code>ps</code> solved in my WSL ubuntu 18.04.2 LTS with R 3.6.0 on Windows 10 Pro. May help your case.</p>\n\n<pre><code>Sys.setenv(R_INSTALL_STAGED = FALSE)\n</code></pre>\n\n<p><a href=\"https://developer.r-project.org/Blog/public/2019/02/14/staged-install/\" rel=\"noreferrer\">https://developer.r-project.org/Blog/public/2019/02/14/staged-install/</a></p>\n\n<p><a href=\"https://stackoverflow.com/questions/56241007/non-zero-exit-status-r-3-6-0-biobase\">“Non Zero Exit Status” R 3.6.0 &quot;Biobase&quot;</a></p>\n",
+      "score": 27,
+      "creation_date": "2019-06-24T22:24:17"
+    }
+  ],
+  "source": "stackoverflow"
+}

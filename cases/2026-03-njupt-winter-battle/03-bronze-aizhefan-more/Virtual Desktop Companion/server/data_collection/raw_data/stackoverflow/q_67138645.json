@@ -1,0 +1,25 @@
+{
+  "id": 67138645,
+  "title": "Error: The SUID sandbox helper binary was found, but is not configured correctly",
+  "body": "<p>I'm sorry to just paste an error code, but I have no clue what else to try. I have looked at all the guides on this site, but nothing quite matches my issue. I am using an ubuntu subsystem on windows 10 for the project &quot;Zettlr&quot;. Here is the error code I get when running 'yarn start'</p>\n<pre><code>The SUID sandbox helper binary was found, but is not configured correctly.\nRather than run without sandboxing I'm aborting now.\nYou need to make sure that node_modules/electron/dist/chrome-sandbox is owned by root and has mode 4755.\nDone in 17.85s.\n</code></pre>\n<p>I am trying to run this, but it wants me to change access and ownership. chmod has no effect (which I understand is due to the windows storage system) but I have no idea how to get this program to run correctly. I have also ran chown. From my stat check, the chmod mode for the file is 777, so it should be accessable anyway. Could anyone direct me to a guide for this, or explain what I can do?</p>\n",
+  "score": 17,
+  "answer_count": 2,
+  "view_count": 27438,
+  "tags": [
+    "ubuntu",
+    "electron",
+    "windows-subsystem-for-linux",
+    "chmod",
+    "suid"
+  ],
+  "creation_date": "2021-04-17T13:22:02",
+  "answers": [
+    {
+      "id": 79076354,
+      "body": "<p>I think that your issue is related to running <code>Electron</code> in a Windows Subsystem for Linux (WSL) environment. Specifically, the message about the SUID sandbox helper indicates that Electron is having difficulty due to permission issues with the <code>chrome-sandbox</code> file.</p>\n<p>Here are the steps:</p>\n<p><strong>Step 1</strong>. Open WSL and navigate to your project directory.</p>\n<p><strong>Step 2</strong>. Change owner and permissions manually:</p>\n<pre><code>sudo chown root:$(whoami) node_modules/electron/dist/chrome-sandbox\nsudo chmod 4755 node_modules/electron/dist/chrome-sandbox\n</code></pre>\n<p><strong>Step 3</strong>. After running the above commands, check the permissions again:</p>\n<pre><code>ls -l node_modules/electron/dist/chrome-sandbox\n</code></pre>\n<p>The output should show that the owner is <code>root</code>, and the permission should be <code>-rwsr-xr-x</code>.</p>\n<p><strong>Step 4(Optional)</strong>. You may need to ensure that WSL is set up to handle permissions correctly so edit the <code>/etc/wsl.conf</code> file:</p>\n<pre><code>sudo nano /etc/wsl.conf\n</code></pre>\n<p>Add or update the following lines:</p>\n<pre><code>[automount]\noptions = &quot;metadata&quot;\n\n[network]\ngenerateResolvConf = true\n</code></pre>\n<p>After saving changes, restart WSL using <code>wsl -shutdown</code> command.</p>\n<p><strong>Step5</strong>. After ensuring that permissions are set correctly, try running your application again:</p>\n<pre><code>yarn start\n</code></pre>\n",
+      "score": 8,
+      "creation_date": "2024-10-10T22:44:29"
+    }
+  ],
+  "source": "stackoverflow"
+}

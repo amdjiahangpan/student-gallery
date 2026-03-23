@@ -1,0 +1,21 @@
+{
+  "id": 62483133,
+  "title": "Still able to use Explorer to view WSL files after reverting from WSL2 to WSL1 – is this normal?",
+  "body": "<p>I am a big fan of Windows Subsystem for Linux (WSL) and was totally psyched when they announced WSL2. However, the official Docs said that WSL2 isn't as performant as WSL1 when it comes to working with files in the Windows File system. This is kind of a bummer because most of my work is in the Windows File System itself and I would like to keep it that way.</p>\n<p>But for the sake of checking it out, from PowerShell (could also be run from <code>cmd.exe</code>) I converted my main Distro to WSL2:</p>\n<pre><code>wsl.exe --set-version Ubuntu-18.04 2\n</code></pre>\n<p>The conversion was successful. Then – from WSL, logged in as <em>root</em> – when I ran</p>\n<pre class=\"lang-bash prettyprint-override\"><code>cd\nexplorer.exe .\n</code></pre>\n<p>it launched File Explorer in <code>Network\\wsl$\\Ubuntu-18.04\\home\\user</code>. I knew that this is a feature in WSL2; that we could access the Linux file system using the Windows Explorer.</p>\n<p>However, I then decided to revert back to WSL1 (file system access). So I ran the command:</p>\n<pre><code>wsl.exe --set-version Ubuntu-18.04 1\n</code></pre>\n<p>And just to cross check, running</p>\n<pre><code>wsl.exe --list --verbose\n</code></pre>\n<p>lists my main distro as running version 1.</p>\n<p>But now if I head over to WSL and run <code>cd ~; explorer.exe .</code>, it still opens up the directory in the File Explorer! As far as I know, this normally gives the error that windows can't access file paths with the Linux structure or something like that when run with WSL1.</p>\n<p>So I was wondering if this is normal, or did it happen because of the reversion, or did I somehow break my installation?</p>\n",
+  "score": 14,
+  "answer_count": 2,
+  "view_count": 27039,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-20T07:54:26",
+  "answers": [
+    {
+      "id": 67836566,
+      "body": "<p>Type this command to grab the version of distro</p>\n<pre><code>wsl -l -v\n</code></pre>\n<p>Then type this command to roll back / set default version</p>\n<pre><code>  wsl --set-version Ubuntu-20.04 1\n</code></pre>\n<p>It will output something like - <strong>Conversion in progress, this may take a few minutes...</strong></p>\n<p>Then try <strong>wsl -l -v</strong> command again, and check the result</p>\n<p>In my case results before and after are</p>\n<pre><code>  NAME                   STATE           VERSION\n* Ubuntu-20.04           Stopped         2\n  docker-desktop         Stopped         2\n  docker-desktop-data    Stopped         2\n</code></pre>\n<p>and after</p>\n<pre><code>  NAME                   STATE           VERSION\n* Ubuntu-20.04           Stopped         1\n  docker-desktop         Stopped         2\n  docker-desktop-data    Stopped         2\n</code></pre>\n<p>EDIT</p>\n<p><strong>Actually I read description of the question, after leaving this comment, and I guess I'm not answering on it at all, but I have decided to leave it here, because it can be helpful for someone who are trying to figure it out!</strong></p>\n",
+      "score": 18,
+      "creation_date": "2021-06-04T11:37:50"
+    }
+  ],
+  "source": "stackoverflow"
+}

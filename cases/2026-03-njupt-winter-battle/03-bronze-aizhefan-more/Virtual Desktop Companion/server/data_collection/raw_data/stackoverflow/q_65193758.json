@@ -1,0 +1,23 @@
+{
+  "id": 65193758,
+  "title": "Enable Ingress controller on Docker Desktop with WLS2",
+  "body": "<p>Currently, I'm using Docker Desktop with <strong>WSL2</strong> integration. I found that <strong>Docker Desktop</strong> automatically had created a cluster for me. It means I don't have to install and use <strong>Minikube</strong> or <strong>Kind</strong> to create cluster.\nThe problem is that, how could I enable <strong>Ingress Controller</strong> if I use &quot;built-in&quot; cluster from Docker Desktop?\nI tried to create an <strong>Ingress</strong> to check if this work or not, but as my guess, it didn't work.</p>\n<p>The YAML file I created as follows:</p>\n<pre><code>apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: webapp\nspec:\n  minReadySeconds: 30\n  selector:\n    matchLabels:\n      app: webapp\n  replicas: 1\n  template:\n    metadata:\n      labels:\n        app: webapp\n    spec:\n      containers:\n      - name: webapp\n        image: nodejs-helloworld:v1\n\n--- \n\napiVersion: v1\nkind: Service\nmetadata:\n  name: webapp-service\n\nspec:\n  selector: \n    app: webapp\n  \n  ports:\n    - name: http\n      port: 3000\n      nodePort: 30090 # only for NotPort &gt; 30,000\n    \n  type: NodePort #ClusterIP inside cluster\n\n---\n\napiVersion: networking.k8s.io/v1\nkind: Ingress \nmetadata:\n  name: webapp-ingress\nspec:\n  defaultBackend:\n    service:\n      name: webapp-service\n      port:\n        number: 3000\n  rules:\n  - host: ingress.local\n    http:\n      paths:\n      - path: / \n        pathType: Prefix\n        backend:\n          service:\n            name:  webapp-service\n            port: \n              number: 3000\n    \n</code></pre>\n<p>I tried to access <em>ingress.local/</em> but it was not successful. (I added ingress.local to point to 127.0.0.1 in host file. And the <strong>webapp</strong> worked fine at <em>kubernetes.docker.internal:30090</em> )</p>\n<p>Could you please help me to know the root cause?\nThank you.</p>\n",
+  "score": 36,
+  "answer_count": 6,
+  "view_count": 51846,
+  "tags": [
+    "docker",
+    "kubernetes",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-12-08T05:48:55",
+  "answers": [
+    {
+      "id": 65219093,
+      "body": "<p>Finally I found the way to fix. I have to deploy ingress Nginx by command:</p>\n<pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml\n</code></pre>\n<p>(Follows the instruction at <a href=\"https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac\" rel=\"noreferrer\">https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac</a>. It works just fine for Docker for Windows)</p>\n<p>Now I can access <a href=\"http://ingress.local\" rel=\"noreferrer\">http://ingress.local</a> successfully.</p>\n",
+      "score": 39,
+      "creation_date": "2020-12-09T14:47:26"
+    }
+  ],
+  "source": "stackoverflow"
+}

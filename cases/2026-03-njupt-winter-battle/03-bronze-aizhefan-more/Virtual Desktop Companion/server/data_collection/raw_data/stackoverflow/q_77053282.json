@@ -1,0 +1,24 @@
+{
+  "id": 77053282,
+  "title": "How to solve the &quot;Docker Desktop - WSL kernel version too low&quot; error",
+  "body": "<p>How can I solve the <em>&quot;Docker Desktop - WSL kernel version too low [Content]&quot;</em> error?</p>\n<p>The rest of the error message:</p>\n<blockquote>\n<p>Docker Desktop requires a newer WSL kernel version.</p>\n<p>Update the WSL kernel by running &quot;wsl --update&quot; or follow instructions at <a href=\"https://docs.microsoft.com/windows/wsl/wsl2-kernel\" rel=\"nofollow noreferrer\">https://docs.microsoft.com/windows/wsl/wsl2-kernel</a>.</p>\n</blockquote>\n<p><a href=\"https://i.sstatic.net/rveag.png\" rel=\"nofollow noreferrer\"><img src=\"https://i.sstatic.net/rveag.png\" alt=\"Enter image description here\" /></a></p>\n<p>The solution is:</p>\n<ul>\n<li><code>wsl --update</code></li>\n</ul>\n",
+  "score": 20,
+  "answer_count": 1,
+  "view_count": 48234,
+  "tags": [
+    "docker",
+    "kernel",
+    "version",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-09-06T15:17:03",
+  "answers": [
+    {
+      "id": 77053312,
+      "body": "<p>I have found this answer. I ran it in the cmd/PowerShell terminal, and it worked for me.</p>\n<p>Type <code>wsl --update</code> in your terminal to solve the problem.</p>\n",
+      "score": 50,
+      "creation_date": "2023-09-06T15:20:19"
+    }
+  ],
+  "source": "stackoverflow"
+}

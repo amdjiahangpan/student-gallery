@@ -1,0 +1,23 @@
+{
+  "id": 48047810,
+  "title": "Cannot connect to the Docker daemon on bash on Ubuntu windows",
+  "body": "<p>I am able to install docker, docker-compose and docker-machine</p>\n\n<p>However when I try to run</p>\n\n<pre><code>root@DESKTOP-51NFMIM:~# docker ps\nCannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n</code></pre>\n\n<p>Is there any suggestion for solving this problem?</p>\n",
+  "score": 58,
+  "answer_count": 12,
+  "view_count": 109410,
+  "tags": [
+    "bash",
+    "docker",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-01-01T07:09:38",
+  "answers": [
+    {
+      "id": 48501091,
+      "body": "<p>Found the solution on this post: <a href=\"https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/\" rel=\"noreferrer\">https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/</a></p>\n\n<p>Running docker against an engine on a different machine is actually quite easy, as Docker can expose a TCP endpoint which the CLI can attach to.</p>\n\n<p>This TCP endpoint is turned off by default; to activate it, right-click the Docker icon in your taskbar and choose Settings, and tick the box next to “Expose daemon on tcp://localhost:2375 without TLS”.</p>\n\n<p>With that done, all we need to do is instruct the CLI under Bash to connect to the engine running under Windows instead of to the non-existing engine running under Bash, like this:</p>\n\n<pre><code>$ docker -H tcp://0.0.0.0:2375 images\n</code></pre>\n\n<p>There are two ways to make this permanent – either add an alias for the above command or export an environment variable which instructs Docker where to find the host engine (NOTE: make sure to use single apostrophe's below):</p>\n\n<pre><code>$ echo \"export DOCKER_HOST='tcp://0.0.0.0:2375'\" &gt;&gt; ~/.bashrc\n$ source ~/.bashrc\n</code></pre>\n\n<p>Now, running docker commands from Bash works just like they’re supposed to.</p>\n\n<pre><code>$ docker run hello-world\n</code></pre>\n\n<p>Successful response:</p>\n\n<pre><code>Hello from Docker!This message shows that your installation appears to be working correctly.\n</code></pre>\n",
+      "score": 70,
+      "creation_date": "2018-01-29T12:17:53"
+    }
+  ],
+  "source": "stackoverflow"
+}

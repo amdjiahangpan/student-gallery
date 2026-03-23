@@ -1,0 +1,23 @@
+{
+  "id": 61550552,
+  "title": "How to copy/paste from Vim in WSL",
+  "body": "<p>I am trying to use Vim to locate and copy/paste some code I need to analyze and take notes on.  I am using Debian, in a Windows WSL environment.  That's what makes this tricky.</p>\n\n<p>The regular \"yank and put to global register\" commands <code>\"+y</code> and <code>\"*y</code> commands didn't work.</p>\n\n<p>On the other hand, the brute force approach where I just use the mouse to scrape the terminal text won't work either.  Strangely, WSL terminal has mouse support, and Vim can track its movements, select in visual mode, etc.  So Vim intercepts the selection command, and then there is nothing selected for ctrl-shift-c to copy into the Windows clipboard.</p>\n\n<p>I know the WSL terminal supports copy and paste, and I can successfully do it if I <code>cat</code> my file to the screen, and copy and paste that using ctrl-shift-c and ctrl-v.  But then I lose out on ease of navigation.</p>\n\n<p><strong>What's the best way to copy text out of Vim inside a WSL terminal and into the windows clipboard?</strong>  </p>\n",
+  "score": 27,
+  "answer_count": 8,
+  "view_count": 24748,
+  "tags": [
+    "vim",
+    "clipboard",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-05-01T20:45:59",
+  "answers": [
+    {
+      "id": 68317739,
+      "body": "<p>Answer is, do a vim visual selection then do the command:</p>\n<pre><code>:'&lt;,'&gt;w !clip.exe\n</code></pre>\n<p>This pipes the current selection out to the shell command <code>clip.exe</code>, which utilizes WSL's ability to execute Windows executables (even with a pipeline).  Text piped to <code>clip.exe</code> goes to the <em>Windows</em> clipboard.</p>\n<p>Also, this command saves the whole file to the clipboard (not the requirement):</p>\n<pre><code> :w !clip.exe\n</code></pre>\n",
+      "score": 63,
+      "creation_date": "2021-07-09T13:35:59"
+    }
+  ],
+  "source": "stackoverflow"
+}

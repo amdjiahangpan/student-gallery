@@ -1,0 +1,18 @@
+{
+  "id": 56946336,
+  "title": "Ubuntu wsl2 git getting &quot;The remote end hung up unexpectedly&quot; on large repos",
+  "body": "<p>Getting this action for days in Ubuntu 19.04 in wsl2 on Windows.</p>\n\n<pre><code>$ git clone https://github.com/gohugoio/hugo.git\nCloning into 'hugo'...\nerror: RPC failed; curl 56 GnuTLS recv error (-12): A TLS fatal alert has been received.\nfatal: The remote end hung up unexpectedly\n</code></pre>\n\n<ul>\n<li>I tried recompiling git to use openssl, didn't do anything.</li>\n<li>I tried both ssh and https.</li>\n<li>I tried to modify git settings for http.</li>\n<li>I modified all kinds of git memory settings.</li>\n<li>Nothing currently on Stack Overflow is correct for this issue.</li>\n<li>I completely reinstalled Windows.  Nope, still hosed.</li>\n</ul>\n\n<p>Four days of Whiskey Tango Foxtrot... then I found it.</p>\n",
+  "score": 10,
+  "answer_count": 2,
+  "view_count": 5246,
+  "tags": [
+    "windows",
+    "git",
+    "ssl",
+    "windows-subsystem-for-linux",
+    "gnutls"
+  ],
+  "creation_date": "2019-07-09T06:16:07",
+  "answers": [],
+  "source": "stackoverflow"
+}

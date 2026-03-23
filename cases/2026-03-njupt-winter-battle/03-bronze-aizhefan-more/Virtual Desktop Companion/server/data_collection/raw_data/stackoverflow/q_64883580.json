@@ -1,0 +1,22 @@
+{
+  "id": 64883580,
+  "title": "WSL: Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)",
+  "body": "<p>I'm trying to use a fresh installation of MySQL on Windows Subsystem for Linux (Ubuntu) and can't seem to ever connect to it. I always get the error:\n<code>WSL: Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)</code></p>\n<p>I've tried:</p>\n<ul>\n<li>Switching the configuration to use localhost instead of sockets (I instead get an error saying I can't connect through localhost)</li>\n<li>Using <code>--skip-grant-tables</code> by editing <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code> and restarting</li>\n</ul>\n<p>The file <code>/var/run/mysqld/mysqld.sock</code> never shows up either, though I figure this is because WSL doesn't have perfect socket support to begin with but it should still work. I suspect the problem might be specific to WSL and maybe I should try updating to WSL2? I don't know what else the issue could be.</p>\n",
+  "score": 20,
+  "answer_count": 6,
+  "view_count": 48819,
+  "tags": [
+    "mysql",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-17T21:27:19",
+  "answers": [
+    {
+      "id": 66949451,
+      "body": "<p>I have the same issue solved through the following steps.</p>\n<p>Put these lines at the end of the file <code>/etc/mysql/my.cnf</code>:</p>\n<pre class=\"lang-ini prettyprint-override\"><code>[mysqld]                                                                                                                \nbind-address = 0.0.0.0                                                                                                    \nuser=root                                                                                                               \npid-file     = /var/run/mysqld/mysqld.pid                                                                                \nsocket       = /var/run/mysqld/mysqld.sock                                                                               \nport         = 3306                                                                                                                                                                                                                              \n\n[client]                                                                                                                \nport         = 3306                                                                                                      \nsocket       = /var/run/mysqld/mysqld.sock\n</code></pre>\n<p>Then put these commands on terminal (NOTE: if dir is not there then create one):</p>\n<pre class=\"lang-bash prettyprint-override\"><code>chmod 777 -R /var/run/mysqld\nchmod 777 -R /var/lib/mysql\nchmod 777 -R /var/log/mysql\n</code></pre>\n<p>Then start MySQL using below command:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>mysqld\n</code></pre>\n<p>Then open a new terminal and connect using the below command:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>mysql -uroot -pYourPass\n</code></pre>\n",
+      "score": 31,
+      "creation_date": "2021-04-05T07:13:09"
+    }
+  ],
+  "source": "stackoverflow"
+}

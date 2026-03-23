@@ -1,0 +1,24 @@
+{
+  "id": 69774921,
+  "title": "I&#39;m using WSL how I upgrade Python to the last version through the console?",
+  "body": "<p>I'm using WSL how I upgrade Python to the last version through the console?</p>\n<p>Right now I have 3.8.10</p>\n",
+  "score": 26,
+  "answer_count": 4,
+  "view_count": 63311,
+  "tags": [
+    "python",
+    "console",
+    "upgrade",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-10-29T21:25:13",
+  "answers": [
+    {
+      "id": 74072190,
+      "body": "<p>I tried these steps and it worked.</p>\n<p><strong>Note:</strong> in step 3 you just need to change the version that you want to install</p>\n<p><strong>Installation steps</strong></p>\n<p>Run the following commands in your WSL terminal:</p>\n<pre><code># Update package lists{\nsudo apt update\n\n# Install dependent libraries:\nsudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev\n\n# Download Python binary package:\nwget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz\n\n# Unzip the package:\ntar -xzf Python-3.10.8.tgz\n\n# Execute configure script\ncd Python-3.10.8\n./configure --enable-optimizations\n\n# Build Python 3.10\nmake -j 2\n\n# Install Python 3.10\nsudo make install\n\n# Verify the installation\npython3.10\n</code></pre>\n<p>You should see:</p>\n<pre><code>Python 3.10.8 (default, october 15 2022, 14:44:10)\n[GCC 6.3.0 20170516] on linux\nType &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.\n&gt;&gt;&gt; \n</code></pre>\n<p>If you want to make Python 3.10 the default that runs when you type <code>python</code>, you can follow these steps:</p>\n<ol>\n<li><p>Change ~/.bashrc file to add the following line:</p>\n<pre><code>alias python='/usr/local/bin/python3.10'\n</code></pre>\n</li>\n<li><p>And then run the following command to have it take effect in the current shell:</p>\n<pre><code>source ~/.bashrc\n</code></pre>\n</li>\n<li><p>You can verify it using the <code>python --version</code> command, which should now show:</p>\n<pre><code>Python 3.10.8\n</code></pre>\n</li>\n</ol>\n<p>Originally found in <a href=\"https://kontext.tech/article/930/install-python-391-on-wsl\" rel=\"noreferrer\">this article</a>.</p>\n",
+      "score": 57,
+      "creation_date": "2022-10-14T16:32:13"
+    }
+  ],
+  "source": "stackoverflow"
+}

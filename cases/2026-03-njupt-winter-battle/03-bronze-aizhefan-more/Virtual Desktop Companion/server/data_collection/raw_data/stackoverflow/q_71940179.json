@@ -1,0 +1,25 @@
+{
+  "id": 71940179,
+  "title": "Error /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34&#39; not found",
+  "body": "<p>firstly, I google'd a lot but nothing I found related to my case, I have an ELF executable file I'm trying to run it in my Ubuntu WSL, I've changed the permissions (<code>chmod +x file</code>), when I run it, this error shows up</p>\n<pre><code>/lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by myFile)\n</code></pre>\n<p>and when I use ld command this shows up to me</p>\n<pre><code>myFile(.eh_frame); no .eh_frame_hdr table will be created\n</code></pre>\n<p>and when I tried to upgrade GLIBC it says it's up-do-date</p>\n<pre><code>Reading package lists... Done\nBuilding dependency tree\nReading state information... Done\nlibc6 is already the newest version (2.31-0ubuntu9.7).\nlibc6 set to manually installed.\n0 upgraded, 0 newly installed, 0 to remove and 215 not upgraded.\n</code></pre>\n<p>and then I tried manually installing the deb file from <a href=\"https://packages.ubuntu.com/impish/amd64/libc6/download\" rel=\"noreferrer\">https://packages.ubuntu.com/impish/amd64/libc6/download</a> but this shows up to me :</p>\n<pre><code>dpkg: regarding libc6_2.34-0ubuntu3.2_amd64.deb containing libc6:amd64:\n libc6:amd64 breaks fakeroot (&lt;&lt; 1.25.3-1.1ubuntu2~)\n  fakeroot (version 1.24-1) is present and installed.\n\ndpkg: error processing archive libc6_2.34-0ubuntu3.2_amd64.deb (--install):\n installing libc6:amd64 would break fakeroot, and\n deconfiguration is not permitted (--auto-deconfigure might help)\nErrors were encountered while processing:\n libc6_2.34-0ubuntu3.2_amd64.deb\n</code></pre>\n",
+  "score": 77,
+  "answer_count": 10,
+  "view_count": 483338,
+  "tags": [
+    "linux",
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "elf",
+    "glibc"
+  ],
+  "creation_date": "2022-04-20T13:02:44",
+  "answers": [
+    {
+      "id": 75219857,
+      "body": "<p>I've got this error with buildroot-2022.11 when executing <code>make</code>.</p>\n<p>Ubuntu 20.04 - added <a href=\"https://packages.ubuntu.com/jammy/amd64/libc6/download\" rel=\"noreferrer\">this repo</a> as described in the link</p>\n<pre><code>sudo apt update\nsudo apt install libc6\n</code></pre>\n<p>It automatically installed 2.35 for me.</p>\n",
+      "score": 34,
+      "creation_date": "2023-01-24T09:58:27"
+    }
+  ],
+  "source": "stackoverflow"
+}

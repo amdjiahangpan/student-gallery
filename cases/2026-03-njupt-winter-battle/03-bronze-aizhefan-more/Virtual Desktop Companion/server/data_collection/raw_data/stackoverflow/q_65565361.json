@@ -1,0 +1,24 @@
+{
+  "id": 65565361,
+  "title": "How can I debug my .NET Core unit tests using Visual Studio with WSL 2?",
+  "body": "<p>With Visual Studio, I can debug my .NET Core applications running in Windows and WSL 2. For WSL 2, I use <a href=\"https://marketplace.visualstudio.com/items?itemName=ms-azuretools.Dot-Net-Core-Debugging-With-Wsl2\" rel=\"nofollow noreferrer\">this extension</a>. This is working fine. I can also debug my unit tests in Windows. This is working fine too.</p>\n<p>However, I do not know how how to debug my unit tests with Visual Studio running in WSL 2. How can I debug not just my console apps and web apps in WSL 2, but also my unit tests?</p>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 7282,
+  "tags": [
+    "visual-studio",
+    ".net-core",
+    ".net-5",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-01-04T15:35:21",
+  "answers": [
+    {
+      "id": 65762844,
+      "body": "<h1>Update 2022 Feb - VS 2022</h1>\n<p>Run on a win 10 dev machine</p>\n<pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart\ndism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart\n</code></pre>\n<p>Reboot!</p>\n<p>Run on the dev machine</p>\n<pre><code>wsl --set-default-version 2\nwsl --update\nwsl --install -d Ubuntu\n</code></pre>\n<p>Run in your new wsl machine (ubuntu 22.04 or newer)</p>\n<pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt install dotnet6 -y\n</code></pre>\n<p><strike>Run in your new wsl machine</strike> (Pre ubuntu 22.04 - now obsolete)</p>\n<pre><code>wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \nsudo dpkg -i packages-microsoft-prod.deb\nsudo apt update &amp;&amp; sudo apt upgrade -y\nsudo apt install apt-transport-https git \nsudo apt update &amp;&amp; sudo apt install dotnet-sdk-6.0 -y\n</code></pre>\n<p>Add testenvironments.json to your solution root</p>\n<pre class=\"lang-json prettyprint-override\"><code>{\n    &quot;version&quot;: &quot;1&quot;,\n    &quot;environments&quot;: [\n        {\n            &quot;name&quot;: &quot;Ubuntu&quot;,\n            &quot;type&quot;: &quot;wsl&quot;,\n            &quot;wslDistribution&quot;: &quot;Ubuntu&quot;\n        }\n    ]\n}\n</code></pre>\n<p>Visual Studio will show a new dropdown in the test explorer, select &quot;Ubuntu&quot;, after built once using wsl tests can be run and debugged.</p>\n<p><a href=\"https://i.sstatic.net/yyEzU.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/yyEzU.png\" alt=\"enter image description here\" /></a></p>\n<p>This setup does not depend on Docker. Winver shows &quot;20h2&quot;</p>\n<h1>Old</h1>\n<p>Debugging tests isn't supported using &quot;.NET Core Debugging with WSL 2&quot; extension.</p>\n<blockquote>\n<p>This tooling does not support running tests in WSL2, but I do know our sister team has this on their backlog to enable!\n<a href=\"https://marketplace.visualstudio.com/items?itemName=ms-azuretools.Dot-Net-Core-Debugging-With-Wsl2&amp;ssr=false#qna\" rel=\"noreferrer\">.NET Core Debugging with WSL 2 - Q&amp;A</a></p>\n</blockquote>\n",
+      "score": 23,
+      "creation_date": "2021-01-17T16:01:11"
+    }
+  ],
+  "source": "stackoverflow"
+}

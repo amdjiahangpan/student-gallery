@@ -1,0 +1,16 @@
+{
+  "id": 69429069,
+  "title": "WSL and serial port",
+  "body": "<p>I am using Win10 and Linux Ubuntu on WSL 2.0.</p>\n<p>For testing purposes of some programs, I would like to use the serial port of my PC in &quot;loopback&quot; with Linux running through WSL.</p>\n<p>Basically I would like a process on Linux/WSL to be able to send/receive data from a Windows process or vice versa, through serial port, but without any hardware hack.</p>\n<p>Of course I have already tried to set the Windows process serial as &quot;COM1&quot; (as indicated by the Windows resource manager) and the Linux port on WSL as &quot;/dev/ttyS1&quot;, but apparently it doesn't work.</p>\n<p>Is there any way to do this?</p>\n",
+  "score": 12,
+  "answer_count": 5,
+  "view_count": 44380,
+  "tags": [
+    "windows",
+    "serial-port",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-10-03T21:36:11",
+  "answers": [],
+  "source": "stackoverflow"
+}

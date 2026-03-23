@@ -1,0 +1,24 @@
+{
+  "id": 61396989,
+  "title": "What is the docker-desktop-data distro used for when running docker desktop with the WSL 2 engine",
+  "body": "<p>When running docker desktop on Windows with Hyper-V I have a single VM called DockerDesktopVM where my Linux VM is running with it's containers inside.</p>\n\n<p><a href=\"https://i.sstatic.net/y0LGA.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/y0LGA.png\" alt=\"DockerDesktopVM\"></a></p>\n\n<p>However when I run docker desktop with the WSL engine I see that it creates 2 WSL distros.</p>\n\n<ol>\n<li>docker-desktop</li>\n<li>docker-desktop-data</li>\n</ol>\n\n<p><a href=\"https://i.sstatic.net/N2EOf.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/N2EOf.png\" alt=\"enter image description here\"></a> </p>\n\n<p>I can shell into the docker-desktop distro like I would any other distro.</p>\n\n<p><a href=\"https://i.sstatic.net/res9H.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/res9H.png\" alt=\"enter image description here\"></a></p>\n\n<p>But trying to do the same to docker-desktop-data just bounces me out.</p>\n\n<p><a href=\"https://i.sstatic.net/Y5XsI.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/Y5XsI.png\" alt=\"enter image description here\"></a></p>\n\n<p>So my question is what is the docker-desktop-data distro for and why does it exist separately from the docker-desktop distro? Clearly the name implies data but what specific data and why can't I jump into the distro as I would any other? </p>\n",
+  "score": 62,
+  "answer_count": 3,
+  "view_count": 50618,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "docker-for-windows",
+    "docker-desktop"
+  ],
+  "creation_date": "2020-04-23T21:06:13",
+  "answers": [
+    {
+      "id": 61431088,
+      "body": "<p>The docker-desktop-data distro is used by the docker-desktop distro as the backing store for container images etc. When docker is run under Hyper-V the same result is achieved by mounting a VHD in the Hyper-V image but this isn't possible with WSL2.</p>\n<p>To quote from <a href=\"https://www.docker.com/blog/new-docker-desktop-wsl2-backend/\" rel=\"noreferrer\">the docker blog introducing the new wsl2 backend</a>:</p>\n<blockquote>\n<p>This will create 2 WSL distros for you:</p>\n<pre><code>Docker-desktop, which I’ll call the bootstrapping distro\nDocker-desktop-data, which I’ll call the data store distro\n</code></pre>\n<p>From a high level perspective, the bootstrapping distro essentially\nreplaces Hyper-V, while the data store distro replaces the VHD that we\npreviously attached to the VM.</p>\n<p>The bootstrapping distro creates a Linux namespace with its own root\nfilesystem based on the same 2 iso files we mentioned earlier (not\nentirely true, but close enough), and use the data-store distro as the\nbacking store for container images etc. instead of a VHD (WSL 2 does\nnot allow us to attach additional VHD at the moment, so we leverage\ncross-distro mounts for that).</p>\n</blockquote>\n<p>To prevent you from being able to <code>wsl -d ubuntu-desktop-data</code> the distro has a 0-byte <code>/init</code>.</p>\n<p><a href=\"https://www.docker.com/blog/new-docker-desktop-wsl2-backend/\" rel=\"noreferrer\">The blog post</a> is a great introduction to how docker on wsl works.</p>\n",
+      "score": 62,
+      "creation_date": "2020-04-25T19:08:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

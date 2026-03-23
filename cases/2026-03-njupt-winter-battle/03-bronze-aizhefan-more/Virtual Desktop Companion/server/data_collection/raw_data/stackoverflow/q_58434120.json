@@ -1,0 +1,17 @@
+{
+  "id": 58434120,
+  "title": "Run and Debug Java in WSL 2 with Intellij IDEA on Windows 10",
+  "body": "<p>Intellij IDEA is installed on Windows. The java application built with maven requires native libraries (with JNI) and runs on Ubuntu. </p>\n\n<p>Using maven and git on Windows is fine. How can I point Intellij IDEA to use the JDK from WSL so I can create a run/debug configuration that uses the WSL?</p>\n",
+  "score": 13,
+  "answer_count": 2,
+  "view_count": 14467,
+  "tags": [
+    "java",
+    "debugging",
+    "intellij-idea",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-10-17T13:43:05",
+  "answers": [],
+  "source": "stackoverflow"
+}

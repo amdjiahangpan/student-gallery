@@ -1,0 +1,24 @@
+{
+  "id": 38818613,
+  "title": "How to execute linux commands from R via bash under the Windows Subsystem for Linux (WSL)?",
+  "body": "<p>The WSL on Windows 10 allows execution of Linux commands and command-line tools via bash.exe. Very usefully, a Linux tool/command can be called from the Windows command-line (<code>cmd.exe</code>) by passing it as an argument to bash.exe like so:</p>\n\n<pre><code>bash.exe -c &lt;linux command&gt;\n</code></pre>\n\n<p>This is very useful because it should allow Windows-based scripts to combine Windows and Linux tools seamlessly.</p>\n\n<p>Unfortunately, I have failed to call Linux commands from an R script (see below).</p>\n\n<p><strong>0) System</strong></p>\n\n<p>Win10 x64 + Anniversary Update + WSL installed</p>\n\n<p><strong>1) Comparison cases where calling Linux commands work</strong></p>\n\n<p>The following all work for me; shown here just with an example call to <code>ls</code>.</p>\n\n<ul>\n<li><p>from the windows command-line (cmd.exe prompt)</p>\n\n<pre><code>bash -c \"ls /mnt/a\"\n</code></pre>\n\n<p></p>\n\n<pre><code>bash -c \"ls /mnt/a &gt; /mnt/a/test.txt\"\n</code></pre></li>\n<li><p>Same works if started from <kbd>WinKey + R</kbd></p></li>\n<li><p>Same works from within a <code>.bat</code> file.</p></li>\n<li><p>It can be called from compiled code. I tried with Delphi XE2 32-bit and 64-bit using <code>ShellExecute</code>:</p>\n\n<p>For example, these work (32 and 64 bit):</p>\n\n<pre><code>ShellExecute (0, PChar('open'), PChar('cmd.exe'), PChar('/c c:\\windows\\system32\\bash.exe -c \"ls /mnt/a &gt; /mnt/a/test.txt\"'), nil, SW_SHOWNORMAL);\n</code></pre>\n\n<p>Or (32-bit code):</p>\n\n<pre><code>ShellExecute (0, PChar('open'), PChar('c:\\windows\\sysnative\\bash.exe'), PChar('-c \"ls /mnt/a &gt; /mnt/a/test.txt\"'), nil, SW_SHOWNORMAL);\n</code></pre>\n\n<p>Or (64-bit code):</p>\n\n<pre><code>ShellExecute (0, PChar('open'), PChar('c:\\windows\\system32\\bash.exe'), PChar('-c \"ls /mnt/a &gt; /mnt/a/test.txt\"'), nil, SW_SHOWNORMAL);\n</code></pre>\n\n<p>All of these seem to work (and <code>ShellExecute</code> returns 42).</p></li>\n</ul>\n\n<p><strong>2) Failure to call Linux commands from R</strong>\nusing R 3.3.1 x64</p>\n\n<p>All of the below (and several similar things I've tried) fail with status 65535:</p>\n\n<pre><code>shell('c:/windows/system32/bash.exe -c \"ls /mnt/a\"', shell=\"cmd.exe\", flag = \"/c\")\n</code></pre>\n\n<p></p>\n\n<pre><code>shell(\"ls\", shell=\"c:/windows/system32/bash.exe\", flag = \"-c\")\n</code></pre>\n\n<p></p>\n\n<pre><code>system('cmd /c c:/windows/system32/bash.exe -c \"ls /mnt/a &gt; /mnt/a/test.txt\"')\n</code></pre>\n\n<p></p>\n\n<pre><code>system('bash -c \"ls /mnt/a\"')\n</code></pre>\n\n<p></p>\n\n<pre><code>system('c:/windows/system32/bash.exe -c \"ls /mnt/a &gt; /mnt/a/test.txt\"')\n</code></pre>\n\n<p><strong>3) Question</strong></p>\n\n<p>Given that examples under <em>1)</em> work, I find <em>2)</em> very puzzling. Am I missing anything obvious here? </p>\n\n<p>I would be very grateful for a simple example where running a Linux command via <code>bash.exe</code> under WSL works.</p>\n",
+  "score": 16,
+  "answer_count": 1,
+  "view_count": 9360,
+  "tags": [
+    "r",
+    "windows",
+    "delphi",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-07T21:13:10",
+  "answers": [
+    {
+      "id": 41474320,
+      "body": "<p>Your failing examples should now be working correctly in Windows 10 Insider builds >= 14951 which <a href=\"https://blogs.msdn.microsoft.com/commandline/2016/10/19/interop-between-windows-and-bash/\" rel=\"noreferrer\">introduced many \"interop\" improvements and new capabilities</a>:</p>\n\n<pre><code>&gt; system('bash -c \"ls /\"')\n</code></pre>\n\n<p>Generates:</p>\n\n<pre><code>bin   cache  dev  home  lib    media  opt   root  sbin  srv  tmp  var\nboot  data   etc  init  lib64  mnt    proc  run   snap  sys  usr\n</code></pre>\n",
+      "score": 12,
+      "creation_date": "2017-01-04T22:30:41"
+    }
+  ],
+  "source": "stackoverflow"
+}

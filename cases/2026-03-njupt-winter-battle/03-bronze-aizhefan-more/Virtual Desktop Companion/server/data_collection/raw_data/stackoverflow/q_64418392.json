@@ -1,0 +1,23 @@
+{
+  "id": 64418392,
+  "title": "How to elegantly create a Windows shortcut that starts a WSL program under X",
+  "body": "<p>I'm struggling a little to launch <code>xfce4-terminal</code> from my WSL installation under VcXsrv from a button on the Windows taskbar. I don't want any DOS box/console/terminal other than the xfce4-terminal when I'm done. I have it working, but man is it ugly. Does anybody have a cleaner way of doing this?</p>\n<p>Here is what I got working: I created a windows shortcut on the Desktop with this target (all in one line, broken with newlines for readability here):</p>\n<pre><code>C:\\Windows\\System32\\wscript.exe\n    \\\\wsl$\\Ubuntu-20.04\\home\\peter\\bin\\windows\\startTerminal.vbs\n</code></pre>\n<p><code>startTerminal.vbs</code> was inspired by from <a href=\"https://www.raymond.cc/blog/hidden-start-runs-batch-files-silently-without-flickering-console/\" rel=\"noreferrer\">10 Ways To Run Batch Files Silently And Hide The Console Window • Raymond.CC</a> (one of the few solutions that didn't require installing a separate program for this!) and it contains:</p>\n<pre><code>CreateObject(&quot;Wscript.Shell&quot;).Run &quot;C:\\Windows\\System32\\wsl.exe -u peter --exec /home/peter/bin/windows/startTerminal.sh&quot;,0,True\n</code></pre>\n<p>and <code>startTerminal.sh</code> contains:</p>\n<pre><code>export DISPLAY=localhost:0.0\nxfce4-terminal --command=/bin/zsh\n</code></pre>\n<p>Setting DISPLAY is apparently required, even though I set the DISPLAY environment in ~/.zshrc. wsl.exe apparently doesn't do that unless you run the login shell.</p>\n<p>Once all of this is working, I can drag my shortcut to the taskbar and click on it there.</p>\n<p>I count 3, <em><strong>three</strong></em> files cooperating to achieve this simple goal? Can I limit that to one or two  without installing an external program?</p>\n",
+  "score": 22,
+  "answer_count": 5,
+  "view_count": 36325,
+  "tags": [
+    "windows",
+    "x11",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-10-18T21:13:19",
+  "answers": [
+    {
+      "id": 64864250,
+      "body": "<p>Yes, I think you can do what I do in one shortcut file.  I'll share what works for me then you'll have to fiddle for your program.</p>\n<p>Try putting all your commands in the Target section of the Shortcut link file.</p>\n<p>Step 1. Right click on desktop then New then Shortcut then name it (LaunchXFCE4)</p>\n<p>Step 2. Right click LaunchXFCE4 select Properties</p>\n<p>Step 3. Enter all your launch sequences in the Target section</p>\n<p>Step 4. Right click LaunchXFCE4 select Pin to Taskbar</p>\n<p>I'm launching Emacs 27.1 on WSL 2 with Ubuntu 20.10 on Windows 10 using this code which perhaps you can modify.</p>\n<pre><code>C:\\Windows\\System32\\wsl.exe --distribution Ubuntu20 bash -c &quot;export DISPLAY=$(ip route | awk '{print $3; exit}'):0 &amp;&amp; export LIBGL_ALWAYS_INDIRECT=1 &amp;&amp; export XCURSOR_SIZE=16 &amp;&amp; setsid emacs&quot;\n</code></pre>\n<p>The first export display is similar to your localhost:0.0 so replace it or try mine. Maybe your xfce4 replaces my emacs.  Read <a href=\"https://stackoverflow.com/questions/8055371/how-do-i-run-two-commands-in-one-line-in-windows-cmd?rq=1\">this post</a> about double ampersands.  So possibly this</p>\n<pre><code>C:\\Windows\\System32\\wsl.exe --distribution Ubuntu20 bash -c &quot;export DISPLAY=localhost:0.0 &amp;&amp; export LIBGL_ALWAYS_INDIRECT=1 &amp;&amp; export XCURSOR_SIZE=16 &amp;&amp; setsid xfce4-terminal --command=/bin/zsh&quot;\n</code></pre>\n<p>Note, my VcXsrv starts when windows starts by putting a shortcut to config.xlaunch in my C:\\Users\\USERNAME\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup.</p>\n<p>By the way, Microsoft will provide a GUI for WSL in a few months, according to their <a href=\"https://devblogs.microsoft.com/commandline/whats-new-in-the-windows-subsystem-for-linux-september-2020/\" rel=\"noreferrer\">blog</a></p>\n<blockquote>\n<p>GUI app support in WSL is becoming a reality! We are getting closer to\nan initial preview and happy to announce a preview release for Windows\nInsiders within the next couple of months.</p>\n</blockquote>\n",
+      "score": 15,
+      "creation_date": "2020-11-16T19:12:45"
+    }
+  ],
+  "source": "stackoverflow"
+}

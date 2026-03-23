@@ -1,0 +1,23 @@
+{
+  "id": 43666009,
+  "title": "Using Git in Windows Subsystem for Linux through IntelliJ",
+  "body": "<p>I'm trying to set Git executable in IntelliJ to be the git installed in Windows Subsystem for Linux, I tried a few different ways, but always got some sort of error. Today I installed to Creators Update (Version 1703), reinstalled WSL and tried again, here's what I did:</p>\n\n<p>I created a .bat script:</p>\n\n<pre><code>@echo off\nC:\\Windows\\System32\\bash.exe -c \"git %*\"\n</code></pre>\n\n<p>So when running it:</p>\n\n<pre><code>C:\\Users\\Limon\\Desktop&gt;bash.bat --version\ngit version 2.7.4\n</code></pre>\n\n<p>So then I tried to set this bat at the git executable in IntelliJ:\n<a href=\"https://i.sstatic.net/TIvMG.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/TIvMG.png\" alt=\"Setting Git executable in IntelliJ\"></a></p>\n\n<p>And it worked! But everything else fails, for example when I try to pull or branch in IntelliJ, I get:</p>\n\n<pre><code>Couldn't check the working tree for unmerged files because of an error.\n'C:\\Windows\\System32\\bash.exe' is not recognized as an internal or external command,\noperable program or batch file.\n</code></pre>\n\n<p>Any ideas on how fix this? I don't really know anything about batch scripting. It works perfectly off command line.</p>\n",
+  "score": 44,
+  "answer_count": 11,
+  "view_count": 25732,
+  "tags": [
+    "batch-file",
+    "intellij-idea",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-04-27T19:03:29",
+  "answers": [
+    {
+      "id": 43878654,
+      "body": "<p>I was looking for a way to use git on WSL Windows Subsystem for Linux through Webstorm or an IntelliJ idea software.</p>\n\n<p>I tried KatoPue's solution, but I got the following error:</p>\n\n<p><code>fatal: could not read log file 'C:/Program Files/Git/mnt/c/Users/Elies/AppData/Local/Temp/git-commit-msg-.txt': No such file or directory</code></p>\n\n<p>I solved it by replacing the path when sending the command to WSL's git</p>\n\n<pre><code>Settings &gt; Version Control &gt; Git &gt; Path to Git executable : path_to_wslgit.bat\n</code></pre>\n\n<p>wslgit.bat :</p>\n\n<pre><code>@echo off\nsetlocal enabledelayedexpansion\nset command=%*\nset find=C:\\Users\\%USERNAME%\\AppData\\Local\\Temp\\git-commit-msg-.txt\nset replace=/mnt/c/Users/%USERNAME%/AppData/Local/Temp/git-commit-msg-.txt\ncall set command=%%command:!find!=!replace!%%\necho | C:\\Windows\\Sysnative\\bash.exe -c 'git %command%'\n</code></pre>\n",
+      "score": 22,
+      "creation_date": "2017-05-09T19:45:38"
+    }
+  ],
+  "source": "stackoverflow"
+}

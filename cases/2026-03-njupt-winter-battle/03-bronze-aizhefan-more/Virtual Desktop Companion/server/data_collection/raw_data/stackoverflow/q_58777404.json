@@ -1,0 +1,23 @@
+{
+  "id": 58777404,
+  "title": "How can i connect my phone to expo when using WSL2 to run it",
+  "body": "<p>Whenever i try to run <code>expo start</code> or <code>npm start</code> the IP for it is not my LAN IP but my WSL2 eth0 IP and this will cause my phone not connecting to the expo .</p>\n\n<p>i have already tried to set <code>REACT_NATIVE_PACKAGER_HOSTNAME</code> with <code>export</code> command and it will change the ip in the browser related to expo as well but i think it will not run at that ip because my phone again will not connect (i also have turned firewall off too)</p>\n\n<p>the expected thing for me is to be able to run my expo code on my phone without using the tunnel option which will use internet for it.</p>\n",
+  "score": 22,
+  "answer_count": 9,
+  "view_count": 17623,
+  "tags": [
+    "react-native",
+    "expo",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-11-09T07:50:24",
+  "answers": [
+    {
+      "id": 60122926,
+      "body": "<p>I was having this issue and this is the main thread about the topic so I thought I'd add a solution that worked for me.</p>\n\n<p>To reiterate, this is running Expo SDK 36 and WSL2 (Ubuntu 18.04 LTS, Win 10 build 19559.1000).</p>\n\n<p>expo start would run (in WSL2), and the QR code would pop up. Scanning the code with my phone would result in an error. </p>\n\n<p>The solution I found was to go to the Metro Bundler window that opens up. Under \"Connection\", three options are available: Tunnel, LAN, and Local. expo start defaults to LAN. This is where the error is seeming to occur. </p>\n\n<p>The solution was to switch from LAN to Tunnel. This produces a new QR code which allows the Expo phone app to correctly identify and connect to the Expo project.</p>\n\n<pre><code>expo start --tunnel\n</code></pre>\n\n<p>I understand that the original post didn't want to use the tunneling option, but for those who can, this works.</p>\n\n<p>Hope this helps!</p>\n",
+      "score": 41,
+      "creation_date": "2020-02-08T00:43:57"
+    }
+  ],
+  "source": "stackoverflow"
+}

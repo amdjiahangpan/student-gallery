@@ -1,0 +1,24 @@
+{
+  "id": 61592709,
+  "title": "Docker not running on Ubuntu WSL due to error cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?",
+  "body": "<p>I am running WSL 2 (Ubuntu) on a Windows 10 machine. I installed Docker on my Ubuntu using the official Docker guide (<a href=\"https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository\" rel=\"noreferrer\">https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository</a>). Running <code>docker run hello-world</code> produces the following error: <code>docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</code>.</p>\n\n<p>I have tried the following steps:</p>\n\n<ol>\n<li>Using <code>sudo docker...</code> instead of <code>docker...</code></li>\n<li>Adding user to docker usergroup with  <code>sudo usermod -aG docker $(whoami)</code></li>\n<li><code>sudo nohup docker daemon -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock &amp;</code> which I found in this thread: <a href=\"https://forums.docker.com/t/cannot-connect-to-the-docker-daemon-is-the-docker-daemon-running-on-this-host/8925/4\" rel=\"noreferrer\">https://forums.docker.com/t/cannot-connect-to-the-docker-daemon-is-the-docker-daemon-running-on-this-host/8925/4</a></li>\n</ol>\n\n<p>None of these steps helped.</p>\n\n<p><code>docker version</code> produces this output:</p>\n\n<pre><code>Client: Docker Engine - Community\n Version:           19.03.8\n API version:       1.40\n Go version:        go1.12.17\n Git commit:        afacb8b7f0\n Built:             Wed Mar 11 01:25:46 2020\n OS/Arch:           linux/amd64\n Experimental:      false\nCannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n</code></pre>\n\n<p><code>service docker status</code> gives <code>Docker is not running</code>. <code>service docker start/restart</code> does nothing, Docker does not start. Any ideas what could be the issue?</p>\n",
+  "score": 91,
+  "answer_count": 2,
+  "view_count": 165369,
+  "tags": [
+    "linux",
+    "docker",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-05-04T12:57:02",
+  "answers": [
+    {
+      "id": 61780566,
+      "body": "<p><strong>Using WSL2</strong></p>\n<p>You simply have to activate and use WSL2, I have to install Ubuntu 20.04 as the 18.04 wasn't connecting with Docker desktop. In the windows shell:</p>\n<p><em>To check the WSL mode, run</em></p>\n<p><code>wsl -l -v</code></p>\n<p><em>To upgrade your existing Linux distro to v2, run:</em></p>\n<p><code>wsl --set-version (distro name) 2</code></p>\n<p><em>WSL Integration will be enabled on your default WSL distribution. To change your default WSL distro, run</em></p>\n<p><code>wsl --set-default &lt;distro name&gt;</code></p>\n<p>Then in docker you have to.</p>\n<p>...use the WSL2 engine\n<a href=\"https://i.sstatic.net/S6UcG.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/S6UcG.png\" alt=\"Activate WSL2\" /></a></p>\n<p>...access from your default WSL2\n<a href=\"https://i.sstatic.net/jA5GB.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/jA5GB.png\" alt=\"enter image description here\" /></a></p>\n<p>Based on this article.\n<a href=\"https://nickjanetakis.com/blog/a-linux-dev-environment-on-windows-with-wsl-2-docker-desktop-and-more\" rel=\"noreferrer\">A Linux Dev Environment on Windows with WSL 2, Docker Desktop</a>\nAnd the docker docs.\n<a href=\"https://docs.docker.com/docker-for-windows/wsl/\" rel=\"noreferrer\">Docker Desktop WSL 2 backend</a></p>\n<p><strong>Below is valid only for WSL1</strong></p>\n<p><em>It seems that docker cannot run inside WSL. What they propose is to connect the WSL to your docker desktop running in windows: <a href=\"https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly\" rel=\"noreferrer\">Setting Up Docker for Windows and WSL</a></em></p>\n<p><em>In the docker forums they also refer to that solution: <a href=\"https://forums.docker.com/t/cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock/80886\" rel=\"noreferrer\">Cannot connect to the docker daemon</a></em></p>\n",
+      "score": 112,
+      "creation_date": "2020-05-13T17:02:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

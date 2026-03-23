@@ -1,0 +1,17 @@
+{
+  "id": 75883177,
+  "title": "Installing pyenv-win on top of working wsl2 Ubuntu instance breaks Ubuntu pyenv",
+  "body": "<p>I've been using pyenv for the past year in my ubuntu 22.04 under wsl2. It works fine, and I have no issues with installing python versions and setting them up for a project. I now have a windows app project I want to work on while in Windows (it's a GUI app). I found pyenv-win and when I install it, it breaks my wsl2 installation. When it starts, I get the following error:</p>\n<pre><code>-bash: /mnt/c/Users/mryan/.pyenv/pyenv-win/bin/pyenv: /bin/sh^M: bad interpreter: No such file or directory\n</code></pre>\n<p>So mryan is my windows user name. My ubuntu user name is dev.</p>\n<p>I've also messed up my ubuntu install so what I'm going to do after submitting this question is restore my windows system back to yesterday before I started this process. I'll then start from scratch on getting windows pyenv-win going.</p>\n<p>Has anyone else gone through this? Do you know the proper way to get this all going? Should I uninstall pyenv from ubuntu, install it in windows, and then re-install it in ubuntu? I get the feeling this is a path issue where windows and ubuntu is overlapping?</p>\n",
+  "score": 13,
+  "answer_count": 4,
+  "view_count": 8431,
+  "tags": [
+    "windows",
+    "ubuntu",
+    "windows-subsystem-for-linux",
+    "pyenv"
+  ],
+  "creation_date": "2023-03-30T00:20:19",
+  "answers": [],
+  "source": "stackoverflow"
+}

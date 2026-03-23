@@ -1,0 +1,23 @@
+{
+  "id": 52197246,
+  "title": "WSL Redis encountered System has not been booted with systemd as init system (PID 1). Can&#39;t operate",
+  "body": "<p>I'm trying to follow the Redis installation process that was discuss in this <a href=\"https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04\" rel=\"noreferrer\">article</a> of digital ocean, for in WSL(Windows Sub-System for Linux). The Ubuntu version installed is Ubuntu 18.04.</p>\n<p>Everything in redis installation is fine but when I tried to run this <code>sudo systemctl start redis</code> I got this message.</p>\n<pre><code>System has not been booted with systemd as init system (PID 1). Can't operate.\n</code></pre>\n<p>Any Idea on what should I do with that?</p>\n",
+  "score": 312,
+  "answer_count": 9,
+  "view_count": 684456,
+  "tags": [
+    "redis",
+    "windows-subsystem-for-linux",
+    "ubuntu-18.04"
+  ],
+  "creation_date": "2018-09-06T05:46:40",
+  "answers": [
+    {
+      "id": 52919706,
+      "body": "<p>Instead, use: <code>sudo service redis-server start</code></p>\n\n<p>I had the same problem, stopping/starting other services from within Ubuntu on WSL. This worked, where systemctl did not. </p>\n\n<p>And one could reasonably wonder, \"how would you know that the service name was 'redis-server'?\" You can see them using <code>service --status-all</code></p>\n",
+      "score": 478,
+      "creation_date": "2018-10-21T20:43:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

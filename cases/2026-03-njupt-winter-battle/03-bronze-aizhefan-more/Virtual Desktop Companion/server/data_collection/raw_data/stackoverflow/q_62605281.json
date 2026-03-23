@@ -1,0 +1,23 @@
+{
+  "id": 62605281,
+  "title": "Docker build command hangs in WSL 2 Ubuntu 18.04",
+  "body": "<p>I have Windows 10 Professional 2004 build 19041.329.</p>\n<p>I have the latest Docker Desktop for windows, and have chosen Ubuntu 18.04 LTS as my WSL distro.</p>\n<p>I have set all the proper settings to enable WSL 2 in Docker Desktop, and am able to run commands like <code>docker info</code> without issue.</p>\n<p>However, when I try to run <code>docker build -t mytestimage:1.0 .</code> via a Ubuntu terminal, it takes several minutes, and then sends the build context to the docker daemon, but does so VERY slowly.</p>\n<p>If I run the same command from a Windows command prompt, it works very quickly</p>\n<p>I did not have this problem with WSL 1, and am unsure how to even diagnose what might be wrong and why this is so slow in WSL 2.</p>\n",
+  "score": 19,
+  "answer_count": 1,
+  "view_count": 4528,
+  "tags": [
+    "docker",
+    "ubuntu-18.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-27T02:41:22",
+  "answers": [
+    {
+      "id": 68504612,
+      "body": "<p>I have experienced this problem. It's to do with the way WSL and windows share filesystems. The best solution I have found is to use a bash container when using the Linux filesystem and a powershell prompt when using the windows filesystem. When you use a bash session on the windows filesystem things are very slow. The same problem occurs when trying to access the Linux filesystem with powershell (though that's much harder).</p>\n<p>You can get to the Linux filesystem in bash by issuing a <code>cd</code> command to get to your Linux home folder. I do most of my work in this way and it's very fast. From there just use git to clone your repo on the Linux fs and everything will work rapidly.</p>\n<p>Alternatively, use powershell to clone your repo into <code>C:/Users/home/git/myproject</code> and you'll find that the system is also responsive, but you're no longer using Linux. I am currently working on a project that needs to use windows executables and I'm forced to work this way with that and have found that it is also fast.</p>\n",
+      "score": 3,
+      "creation_date": "2021-07-23T20:13:44"
+    }
+  ],
+  "source": "stackoverflow"
+}

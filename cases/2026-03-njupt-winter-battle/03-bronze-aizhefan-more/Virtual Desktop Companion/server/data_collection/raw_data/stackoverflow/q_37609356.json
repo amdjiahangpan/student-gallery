@@ -1,0 +1,23 @@
+{
+  "id": 37609356,
+  "title": "Windows 10 - Bash (Ubuntu) SU (Root Password)",
+  "body": "<p>Recently updated to Windows 10, installed Ubuntu Bash. Wanted to start configuring, But I have hit a wall already. </p>\n\n<p>When installed, you are asked for a username and password for your account. \nThis creates a user level.</p>\n\n<p>Is it possible to access to root user, SU?</p>\n\n<p>Every time I try, it asks for a password, and none of the accounts on the PC work (i.e., Windows 10 admin account password does not work). Tried default passwords too etc., all fail. </p>\n\n<p>The reason for it is when looking at the users home directory: When creating a file, it creates it under my Windows User Account (Permissions).</p>\n\n<p>But when I view files created from Bash, they are created for Root user.</p>\n\n<p>So this is the confusion, I modified <code>bashrc</code> and it's no longer owned by root, So it's not accessible. </p>\n\n<p>But I cannot login to root to create or modify the files. </p>\n\n<p>Am I being a complete noob or something?\n<a href=\"https://i.sstatic.net/GYlWP.jpg\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/GYlWP.jpg\" alt=\"enter image description here\"></a></p>\n\n<p>When <code>bashrc</code> is not owned by Root, when loading <code>Bash.exe</code>, I get <code>.bashrc Input/output error</code>. </p>\n",
+  "score": 68,
+  "answer_count": 1,
+  "view_count": 96642,
+  "tags": [
+    "bash",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-06-03T08:17:00",
+  "answers": [
+    {
+      "id": 37609466,
+      "body": "<p>as far as i know you'll have to type \"sudo su\"</p>\n",
+      "score": 172,
+      "creation_date": "2016-06-03T08:23:22"
+    }
+  ],
+  "source": "stackoverflow"
+}

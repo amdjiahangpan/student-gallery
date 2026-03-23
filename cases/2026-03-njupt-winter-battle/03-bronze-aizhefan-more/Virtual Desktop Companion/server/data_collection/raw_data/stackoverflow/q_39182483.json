@@ -1,0 +1,22 @@
+{
+  "id": 39182483,
+  "title": "How to use X Windows with Emacs on Windows 10 Bash?",
+  "body": "<p>I am using the Bash on Ubuntu on Windows program to use Emacs for C++.\nRight now, I can code everything using the keyboard shortcuts, however, I want to select text with my mouse or set the mark with my mouse instead of always having to use my keyboard. </p>\n\n<p>To get the X Windows System, I already did <code>sudo apt-get install xserver -xorg</code> but emacs still runs in a terminal editor. </p>\n\n<p>I don't know what other commands to use or how to get X Windows to start running.</p>\n",
+  "score": 20,
+  "answer_count": 3,
+  "view_count": 27895,
+  "tags": [
+    "emacs",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-08-27T14:58:26",
+  "answers": [
+    {
+      "id": 39188790,
+      "body": "<p>Windows bash does not support X Server. However, using a Windows X Server port such as MobaXTerm, XMing or vcXsrv in conjunction with Windows bash works. Some things work out of the box (gvim did,) emacs requires more effort.</p>\n\n<p>Here's how I've made it work:</p>\n\n<ul>\n<li><p>Install <a href=\"http://mobaxterm.mobatek.net/\" rel=\"noreferrer\">MobaXterm</a>. Most probably you can make it work with XMing as well, but I have tested only with MobaXterm. <em>Update:</em> Tested with <a href=\"https://sourceforge.net/projects/vcxsrv/\" rel=\"noreferrer\">vcXsrv</a> and <a href=\"http://www.straightrunning.com/XmingNotes/\" rel=\"noreferrer\">XMing</a> (paid version.) Works essentially the same, I will probably stick with MobaXTerm.</p></li>\n<li><p>Install emacs 25.1 snapshot. The reason: Ubuntu 14.04 comes with emacs 24.3, which doesn't work with Windows bash and MobaXTerm X server (no idea why, and it's too old anyway.) </p></li>\n</ul>\n\n<p>Install the snapshot using the following commands:</p>\n\n<pre><code>sudo add-apt-repository ppa:ubuntu-elisp/ppa\nsudo apt-get update\nsudo apt-get install emacs-snapshot\n</code></pre>\n\n<p>Then run</p>\n\n<pre><code>sudo update-alternatives --config emacs\n</code></pre>\n\n<p>and select <code>emacs-snapshot</code></p>\n\n<p>Make sure you  set the <code>DISPLAY</code></p>\n\n<pre><code>export DISPLAY=localhost:0.0\n</code></pre>\n\n<p>Run MobaXTerm (you don't need anything to do in it, just start it - it will start X Server when needed.)</p>\n\n<p>Run emacs in bash and enjoy.</p>\n\n<p>One problem remains, and it persists across all three packages I've tested (MobaXTerm, XMing and vcXsrv). Emacs sticks to the initial frame size, and doesn't resize its frame when the window is resized. Same problem with the menu bar - when menu bar is disabled, emacs doesn't reclaim its space, it remains as a grey rectangle. This problem seems to be peculiar to emacs on Windows bash - gvim and other GUI programs seem to work fine. Also, running emacs 25.1 on Linux using any X Server on Windows works fine. I have tried to build emacs with different GUI settings (GTK 2.0 etc.) but emacs make on Windows bash gets stuck. If I find a workaround for this I will post an update.</p>\n\n<p><em>Update 09/24/2017</em> According to <a href=\"https://stackoverflow.com/users/8589112/jarrett\">Jarett</a> the following in your <code>init.el</code> should fix the frame resizing problem:</p>\n\n<pre><code>(setq frame-resize-pixelwise t)\n</code></pre>\n\n<p>I don't have Windows with bash active anymore, so I can't test it.</p>\n",
+      "score": 38,
+      "creation_date": "2016-08-28T07:04:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

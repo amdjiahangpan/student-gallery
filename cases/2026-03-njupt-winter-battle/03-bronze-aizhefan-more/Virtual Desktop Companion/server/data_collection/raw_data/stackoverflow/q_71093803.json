@@ -1,0 +1,16 @@
+{
+  "id": 71093803,
+  "title": "git with Beyond Compare (4) on WSL2 Windows 11 not opening the repo version",
+  "body": "<p>Trying to get git and Beyond Compare to place nicely together on WSL.  Here is the output from <code>git config --list</code>:</p>\n<pre><code>diff.tool=bc3\ndifftool.prompt=false\ndifftool.bc3.path=/mnt/c/Program Files/Beyond Compare 4/BComp.exe\nmerge.tool=bc3\nmergetool.prompt=false\nmergetool.bc3.trustexitcode=true\nmergetool.bc3.path=/mnt/c/Program Files/Beyond Compare 4/BComp.exe\n</code></pre>\n<p>Here is my <code>~/.gitconfig</code>:</p>\n<pre><code>[diff]\n    tool = bc3\n[difftool]\n    prompt = false\n[difftool &quot;bc3&quot;]\n    path = /mnt/c/Program Files/Beyond Compare 4/BComp.exe\n[merge]\n    tool = bc3\n[mergetool]\n    prompt = false\n[mergetool &quot;bc3&quot;]\n    trustExitCode = true\n    path = /mnt/c/Program Files/Beyond Compare 4/BComp.exe\n</code></pre>\n<p>my <code>git --version is</code>:</p>\n<pre><code>git version 2.25.1\n</code></pre>\n<p>When I try <code>git difftool file_in_git_repo</code>\nBeyond Compare opens with the current version in the left pane, but nothing in the right pane (I have confirmed the file exists in the git repo.)</p>\n<p><code>.git/config</code> has no entries referencing diff or merge</p>\n<p>Any suggestions would be most welcome</p>\n<p>========================================================================</p>\n<p>Similar to VonC's suggestion, I was able to get it working with this in my .gitconfig file (disclaimer - I have not used the mergetool with this new method):</p>\n<pre><code>[diff]\n    tool = bc3\n[difftool]\n    prompt = false\n[difftool &quot;bc3&quot;]\n    cmd = '/mnt/c/Program Files/Beyond Compare 4/BComp.exe'   \\&quot;$(wslpath -aw $LOCAL)\\&quot; \\&quot;$(wslpath -aw $REMOTE)\\&quot;\n[merge]\n    tool = bc3\n[mergetool]\n    prompt = false\n[mergetool &quot;bc3&quot;]\n    trustExitCode = true\n    cmd = '/mnt/c/Program Files/Beyond Compare 4/BComp.exe'   \\&quot;$(wslpath -aw $LOCAL)\\&quot; \\&quot;$(wslpath -aw $REMOTE)\\&quot;\n</code></pre>\n",
+  "score": 10,
+  "answer_count": 3,
+  "view_count": 3819,
+  "tags": [
+    "git",
+    "windows-subsystem-for-linux",
+    "beyondcompare"
+  ],
+  "creation_date": "2022-02-12T16:39:34",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 39677836,
+  "title": "How to validate PHP in VS code using WSL php",
+  "body": "<p>In VS code you can validate php using php executable. But is there a way to use php installed on WSL instead?</p>\n",
+  "score": 16,
+  "answer_count": 6,
+  "view_count": 13485,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-09-24T15:09:38",
+  "answers": [
+    {
+      "id": 51733074,
+      "body": "<p>What worked for me:</p>\n\n<p>Create php.bat  file:</p>\n\n<pre><code>@echo off\nset v_params=%*\nset v_params=%v_params:\\=/%\nset v_params=%v_params:c:=/mnt/c%\nset v_params=%v_params:\"=\\\"%\n@bash -c \"php %v_params%\"\n</code></pre>\n\n<p>put it in C:\\WSL-Tools\\php.bat</p>\n\n<p>Then, in VScode settings (Ctrl+comma):</p>\n\n<p><code>\"php.validate.executablePath\": \"C:\\\\WSL-Tools\\\\php.bat\"</code></p>\n\n<p>And it works.</p>\n",
+      "score": 13,
+      "creation_date": "2018-08-07T18:15:10"
+    }
+  ],
+  "source": "stackoverflow"
+}

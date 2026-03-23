@@ -1,0 +1,17 @@
+{
+  "id": 72528606,
+  "title": "Docker Rancher - Permission Denied when using docker from WSL",
+  "body": "<p>I have installed Docker Rancher on Windows 10 with dockerd option and WSL on true for my current WSL distribution (Ubuntu).\nWhen i try to use docker in WSL2, I had the following error:</p>\n<pre><code>fpapi@xxx:~$ docker ps\nGot permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get &quot;http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json&quot;: dial unix /var/run/docker.sock: connect: permission denied\n</code></pre>\n<p>The command works fine in the cmd shell.</p>\n<p>Which kind of permission I'm missing?</p>\n",
+  "score": 11,
+  "answer_count": 1,
+  "view_count": 20030,
+  "tags": [
+    "docker",
+    "windows-10",
+    "windows-subsystem-for-linux",
+    "rancher"
+  ],
+  "creation_date": "2022-06-07T09:04:22",
+  "answers": [],
+  "source": "stackoverflow"
+}

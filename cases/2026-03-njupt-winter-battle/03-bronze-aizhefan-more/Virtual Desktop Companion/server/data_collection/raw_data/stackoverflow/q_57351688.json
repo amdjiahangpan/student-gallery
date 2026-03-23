@@ -1,0 +1,24 @@
+{
+  "id": 57351688,
+  "title": "Unable to start Docker in WSL2 using new Windows Terminal",
+  "body": "<p>I have recently installed WSL2  and installed Ubuntu from Microsoft Store.When i run docker using</p>\n\n<p>Sudo service docker start, i get below message</p>\n\n<pre><code>Cannot connect to the Docker daemon. Is the docker daemon running on this host?\n</code></pre>\n\n<p>I followed steps as per this Answer and did below</p>\n\n<pre><code>    sudo groupadd docker\nsudo usermod -aG docker $(whoami)\n</code></pre>\n\n<p>But still cant start docker..when checking Docker logs, i could see below</p>\n\n<blockquote>\n  <p>CONNECTING\" module=grpc Error starting daemon: Error initializing network controller: error obtaining controller instance: failed to create NAT chain DOCKER: iptables failed: iptables -t nat -N DOCKER: iptables v1.6.1: can't initialize iptables table nat': Table does not exist (do you need to insmod?)\n  Perhaps iptables or your kernel needs to be upgraded.\n  (exit status 3)\n  `</p>\n</blockquote>\n",
+  "score": 20,
+  "answer_count": 4,
+  "view_count": 24484,
+  "tags": [
+    "docker",
+    "windows-10",
+    "windows-subsystem-for-linux",
+    "windows-terminal"
+  ],
+  "creation_date": "2019-08-05T02:51:00",
+  "answers": [
+    {
+      "id": 57351697,
+      "body": "<p>I have tried a lot of steps based on the error below</p>\n\n<blockquote>\n  <p>can't initialize iptables table nat': Table does not exist (do you need to insmod?) Perhaps iptables or your kernel needs to be upgraded. (exit status 3) `</p>\n</blockquote>\n\n<p>But Starting Terminal as administrator worked.Even though you run </p>\n\n<pre><code>sudo service docker start\n</code></pre>\n\n<p>The Terminal should be launched as Admin</p>\n",
+      "score": 40,
+      "creation_date": "2019-08-05T02:52:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

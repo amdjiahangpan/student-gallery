@@ -1,0 +1,23 @@
+{
+  "id": 64513964,
+  "title": "WSL-2: Which ports are automatically forwarded?",
+  "body": "<p>I've been tinkering around with WSL-2 for a while now and don't exactly understand how traffic is routed between the host and WSL-2 dist.</p>\n<p>In some sources it seems like all ports used by WSL-2 automatically become available to the host machine. Such as in <a href=\"https://learn.microsoft.com/en-us/windows/python/web-frameworks#hello-world-tutorial-for-flask\" rel=\"noreferrer\">this tutorial by Microsoft</a>.\nSimilarly I managed to host a Jupyter instance which is available directly on my host machine through <code>localhost:8888</code>.</p>\n<p>However, when trying other services, such as ssh (also tried on a non-standard port) the port does not automatically become available through localhost and I have to use the IP address assigned to my WSL distro (the one from <code>wsl hostname -I</code>)</p>\n<p>To make the services available through localhost I found <a href=\"https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723\" rel=\"noreferrer\">this portforwarding script</a>, which worked. But I would like to understand why it was needed.</p>\n<p>Why is port forwarding needed for some services, but not all?</p>\n",
+  "score": 75,
+  "answer_count": 8,
+  "view_count": 202251,
+  "tags": [
+    "network-programming",
+    "portforwarding",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-10-24T13:42:38",
+  "answers": [
+    {
+      "id": 68872599,
+      "body": "<p>When you run WSL-2, a machine like a vitural machin run on your window device. Windows will create a local network, same your LAN, and connect WLS-2 to this network.</p>\n<ul>\n<li>On your WSL2, you can run <em>ip a | grep eth0</em>, result look like:</li>\n</ul>\n<blockquote>\n<p>5: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000\ninet 172.27.5.124/20 brd 172.27.15.255 scope global eth0</p>\n</blockquote>\n<ul>\n<li>And on terminal (or PowerShell) on your windows, run <em>ipconfig</em>, find in the result, look like:</li>\n</ul>\n<pre><code>Ethernet adapter vEthernet (WSL):\n\n   Connection-specific DNS Suffix  . :\n   Link-local IPv6 Address . . . . . : fe80::1532:a8ea:6b34:8df2%73\n   IPv4 Address. . . . . . . . . . . : 172.27.0.1\n   Subnet Mask . . . . . . . . . . . : 255.255.240.0\n   Default Gateway . . . . . . . . . :\n</code></pre>\n<p>WSL-2 and Windows device on a same network, and WSL-2 not connect to your LAN.</p>\n<p>My solution (use port forwarding on Windows)</p>\n<p>Open terminal with Admin on Windows, and run script:</p>\n<pre><code>netsh interface portproxy set v4tov4 listenport=8888 listenaddress=0.0.0.0 connectport=8888 connectaddress=$(wsl hostname -I)\n</code></pre>\n",
+      "score": 56,
+      "creation_date": "2021-08-21T11:28:53"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 75763525,
+  "title": "curl: (35) error:0A000152:SSL routines::unsafe legacy renegotiation disabled",
+  "body": "<p>Commands like <code>curl</code> and <code>wget</code> give the following error:<code>curl: (35) error:0A000152:SSL routines::unsafe legacy renegotiation disabled</code>. I am using WSL2 Ubuntu and on a corporate firewall. I did export my trusted root ca cert to WSL and updated certificates. However, still facing the issue when downloading tools like Jenkins, Terraform, etc. For example when trying to get Jenkins.</p>\n<pre><code>curl -fsSL http://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee   /usr/share/keyrings/jen\nkins-keyring.asc &gt; /dev/null\ncurl: (35) error:0A000152:SSL routines::unsafe legacy renegotiation disabled\n</code></pre>\n<p>I am on a corporate VPN. without VPN commands work fine however with VPN on the corporate network I get these errors. If I do SSL bypass with the fw team it works. Not sure if anything else is wrong here.</p>\n<p><code>sudo vim /etc/ssl/openssl.cnf </code></p>\n<pre><code>`#\n# OpenSSL example configuration file.\n# See doc/man5/config.pod for more info.\n#\n# This is mostly being used for generation of certificate requests,\n# but may be used for auto loading of providers\n\n# Note that you can include other files from the main configuration\n# file using the .include directive.\n#.include filename\n\n# This definition stops the following lines choking if HOME isn't\n# defined.\nHOME                    = .\n\n # Use this in order to automatically load providers.\nopenssl_conf = openssl_init\n\n# Comment out the next line to ignore configuration errors\nconfig_diagnostics = 1\n\n# Extra OBJECT IDENTIFIER info:\n# oid_file       = $ENV::HOME/.oid\noid_section = new_oids\n\n# To use this configuration file with the &quot;-extfile&quot; option of the\n# &quot;openssl x509&quot; utility, name here the section containing the\n# X.509v3 extensions to use:\n# extensions            =\n# (Alternatively, use a configuration file that has only\n# X.509v3 extensions in its main [= default] section.)\n\n[ new_oids ]\n# We can add new OIDs in here for use by 'ca', 'req' and 'ts'.\n&quot;/etc/ssl/openssl.cnf&quot; 397L, 12419B            `\n</code></pre>\n",
+  "score": 24,
+  "answer_count": 3,
+  "view_count": 87238,
+  "tags": [
+    "ssl",
+    "curl",
+    "vpn",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2023-03-17T03:31:56",
+  "answers": [
+    {
+      "id": 76012131,
+      "body": "<p>This error is caused by the remote server not supporting RFC5746 secure renegotiation (or your corporate firewall not supporting it). In OpenSSL 1.1.1 the flag <code>SSL_OP_LEGACY_SERVER_CONNECT</code> was set, but this is not the case in OpenSSL 3, from <a href=\"https://www.openssl.org/docs/manmaster/man7/migration_guide.html\" rel=\"noreferrer\">the migration guide</a>:</p>\n<blockquote>\n<p>Secure renegotiation is now required by default for TLS connections Support for RFC 5746 secure renegotiation is now required by default for SSL or TLS connections to succeed. Applications that require the ability to connect to legacy peers will need to explicitly set SSL_OP_LEGACY_SERVER_CONNECT. Accordingly, SSL_OP_LEGACY_SERVER_CONNECT is no longer set as part of SSL_OP_ALL.</p>\n</blockquote>\n<p>It is possible to turn this flag on again by setting it in your OpenSSL conf, it is an option called <code>UnsafeLegacyServerConnect</code>:</p>\n<blockquote>\n<p>UnsafeLegacyServerConnect: permits the use of unsafe legacy renegotiation for OpenSSL clients only. Equivalent to SSL_OP_LEGACY_SERVER_CONNECT.</p>\n</blockquote>\n<p>Source: <a href=\"https://www.openssl.org/docs/man3.0/man3/SSL_CONF_cmd.html\" rel=\"noreferrer\">https://www.openssl.org/docs/man3.0/man3/SSL_CONF_cmd.html</a></p>\n<p>A minimal OpenSSL config with this setting:</p>\n<pre class=\"lang-ini prettyprint-override\"><code>openssl_conf = openssl_init\n\n[openssl_init]\nssl_conf = ssl_sect\n\n[ssl_sect]\nsystem_default = system_default_sect\n\n[system_default_sect]\nOptions = UnsafeLegacyServerConnect\n</code></pre>\n<p>You could also just add <code>Options = UnsafeLegacyServerConnect</code> to the existing <code>/etc/ssl/openssl.cnf</code> under <code>[system_default_sect]</code>.</p>\n<p><strong>NB.</strong> In OpenSSL &lt; 3.0.4 <a href=\"https://github.com/openssl/openssl/issues/18295\" rel=\"noreferrer\">there was a bug that ignored the <code>UnsafeLegacyServerConnect</code> option</a>. If you are stuck with &lt;= 3.0.3, you could use (the more unsafe) <code>UnsafeLegacyRenegotiation</code> instead.</p>\n<p>Also, if adding these settings don't work, it may be that openssl's executable comes from a different place, for example if you are using brew, you may have to change the config file in a separate path.</p>\n",
+      "score": 39,
+      "creation_date": "2023-04-14T06:25:17"
+    }
+  ],
+  "source": "stackoverflow"
+}

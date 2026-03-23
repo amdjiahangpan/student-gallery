@@ -1,0 +1,22 @@
+{
+  "id": 70567543,
+  "title": "Can&#39;t restart WSL2, LxssManager hangs in stopping state, how to restart?",
+  "body": "<p>I Can't restart wsl2, the command wsl --shutdown and any other wsl command hangs forever.\nAlso I found the service LxssManager in stopping status also hangs forever.</p>\n<p>How can I restart wsl ?</p>\n",
+  "score": 54,
+  "answer_count": 5,
+  "view_count": 57043,
+  "tags": [
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-01-03T14:52:44",
+  "answers": [
+    {
+      "id": 70567544,
+      "body": "<p>It looks like the hang LxssManager service is preventing wsl to restart, I found a way to stop LxssManager  and then I was able to restart wsl normally.</p>\n<p>First get the PID of svchost.exe running LxssManager, open the cmd as administrator and run:</p>\n<pre><code>tasklist /svc /fi &quot;imagename eq svchost.exe&quot; | findstr LxssManager\n</code></pre>\n<p>Grab the returned PID, then run task manager as administrator, in the details tab, search for the svchost.exe containing the PID, right click it and select 'end process tree'.</p>\n<p>Now you should be able to restart wsl normally with 'wsl shutdown and wsl.</p>\n",
+      "score": 154,
+      "creation_date": "2022-01-03T14:52:44"
+    }
+  ],
+  "source": "stackoverflow"
+}

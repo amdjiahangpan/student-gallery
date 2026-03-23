@@ -1,0 +1,21 @@
+{
+  "id": 456258633,
+  "name": "Self-Hosting-Guide",
+  "full_name": "mikeroyal/Self-Hosting-Guide",
+  "description": "Self-Hosting Guide. Learn all about  locally hosting (on premises & private web servers) and managing software applications by yourself or your organization. Including Cloud, LLMs, WireGuard, Automation, Home Assistant, and Networking.",
+  "stars": 18680,
+  "forks": 914,
+  "open_issues": 40,
+  "url": "https://github.com/mikeroyal/Self-Hosting-Guide",
+  "clone_url": "https://github.com/mikeroyal/Self-Hosting-Guide.git",
+  "readme_content": "",
+  "created_at": "2022-02-06T20:03:15Z",
+  "updated_at": "2026-02-19T05:07:39Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

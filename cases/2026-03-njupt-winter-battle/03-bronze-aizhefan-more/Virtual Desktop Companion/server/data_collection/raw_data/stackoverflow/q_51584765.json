@@ -1,0 +1,21 @@
+{
+  "id": 51584765,
+  "title": "How do you install multiple, separate instances of Ubuntu in WSL?",
+  "body": "<p>In Windows 10, how do you install multiple, separate instances of Ubuntu in WSL? I'd like separate instances for different work spaces. For instance one for Python development, one for Ruby development, one for .Net Core development, etc.  I know I could jam all of these into the same Ubuntu on WSL instance, but I'd rather have a separate one for each of these scenarios.  Is this possible?</p>\n",
+  "score": 119,
+  "answer_count": 5,
+  "view_count": 108470,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-07-29T21:39:31",
+  "answers": [
+    {
+      "id": 60428590,
+      "body": "<p>The newer <a href=\"https://learn.microsoft.com/en-us/windows/wsl/reference\" rel=\"noreferrer\"><code>wsl</code></a> command's import/export feature can readily create copies of a distro without installing any additional tools or using RegEdit.  For example</p>\n<pre><code>cd C:\\Users\\MattSlay\nwsl --export Ubuntu ubuntu.tar\nwsl --import UbuntuRuby .\\UbuntuRuby ubuntu.tar\nwsl --import UbuntuPython .\\UbuntuPython ubuntu.tar\nwsl --import UbuntuDotNet .\\UbuntuDotNet ubuntu.tar\nwsl -d UbuntuRuby\n</code></pre>\n<p><code>wsl -d &lt;distro&gt;</code> launches the distro. If <a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl2-install\" rel=\"noreferrer\">WSL 2</a> has been installed, then the distro can be converted between versions during <code>--import</code> using the <code>--version</code> option:</p>\n<pre><code>wsl --import UbuntuRuby .\\UbuntuRuby ubuntu.tar --version 2\n</code></pre>\n<p>A smaller distro, such as <a href=\"https://www.microsoft.com/en-us/p/alpine-wsl/9p804crf0395\" rel=\"noreferrer\">Alpine</a>, can make experimentation much faster. Finally, <code>wsl --import</code> can read from standard input <code>-</code> and <code>wsl --export</code> can write to standard output <code>-</code>.  This allows a compression program to be used to save disk space if desired.</p>\n<p>Side note:\nThe default login of imported distro is root. <br />\nFor Build 18980 and later, you may create or modify <code>/etc/wsl.conf</code> to set your default login user instead of fiddling with registry or login with <code>wsl -u &lt;username&gt;</code>. <a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl-config#user-settings\" rel=\"noreferrer\">Reference</a></p>\n<p>Content of /etc/wsl.conf. It might take effect after shutdown or logout.</p>\n<pre><code>[user]\ndefault=&lt;your-default-username&gt;\n</code></pre>\n",
+      "score": 166,
+      "creation_date": "2020-02-27T07:54:34"
+    }
+  ],
+  "source": "stackoverflow"
+}

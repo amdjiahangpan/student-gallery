@@ -1,0 +1,22 @@
+{
+  "id": 44441830,
+  "title": "VSCode: use WSL Git instead of Git for Windows",
+  "body": "<p>I would like to use WSL (Bash on Windows) Git with VSCode instead of Git for Windows to avoid multiple Git installations.</p>\n\n<p>I created a simple bat script to emulate <code>git.exe</code> comportment by redirecting git commands in WSL. It works nicely in CMD but not with VSCode. Also, WSL is my default terminal in VSCode.</p>\n\n<p>VSCode <strong>settings.json</strong>:</p>\n\n<pre class=\"lang-json prettyprint-override\"><code>{\n    \"git.path\": \"D:\\\\tools\\\\git.bat\",\n    \"terminal.integrated.shell.windows\": \"C:\\\\Windows\\\\Sysnative\\\\bash.exe\"\n}\n</code></pre>\n\n<p>and <strong>git.bat</strong>:</p>\n\n<pre class=\"lang-bat prettyprint-override\"><code>@echo off\nbash -c 'git %*'\n</code></pre>\n\n<p>Any idea to make VSCode working with WSL Git ?</p>\n",
+  "score": 44,
+  "answer_count": 4,
+  "view_count": 53433,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-06-08T17:09:44",
+  "answers": [
+    {
+      "id": 57323373,
+      "body": "<p>Since VS Code 1.34 (April 2019) a remote extension has been introduced to develop into WSL: <a href=\"https://code.visualstudio.com/docs/remote/wsl\" rel=\"noreferrer\">https://code.visualstudio.com/docs/remote/wsl</a>. </p>\n\n<p>Basically, a server instance of VS Code is started into WSL, allowing you to use all the WSL tools (e.g. git) from your client instance on Windows.</p>\n\n<p><em>Thank you for pointing that out <a href=\"https://stackoverflow.com/questions/44441830/vscode-use-wsl-git-instead-of-git-for-windows?noredirect=1#comment101130755_44441830\">@Noornashriq Masnon</a>!</em></p>\n",
+      "score": 43,
+      "creation_date": "2019-08-02T09:13:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

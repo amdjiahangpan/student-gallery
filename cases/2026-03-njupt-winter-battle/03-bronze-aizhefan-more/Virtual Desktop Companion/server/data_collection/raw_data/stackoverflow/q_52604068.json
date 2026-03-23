@@ -1,0 +1,23 @@
+{
+  "id": 52604068,
+  "title": "(using WSL ubuntu app) system has not been booted with system as init system (PID 1). Can&#39;t operate",
+  "body": "<p>I'm a very first user of Ubuntu. I failed to install Ubuntu in wmware ,so I installed Ubuntu application in Microsoft app store and everything was quite all right. \nBut when I insert shutdown or halt command to power off my ubuntu I kept getting 'system has not been booted with system as init system (PID 1). Can't operate' error message. </p>\n\n<p>I tried to using docker following with this link (<a href=\"https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/\" rel=\"noreferrer\">https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/</a>) but I failed after going to Number 2 process many times. I'm not sure my failure is because of installing docker toll box instead of normal one. (my computer is just windows 10. not a windows pro)</p>\n\n<p>I think I have to try other thing. If you don't mind me asking, how  can I slove this problem? </p>\n\n<p>(and one more. If I just click 'X' button at the top of right side, is it different with shutting down Ubuntu using 'halt' or 'shutdown' command?</p>\n\n<p>Thank you</p>\n",
+  "score": 23,
+  "answer_count": 3,
+  "view_count": 62057,
+  "tags": [
+    "docker",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-10-02T07:51:26",
+  "answers": [
+    {
+      "id": 64700137,
+      "body": "<p>I found this useful:  <a href=\"https://linuxhandbook.com/system-has-not-been-booted-with-systemd/\" rel=\"noreferrer\">https://linuxhandbook.com/system-has-not-been-booted-with-systemd/</a></p>\n<p>In my case</p>\n<pre><code># start docker using systemctl\nsudo systemctl docker start \n# returns: \n# \nSystem has not been booted with systemd as init system (PID 1). Can't operate.\nFailed to connect to bus: Host is down\n</code></pre>\n<p>The basic advice is:</p>\n<pre><code># check if your system is using `systemd` or `sysvinit`\nps -p 1 -o comm=\n</code></pre>\n<p>If the command doesn't return <code>systemd</code>, and in my case, Ubuntu-20.04 on WSL, the command returned <code>init</code>, then use the command pattern</p>\n<pre><code># start services using sysvinit\nservice docker start\n</code></pre>\n<p>This works for me.</p>\n",
+      "score": 34,
+      "creation_date": "2020-11-05T15:20:06"
+    }
+  ],
+  "source": "stackoverflow"
+}

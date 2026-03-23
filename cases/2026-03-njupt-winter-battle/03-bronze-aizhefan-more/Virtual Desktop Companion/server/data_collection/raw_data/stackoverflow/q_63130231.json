@@ -1,0 +1,18 @@
+{
+  "id": 63130231,
+  "title": "Is it normal that the Angular-CLI is much slower in wsl2 than the default powershell?",
+  "body": "<p>In my recent projects I was working with Angular and the Angular-CLI and I noticed that basic CLI commands like <code>ng g c</code>, <code>ng serve</code>, <code>ng build</code> etc. take much more time in the wsl2 terminal (using ubuntu 20.04) than on the default powershell.</p>\n<p>Any opinions or recommendations how to solve this problem?</p>\n",
+  "score": 13,
+  "answer_count": 1,
+  "view_count": 5835,
+  "tags": [
+    "angular",
+    "windows",
+    "angular-cli",
+    "ubuntu-20.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-07-28T08:42:38",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 61973385,
+  "title": "VScode unable to save files inside my WSL2 home folder",
+  "body": "<p>I'm trying to make WSL2 work for my web projects development and this is driving me crazy!</p>\n\n<p>Basically, i have two options.\n1. Save my project files into c drive and access those with WSL (which makes the responses extremelly slow)\n2. save my project files into /home/ which makes the project run super smooth, but i'm unable to edit those files with VSCode.</p>\n\n<p>The error that is what follows:</p>\n\n<pre><code>Failed to save 'DefaultSeeder.php': Unable to write file 'vscode-remote://wsl+ubuntu-20.04/home/lucas/Projetos/API/src/database/seeds/DefaultSeeder.php' (NoPermissions (FileSystemError): Error: EACCES: permission denied, open '/home/lucas/Projetos/API/src/database/seeds/DefaultSeeder.php')\n</code></pre>\n",
+  "score": 57,
+  "answer_count": 7,
+  "view_count": 73221,
+  "tags": [
+    "laravel",
+    "docker",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-05-23T14:18:17",
+  "answers": [
+    {
+      "id": 65293474,
+      "body": "<p>Here is another command to provide your user with sufficient permissions to write to files:</p>\n<pre><code>sudo chown -R myuser /path/to/folder\n</code></pre>\n<p>From <a href=\"https://github.com/microsoft/vscode-remote-release/issues/1008\" rel=\"noreferrer\">https://github.com/microsoft/vscode-remote-release/issues/1008</a></p>\n",
+      "score": 100,
+      "creation_date": "2020-12-14T17:18:49"
+    }
+  ],
+  "source": "stackoverflow"
+}

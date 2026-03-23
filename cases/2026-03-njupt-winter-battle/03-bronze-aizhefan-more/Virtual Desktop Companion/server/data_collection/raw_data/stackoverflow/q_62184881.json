@@ -1,0 +1,25 @@
+{
+  "id": 62184881,
+  "title": "Unable to boot Windows 10 guest using VirtualBox with enabled Hyper-V and WSL2 installed",
+  "body": "<p>I recently updated my Windows 10 version to version <strong>2004</strong>. I also updated WSL to WSL2.</p>\n<p>I encountered a problem while trying to use a Virtual Machine (Windows 10 Host/Windows 10 Guest) through VirtualBox <strong>6.1.8</strong>. Everytime I try to boot it, it becomes really slow and doesn't make it past the boot loading screen.</p>\n<p>I thought the newest versions of VB fixed this issue (according to <a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl2-faq\" rel=\"noreferrer\">this documentation from Microsoft</a>).</p>\n<p>What can I do to fix this?</p>\n",
+  "score": 31,
+  "answer_count": 3,
+  "view_count": 41342,
+  "tags": [
+    "windows",
+    "virtual-machine",
+    "virtualbox",
+    "virtualization",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-04T00:23:41",
+  "answers": [
+    {
+      "id": 62488259,
+      "body": "<p>Downgrade to WSL1, if you want to save yourself from days of wasted effort.</p>\n<p>I've upgraded to WSL2 and tried a bit to get VirtualBox to work with it and I couldn't find anything useful. There are few guides suggesting that turning off some features of VirtualBox will make it work, however it will make it even slower than what it is right now, which really defeats the purpose.</p>\n<p><a href=\"https://github.com/MicrosoftDocs/WSL/issues/536\" rel=\"nofollow noreferrer\">https://github.com/MicrosoftDocs/WSL/issues/536</a></p>\n<p><a href=\"https://superuser.com/q/1531337\">https://superuser.com/q/1531337</a></p>\n",
+      "score": 27,
+      "creation_date": "2020-06-20T16:01:50"
+    }
+  ],
+  "source": "stackoverflow"
+}

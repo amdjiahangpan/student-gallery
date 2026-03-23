@@ -1,0 +1,21 @@
+{
+  "id": 7212645,
+  "name": "spacemacs",
+  "full_name": "syl20bnr/spacemacs",
+  "description": "A community-driven Emacs distribution - The best editor is neither Emacs nor Vim,  it's Emacs *and* Vim!",
+  "stars": 24888,
+  "forks": 4859,
+  "open_issues": 59,
+  "url": "https://github.com/syl20bnr/spacemacs",
+  "clone_url": "https://github.com/syl20bnr/spacemacs.git",
+  "readme_content": "",
+  "created_at": "2012-12-17T21:34:03Z",
+  "updated_at": "2026-02-19T04:37:44Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

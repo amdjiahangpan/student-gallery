@@ -1,0 +1,23 @@
+{
+  "id": 56764503,
+  "title": "Windows 10 WSL - Maven config",
+  "body": "<p>Is there a way to configure Windows Maven and WSL Maven to use the same <code>.m2/repository</code> and <code>settings.xml</code>?</p>\n\n<p>In my <code>.bashrc</code> from WSL I added the <code>M2_HOME</code> to use the same installation that Windows 10 use:</p>\n\n<p>.bashrc:</p>\n\n<p><code>export M2_HOME=/mnt/c/development/maven</code></p>\n\n<p>Windows PATH: </p>\n\n<p><code>C:\\development\\maven</code></p>\n\n<p>But when I execute <code>mvn clean install</code> on Windows Bash, a .m2 folder is created in ~/.m2 (WSL folder system).</p>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 17168,
+  "tags": [
+    "maven",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-06-26T02:50:02",
+  "answers": [
+    {
+      "id": 56775508,
+      "body": "<p>Found a possible solution.</p>\n<p>I created a symbolic link from <code>~/.m2</code> to <code>/mnt/c/Users/&lt;username/.m2</code></p>\n<p>Command: <code>$ ln -s /mnt/c/Users/&lt;username&gt;/.m2 ~/.m2</code></p>\n<p>Until the moment is working fine.</p>\n",
+      "score": 25,
+      "creation_date": "2019-06-26T14:46:15"
+    }
+  ],
+  "source": "stackoverflow"
+}

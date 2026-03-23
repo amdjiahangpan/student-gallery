@@ -1,0 +1,23 @@
+{
+  "id": 63898430,
+  "title": "How can I access a service running on WSL2 from inside a Docker container?",
+  "body": "<p>I am using Windows 10 1909 and have installed WSL2, using Ubuntu 20.04, the 19.03.13-beta2 docker version, having installed Docker for Windows Edge version using the WSL2 option. The integration is working pretty great, but I have one issue which I cannot solve.</p>\n<p>On the WSL2 instance, there are services running, exposing some ports (3000, 3001, 3002,...). From one of the docker containers, I need to access the services for a specific development scenario (API Gateway), and this I cannot get to work.</p>\n<p>I have tried using the WSL2 IP address directly, but then the connect just times out. I have also tried using <code>host.docker.internal</code>, which resolves to something else than the WSL2 IP address, but it still doesn't work.</p>\n<p>Is there a special trick I need to pull, or is this kind of routing currently not supported, but will be, or is this for some other reason not possible?</p>\n<p>This illustrates what I am trying to achieve:</p>\n<p><a href=\"https://i.sstatic.net/MnX9y.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/MnX9y.png\" alt=\"Accessing WSL2 services from docker container\" /></a></p>\n<p>The other routings work - i.e. I can access all the service ports coming from the node.js processes inside WSL2 from the Windows browser, and also I can access the exposed service ports from the containers both from inside WSL2 and from Windows. It's just this missing link I cannot make work.</p>\n",
+  "score": 35,
+  "answer_count": 4,
+  "view_count": 33353,
+  "tags": [
+    "docker",
+    "routes",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-15T08:57:39",
+  "answers": [
+    {
+      "id": 70039848,
+      "body": "<p>So what you need to do in the windows machine port forward the port you are running on the WSL machine, this script port forwards the port 4000</p>\n<pre><code>netsh interface portproxy delete v4tov4 listenport=&quot;4000&quot; # Delete any existing port 4000 forwarding\n$wslIp=(wsl -d Ubuntu -e sh -c &quot;ip addr show eth0 | grep 'inet\\b' | awk '{print `$2}' | cut -d/ -f1&quot;) # Get the private IP of the WSL2 instance\nnetsh interface portproxy add v4tov4 listenport=&quot;4000&quot; connectaddress=&quot;$wslIp&quot; connectport=&quot;4000&quot;\n</code></pre>\n<p>And on the container docker run command you have to add</p>\n<pre><code>--add-host=host.docker.internal:host-gateway\n</code></pre>\n<p>or if you are using docker-compose:</p>\n<pre><code>    extra_hosts:\n      - &quot;host.docker.internal:host-gateway&quot;\n</code></pre>\n<p>Then inside the container you should be able to curl to</p>\n<pre><code>curl host.docker.internal:4000\n</code></pre>\n<p>and get a response!</p>\n",
+      "score": 15,
+      "creation_date": "2021-11-19T19:12:36"
+    }
+  ],
+  "source": "stackoverflow"
+}

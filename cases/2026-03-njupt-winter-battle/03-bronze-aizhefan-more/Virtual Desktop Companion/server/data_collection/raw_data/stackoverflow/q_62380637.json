@@ -1,0 +1,24 @@
+{
+  "id": 62380637,
+  "title": "How to install Heroku CLI on WSL 2?",
+  "body": "<p>I have already an account on Heroku and a Heroku CLI running on my Windows terminal. As I have also installed a Windows Subsystem for Linux(WSL2), Ubuntu 20.04 LTS, I'm trying to install Heroku CLI also on WSL2, to be accessed for this Shell.</p>\n\n<p>However, it is not possible following closely the <a href=\"https://devcenter.heroku.com/articles/getting-started-with-ruby\" rel=\"noreferrer\">Get Started heroku with ruby</a> nor for Windows neither for Ubuntu.</p>\n\n<p>The first barrier is where the OpenSSL key need to be saved. According to the <a href=\"https://devcenter.heroku.com/articles/getting-started-with-ruby\" rel=\"noreferrer\">tutorial</a>, it is said to extract the Izma with 7Zip,</p>\n\n<blockquote>\n  <p>...and then extract the tar file to :\\openssl.</p>\n</blockquote>\n\n<p>Doing so, the Heroku CLI can not find the OpenKey through Ubuntu Shell, producing many log advises when I run:</p>\n\n<p><code>sudo snap install heroku --classic</code></p>\n\n<p>from the <a href=\"https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up\" rel=\"noreferrer\"><strong>tutorial</strong></a>.</p>\n\n<p>The question is:</p>\n\n<p>1) Is there a way for Heroku CLI, on my Ubuntu Shell, accessing that first key I previously installed on the <code>dir c:/openssl</code> on my Windows? or</p>\n\n<p>2) I need to extract the key to the Ubuntu root?</p>\n",
+  "score": 16,
+  "answer_count": 4,
+  "view_count": 10770,
+  "tags": [
+    "ubuntu",
+    "heroku",
+    "windows-subsystem-for-linux",
+    "heroku-cli"
+  ],
+  "creation_date": "2020-06-15T02:55:56",
+  "answers": [
+    {
+      "id": 64999358,
+      "body": "<p>You can install <em>heroku-cli</em> with this simple install script by heroku:</p>\n<p><code>curl https://cli-assets.heroku.com/install.sh | sh</code></p>\n<p>Source: <a href=\"https://dev.to/wrightdotclick/heroku-cli-on-wsl-26fp\" rel=\"noreferrer\">https://dev.to/wrightdotclick/heroku-cli-on-wsl-26fp</a></p>\n",
+      "score": 36,
+      "creation_date": "2020-11-25T06:15:07"
+    }
+  ],
+  "source": "stackoverflow"
+}

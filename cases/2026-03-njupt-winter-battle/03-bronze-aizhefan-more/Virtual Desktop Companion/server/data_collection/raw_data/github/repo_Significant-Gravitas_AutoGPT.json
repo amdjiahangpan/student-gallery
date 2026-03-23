@@ -1,0 +1,21 @@
+{
+  "id": 614765452,
+  "name": "AutoGPT",
+  "full_name": "Significant-Gravitas/AutoGPT",
+  "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+  "stars": 181871,
+  "forks": 46220,
+  "open_issues": 343,
+  "url": "https://github.com/Significant-Gravitas/AutoGPT",
+  "clone_url": "https://github.com/Significant-Gravitas/AutoGPT.git",
+  "readme_content": "",
+  "created_at": "2023-03-16T09:21:07Z",
+  "updated_at": "2026-02-19T06:49:08Z",
+  "source": "github",
+  "wsl_info": {
+    "config_examples": [],
+    "commands": [],
+    "tips": [],
+    "troubleshooting": []
+  }
+}

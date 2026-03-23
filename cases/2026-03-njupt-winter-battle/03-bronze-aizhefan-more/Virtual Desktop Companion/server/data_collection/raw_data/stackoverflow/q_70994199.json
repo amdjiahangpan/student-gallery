@@ -1,0 +1,24 @@
+{
+  "id": 70994199,
+  "title": "VS Code Remote - Can&#39;t run &#39;code&#39; command in WSL Ubuntu 18 or WSL 2 Ubuntu 20 - wrong path",
+  "body": "<p>I'm having an issue when I try to run the <code>code</code> command from Visual Studio Code in WSL Ubuntu. I get the following error:</p>\n<pre><code>$ code .\n\n/mnt/c/Users/Name/.vscode/extensions/ms-vscode-remote.remote-wsl-0.64.2/scripts/wslCode.sh: 63: /mnt/c/Users/Name/.vscode/extensions/ms-vscode-remote.remote-wsl-0.64.2/scripts/wslCode.sh: /home/barry/.vscode/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin/remote-cli/code: not found\n</code></pre>\n<p>When I run the following, it installs the VS Code Server and the command works as expected:</p>\n<pre><code>$ /mnt/c/Users/Name/AppData/Local/Programs/Microsoft\\ VS\\ Code/bin/code .\n</code></pre>\n<p>When I run <code>which -a code</code>, I can see I have two paths related to this command and I believe the correct one is <code>/mnt/c/Users/Name/AppData/Local/Programs/Microsoft VS Code/bin/code</code>, but I don't know how to remove the first one or how it even related two paths to this command in the first place?</p>\n<pre><code>barry@RandomName:~$ which -a code\n/mnt/c/Program Files/Microsoft VS Code/bin/code\n/mnt/c/Users/Name/AppData/Local/Programs/Microsoft VS Code/bin/code\n</code></pre>\n<p>Can anyone help please?</p>\n",
+  "score": 22,
+  "answer_count": 18,
+  "view_count": 47572,
+  "tags": [
+    "ubuntu-18.04",
+    "ubuntu-20.04",
+    "windows-subsystem-for-linux",
+    "vscode-remote"
+  ],
+  "creation_date": "2022-02-05T00:01:55",
+  "answers": [
+    {
+      "id": 76001701,
+      "body": "<p>I've had this issue and it was solved doing:</p>\n<ol>\n<li>Open Terminal on Windows and Type <code>wsl</code></li>\n<li>You will be on the wsl env</li>\n<li>Type <code>rm -rf ~/.vscode-server</code></li>\n<li>Type <code>logout</code> to leave the wsl env</li>\n<li>Then type <code>wsl --shutdown</code></li>\n<li>Try to Open VSCode and connect with WSL.</li>\n</ol>\n",
+      "score": 73,
+      "creation_date": "2023-04-13T04:46:28"
+    }
+  ],
+  "source": "stackoverflow"
+}

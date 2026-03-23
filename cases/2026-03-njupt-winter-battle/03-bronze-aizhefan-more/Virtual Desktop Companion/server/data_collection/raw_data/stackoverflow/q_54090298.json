@@ -1,0 +1,24 @@
+{
+  "id": 54090298,
+  "title": "Karma: use Windows&#39; Chrome from WSL",
+  "body": "<p>I am trying to launch karma from WSL using the Windows version of Google Chrome.</p>\n\n<p>In the karma.conf.js I simply use the Chrome browser:</p>\n\n<pre><code>[...],\nbrowsers: ['Chrome'],\n[...]\n</code></pre>\n\n<p>And I export the CHROME_BIN environment variable like this:</p>\n\n<pre><code>export CHROME_BIN='/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'\n</code></pre>\n\n<p>Karma successfully find Google Chrome, and a new tab is opened at the right URL when Karma is launched. However, I get this error:</p>\n\n<pre><code>Google chrome can't read and write to its data directory /tmp/karma-XXXX\n</code></pre>\n\n<p>I tried starting chrome as administrator and changing the cache folder to the root of my project but it doesn't work.</p>\n\n<p>I assumed there was a issue with the format of the path that Karma give to Chrome (WSL path vs Windows path).</p>\n\n<p>So I create a custom karma launcher specifying the chromeDataDir:</p>\n\n<pre><code>browsers: ['WindowsChrome'],\ncustomLaunchers: {\n  WindowsChrome: {\n    base: 'Chrome',\n    chromeDataDir: 'D:\\\\'\n  }\n}\n</code></pre>\n\n<p>By doing that a I don't have the previous error, a new instance of Chrome is launched but Chrome seems unable to resolve the URL, and karma timeout.\nMoreover, a lot of Chrome folders are created inside my project.</p>\n\n<p>Have someone already make karma work from WSL using Chrome or have any cue on what is going on ?</p>\n",
+  "score": 39,
+  "answer_count": 2,
+  "view_count": 11939,
+  "tags": [
+    "google-chrome",
+    "karma-jasmine",
+    "karma-runner",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-01-08T10:56:11",
+  "answers": [
+    {
+      "id": 56204265,
+      "body": "<p>I found that if you create a C:\\tmp\\karma folder under Windows, this error goes away, and Chrome finds and uses this folder for temp files.</p>\n\n<p>You can also change the temporary folder that Chrome uses for its data by setting the TEMP environment variable like so:</p>\n\n<pre><code>export TEMP='/path/to/your/folder'\n</code></pre>\n\n<p>The important thing is that C:\\path\\to\\your\\folder must exist under Windows.</p>\n",
+      "score": 28,
+      "creation_date": "2019-05-19T02:22:18"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 67923183,
+  "title": "Miniconda on WSL2 (Ubuntu 20.04) fails with CondaHTTPError: HTTP 000 CONNECTION FAILED",
+  "body": "<p>I am on a WSL2 with Ubuntu and wanted to install Miniconda version 4.9.2.\nThe installation went effortlessly, but I can now not connect to anaconda to install packages. Also simple commands like <code>conda update conda</code> fail with</p>\n<pre><code>Collecting package metadata (current_repodata.json): failed\n\nCondaHTTPError: HTTP 000 CONNECTION FAILED for url &lt;https://repo.anaconda.com/pkgs/main/linux-64/current_repodata.json&gt;\nElapsed: -\n\nAn HTTP error occurred when trying to retrieve this URL.\nHTTP errors are often intermittent, and a simple retry will get you on your way.\n\nIf your current network has https://www.anaconda.com blocked, please file\na support request with your network engineering team.\n\n'https://repo.anaconda.com/pkgs/main/linux-64'\n</code></pre>\n<p>You find plenty of solutions for this topic -- for pure Windows! Like <a href=\"https://stackoverflow.com/questions/42563757/conda-update-condahttperror-http-none\">here</a>, but I could not find a solution for Ubuntu, or an Ubuntu in a WSL2.</p>\n<p>It does not really make sense to me moving around windows-dlls, as the upper solution suggests. I tried anyway and copied similar sounding files to similar sounding folders, but that did not do the trick.</p>\n<p>Even the 'trick' of turning of encryption did not work. Seems to be a really severe problem. Any suggestions? Thanks.</p>\n",
+  "score": 14,
+  "answer_count": 3,
+  "view_count": 13199,
+  "tags": [
+    "ubuntu",
+    "anaconda",
+    "connectivity",
+    "miniconda",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-06-10T14:27:03",
+  "answers": [
+    {
+      "id": 69601760,
+      "body": "<p>I had the same problem, although on WSL 1, not 2. The solution I found was exiting Ubuntu and shutting down WSL after installing conda, from <code>cmd.exe</code>:</p>\n<pre><code>&gt; wsl --shutdown\n</code></pre>\n<p>After restarting Ubuntu, the problem went away. It didn't require installing an older version of conda first.</p>\n",
+      "score": 37,
+      "creation_date": "2021-10-17T06:09:51"
+    }
+  ],
+  "source": "stackoverflow"
+}

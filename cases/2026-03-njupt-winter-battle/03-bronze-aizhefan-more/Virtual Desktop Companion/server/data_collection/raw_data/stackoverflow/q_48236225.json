@@ -1,0 +1,17 @@
+{
+  "id": 48236225,
+  "title": "What is the difference between Bash and Ubuntu terminals on Windows 10",
+  "body": "<p>I recently installed Ubuntu for Windows and now inside the Start Menu there are 2 new items:</p>\n\n<p>Bash\n<a href=\"https://i.sstatic.net/xevg3.png\" rel=\"noreferrer\">Bash</a>\nThis terminal opens in:</p>\n\n<pre><code>root@myName-PC:/mnt/c/Windows/System32#\n</code></pre>\n\n<p>Ubuntu\n<a href=\"https://i.sstatic.net/j886F.png\" rel=\"noreferrer\">Ubuntu</a>\nThis terminal opens in:</p>\n\n<pre><code>root@myname-PC:~#\n</code></pre>\n\n<p>What is the difference between the two?</p>\n\n<p>For example, we want to install Git and Utils, RVM (Ruby) then clone a Git project and deploy via SSH with Capistrano commands. Should that be run with Bash or Ubuntu as above?</p>\n\n<p>Also, should the commands be run in system32 or C:/ folder when inside the terminal?</p>\n\n<p>Thanks</p>\n",
+  "score": 12,
+  "answer_count": 3,
+  "view_count": 7839,
+  "tags": [
+    "bash",
+    "ubuntu",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-01-13T01:47:38",
+  "answers": [],
+  "source": "stackoverflow"
+}

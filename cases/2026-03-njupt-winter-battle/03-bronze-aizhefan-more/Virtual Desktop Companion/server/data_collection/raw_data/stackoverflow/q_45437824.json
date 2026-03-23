@@ -1,0 +1,17 @@
+{
+  "id": 45437824,
+  "title": "Postgresql warning: &quot;could not flush dirty data: Function not implemented&quot;",
+  "body": "<p>I'm trying to create a new database on postgres, by running command:</p>\n\n<pre><code>CREATE DATABASE dbname;\n</code></pre>\n\n<p>and I face the error:</p>\n\n<blockquote>\n  <p>WARNING:  could not flush dirty data: Function not implemented</p>\n</blockquote>\n\n<p>many times! and finally I get the message </p>\n\n<blockquote>\n  <p>CREATE DATABASE</p>\n</blockquote>\n\n<p>Can anyone help me to undrestand and solve this error please?</p>\n",
+  "score": 11,
+  "answer_count": 4,
+  "view_count": 19218,
+  "tags": [
+    "database",
+    "postgresql",
+    "windows-subsystem-for-linux",
+    "dirty-data"
+  ],
+  "creation_date": "2017-08-01T12:28:58",
+  "answers": [],
+  "source": "stackoverflow"
+}

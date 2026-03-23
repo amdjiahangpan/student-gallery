@@ -1,0 +1,17 @@
+{
+  "id": 66150671,
+  "title": "WSL, Running linux commands with &quot;wsl --exec &lt;cmd&gt;&quot; or &quot;wsl -- &lt;cmd&gt;&quot;",
+  "body": "<p><code>wsl -h</code> shows the following:</p>\n<pre><code>    --exec, -e &lt;CommandLine&gt;   Execute the specified command without using the default Linux shell.\n    --   Pass the remaining command line as is.\n</code></pre>\n<p>What does &quot;without using the default Linux shell&quot; mean (i.e. what else is it going to use, if not the default shell!?)?.</p>\n<p>Additionally, by way of an example, I now have three possible ways to run Linux <code>ls</code> from my PowerShell prompt (i.e. this will not be <code>Get-ChildItem</code> aliased to <code>ls</code>, but instead a Linux command via WSL):</p>\n<pre><code>PS C:\\&gt; wsl -e ls   # Alternatively,  wsl --exec ls\nPS C:\\&gt; wsl -- ls\nPS C:\\&gt; wsl ls\n</code></pre>\n<p>But all outputs appear to be the same. How would you explain the differences between these three ways of running a WSL Linux command from a PowerShell prompt?</p>\n",
+  "score": 13,
+  "answer_count": 2,
+  "view_count": 28668,
+  "tags": [
+    "linux",
+    "bash",
+    "powershell",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-02-11T07:48:49",
+  "answers": [],
+  "source": "stackoverflow"
+}

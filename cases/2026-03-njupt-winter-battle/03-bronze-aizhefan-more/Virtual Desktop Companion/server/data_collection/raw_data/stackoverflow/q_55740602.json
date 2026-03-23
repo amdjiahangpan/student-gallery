@@ -1,0 +1,18 @@
+{
+  "id": 55740602,
+  "title": "/usr/bin/env: ‘bash\\r’: No such file or directory",
+  "body": "<p>I am having an issue after setting up docker in Linux terminal in win10.\nWhen I am trying to build it shows following error.</p>\n<pre><code>/usr/bin/env: ‘bash\\r’: No such file or directory\nERROR: Service 'magento2' failed to build: The command '/bin/sh -c /opt/docker/bin/service.d/autosync.sh install     &amp;&amp; docker-service-enable autosync' returned a non-zero code: 127\n</code></pre>\n<p>Is it git line ending bug and how can I solve it?</p>\n",
+  "score": 11,
+  "answer_count": 3,
+  "view_count": 45304,
+  "tags": [
+    "git",
+    "docker",
+    "newline",
+    "windows-subsystem-for-linux",
+    "core.autocrlf"
+  ],
+  "creation_date": "2019-04-18T06:55:30",
+  "answers": [],
+  "source": "stackoverflow"
+}

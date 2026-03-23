@@ -1,0 +1,23 @@
+{
+  "id": 69293518,
+  "title": "how to fix the `error: bad fsmonitor version 2` in Windows Subsystem for Linux (WSL)?",
+  "body": "<p>I do have Git Bash installed (WSL2 is still very slow on large git repos like llvm and webkit).\nin WSL2 Ubuntu 20.04:</p>\n<pre><code>matt@Surface2:/mnt/c/Users/matt/src/roact-alignment$ git --version\ngit version 2.25.1\n</code></pre>\n<p>in cmd:</p>\n<pre><code>C:\\Users\\matt&gt;git --version\ngit version 2.33.0.windows.1\n</code></pre>\n<p>even when no cmd is opened, I was getting this for git operations:</p>\n<pre><code>matt@Surface2:/mnt/c/Users/matt/src/roact-alignment$ git pull\nerror: bad fsmonitor version 2\nerror: bad fsmonitor version 2\n</code></pre>\n",
+  "score": 14,
+  "answer_count": 4,
+  "view_count": 8550,
+  "tags": [
+    "git",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-09-23T03:03:03",
+  "answers": [
+    {
+      "id": 69521439,
+      "body": "<p>I solved this problem by upgrading git.</p>\n<pre class=\"lang-sh prettyprint-override\"><code># Add ppa of git\nsudo add-apt-repository ppa:git-core/ppa\n\n# Update sources\nsudo apt update\n\n# Upgrade git\nsudo apt upgrade\n</code></pre>\n<p>more details, see this <a href=\"https://git-scm.com/download/linux\" rel=\"noreferrer\">Page</a></p>\n",
+      "score": 29,
+      "creation_date": "2021-10-11T05:31:09"
+    }
+  ],
+  "source": "stackoverflow"
+}

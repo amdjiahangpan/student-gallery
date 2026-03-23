@@ -1,0 +1,23 @@
+{
+  "id": 50882266,
+  "title": "Using Jupyter with Windows Subsystem for Linux",
+  "body": "<p>Using the Ubuntu bash terminal on Windows 10 (<a href=\"https://learn.microsoft.com/en-us/windows/wsl/install-win10\" rel=\"noreferrer\">installation instructions here</a>), I installed Anaconda and have been using Jupyter notebooks without a problem. Unfortunately, Jupyter is unable to locate a runnable browser from within the subsystem, so I have to copy and paste the link it outputs in the terminal - but that is workable. The main issue comes when I try to open multiple notebooks. Normally, Jupyter would detect that a port (<code>8888</code> by default) is already being used and make a new one, but it seems to fail to detect this so that when I use the link it generates, I end up looking at the first notebook I opened instead of the new one.</p>\n\n<p>Any idea what the issue might be? And, if not, how I can manually get around this?</p>\n",
+  "score": 21,
+  "answer_count": 4,
+  "view_count": 25370,
+  "tags": [
+    "python",
+    "jupyter-notebook",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-06-15T20:27:53",
+  "answers": [
+    {
+      "id": 52953129,
+      "body": "<p>try:</p>\n\n<pre><code>jupyter notebook --no-browser\n</code></pre>\n",
+      "score": 23,
+      "creation_date": "2018-10-23T15:48:42"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,23 @@
+{
+  "id": 36724209,
+  "title": "How to disable bells/beeps in the WSL terminal on Windows 10",
+  "body": "<p>How do I disable visual and audio bells/beeps in Windows Subsystem for Linux (WSL) on Windows 10?</p>\n",
+  "score": 719,
+  "answer_count": 11,
+  "view_count": 282468,
+  "tags": [
+    "bash",
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-04-19T16:26:44",
+  "answers": [
+    {
+      "id": 36726662,
+      "body": "<ol>\n<li><p>To disable the beep in <strong>bash</strong> you need to uncomment (or add if not already there) the line <code>set bell-style none</code> in your <code>/etc/inputrc</code> file.</p>\n<p><em>Note:</em> Since it is a protected file you need to be a privileged user to edit it (i.e. launch your text editor with something like <code>sudo &lt;editor&gt; /etc/inputrc</code>).</p>\n</li>\n<li><p>To disable the beep and the visual bell also in <strong>vim</strong> you need to add the <a href=\"https://unix.stackexchange.com/questions/5310/how-can-i-disable-bells-visualbells-in-vim\">following</a> to your <code>~/.vimrc</code> file:</p>\n<pre><code>set visualbell\nset t_vb=\n</code></pre>\n</li>\n<li><p>To disable the beep also in <strong>less</strong> (i.e. also in man pages and when using &quot;git diff&quot;) you need to add <code>export LESS=&quot;$LESS -R -Q&quot;</code> in your <code>~/.profile</code> file.</p>\n</li>\n</ol>\n",
+      "score": 1075,
+      "creation_date": "2016-04-19T18:32:14"
+    }
+  ],
+  "source": "stackoverflow"
+}

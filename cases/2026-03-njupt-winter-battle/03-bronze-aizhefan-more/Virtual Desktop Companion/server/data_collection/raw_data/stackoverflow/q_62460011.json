@@ -1,0 +1,18 @@
+{
+  "id": 62460011,
+  "title": "Puppeteer keeps getting TimeoutError: Navigation timeout of 80000 ms exceeded",
+  "body": "<p>I am trying to scrape any web page passed as into the scrape function, but no matter the timeout set at page.goto(), I keep getting a timeout error, if set to 0, the app just keeps waiting.</p>\n\n<p><div class=\"snippet\" data-lang=\"js\" data-hide=\"false\" data-console=\"true\" data-babel=\"false\">\r\n<div class=\"snippet-code\">\r\n<pre class=\"snippet-code-js lang-js prettyprint-override\"><code>const express = require('express');\r\nconst cors = require('cors');\r\nconst MYPORT = process.env.PORT || 4001;\r\n\r\n\r\nconst app = express();\r\nconst puppeteer = require('puppeteer');\r\n\r\napp.use(express.json());\r\napp.use(cors());\r\n\r\nconst scrape = async (url) =&gt; {\r\n    var body;\r\n    try {\r\n        const browser = await puppeteer.launch({\r\n            headless: true,\r\n            args: ['--no-sandbox'],\r\n            timeout: 0\r\n        });\r\n        console.log('Browser launched');\r\n        const page = await browser.newPage();\r\n        console.log('Page opened');\r\n        await page.goto(url, { waitUntil: 'load', timeout: 3 * 60000 });\r\n        await page.waitForSelector('body', {waitUntil: 'load'})\r\n        console.log('Link opened');\r\n        await page.waitForNavigation({waitUntil: 'networkidle2', timeout: 3 * 60000});\r\n        page.$eval('html', bdy =&gt; {\r\n            console.log(bdy);\r\n            body = bdy.innerHTML;\r\n        });\r\n        browser.close();\r\n        return body;\r\n    } catch (err) {\r\n        console.log(err);\r\n    }\r\n};\r\n\r\nscrape('http://google.com');</code></pre>\r\n</div>\r\n</div>\r\n</p>\n\n<p>Please, what am I doing wrong?</p>\n\n<p>I am using Ubuntu 18.04 on WSL (Windows Subsystem for Linux)</p>\n",
+  "score": 12,
+  "answer_count": 3,
+  "view_count": 25174,
+  "tags": [
+    "node.js",
+    "express",
+    "puppeteer",
+    "ubuntu-18.04",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-18T21:55:58",
+  "answers": [],
+  "source": "stackoverflow"
+}

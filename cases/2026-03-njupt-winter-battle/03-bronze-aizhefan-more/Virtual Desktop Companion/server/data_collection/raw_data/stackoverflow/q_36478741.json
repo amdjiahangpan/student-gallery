@@ -1,0 +1,24 @@
+{
+  "id": 36478741,
+  "title": "Installing Oracle JDK on Windows subsystem for Linux",
+  "body": "<p>When trying to use the Linux version of Oracle's JDK on the latest Windows 10 build having support for bash, I am running into a problem with the prompt hanging whenever attempting to invoke the <code>java</code> binary.</p>\n\n<p>Typing even something as simple as <code>java -version</code> hangs and I have to terminate the process to resume control.</p>\n\n<p>Anyone got this working yet?</p>\n",
+  "score": 92,
+  "answer_count": 14,
+  "view_count": 110002,
+  "tags": [
+    "java",
+    "linux",
+    "windows",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2016-04-07T14:09:21",
+  "answers": [
+    {
+      "id": 41072208,
+      "body": "<p>I wanted to clarify that as of 9 December 2016, you most certainly can install Java 8 on Ubuntu Bash for Windows 10 and that @Karl Horton is correct.</p>\n\n<p><strong>You will need to install unzip</strong> <code>sudo apt-get install unzip</code></p>\n\n<p>Copy this script somewhere in your bash for windows session and make it executable (chmod +x filename). If you do not use a command line based editor such as vim then you will have windows line endings to deal with. you can use dos2unix or your preferred way of dealing with that. I just paste it into a file using vim.</p>\n\n<pre><code> #!/bin/bash\n\nset -ex\n\n# UPDATE THESE URLs\nexport JDK_URL=http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz\nexport UNLIMITED_STRENGTH_URL=http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip\n\n# Download Oracle Java 8 accepting the license\nwget --no-cookies --header \"Cookie: oraclelicense=accept-securebackup-cookie\" \\\n${JDK_URL}\n# Extract the archive\ntar -xzvf jdk-*.tar.gz\n# clean up the tar\nrm -fr jdk-*.tar.gz\n# mk the jvm dir\nsudo mkdir -p /usr/lib/jvm\n# move the server jre\nsudo mv jdk1.8* /usr/lib/jvm/oracle_jdk8\n\n# install unlimited strength policy\nwget --no-cookies --header \"Cookie: oraclelicense=accept-securebackup-cookie\" \\\n${UNLIMITED_STRENGTH_URL}\nunzip jce_policy-8.zip\nmv UnlimitedJCEPolicyJDK8/local_policy.jar /usr/lib/jvm/oracle_jdk8/jre/lib/security/\nmv UnlimitedJCEPolicyJDK8/US_export_policy.jar /usr/lib/jvm/oracle_jdk8/jre/lib/security/\n\nsudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/oracle_jdk8/jre/bin/java 2000\nsudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/oracle_jdk8/bin/javac 2000\n\nsudo echo \"export J2SDKDIR=/usr/lib/jvm/oracle_jdk8\nexport J2REDIR=/usr/lib/jvm/oracle_jdk8/jre\nexport PATH=$PATH:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin\nexport JAVA_HOME=/usr/lib/jvm/oracle_jdk8\nexport DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db\" | sudo tee -a /etc/profile.d/oraclejdk.sh\n</code></pre>\n\n<p>And now I can do the following</p>\n\n<pre><code>fieldju@DESKTOP-LTL6MIC:~$ java -version\njava version \"1.8.0_112\"\nJava(TM) SE Runtime Environment (build 1.8.0_112-b15)\nJava HotSpot(TM) 64-Bit Server VM (build 25.112-b15, mixed mode)                                                \n</code></pre>\n\n<p>The links and versions in the above script are likely to be out of date by the time you read this, so just head over to <a href=\"http://www.oracle.com/technetwork/java/javase/downloads/index.html\" rel=\"noreferrer\">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a> accept the license so that their js lets you copy the new URLs and you should be good to go.</p>\n",
+      "score": 93,
+      "creation_date": "2016-12-10T04:35:12"
+    }
+  ],
+  "source": "stackoverflow"
+}

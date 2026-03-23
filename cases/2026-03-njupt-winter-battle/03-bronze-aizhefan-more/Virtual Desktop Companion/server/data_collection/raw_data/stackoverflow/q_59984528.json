@@ -1,0 +1,23 @@
+{
+  "id": 59984528,
+  "title": "Copy the contents of a file to clipboard from WSL to Windows?",
+  "body": "<h2>Rig description:</h2>\n\n<p>I've installed Debian in Windows Subsystem Linux (WSL) on Windows 10.</p>\n\n<ul>\n<li><strong>The host</strong> means Windows 10.</li>\n<li><strong>The box</strong> means my WSL-Debian box/container.</li>\n</ul>\n\n<h2>Goal:</h2>\n\n<ul>\n<li>I have an SSH key on WSL (my_rsa.pub);</li>\n<li>I want to copy the contents of that file to the host's clipboard;</li>\n<li>by running a command in the box (command-line code, not using the mouse).</li>\n</ul>\n\n<h2>Explanation:</h2>\n\n<p>SSH files are very long, and it doesn't make sense to copy them with the mouse cursor.  </p>\n\n<p>I'm also told that Debian doesn't ship with a clipboard: you need to install a clipboard?  So, I don't even know where to begin to look.</p>\n\n<h2>What I've tried:</h2>\n\n<p><a href=\"https://stackoverflow.com/questions/44480829/how-to-copy-to-clipboard-in-vim-of-bash-on-windows\">\"Copy to clipboard\" in VIM</a> is configured and working properly, but any contents copied to the 'clipboard' are removed from the 'clipboard' once VIM is closed; similarly, Nano has a <kbd>CTRL</kbd>+u function to cut text, and its clipboard does not survive outside of Nano.</p>\n",
+  "score": 39,
+  "answer_count": 2,
+  "view_count": 13698,
+  "tags": [
+    "debian",
+    "clipboard",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-01-30T11:03:31",
+  "answers": [
+    {
+      "id": 59988605,
+      "body": "<ul>\n<li><strong>Command:</strong></li>\n</ul>\n\n\n\n<pre><code>cat /path/to/file | clip.exe\n</code></pre>\n\n<ul>\n<li><strong>Description:</strong></li>\n</ul>\n\n<p><code>cat</code> command put the file contents to the output. It is then pipe to the\n<code>clip.exe</code>, a Win32 program, redirects output to the Windows clipboard.\nDo not forget to add the <code>.EXE</code> extension of the later one. There are multiple\n<code>cat</code> alternatives can be used, see <a href=\"https://unix.stackexchange.com/q/86321/336403\">this</a> and <a href=\"https://superuser.com/q/112316/726810\">this</a>.</p>\n\n<ul>\n<li><p><strong>Further Reading:</strong></p>\n\n<ul>\n<li><a href=\"https://learn.microsoft.com/en-us/windows/wsl/interop\" rel=\"noreferrer\">Windows Subsystem for Linux interoperability with Windows</a></li>\n</ul></li>\n</ul>\n",
+      "score": 56,
+      "creation_date": "2020-01-30T14:48:43"
+    }
+  ],
+  "source": "stackoverflow"
+}

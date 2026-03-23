@@ -1,0 +1,22 @@
+{
+  "id": 55974462,
+  "title": "Pipe from clipboard in linux subsytem for windows",
+  "body": "<p>Using the Linux Subsystem for Windows (LSW), <code>clip.exe</code> can be used to copy data to the windows clipboard:</p>\n\n<pre><code>$ clip.exe /?\n\nCLIP\n\nDescription:\n    Redirects output of command line tools to the Windows clipboard.\n    This text output can then be pasted into other programs.\n\nParameter List:\n    /?                  Displays this help message.\n\nExamples:\n    DIR | CLIP          Places a copy of the current directory\n                        listing into the Windows clipboard.\n\n    CLIP &lt; README.TXT   Places a copy of the text from readme.txt\n                        on to the Windows clipboard.\n</code></pre>\n\n<p>Is there any way to pipe <strong>FROM</strong> the clipboard? Examples of intended use:</p>\n\n<pre><code>$ paste.exe &gt; foo.txt\n\n$ paste.exe | tr , '\\n' | clip.exe\n</code></pre>\n",
+  "score": 17,
+  "answer_count": 1,
+  "view_count": 3972,
+  "tags": [
+    "clipboard",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-05-03T17:18:04",
+  "answers": [
+    {
+      "id": 56584029,
+      "body": "<p><strong>Solution</strong></p>\n<p>This prints the Windows' clipboard to stdout:</p>\n<pre class=\"lang-bash prettyprint-override\"><code>powershell.exe Get-Clipboard\n</code></pre>\n<hr />\n<p><strong>Examples</strong></p>\n<pre class=\"lang-bash prettyprint-override\"><code>$ echo &quot;hello&quot; | clip.exe\n$ powershell.exe Get-Clipboard\nhello\n\n</code></pre>\n<pre class=\"lang-bash prettyprint-override\"><code>$ date +%Y-%m-%d | clip.exe\n$ powershell.exe Get-Clipboard\n2019-06-13\n\n</code></pre>\n<pre class=\"lang-bash prettyprint-override\"><code>$ alias paste.exe='powershell.exe Get-Clipboard'\n$ echo &quot;world&quot; | clip.exe\n$ paste.exe\nworld\n\n</code></pre>\n<pre class=\"lang-bash prettyprint-override\"><code>paste() {  # Add me to your .bashrc, perhaps.\n    powershell.exe Get-Clipboard | sed 's/\\r$//'\n    # The `sed` will remove the unwelcome carriage-returns\n}\n</code></pre>\n<p>source: <a href=\"https://github.com/Microsoft/WSL/issues/1069#issuecomment-391968532\" rel=\"noreferrer\">https://github.com/Microsoft/WSL/issues/1069#issuecomment-391968532</a></p>\n",
+      "score": 27,
+      "creation_date": "2019-06-13T15:36:10"
+    }
+  ],
+  "source": "stackoverflow"
+}

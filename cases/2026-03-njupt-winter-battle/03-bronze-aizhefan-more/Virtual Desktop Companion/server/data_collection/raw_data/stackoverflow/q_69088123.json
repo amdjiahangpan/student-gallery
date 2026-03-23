@@ -1,0 +1,23 @@
+{
+  "id": 69088123,
+  "title": "Git extension disabled in VS code with WSL",
+  "body": "<p>The built-in Git extension has somehow become deactivated in VS code and can't be re-enabled. If I open the extension page it gives the following error:</p>\n<blockquote>\n<p>&quot;This extension is disabled in this workspace because it is defined to run in the Remote Extension Host. Please install the extension in 'WSL: Ubuntu' to enable.&quot;</p>\n</blockquote>\n<p><a href=\"https://i.sstatic.net/LaetV.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/LaetV.png\" alt=\"screenshot\" /></a></p>\n<p>If I open the GitHub extension page I get the same message, but GitHub Authentication still seems to be activated okay. As far as I can tell I am already in the Remote Extension Host. Additionally the source control tab is saying that no source control providers are registered.</p>\n<p>The Git extension has been working for me for months since I updated to WSL2, I've not installed any other extensions recently, but it seems to have started after rebooting my machine. I've tried rebooting and restarting VS code, deactivating GitHub authentication and GitLens then restarting VS code and that hasn't done anything.</p>\n",
+  "score": 21,
+  "answer_count": 4,
+  "view_count": 31179,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "vscode-remote"
+  ],
+  "creation_date": "2021-09-07T12:19:10",
+  "answers": [
+    {
+      "id": 71814601,
+      "body": "<blockquote>\n<p>Please install the extension in 'WSL: Ubuntu' to enable.&quot;</p>\n</blockquote>\n<p>That's is the hint on how to fix it.</p>\n<ol>\n<li>Open the extension panel (Ctrl + Shift + X)</li>\n<li>You should be able to see the section &quot;WSL: UBUNTU: INSTALLED&quot;</li>\n<li>Click on the download (cloud with down arrow) icon on the right</li>\n<li>Pick the extensions that are already installed in &quot;LOCAL - INSTALLED&quot; to be installed here</li>\n<li>Done.</li>\n</ol>\n<p>The default extensions are installed in the LOCAL workspace. When working with VScode remote server (WSL: UBUNTU: INSTALLED) you have to install the extensions in that workspace as well.</p>\n",
+      "score": 19,
+      "creation_date": "2022-04-10T07:33:29"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,23 @@
+{
+  "id": 71089617,
+  "title": "Docker not starting on Windows 11 with WSL 2",
+  "body": "<p>I'm trying to setup docker with WSL 2 to run a Dockerfile. I downloaded Docker Desktop, and when I tried to follow the quick start guide, I got the following error:</p>\n<pre><code>docker: error during connect: This error may indicate that the docker daemon is not running.: Post &quot;http://%2F%2F.%2Fpipe%d2Fdocker_engine/v1.24/containers/create?name=repo&quot;: open //./pipe/docker_enginer: The system cannot find the file specified.\n</code></pre>\n<p>I set com.docker.service to run in the Task Manager, and have run:</p>\n<pre><code>“c:\\Program Files\\Docker\\Docker\\DockerCli.exe” -SwitchDaemon\n</code></pre>\n<p>I have also quit Docker Desktop and reopened it in admin mode, and I still get the message that Docker Desktop has stopped.</p>\n<p>Please let me know if there's any other options, thanks!</p>\n",
+  "score": 38,
+  "answer_count": 17,
+  "view_count": 153576,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "windows-11"
+  ],
+  "creation_date": "2022-02-12T06:50:05",
+  "answers": [
+    {
+      "id": 72212043,
+      "body": "<p>I managed to solve the problem in this way:</p>\n<ol>\n<li>delete config file <code>AppData/Roaming/Docker/settings.json</code></li>\n<li>start Docker Desktop (it will create new default settings.json)</li>\n</ol>\n<p>You need to re-configure settings, so it is also good idea to save the old settings.json and compare settings with the new one.</p>\n",
+      "score": 50,
+      "creation_date": "2022-05-12T08:04:38"
+    }
+  ],
+  "source": "stackoverflow"
+}

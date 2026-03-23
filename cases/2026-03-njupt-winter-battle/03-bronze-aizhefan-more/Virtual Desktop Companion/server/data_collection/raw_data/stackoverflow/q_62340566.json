@@ -1,0 +1,22 @@
+{
+  "id": 62340566,
+  "title": "Error when running an installed WSL platform: WslRegisterDistribution failed with error: 0x80370102",
+  "body": "<p>I'm trying to install WSL2, but getting error above. Virtual Machine platform and Windows subsystem for linux are enabled, also kernel update installed. In BIOS intel virtualization is enabled. How to fix that?</p>\n",
+  "score": 17,
+  "answer_count": 5,
+  "view_count": 76404,
+  "tags": [
+    "windows-10",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-06-12T08:36:15",
+  "answers": [
+    {
+      "id": 63270858,
+      "body": "<p>It's worth verifying the machine meets the hardware requirements.</p>\n<p>Buried in the <a href=\"https://learn.microsoft.com/en-us/windows/wsl/troubleshooting\" rel=\"noreferrer\">WSL troublshooting page</a> under &quot;Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS&quot; the first item is to check <a href=\"https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/system-requirements-for-hyper-v-on-windows#:%7E:text=on%20Windows%20Server.-,General%20requirements,the%20processor%20must%20have%20SLAT.\" rel=\"noreferrer\">Hyper-V System Requirements</a>.</p>\n<p>WSL 2 uses a subset of Hyper-V for virtualization, so while you don't need Win 10 Pro, you do still need the hardware to be able to run Hyper-V.</p>\n<p>At the time of writing, the docs say Hyper-V requires the following:</p>\n<ul>\n<li>64-bit Processor with Second Level Address Translation (SLAT).</li>\n<li>CPU support for VM Monitor Mode Extension (VT-x on Intel CPU's).</li>\n<li>Minimum of 4 GB memory. As virtual machines share memory with the Hyper-V host, you will need to provide enough memory to handle the expected virtual workload.</li>\n</ul>\n<p>A quick way to check requirements: run <code>msinfo32.exe</code> and under <code>System Summary</code> at the very bottom it notes the Hyper-V requirements:</p>\n<p><a href=\"https://i.sstatic.net/sDLkT.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/sDLkT.png\" alt=\"The MS info system summary section showing the Hyper-V items and values\" /></a></p>\n<p>...in my case, I'm out of luck as my processor lacks SLAT.</p>\n",
+      "score": 9,
+      "creation_date": "2020-08-05T17:52:40"
+    }
+  ],
+  "source": "stackoverflow"
+}

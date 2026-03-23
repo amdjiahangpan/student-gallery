@@ -1,0 +1,22 @@
+{
+  "id": 58720243,
+  "title": "VS Code Server for WSL closed unexpectedly",
+  "body": "<p>I am trying to run a Python project on the WSL (Ubuntu-18.04 distribution) system with VS code. I have the WSL - Remote plugin <em>v0.39.9</em> installed. When run the command:</p>\n\n<pre><code>code .\n</code></pre>\n\n<p>Receive the error:</p>\n\n<blockquote>\n  <p>/home/username/.vscode-server/bin/6ab598523be7a800d7f3eb4d92d7ab9a66069390/bin/code:\n  12:\n  /home/username/.vscode-server/bin/6ab598523be7a800d7f3eb4d92d7ab9a66069390/bin/code:\n  /home/username/.vscode-server/bin/6ab598523be7a800d7f3eb4d92d7ab9a66069390/node:\n  Exec format error</p>\n</blockquote>\n\n<p>When I ran inside the VS Code trying to connect to the WSL instance:</p>\n\n<blockquote>\n  <p>Starting VS Code Server inside WSL (Ubuntu-18.04) Extension version:\n  0.39.9, Windows build: 18362. Multi distro support: enabled. \n  WSL path support: enabled VS Code Server for WSL closed unexpectedly.</p>\n</blockquote>\n\n<p>This is the information of VS Code:</p>\n\n<pre><code>Version: 1.39.2 (user setup)\nCommit: 6ab598523be7a800d7f3eb4d92d7ab9a66069390\nDate: 2019-10-15T15:35:18.241Z\nElectron: 4.2.10\nChrome: 69.0.3497.128\nNode.js: 10.11.0\nV8: 6.9.427.31-electron.0\nOS: Windows_NT x64 10.0.18362\n</code></pre>\n",
+  "score": 43,
+  "answer_count": 13,
+  "view_count": 73265,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-11-05T22:10:26",
+  "answers": [
+    {
+      "id": 63874299,
+      "body": "<p>I have solved this problem by shutting down <code>wsl</code> and then restarting it in PowerShell.</p>\n<pre><code>wsl --shutdown\nwsl\n</code></pre>\n",
+      "score": 96,
+      "creation_date": "2020-09-13T18:39:43"
+    }
+  ],
+  "source": "stackoverflow"
+}

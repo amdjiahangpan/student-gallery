@@ -1,0 +1,16 @@
+{
+  "id": 60897021,
+  "title": "WSL 2 cannot conect to MongoDB",
+  "body": "<p>I am developing a web app in my local using WSL 1 a while back. It works perfectly with MongoDB on local but after upgrading to WSL 2, I could not connect at all. I can still run the react app.</p>\n\n<p>Here are some details:\nVersion: Microsoft Windows [Version 10.0.19041.172]\nWSL 2: Ubuntu</p>\n\n<p>How am I gonna call the MongoDB from the windows side from the WSL 2?</p>\n",
+  "score": 11,
+  "answer_count": 5,
+  "view_count": 14809,
+  "tags": [
+    "reactjs",
+    "mongodb",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-03-28T03:49:56",
+  "answers": [],
+  "source": "stackoverflow"
+}

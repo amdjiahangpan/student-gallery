@@ -1,0 +1,23 @@
+{
+  "id": 63960859,
+  "title": "How can I raise the limit for open files in Ubuntu 20.04 on WSL2?",
+  "body": "<p>My setup looks as follows: Windows 10, Release 1909 (Build 18363.1082), using WSL2 with an Ubuntu 20.04 environment. Everything works nicely most of the time, but there are some issues I cannot manage to solve.</p>\n<p>During development using <code>parcel</code> (React bundler), I run into the problem that the bundler apparently opens <strong>lots</strong> of files at the same time, and at a certain point, I run into the following problem:</p>\n<pre><code>EMFILE: too many open files, open '/home/myusername/Projects/some-project-path/node_modules/@material-ui/icons/esm/RoundedCornerRounded.js'\n</code></pre>\n<p>As <code>parcel</code> seemingly does not easily support using something like <code>graceful-fs</code>, I have tried to increase the limit for open files inside the Ubuntu environment. What I have tried so far:</p>\n<ul>\n<li>A simple <code>ulimit -n 4096</code> (which is the highest possible by default), but it's apparently (by far?) not enough</li>\n<li>I tried increasing <code>fs.files-max</code> to something really high in <code>/etc/sysctl.conf</code>, but it doesn't seem to have an effect (neither after <code>sysctl -p</code> nor after a restart of <code>wsl</code>)</li>\n<li>I also tried increasing <code>fs.inotify.max_user_watches</code>, but that did not seem to have an effect either</li>\n<li>Also setting soft and hard limits in <code>/etc/security/limits.conf</code> did not seem to have an effect</li>\n<li>I also found information that changing <code>DefaultLimitNOFILE</code> in <code>/etc/systemd/system.conf</code> can have an effect (so I did that as well)</li>\n</ul>\n<p>Has anybody manage to solve a similar system on Ubuntu 20.04 on WSL2? This left me pretty stumped, and it prevents me from using <code>parcel</code> inside this environment. That's a real pity, as really everything else is working really fine.</p>\n<hr />\n<h2>UPDATE</h2>\n<p>So I have found out that my changes in various places (probably the one in <code>/etc/security/limits.conf</code>) has had some kind of effect. Just not when logging in directly. This illustrates this:</p>\n<pre><code>donmartin@SOMEMACHINE:~$ ulimit -Hn\n4096\ndonmartin@SOMEMACHINE:~$ su donmartin\nPassword:\ndonmartin@SOMEMACHINE:~$ ulimit -Hn\n65536\ndonmartin@SOMEMACHINE:~$\n</code></pre>\n<p>Which means: If I <code>su</code> to my own user, the <code>ulimit</code> has indeed been raised. But if I log in just as normal using Windows Terminal, this limit is <strong>not</strong> in effect. Even more puzzled now - BUT - I have a workaround for my problem. Having set my values to <code>65536</code>, the <code>parcel</code> build now works, running as my own user. Go figure! I still don't quite know which setting was changing the behaviour now - perhaps somebody has more thorough information on how this works and/or how I can make this also the default without having to do a <code>su</code> to get the updated limits.</p>\n",
+  "score": 26,
+  "answer_count": 3,
+  "view_count": 30470,
+  "tags": [
+    "parceljs",
+    "ulimit",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-18T18:15:29",
+  "answers": [
+    {
+      "id": 67301080,
+      "body": "<p>I had to add the following line to <code>/etc/systemd/user.conf</code>:</p>\n<pre><code>DefaultLimitNOFILE=65535\n</code></pre>\n<p>As written in the answer here:</p>\n<p><a href=\"https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu/1200818#1200818?s=1b927bb17396480da98a94cbacf8da62\">https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu/1200818#1200818?s=1b927bb17396480da98a94cbacf8da62</a></p>\n<p>Also you may need to run this (if working with applications that monitors changes in many files/folders):</p>\n<p><code>sudo sh -c 'sysctl fs.inotify.max_user_watches=524288 &amp;&amp; sysctl -p'</code></p>\n",
+      "score": 8,
+      "creation_date": "2021-04-28T13:21:31"
+    }
+  ],
+  "source": "stackoverflow"
+}

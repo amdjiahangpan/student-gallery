@@ -1,0 +1,15 @@
+{
+  "id": 64569262,
+  "title": "Is it possible to make &quot;WSL&quot; virtual switch external in Windows 20H2 (WSL2.0) and how to configure it?",
+  "body": "<p>It's not enough for me to bind WSL ports to localhost because I need to run applications in WSL which must be run in and from my local network. Attempt to switch WSL virtual switch to external in Hyper-V manager leads to Access-denied error (when wsl instance is running) with following big problems with host's and/or WSL's network as a result until I reboot the host. When WSL distro is not running WSL virtual switch is invisible in Hyper-V manager (Virtual switch manager).</p>\n<p>I have 2 question and will be very appreciated if someone could help me with that:</p>\n<ol>\n<li>Is it a normal behavior - having got problem with network attempting to configure WSL virtual switch directly? As I recall there were no such problems with Hyper-V virtual machines - maybe just short losing of connectivity, not more.</li>\n<li>Is there a way to configure WSL such way so it starts with WSL external switch any time I run it? Files .wslconfig and /etc/wsl.conf look to be useless for this - I haven't managed to find the solution in google.</li>\n</ol>\n",
+  "score": 11,
+  "answer_count": 4,
+  "view_count": 36184,
+  "tags": [
+    "network-programming",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-10-28T08:45:51",
+  "answers": [],
+  "source": "stackoverflow"
+}

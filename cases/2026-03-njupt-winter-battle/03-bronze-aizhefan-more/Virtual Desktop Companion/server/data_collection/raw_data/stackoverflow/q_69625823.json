@@ -1,0 +1,15 @@
+{
+  "id": 69625823,
+  "title": "Accessing PostgreSQL (on wsl2) from DBeaver (on Windows) fails: &quot;Connection refused: connect&quot;",
+  "body": "<p>What I'm trying is to use Postgres and access it from DBeaver.</p>\n<ul>\n<li>Postgres is installed into wsl2 (Ubuntu 20)</li>\n<li>DBeaver is installed into Windows 10</li>\n</ul>\n<p>According to <a href=\"https://learn.microsoft.com/en-us/windows/wsl/networking\" rel=\"noreferrer\">this doc</a>, if you access an app running on Linuc from Windows, <code>localhost</code> can be used.</p>\n<p>However...</p>\n<p><a href=\"https://i.sstatic.net/DUUmH.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/DUUmH.png\" alt=\"enter image description here\" /></a></p>\n<p>Connection is refused with <code>localhost</code>. Also, I don't know what this message means: <code>Connection refused: connect</code>.</p>\n<p>Does anyone see potential cause for this? Any advice will be appreciated.</p>\n<p>Note:</p>\n<ul>\n<li>The password should be fine. When I use <code>psql</code> in wsl2 and type in the password, <code>psql</code> is available with the password</li>\n<li>I don't have Postgres on Windows' side. It exists only on wsl2</li>\n</ul>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 18853,
+  "tags": [
+    "postgresql",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-10-19T06:03:12",
+  "answers": [],
+  "source": "stackoverflow"
+}

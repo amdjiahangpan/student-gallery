@@ -1,0 +1,18 @@
+{
+  "id": 51509444,
+  "title": "How to setup VS code debugging in Windows when running WSL?",
+  "body": "<p>I cannot figure out how to setup debugging in VS Code so I can serve the app with node in WSL. I am using:</p>\n\n<ul>\n<li>Debugger for Chrome</li>\n<li>React app created with create-react-app</li>\n<li>Starting server in bash (WSL) via npm start</li>\n</ul>\n\n<p>This works in that is launches a new browser window and the app is served, but I cannot set any break points. They all report <code>Unverified breakpoint</code>. </p>\n\n<p>This is my <code>launch.json</code>:</p>\n\n<pre><code>{\n  \"version\": \"0.2.0\",\n  \"configurations\": [\n    {\n      \"name\": \"React\",\n      \"type\": \"chrome\",\n      \"request\": \"launch\",\n      \"url\": \"http://localhost:3000\",\n      \"webRoot\": \"${workspaceRoot}/src\"\n    }\n  ]\n}\n</code></pre>\n\n<p>The problem seems related to webpack, but I can't figure out what I need to do differently.</p>\n",
+  "score": 11,
+  "answer_count": 3,
+  "view_count": 11080,
+  "tags": [
+    "reactjs",
+    "debugging",
+    "webpack",
+    "visual-studio-code",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-07-25T00:54:17",
+  "answers": [],
+  "source": "stackoverflow"
+}

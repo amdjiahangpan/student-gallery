@@ -1,0 +1,16 @@
+{
+  "id": 64939616,
+  "title": "Connect to SQL Server running on Windows host from a WSL 2/Ubuntu sqlcmd",
+  "body": "<p>I have a host running Windows 10, WSL 2. My guest is Ubuntu.</p>\n<p>I'm trying to use <code>sqlcmd</code> to connect to the SQL Server running on my host machine, but I'm not sure what IP to use in the connection?</p>\n<p>I've exposed/enabled basically everything from the SQL Configuration Manager on the host Windows SQL Server, and am using commands like this to try to connect:</p>\n<pre><code>sqlcmd -S 127.0.0.1 -U sa -P pass\n</code></pre>\n<blockquote>\n<p>Sqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : Login timeout expired.</p>\n</blockquote>\n",
+  "score": 10,
+  "answer_count": 4,
+  "view_count": 15994,
+  "tags": [
+    "sql-server",
+    "ubuntu",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-21T03:45:33",
+  "answers": [],
+  "source": "stackoverflow"
+}

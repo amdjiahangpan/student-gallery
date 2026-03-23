@@ -1,0 +1,25 @@
+{
+  "id": 63716587,
+  "title": "In WSL2: Ubuntu 20.04 for Windows 10 nodejs is installed but npm is not working",
+  "body": "<p>I am using <strong>WSL2: Ubuntu 20.04</strong> in my <strong>Windows 10</strong> operating system. I have installed <code>nodejs</code> using the command <code>sudo apt-get install -y nodejs</code> when I do <code>node -v</code> command I get <code>v12.18.3</code></p>\n<pre>\nmrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ node -v\nv12.18.3\n</pre>\n<p>but when I do <code>npm -v</code> command I get this below command</p>\n<pre>\nmrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ npm -v\n-bash: /mnt/c/Program Files/nodejs/npm: /bin/sh^M: bad interpreter: No such file or directory\n</pre>\n<p>I also do <code>whereis</code> command. Hope this will help to find solution.</p>\n<pre>\nmrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ whereis node\nnode: /usr/bin/node /usr/include/node /mnt/c/Program Files/nodejs/node.exe /usr/share/man/man1/node.1.gz\n\nmrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ whereis npm\nnpm: /usr/bin/npm /mnt/c/Program Files/nodejs/npm /mnt/c/Program Files/nodejs/npm.cmd /usr/share/man/man1/npm.1\n</pre> \n<p>I have tried almost all the stackoverflow solutions and github issues but nothing is worked for me.<br>\nHope any kind soul has the solution to this problem. Thanks in advance.</p>\n",
+  "score": 23,
+  "answer_count": 5,
+  "view_count": 37897,
+  "tags": [
+    "node.js",
+    "npm",
+    "windows-10",
+    "windows-subsystem-for-linux",
+    "ubuntu-20.04"
+  ],
+  "creation_date": "2020-09-03T03:56:15",
+  "answers": [
+    {
+      "id": 63716693,
+      "body": "<p>Try this</p>\n<pre><code>export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nsudo apt install npm\n</code></pre>\n",
+      "score": 53,
+      "creation_date": "2020-09-03T04:07:08"
+    }
+  ],
+  "source": "stackoverflow"
+}

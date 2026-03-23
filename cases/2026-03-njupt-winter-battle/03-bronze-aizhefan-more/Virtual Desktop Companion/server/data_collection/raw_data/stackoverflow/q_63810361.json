@@ -1,0 +1,16 @@
+{
+  "id": 63810361,
+  "title": "How to use Meld as git mergetool &amp; difftool on WSL2?",
+  "body": "<p>From WSL2 (Ubuntu) how could one use Meld installed natively on Windows as the git merge and diff tool?\nSo that commands like <code>git mergetool</code> &amp; <code>git difftool</code> from WSL open Meld on Windows.</p>\n",
+  "score": 12,
+  "answer_count": 1,
+  "view_count": 6600,
+  "tags": [
+    "git",
+    "meld",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-09-09T11:08:11",
+  "answers": [],
+  "source": "stackoverflow"
+}

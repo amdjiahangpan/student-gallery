@@ -1,0 +1,25 @@
+{
+  "id": 52238512,
+  "title": "How to access aws config file from WSL (Windows subsystem for Linux)?",
+  "body": "<p>I have installed awscli and have added aws keys to the config and credentials file.\nNow I can access them through file explorer from Windows but I cannot access them through the WSL bash. It says permission denied when I try to cd to the .aws folder present in rootfs. How do I access them from bash?</p>\n",
+  "score": 17,
+  "answer_count": 3,
+  "view_count": 20026,
+  "tags": [
+    "windows",
+    "bash",
+    "amazon-web-services",
+    "aws-cli",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-09-08T19:05:33",
+  "answers": [
+    {
+      "id": 53083079,
+      "body": "<p>All you have to do is to set a couple of environment variables from the WSL shell. I am assuming that you are working with bash and Ubuntu.</p>\n\n<pre><code>export AWS_SHARED_CREDENTIALS_FILE=/mnt/c/Users/&lt;your user name&gt;/.aws/credentials\nexport AWS_CONFIG_FILE=/mnt/c/Users/&lt;your user name&gt;/.aws/config\n</code></pre>\n\n<p>If you want to make the env variables sticky add the two lines to ~/.bashrc\nor /etc/bash.bashrc</p>\n\n<p>remember to <code>source /etc/bash.bashrc</code> <em>or</em>  <code>source ~/.bashrc</code> after editing them.</p>\n\n<p>See documentation here complete list of env variables you can work with <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html\" rel=\"noreferrer\">cli-environment</a></p>\n",
+      "score": 49,
+      "creation_date": "2018-10-31T12:12:48"
+    }
+  ],
+  "source": "stackoverflow"
+}

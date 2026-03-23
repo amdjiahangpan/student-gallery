@@ -1,0 +1,23 @@
+{
+  "id": 65491193,
+  "title": "I can&#39;t download linux with wsl, Invalid command line option: --install",
+  "body": "<pre><code>wsl --install --online\n\nInvalid command line option: --install\nCopyright (c) Microsoft Corporation. All rights reserved.\n</code></pre>\n<p>I need to see the linux versions I can download but I get this output. Why ?</p>\n",
+  "score": 21,
+  "answer_count": 1,
+  "view_count": 15138,
+  "tags": [
+    "windows",
+    "powershell",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-12-29T11:10:45",
+  "answers": [
+    {
+      "id": 65711117,
+      "body": "<p>Check which build of windows you are on. I had this error when I was on builds less than 18917. You can find this in your &quot;System Information&quot; application</p>\n",
+      "score": 2,
+      "creation_date": "2021-01-13T23:09:16"
+    }
+  ],
+  "source": "stackoverflow"
+}

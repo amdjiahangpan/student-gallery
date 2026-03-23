@@ -1,0 +1,16 @@
+{
+  "id": 59993437,
+  "title": "Can I generate a new config/master.key file?",
+  "body": "<p>My initial commit which I did on my workstation, ignored my <strong>config/master.key</strong> file. Now that I'm hundreds of miles away from my workstation, is there any way to generate a new master.key file using a cloned repo on my laptop?</p>\n<p>Because I need it now.</p>\n<p><strong>Running</strong></p>\n<p>Rails 6.0.2.1</p>\n<p>ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-linux]</p>\n<p>Ubuntu WSL on Windows 10</p>\n<p>VSCODE</p>\n",
+  "score": 13,
+  "answer_count": 2,
+  "view_count": 21320,
+  "tags": [
+    "ruby-on-rails",
+    "windows-subsystem-for-linux",
+    "ruby-on-rails-6"
+  ],
+  "creation_date": "2020-01-30T19:45:26",
+  "answers": [],
+  "source": "stackoverflow"
+}

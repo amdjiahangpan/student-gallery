@@ -1,0 +1,24 @@
+{
+  "id": 72483632,
+  "title": "Ubuntu Error &quot;The command &#39;docker&#39; could not be found in this WSL 2 distro.&quot;",
+  "body": "<p>I'm running WSL 2 on Ubuntu and having some issues getting docker up and running on my computer. I have Docker Desktop installed and running in the background, and I also have WSL integration enabled with Ubuntu.</p>\n<p>When I try to run simple docker commands, such as <code>docker --version</code>, I receive this error:</p>\n<blockquote>\n<p>The command 'docker' could not be found in this WSL 2 distro.\nWe recommend to activate the WSL integration in Docker Desktop\nsettings.</p>\n<p>For details about using Docker Desktop with WSL 2, visit:</p>\n<p>https://docs.docker.com/go/wsl2/</p>\n</blockquote>\n<p>I have already visited the link and followed all the instructions it gives, enabling WSL integration with Ubuntu as shown here:</p>\n<p><a href=\"https://i.sstatic.net/lxwW8.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/lxwW8.png\" alt=\"Docker Desktop Settings screenshot\" /></a></p>\n<p>However the error I receive is still the same. Does anyone know how to fix this?</p>\n<p>Note: I can run Docker commands (such as <code>docker --version</code>) in PowerShell and Command Prompt, but it is unrecognized in Ubuntu.</p>\n",
+  "score": 18,
+  "answer_count": 7,
+  "view_count": 27116,
+  "tags": [
+    "docker",
+    "ubuntu",
+    "docker-compose",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2022-06-03T00:44:14",
+  "answers": [
+    {
+      "id": 72731250,
+      "body": "<p>I was having this problem, so I went to <a href=\"https://docs.docker.com/desktop/windows/wsl/\" rel=\"noreferrer\">this docker link</a> (your link is broken) and worked through the suggestions.</p>\n<p>This worked for me:</p>\n<ol>\n<li><p>In PowerShell, type <code>wsl -l -v</code> and you should get something like this:</p>\n<pre><code>  NAME                   STATE           VERSION\n* Ubuntu                 Running         2\n  docker-desktop         Running         2\n  Ubuntu-20.04           Running         2\n  docker-desktop-data    Running         2\n</code></pre>\n</li>\n<li><p>Go into the Docker Desktop <em>Settings</em> -&gt; <em>Resources</em> -&gt; <em>WSL integration</em>.</p>\n</li>\n<li><p>Select the WSL 2 distro you are using from the above list (e.g. Ubuntu 20.04 in my case) and <em>Apply &amp; Restart</em>.</p>\n</li>\n</ol>\n<p>Now running the version command works as expected in my distribution, and I have all of the functionality required from within the WSL terminal.</p>\n<pre><code>:~$ docker -v\n</code></pre>\n<p>Docker version 20.10.16, build aa7e414</p>\n",
+      "score": 14,
+      "creation_date": "2022-06-23T13:43:56"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 69621197,
+  "title": "Running Cypress on WSL",
+  "body": "<p>I'm trying to run cypress on a WSL with Ubuntu, this is what I'm getting:</p>\n<pre class=\"lang-sh prettyprint-override\"><code>$ cypress run\n[29023:1018/155130.159647:ERROR:bus.cc(392)] Failed to connect to the bus: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory\n[29023:1018/155130.162020:ERROR:bus.cc(392)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)\n[29023:1018/155130.162068:ERROR:bus.cc(392)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)\n[29211:1018/155130.193707:ERROR:gpu_init.cc(441)] Passthrough is not supported, GL is swiftshader\n\n...\n\n[29023:1018/155132.292604:ERROR:bus.cc(392)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)\n\nTimed out waiting for the browser to connect. Retrying...\n[29023:1018/155232.249036:ERROR:bus.cc(392)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)\n\nTimed out waiting for the browser to connect. Retrying again...\n[29023:1018/155332.249372:ERROR:bus.cc(392)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)\n (-2) loading 'http://localhost:3000/__/#/tests/integration/simple.spec.ts'\nError:  (-2) loading 'http://localhost:3000/__/#/tests/integration/simple.spec.ts'\n    at rejectAndCleanup (electron/js2c/browser_init.js:161:7486)\n    at Object.failListener (electron/js2c/browser_init.js:161:7699)\n    at Object.emit (events.js:376:20)\n\n</code></pre>\n<p>I couldn't find any related topics, any help?</p>\n",
+  "score": 21,
+  "answer_count": 5,
+  "view_count": 28575,
+  "tags": [
+    "javascript",
+    "cypress",
+    "windows-subsystem-for-linux",
+    "yarnpkg-v2"
+  ],
+  "creation_date": "2021-10-18T18:58:45",
+  "answers": [
+    {
+      "id": 69623293,
+      "body": "<p>Cypress requires the ability to run its GUI.  Depending on your Windows version, you likely need some additional configuration in order to run GUI applications in WSL:</p>\n<ul>\n<li><p>For all Windows releases, make sure you install the <a href=\"https://docs.cypress.io/guides/getting-started/installing-cypress#Ubuntu-Debian\" rel=\"noreferrer\">required dependencies</a>:</p>\n<pre><code>apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb\n</code></pre>\n<p>This may have been done for you depending on how you installed Cypress.  I used the <a href=\"https://docs.cypress.io/guides/getting-started/installing-cypress\" rel=\"noreferrer\"><code>npm</code> directions</a> in the Cypress doc.</p>\n</li>\n<li><p>Windows 11 includes the WSLg feature by default, which allows you to run GUI applications directly on Windows.  If you upgraded from Windows 10 to Windows 11, run <code>wsl --update</code> to make sure you have the latest WSL version with WSLg.</p>\n<p>Also make sure, if you've attempted to run an X server on an older release (like in the next suggestion), that you remove any manual configuration of <code>DISPLAY</code> in your startup files (e.g. <code>~/.bashrc</code>, etc.).</p>\n</li>\n<li><p>For Windows 10, you will need to do some additional configuration.  There are  really two ways to do this, but it's a better topic for Super User (since it isn't directly related to programming), so I'm going to point you to <a href=\"https://superuser.com/q/1580610/1210833\">this Super User question</a> for some details.   Either answer there is fine.  While I'm partial to my solution, most people opt for running a third-party X server as in harrymc's answer there.</p>\n</li>\n</ul>\n<p>Just to make sure there weren't any &quot;hidden tricks&quot; needed to get Cypress running, I can confirm that I was able to successfully <code>./node_modules/.bin/cypress open</code> using the <a href=\"https://docs.cypress.io/guides/getting-started/installing-cypress\" rel=\"noreferrer\">Cypress instructions</a> and my <code>xrdp</code> technique from the Super User answer.</p>\n",
+      "score": 18,
+      "creation_date": "2021-10-18T22:37:00"
+    }
+  ],
+  "source": "stackoverflow"
+}

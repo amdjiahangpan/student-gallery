@@ -1,0 +1,14 @@
+{
+  "id": 66048183,
+  "title": "What is the difference between calling a command via &quot;wsl [command]&quot; and opening a wsl shell and calling &quot;[command]&quot;?",
+  "body": "<p>I am using Ubuntu via WSL 2.0 on Windows 10 and would like to run Texlive from the Windows command line. To do so I prepended the Texlive folder to the path in <code>/etc/environment</code> (I also tried a number of other locations eg. <code>$HOME/.bashrc</code>):</p>\n<pre><code>C:\\Users\\scott\\Documents&gt;wsl echo $PATH\n/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/system32:...\n\nC:\\Users\\scott\\Documents&gt;wsl\nscott@SCOTT-PC:/mnt/c/Users/scott/Documents$ echo $PATH\n/usr/local/texlive/2020/bin/x86_64-linux:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/system32:...\n</code></pre>\n<p>Why is there a difference between these two paths? Is it possible to change the first PATH variable?</p>\n",
+  "score": 13,
+  "answer_count": 1,
+  "view_count": 3394,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2021-02-04T14:59:47",
+  "answers": [],
+  "source": "stackoverflow"
+}

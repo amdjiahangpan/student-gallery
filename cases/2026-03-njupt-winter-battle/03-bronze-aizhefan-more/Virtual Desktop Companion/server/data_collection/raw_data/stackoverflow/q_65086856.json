@@ -1,0 +1,23 @@
+{
+  "id": 65086856,
+  "title": "WSL2 REST API Error due to WSL2 clock out of sync with Windows clock",
+  "body": "<p>WSL2 clock goes out of sync after resuming from sleep/hibernate.\n<a href=\"https://i.sstatic.net/t084S.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/t084S.png\" alt=\"illustration showing Windows clock and WSL clock out of sync\" /></a></p>\n<p>A workaround was shared on <a href=\"https://github.com/microsoft/WSL/issues/4245#issuecomment-510238198\" rel=\"noreferrer\">GitHub</a> <code>sudo hwclock -s</code> to resync clock in WSL, but you have to do this every time you resume from sleep/hibernate.</p>\n",
+  "score": 214,
+  "answer_count": 15,
+  "view_count": 149885,
+  "tags": [
+    "clock",
+    "windows-task-scheduler",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-12-01T08:14:47",
+  "answers": [
+    {
+      "id": 66930942,
+      "body": "<p>In case anyone finds this via search and doesn't notice that there is actually a solution listed in the question, you can fix WSL clock drift via.</p>\n<pre><code>sudo hwclock -s\n</code></pre>\n<p>If you just need to do it occasionally, this is a fine solution. If you need to do it more frequently, consider <a href=\"https://stackoverflow.com/a/65086857\">@piouson's solution</a>.</p>\n",
+      "score": 294,
+      "creation_date": "2021-04-03T12:04:23"
+    }
+  ],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 57243299,
+  "title": "Jekyll: Operation not permitted @ apply2files",
+  "body": "<p>I am using Windows 10's Linux subsystem where I installed Jekyll but when I run <code>bundle exec jekyll serve</code> it gives me:</p>\n\n<p><code>jekyll 3.8.6 | Error:  Operation not permitted @ apply2files - /mnt/e/Work/project/_site/images/banner.jpg</code></p>\n\n<p>I know there are some incompatibilities with Windows and Linux permissions, because all my files are owned by root for some reason, but there is a fix to this issue?</p>\n\n<p>I found an answer here <a href=\"https://scottdorman.blog/2019/02/27/running-jekyll-on-wsl/\" rel=\"noreferrer\">https://scottdorman.blog/2019/02/27/running-jekyll-on-wsl/</a> where the author says I have to close and reopen the bash, but it doesn't work.</p>\n",
+  "score": 10,
+  "answer_count": 4,
+  "view_count": 15317,
+  "tags": [
+    "ruby",
+    "permissions",
+    "jekyll",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-07-28T17:22:09",
+  "answers": [],
+  "source": "stackoverflow"
+}

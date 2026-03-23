@@ -1,0 +1,15 @@
+{
+  "id": 55127513,
+  "title": "Cannot install mysql-server on WSL",
+  "body": "<p>I am running Ubuntu 18.04 on WSL and I am trying to install MySQL-server</p>\n\n<p>I keep get the error as displayed on the screenshot attached..I have tried several times to</p>\n\n<ul>\n<li>apt remove --purge MySQL*</li>\n<li>apt-get autoremove</li>\n<li><p>apt-get autoclean</p></li>\n<li><p>sudo dpkg --configure -a </p></li>\n<li><p>sudo apt-get install -f </p></li>\n<li><p>sudo apt-get dist-upgrade</p></li>\n</ul>\n\n<p>Any ideas? I keep coming up with the same error.</p>\n\n<p><a href=\"https://i.sstatic.net/oATv7.png\" rel=\"noreferrer\">error output</a></p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 5023,
+  "tags": [
+    "mysql",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2019-03-12T17:33:49",
+  "answers": [],
+  "source": "stackoverflow"
+}

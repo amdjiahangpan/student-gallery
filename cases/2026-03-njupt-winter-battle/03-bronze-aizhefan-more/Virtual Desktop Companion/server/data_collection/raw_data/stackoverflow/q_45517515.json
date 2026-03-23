@@ -1,0 +1,21 @@
+{
+  "id": 45517515,
+  "title": "Running &quot;screen&quot; without additional permissions on WSL",
+  "body": "<p>I'm trying to run the \"screen\" utility on Windows Subsystem for Linux on Windows 10 (Version 1703, OS Build 15063.483).</p>\n\n<p>It seems that I need additional permissions to run it (it works if I \"sudo\" it), but I don't understand why that is necessary. </p>\n\n<p>What is the recommended way to set this up? </p>\n\n<p>Is there some reason why this isn't the default set up?</p>\n\n<pre><code>$ screen\nCannot make directory '/var/run/screen': Permission denied\n</code></pre>\n",
+  "score": 46,
+  "answer_count": 4,
+  "view_count": 25394,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2017-08-05T01:56:42",
+  "answers": [
+    {
+      "id": 45618088,
+      "body": "<p>From <a href=\"https://superuser.com/a/1195963/455650\">an answer on SuperUser</a> I discovered that you have to run</p>\n\n<pre><code>sudo /etc/init.d/screen-cleanup start\n</code></pre>\n\n<p>Then <code>screen</code> works fine for me.</p>\n",
+      "score": 80,
+      "creation_date": "2017-08-10T15:39:33"
+    }
+  ],
+  "source": "stackoverflow"
+}

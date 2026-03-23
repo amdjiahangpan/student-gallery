@@ -1,0 +1,23 @@
+{
+  "id": 49397435,
+  "title": "docker - start failed because /etc/fstab not found",
+  "body": "<p>I'm using Window Linux Subsystem (Debian stretch). Followed the instruction on Docker website, I installed docker-ce, but it cannot start. Here is the info:</p>\n\n<pre><code>$ sudo service docker start\ngrep: /etc/fstab: No such file or directory\n[ ok ] Starting Docker: docker.\n$ sudo service docker status\n[FAIL] Docker is not running ... failed!\n</code></pre>\n\n<p>What should I do with <code>/etc/fstab</code> not found?</p>\n",
+  "score": 15,
+  "answer_count": 4,
+  "view_count": 13752,
+  "tags": [
+    "docker",
+    "windows-subsystem-for-linux",
+    "debian-stretch"
+  ],
+  "creation_date": "2018-03-21T03:03:01",
+  "answers": [
+    {
+      "id": 70877542,
+      "body": "<p>to fix fstab</p>\n<pre class=\"lang-sh prettyprint-override\"><code>touch /etc/fstab\n</code></pre>\n<p>if you run <code>dockerd</code>, it will give you the failed message:</p>\n<pre><code>INFO[2022-01-27T17:55:14.100489400+07:00] Loading containers: start.\nWARN[2022-01-27T17:55:14.191666800+07:00] Running iptables --wait -t nat -L -n failed with message: `iptables v1.8.2 (nf_tables):  CHAIN_ADD failed (No such file or directory): chain PREROUTING`, error: exit status 4\nINFO[2022-01-27T17:55:14.493716300+07:00] stopping event stream following graceful shutdown  error=&quot;&lt;nil&gt;&quot; module=libcontainerd namespace=moby\nINFO[2022-01-27T17:55:14.494906600+07:00] stopping event stream following graceful shutdown  error=&quot;context canceled&quot; module=libcontainerd namespace=plugins.moby\nINFO[2022-01-27T17:55:14.495048400+07:00] stopping healthcheck following graceful shutdown  module=libcontainerd\nfailed to start daemon: Error initializing network controller: error obtaining controller instance: failed to create NAT chain DOCKER: iptables failed: iptables --wait -t nat -N DOCKER: iptables v1.8.2 (nf_tables):  CHAIN_ADD failed (No such file or directory): chain PREROUTING\n (exit status 4)\n</code></pre>\n<p>that is  <a href=\"https://forums.docker.com/t/failing-to-start-dockerd-failed-to-create-nat-chain-docker/78269\" rel=\"noreferrer\">Debian</a> nat issue, fix it with:</p>\n<pre><code>sudo update-alternatives --set iptables /usr/sbin/iptables-legacy\nsudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy\n</code></pre>\n<p>now you can start the service again</p>\n<p>you can follow this to make it start on startup <a href=\"https://askubuntu.com/a/1356147/138352\">https://askubuntu.com/a/1356147/138352</a></p>\n<p>Edited:</p>\n<p>if the issue with IP table still persisted try to set <a href=\"https://learn.microsoft.com/en-us/windows/wsl/basic-commands#set-wsl-version-to-1-or-2\" rel=\"noreferrer\">WSL version</a> to 2, run the command from Windows shell:</p>\n<pre><code>wsl --set-version &lt;distribution name&gt; 2\n</code></pre>\n<p>the distribution list can be found with command <code>wsl -l</code></p>\n",
+      "score": 14,
+      "creation_date": "2022-01-27T11:09:27"
+    }
+  ],
+  "source": "stackoverflow"
+}

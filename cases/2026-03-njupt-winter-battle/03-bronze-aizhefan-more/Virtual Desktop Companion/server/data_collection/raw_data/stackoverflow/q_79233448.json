@@ -1,0 +1,23 @@
+{
+  "id": 79233448,
+  "title": "VSCode under Windows keeps popping up a terminal window asking to update WSL even though I uninstalled the WSL extension",
+  "body": "<p>I'm using Windows 11 24H2.\nI installed VSCode on it before I upgraded from Win 10.\nThe VSCode version is 1.93.1.\nI used to have the WSL extension in VSCode, but I uninstalled it. Still, every time I start VSCode, it keeps popping up a terminal window asking me to &quot;update&quot; WSL. Even though, WSL itself is also no longer installed on my PC (anymore).</p>\n<p>This is what I see in the pop-up:</p>\n<pre><code>Windows Subsystem for Linux must be updated to the latest version to proceed. You can update by running 'wsl.exe --update'.\nFor more information please visit https://aka.ms/wslinstall\n\nPress any key to install Windows Subsystem for Linux.\nPress CTRL-C or close this window to cancel.\nThis prompt will time out in 60 seconds.\n</code></pre>\n<p>But if I run separately:</p>\n<pre><code>wsl --status\nThe Windows Subsystem for Linux is not installed. You can install by running 'wsl.exe --install'.\nFor more information please visit https://aka.ms/wslinstall\n</code></pre>\n<p>All the extensions I have in VSCode now are these:</p>\n<p><a href=\"https://i.sstatic.net/5d55mnHO.png\" rel=\"noreferrer\"><img src=\"https://i.sstatic.net/5d55mnHO.png\" alt=\"enter image description here\" /></a></p>\n<p>Any idea what is going on here?</p>\n",
+  "score": 20,
+  "answer_count": 3,
+  "view_count": 19148,
+  "tags": [
+    "visual-studio-code",
+    "windows-subsystem-for-linux",
+    "vscode-remote"
+  ],
+  "creation_date": "2024-11-28T10:20:22",
+  "answers": [
+    {
+      "id": 79262396,
+      "body": "<p>I faced the same problem with popup in vscode everytime even though I never used WSL before. After updating to the latest version this happened; I had been using windows 11 from quite a while.</p>\n<p><strong>The fix</strong> was to disable WSL from Windows Features:</p>\n<p>Press Win + S, type Turn Windows features on or off, and open it.\nUncheck Windows Subsystem for Linux.\nClick OK and restart your computer.</p>\n",
+      "score": 31,
+      "creation_date": "2024-12-08T11:50:27"
+    }
+  ],
+  "source": "stackoverflow"
+}

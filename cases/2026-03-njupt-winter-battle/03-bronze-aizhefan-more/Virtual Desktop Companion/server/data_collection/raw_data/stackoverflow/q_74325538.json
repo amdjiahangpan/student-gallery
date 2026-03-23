@@ -1,0 +1,17 @@
+{
+  "id": 74325538,
+  "title": "golang mkdir /usr/local/go/pkg/mod permission denied",
+  "body": "<p>OS: Windows 11 WSL2;\nIDE: Goland Latest</p>\n<p>I am trying to open my IDE Goland, but I get this error when the IDE tries to index my project.</p>\n<pre><code>warning: GOPATH set to GOROOT (/usr/local/go) has no effect\ngo: mkdir /usr/local/go/pkg/mod: permission denied\ngo: github.com/MyCompany/common-backend@v1.0.56: mkdir /usr/local/go/pkg/mod: permission denied\n</code></pre>\n<p>though, I already set my go like this</p>\n<pre><code> export GOROOT=/usr/local/go\n export GOPATH=$HOME/go\n export PATH=$PATH:/usr/local/go/bin\n</code></pre>\n<p>is that anything I miss for my WSL for <strong>Go</strong> Path?</p>\n",
+  "score": 14,
+  "answer_count": 4,
+  "view_count": 21254,
+  "tags": [
+    "linux",
+    "go",
+    "windows-subsystem-for-linux",
+    "goland"
+  ],
+  "creation_date": "2022-11-05T06:12:13",
+  "answers": [],
+  "source": "stackoverflow"
+}

@@ -1,0 +1,14 @@
+{
+  "id": 64629535,
+  "title": "How can I have different ip for differnt distrubutions on wsl2?",
+  "body": "<p>I am running 5 different Ubuntu distro on wsl2 but all are having the same IP address. For example, Ubuntu 18.04 and Ubuntu 20.04 are having the same IP. Is it possible to have different IPs on each Ubuntu versions?</p>\n",
+  "score": 11,
+  "answer_count": 2,
+  "view_count": 7639,
+  "tags": [
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-01T07:19:57",
+  "answers": [],
+  "source": "stackoverflow"
+}

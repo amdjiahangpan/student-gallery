@@ -1,0 +1,17 @@
+{
+  "id": 64690483,
+  "title": "Why is Git on WSL2 with SouceTree so slow for me?",
+  "body": "<p>My environment is as follows.</p>\n<ul>\n<li>Windows10（version 2004, build 19041.572）</li>\n<li>64 bit OS</li>\n<li>On WSL2, I use Ubuntu（Ubuntu-20.04）</li>\n<li>I use git with SourceTree.</li>\n</ul>\n<p>I use docker-compose to develop Web services. Running docker-compose on Windows is very slow for accessing web pages. I created a docker environment in the Ubuntu's Home folder on WSL2. Web site data (Laravel) is installed in the docker environment on WSL2 and managed by git.</p>\n<p>How can i improve the speed of SourceTree on WSL2? Git on Windows is faster.</p>\n",
+  "score": 11,
+  "answer_count": 5,
+  "view_count": 14917,
+  "tags": [
+    "git",
+    "docker",
+    "atlassian-sourcetree",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2020-11-05T02:43:25",
+  "answers": [],
+  "source": "stackoverflow"
+}

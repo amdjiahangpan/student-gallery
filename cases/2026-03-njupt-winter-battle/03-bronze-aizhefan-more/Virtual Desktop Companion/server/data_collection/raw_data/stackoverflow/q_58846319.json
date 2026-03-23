@@ -1,0 +1,24 @@
+{
+  "id": 58846319,
+  "title": "Mount native ext4 partition in WSL2",
+  "body": "<p>I often work on Windows and Linux (on dual boot) and I'm using a ntfs partition to synchronize a data between systems which is something problematic (lots of docker containers have a problem to work with ntfs permissions). I've tried to mount an ext4 partition in wsl1 but it's impossible but I've read that with release of WSL2 it could be achieved. I've tried to do that but have no idea how it can be done. Is there really a way to mount native ext4 in wsl2 to share one partition between linux and wsl2?</p>\n<p><strong>UPDATE:</strong></p>\n<p>at last WSL2 supports mounting native EXT4 partition (well, partially). More info:</p>\n<p><a href=\"https://learn.microsoft.com/en-us/windows/wsl/wsl2-mount-disk\" rel=\"nofollow noreferrer\">https://learn.microsoft.com/en-us/windows/wsl/wsl2-mount-disk</a></p>\n<p>You have to be aware that it requires (at least for now) separate disk to work (so it's not applicable for my case :) my laptop doesn't have second disk slot)</p>\n",
+  "score": 16,
+  "answer_count": 1,
+  "view_count": 17215,
+  "tags": [
+    "linux",
+    "windows",
+    "windows-subsystem-for-linux",
+    "disk-partitioning"
+  ],
+  "creation_date": "2019-11-13T22:03:29",
+  "answers": [
+    {
+      "id": 58959729,
+      "body": "<p><a href=\"https://thenewstack.io/windows-subsystem-for-linux-brings-the-full-4-19-kernel-to-windows/\" rel=\"nofollow noreferrer\">Windows Subsystem for Linux Brings the Full 4.19 Kernel to Windows</a> said -</p>\n\n<blockquote>\n  <p>In WSL 2, the Linux filesystem is now just using EXT4 directly over a\n  virtual pmem device, so we get Linux native filesystem performance on\n  the Linux side and Windows native filesystem performance on the\n  Windows side (best of both worlds). And with the 9P bridge, we can\n  connect them together for a great integrated experience.</p>\n</blockquote>\n\n<p>The following informations are found in <a href=\"https://www.techrepublic.com/article/windows-10-will-soon-let-you-access-linux-files-from-file-explorer/\" rel=\"nofollow noreferrer\">Windows 10 will soon let you access Linux files from File Explorer</a> -</p>\n\n<blockquote>\n  <p>Windows 10, version 1903 allows Windows 10 File Explorer to access,\n  move and copy files stored inside Windows Subsystem for Linux distros.</p>\n  \n  <p>To use File Explorer with WSL files, users need to open a WSL distro\n  in Windows 10, change the directory to their Linux home folder, and\n  type <code>explorer.exe</code></p>\n  \n  <p>This will open up the window below, which will allow users to\n  manipulate WSL files in the same way as is possible using traditional\n  File Explorer in Windows 10.</p>\n  \n  <p>However, if you dual-boot Windows with a Linux-based OS, the new\n  feature will not allow File Explorer to access EXT4-formatted\n  partitions used by that Linux-based OS, only the file systems used by\n  the WSL distros.</p>\n</blockquote>\n",
+      "score": 2,
+      "creation_date": "2019-11-20T17:03:34"
+    }
+  ],
+  "source": "stackoverflow"
+}

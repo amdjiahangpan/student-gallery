@@ -1,0 +1,23 @@
+{
+  "id": 51912772,
+  "title": "How to use WSL as default terminal in WebStorm or any other JetBrains&#39; products?",
+  "body": "<p>I am currently using Windows 10 with WSL Ubuntu 18.04 installed. I am trying to use WSL as the default terminal in WebStorm however, I am able to use the bash from WSL but the default directory would not be set to the default project location.</p>\n\n<p>Does anyone know how to set this up correctly?</p>\n",
+  "score": 79,
+  "answer_count": 12,
+  "view_count": 60740,
+  "tags": [
+    "webstorm",
+    "jetbrains-ide",
+    "windows-subsystem-for-linux"
+  ],
+  "creation_date": "2018-08-18T21:41:53",
+  "answers": [
+    {
+      "id": 51912773,
+      "body": "<p>After a bit of search on google found a solution to my question.</p>\n\n<p>First figure out the default wsl with the command:</p>\n\n<pre><code>C:\\Windows\\System32\\wslconfig /list\n\nWindows Subsystem for Linux Distributions:\nUbuntu-18.04 \nLegacy (Default)\n</code></pre>\n\n<p>then I set the default to Ubuntu-18.04 by</p>\n\n<pre><code>C:\\Windows\\System32\\wslconfig /setdefault Ubuntu-18.04\n</code></pre>\n\n<p>Finally set the terminal path in Webstrom settings>tools>terminal to </p>\n\n<pre><code>C:\\Windows\\System32\\wsl.exe\n</code></pre>\n\n<p>Now open the terminal it is correctly move the current directory to the /mnt/c/blah/blah</p>\n",
+      "score": 183,
+      "creation_date": "2018-08-18T21:41:53"
+    }
+  ],
+  "source": "stackoverflow"
+}
