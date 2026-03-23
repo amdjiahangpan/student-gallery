@@ -23,7 +23,7 @@ This project is an AI-powered co-writing platform designed for novelists. Beyond
 ## Quick Start 
 
 1. In aup-learning-cloud, select **Basic GPU Environment** and set the Git URL to this repository
-2. Navigate to `cases/<activity-folder>/<your-folder>/`
+2. Navigate to `cases/2026-03-njupt-winter-battle/liuxiaoming-narrative-logic-workshop`
 3. Open `main.ipynb`
 4. Run all cells from top to bottom
 5. Enter a plot segment in the "Continue the story here..." box, then click any button below to test the tool
