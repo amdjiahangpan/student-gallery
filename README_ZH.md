@@ -1,5 +1,16 @@
 # aup-learning-cloud-case-hub
 
+<div align="center">
+
+[![AMD](https://img.shields.io/badge/AMD-ED1C24?style=flat-square&logo=amd&logoColor=white)](https://www.amd.com)
+[![ROCm](https://img.shields.io/badge/ROCm-FF6B35?style=flat-square&logo=amd&logoColor=white)](https://rocm.docs.amd.com)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-欢迎-brightgreen?style=flat-square)](./CONTRIBUTING_ZH.md)
+
+</div>
+
 > 基于 [aup-learning-cloud](https://github.com/AMDResearch/aup-learning-cloud) 的学生 AI 作品案例库 —— 按比赛归档，一键启动体验。
 
 [English](./README.md)
@@ -43,3 +54,11 @@ cases/
 ## 平台
 
 基于 [aup-learning-cloud](https://github.com/AMDResearch/aup-learning-cloud) —— AMD 开源 AI 教育 JupyterHub 平台，由 AMD GPU 集群驱动。
+
+## 贡献者
+
+<div align="center">
+  <a href="https://github.com/amdjiahangpan/aup-learning-cloud-case-hub/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=amdjiahangpan/aup-learning-cloud-case-hub" />
+  </a>
+</div>

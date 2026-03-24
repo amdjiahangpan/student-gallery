@@ -1,5 +1,15 @@
 # aup-learning-cloud-case-hub
 
+<div align="center">
+
+[![AMD](https://img.shields.io/badge/AMD-ED1C24?style=flat-square&logo=amd&logoColor=white)](https://www.amd.com)
+[![ROCm](https://img.shields.io/badge/ROCm-FF6B35?style=flat-square&logo=amd&logoColor=white)](https://rocm.docs.amd.com)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
+
+</div>
+
 > A curated gallery of student AI projects built on [aup-learning-cloud](https://github.com/AMDResearch/aup-learning-cloud) — organized by competition, launchable in one click.
 
 [中文说明](./README_ZH.md)
@@ -43,3 +53,11 @@ Template: copy the [`template/`](./template/) directory to get started.
 ## Platform
 
 Built on [aup-learning-cloud](https://github.com/AMDResearch/aup-learning-cloud) — AMD's open-source JupyterHub platform for AI education, powered by AMD GPU clusters.
+
+## Contributors
+
+<div align="center">
+  <a href="https://github.com/amdjiahangpan/aup-learning-cloud-case-hub/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=amdjiahangpan/aup-learning-cloud-case-hub" />
+  </a>
+</div>
