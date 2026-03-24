@@ -96,7 +96,7 @@ AMD ROCm 是开源 GPU 计算平台，支持在 AMD 硬件上运行高性能 AI 
 ## 如何体验所有案例
 
 1. 打开 aup-learning-cloud → 选择 **Basic GPU Environment**
-2. Git URL 填入：`https://github.com/amdjiahangpan/aup-learning-cloud-case-hub`
+2. Git URL 填入：`https://github.com/amdjiahangpan/student-gallery`
 3. 启动后进入 `cases/2026-03-njupt-winter-camp/`
 4. 打开任意作品文件夹，运行 `main.ipynb`
 

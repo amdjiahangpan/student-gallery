@@ -1,4 +1,4 @@
-# aup-learning-cloud-case-hub
+# student-gallery
 
 <div align="center">
 
@@ -21,7 +21,7 @@ This repository collects student notebook projects submitted across different AI
 
 1. Open your **aup-learning-cloud** instance
 2. Select **Basic GPU Environment**
-3. Enter Git URL: `https://github.com/amdjiahangpan/aup-learning-cloud-case-hub`
+3. Enter Git URL: `https://github.com/amdjiahangpan/student-gallery`
 4. Click **Start** — the repo will be cloned automatically
 5. Navigate to `cases/` and open any `main.ipynb`
 
@@ -56,7 +56,7 @@ Built on [aup-learning-cloud](https://github.com/AMDResearch/aup-learning-cloud)
 ## Contributors
 
 <div align="center">
-  <a href="https://github.com/amdjiahangpan/aup-learning-cloud-case-hub/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=amdjiahangpan/aup-learning-cloud-case-hub" />
+  <a href="https://github.com/amdjiahangpan/student-gallery/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=amdjiahangpan/student-gallery" />
   </a>
 </div>

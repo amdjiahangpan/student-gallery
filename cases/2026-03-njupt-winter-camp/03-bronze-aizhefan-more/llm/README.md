@@ -96,6 +96,6 @@ Use LLMs to generate story continuations with logic consistency monitoring.
 ## How to Experience All Cases
 
 1. Open aup-learning-cloud → select **Basic GPU Environment**
-2. Set Git URL: `https://github.com/amdjiahangpan/aup-learning-cloud-case-hub`
+2. Set Git URL: `https://github.com/amdjiahangpan/student-gallery`
 3. After startup, navigate to `cases/2026-03-njupt-winter-camp/`
 4. Open any submission folder and run `main.ipynb`
