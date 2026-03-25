@@ -44,6 +44,8 @@ This project is an intelligent assistant system designed for data processing and
 * **Real-time File Dashboard:** Provides a real-time monitor for file parsing status, extracted character count, and estimated Token consumption, including smart alerts for exceeding text limits.
 * **Batch Analysis Pipeline:** Breaks single-request limits, automatically outputting standardized Markdown reports containing summaries, sentiment scores, and keywords to achieve machine-level efficient review.
 * **Multi-Document Comparative Report:** Overcomes single-text limitations; the system automatically summarizes and generates a structured deep analysis report encompassing "core themes, commonalities, and key differences" across multiple documents.
+
+![demo](./assets/longtext.gif)
 ## References
 * **Ollama API Docs:** https://ollama.readthedocs.io/api/
-![demo](./assets/longtext.gif)
+
