@@ -75,33 +75,81 @@ The following screenshots are arranged according to the main user workflow so re
 
 After importing files, the system performs vectorization, chunking, and retrieval parameter setup to prepare a traceable knowledge base for later QA and analysis.
 
+![File management and vectorization demo](./images/文件管理与向量化.gif)
+
+Explanation: This GIF shows the continuous workflow from file import to file management and vectorization, illustrating how raw literature is converted into a searchable knowledge base.
+
 ![File vectorization](./images/文件向量化.jpg)
+
+Explanation: This screenshot shows the processing state after a document enters the vectorization pipeline, helping users confirm that indexing has completed successfully.
 
 ![Document chunking](./images/文献切片.jpg)
 
+Explanation: This screenshot shows how a document is split into smaller semantic chunks, providing finer-grained context units for later retrieval and citation tracing.
+
 ![Retrieval parameter settings](./images/检索参数设置.jpg)
+
+Explanation: This view is used to configure recall count, retrieval depth, and related settings so users can balance answer quality and response speed.
+
+![RAG knowledge-base selection](./images/RAG问答知识库选择.gif)
+
+Explanation: This GIF demonstrates how a target knowledge base is selected before QA, which is useful when managing multiple courses, topics, or document collections.
 
 ### 2. QA interaction and memory mode
 
 The QA interface supports citation-aware answers, multi-turn interaction, and memory-mode switching, which makes it suitable for course-material QA and follow-up questions.
 
+![QA assistant demo](./images/问答助手展示.gif)
+
+Explanation: This GIF shows the full interaction loop from entering a question to receiving an answer, making the response behavior of the system easy to observe.
+
 ![QA assistant module](./images/问答助手模块.jpg)
+
+Explanation: This screenshot shows the main QA layout, including the question area, answer area, and supporting controls for everyday use.
 
 ![Conversation content interface](./images/对话内容界面.jpg)
 
+Explanation: This screenshot displays multi-turn conversation content together with cited sources so users can verify where each conclusion comes from.
+
 ![Memory mode](./images/记忆模式.jpg)
+
+Explanation: This screenshot shows memory-mode switching, which controls whether the system keeps previous dialogue context for follow-up questions or starts each query independently.
 
 ### 3. Analysis reports and structured export
 
 In the analysis workflow, the system supports targeted field extraction, batch comparison, report export, and table-based presentation for literature review, proposal writing, and research record organization.
 
+![Paper assistant mode selection](./images/论文助手选择展示.gif)
+
+Explanation: This GIF shows how users select different paper-assistant modes, indicating that the system can quickly switch between multiple analysis tasks.
+
 ![Targeted field extraction](./images/定向字段抽取.jpg)
+
+Explanation: This screenshot shows the interface for extracting designated structured fields, which is useful for capturing research questions, methods, and experimental settings.
 
 ![Batch comparison and report export](./images/批量对比及报告导出.jpg)
 
+Explanation: This screenshot presents the batch comparison and report export workflow across multiple papers, which is useful for surveys and research summaries.
+
 ![Report table example](./images/报告表格示例.jpg)
 
+Explanation: This screenshot shows the tabular style of exported results so users can review, copy, and continue editing the structured output directly.
+
 ![Research report example](./images/研究报告示例.jpg)
+
+Explanation: This screenshot shows a comprehensive research-oriented report page suitable for coursework presentation, proposal preparation, and project documentation.
+
+![Paper assistant result demo](./images/论文助手结果展示.gif)
+
+Explanation: This GIF shows how the paper assistant presents final analysis results, making the structured output and synthesized conclusions easy to understand at a glance.
+
+### 4. Prompt engineering and task orchestration
+
+The system uses dedicated prompt templates for question answering, field extraction, comparative analysis, and report generation so that outputs remain more stable and better structured.
+
+![Prompt engineering demo](./images/提示词工程展示.gif)
+
+Explanation: This GIF shows the prompt-engineering-related interface and highlights how task-specific templates improve controllability across the literature QA and analysis workflow.
 
 ## References
 
