@@ -67,6 +67,42 @@ Typical outputs produced by the system include:
 - field comparison tables, evidence sections, and warning blocks;
 - resumable batch-analysis progress states.
 
+## Screenshots
+
+The following screenshots are arranged according to the main user workflow so readers can quickly understand how the system is used in practice.
+
+### 1. Knowledge-base setup and retrieval preparation
+
+After importing files, the system performs vectorization, chunking, and retrieval parameter setup to prepare a traceable knowledge base for later QA and analysis.
+
+![File vectorization](./images/文件向量化.jpg)
+
+![Document chunking](./images/文献切片.jpg)
+
+![Retrieval parameter settings](./images/检索参数设置.jpg)
+
+### 2. QA interaction and memory mode
+
+The QA interface supports citation-aware answers, multi-turn interaction, and memory-mode switching, which makes it suitable for course-material QA and follow-up questions.
+
+![QA assistant module](./images/问答助手模块.jpg)
+
+![Conversation content interface](./images/对话内容界面.jpg)
+
+![Memory mode](./images/记忆模式.jpg)
+
+### 3. Analysis reports and structured export
+
+In the analysis workflow, the system supports targeted field extraction, batch comparison, report export, and table-based presentation for literature review, proposal writing, and research record organization.
+
+![Targeted field extraction](./images/定向字段抽取.jpg)
+
+![Batch comparison and report export](./images/批量对比及报告导出.jpg)
+
+![Report table example](./images/报告表格示例.jpg)
+
+![Research report example](./images/研究报告示例.jpg)
+
 ## References
 
 - Ollama API Docs: [https://ollama.readthedocs.io/api/](https://ollama.readthedocs.io/api/)
