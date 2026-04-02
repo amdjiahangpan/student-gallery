@@ -24,10 +24,10 @@ The `01-gold-` prefix in the case folder name was added by the organizers after 
 1. In aup-learning-cloud, select **Basic GPU Environment** and use this case repository as the Git URL.
 2. Navigate to `cases/2026-03-njupt-winter-camp/01-gold-liuhuayaxi-smart-paper-qa-assistant/`.
 3. Open `main.ipynb` or `main_zh.ipynb`.
-4. The repository already includes `config/app_config.json`, one prebuilt knowledge base named `论文`, five demo PDFs, and five preserved conversations. No backup restore is required.
+4. The repository already includes `config/app_config.json`, one prebuilt knowledge base named `论文`, five demo PDFs under `imports/`, and five preserved conversations. No backup restore is required.
 5. Run all notebook cells from top to bottom.
 6. If your Ollama service is not reachable at `http://open-webui-ollama.open-webui:11434`, edit `config/app_config.json` or `config/app_config.example.json`. The shipped config targets the OpenAI-compatible `/v1` path on that host.
-7. Start QA, single-document analysis, or batch comparison immediately in the UI. The bundled payload is intentionally trimmed so the demo starts quickly after cloning.
+7. Start QA, single-document analysis, or batch comparison immediately in the UI. If you want to demonstrate workspace import and indexing, point the import panel to `imports/`. The bundled payload is intentionally trimmed so the demo starts quickly after cloning.
 
 The shipped Ollama configuration looks like this:
 
@@ -43,7 +43,7 @@ The shipped Ollama configuration looks like this:
 ## Bundled Demo Payload
 
 - One prebuilt knowledge base: `论文`
-- Five bundled PDFs:
+- Five bundled PDFs stored in `imports/` for direct import demo:
   `An Integrated Plasma–Photocatalytic System for Upcyclingof Polyolefin Plastics.pdf`
   `Angew Chem Int Ed - 2024 - Yue - Selective Photoreforming of Waste Plastics into Diesel Olefins via Single Reactive Oxygen.pdf`
   `A direct polymeric carbon nitride:tungsten oxide Z-scheme heterostructure for efficient photocatalytic hydrogen generation via reforming of plastics into value-added chemicals .pdf`

@@ -24,10 +24,10 @@
 1. 在 aup-learning-cloud 中选择 **Basic GPU Environment**，Git URL 填写本案例仓库地址。
 2. 进入 `cases/2026-03-njupt-winter-camp/01-gold-liuhuayaxi-smart-paper-qa-assistant/`。
 3. 打开 `main_zh.ipynb` 或 `main.ipynb`。
-4. 仓库已经内置 `config/app_config.json`、1 个预构建知识库 `论文`、5 篇演示 PDF 和 5 组保留对话，无需再恢复备份。
+4. 仓库已经内置 `config/app_config.json`、1 个预构建知识库 `论文`、位于 `imports/` 的 5 篇演示 PDF 和 5 组保留对话，无需再恢复备份。
 5. 从头到尾运行 Notebook 所有单元，等待界面加载完成。
 6. 如果你的 Ollama 服务地址不是 `http://open-webui-ollama.open-webui:11434`，请修改 `config/app_config.json` 或 `config/app_config.example.json`。仓库默认写入的是该服务的 OpenAI-compatible `/v1` 路径。
-7. 界面加载完成后即可直接演示问答、单文分析和批量对比；当前仓库只保留最小演示数据集，方便拉取后快速启动。
+7. 界面加载完成后即可直接演示问答、单文分析和批量对比；如需演示“从工作区导入并建索引”，可直接选择案例目录下的 `imports/`。当前仓库只保留最小演示数据集，方便拉取后快速启动。
 
 仓库默认附带的 Ollama 配置如下：
 
@@ -43,7 +43,7 @@
 ## 内置演示数据
 
 - 预构建知识库：`论文`
-- 内置 5 篇 PDF：
+- 内置 5 篇 PDF，默认放在 `imports/` 中，便于直接做导入演示：
   `An Integrated Plasma–Photocatalytic System for Upcyclingof Polyolefin Plastics.pdf`
   `Angew Chem Int Ed - 2024 - Yue - Selective Photoreforming of Waste Plastics into Diesel Olefins via Single Reactive Oxygen.pdf`
   `A direct polymeric carbon nitride:tungsten oxide Z-scheme heterostructure for efficient photocatalytic hydrogen generation via reforming of plastics into value-added chemicals .pdf`
