@@ -24,23 +24,33 @@ The `01-gold-` prefix in the case folder name was added by the organizers after 
 1. In aup-learning-cloud, select **Basic GPU Environment** and use this case repository as the Git URL.
 2. Navigate to `cases/2026-03-njupt-winter-camp/01-gold-liuhuayaxi-smart-paper-qa-assistant/`.
 3. Open `main.ipynb` or `main_zh.ipynb`.
-4. On the first run, if `config/app_config.json` does not exist, the notebook will generate it automatically from `config/app_config.example.json`.
-5. Fill in your chat model, embedding model, and their OpenAI-compatible Base URLs. If both models are hosted behind the same service, they can share the same endpoint.
-6. Run all notebook cells from top to bottom.
-7. Build a knowledge base, import paper files, and start QA, single-document analysis, or batch comparison in the UI.
+4. The repository already includes `config/app_config.json`, one prebuilt knowledge base named `论文`, five demo PDFs, and five preserved conversations. No backup restore is required.
+5. Run all notebook cells from top to bottom.
+6. If your Ollama service is not reachable at `http://open-webui-ollama.open-webui:11434`, edit `config/app_config.json` or `config/app_config.example.json`. The shipped config targets the OpenAI-compatible `/v1` path on that host.
+7. Start QA, single-document analysis, or batch comparison immediately in the UI. The bundled payload is intentionally trimmed so the demo starts quickly after cloning.
 
-A typical configuration skeleton looks like this:
+The shipped Ollama configuration looks like this:
 
 ```json
 {
-  "OPENAI_CHAT_API_KEY": "your-api-key",
-  "OPENAI_CHAT_BASE_URL": "http://your-compatible-endpoint/v1",
-  "OPENAI_CHAT_MODEL": "your-chat-model",
-  "OPENAI_EMBEDDING_API_KEY": "your-api-key",
-  "OPENAI_EMBEDDING_BASE_URL": "http://your-compatible-endpoint/v1",
-  "OPENAI_EMBEDDING_MODEL": "your-embedding-model"
+  "OPENAI_API_KEY": "ollama",
+  "OPENAI_BASE_URL": "http://open-webui-ollama.open-webui:11434/v1",
+  "OPENAI_CHAT_MODEL": "qwen3-coder:30b",
+  "OPENAI_EMBEDDING_MODEL": "MadMind/Qwen3-Embedding-8B-GGUF-Q4_K_M:latest"
 }
 ```
+
+## Bundled Demo Payload
+
+- One prebuilt knowledge base: `论文`
+- Five bundled PDFs:
+  `An Integrated Plasma–Photocatalytic System for Upcyclingof Polyolefin Plastics.pdf`
+  `Angew Chem Int Ed - 2024 - Yue - Selective Photoreforming of Waste Plastics into Diesel Olefins via Single Reactive Oxygen.pdf`
+  `A direct polymeric carbon nitride:tungsten oxide Z-scheme heterostructure for efficient photocatalytic hydrogen generation via reforming of plastics into value-added chemicals .pdf`
+  `Ambient solar thermal catalysis for polyolefin upcycling using copper encapsulated in silicon nanosheets and chloroaluminate ion.pdf`
+  `Advanced Energy Materials - 2024 - Zhao - Solar-Driven Photoelectrochemical Upcycling of Polyimide Plastic Waste with Safe.pdf`
+- Five preserved persistent-memory sessions with 14, 20, 40, 76, and 98 turns are stored in `storage/app_state.db`.
+- The vector index for those five PDFs is already built under `storage/chroma`, so retrieval-based QA works on first launch.
 
 ## Technical Highlights
 
@@ -52,6 +62,8 @@ A typical configuration skeleton looks like this:
 ## Results / Demo
 
 According to the project manual, the tested project version had already reached the following milestone counts:
+
+The counts below describe the full project milestone. This repository snapshot intentionally ships a trimmed demo payload so it stays practical to clone and launch during presentations.
 
 - 66 raw source documents ingested;
 - 2 knowledge bases maintained;
@@ -66,6 +78,90 @@ Typical outputs produced by the system include:
 - multi-document Markdown comparison reports;
 - field comparison tables, evidence sections, and warning blocks;
 - resumable batch-analysis progress states.
+
+## Screenshots
+
+The following screenshots are arranged according to the main user workflow so readers can quickly understand how the system is used in practice.
+
+### 1. Knowledge-base setup and retrieval preparation
+
+After importing files, the system performs vectorization, chunking, and retrieval parameter setup to prepare a traceable knowledge base for later QA and analysis.
+
+![File management and vectorization demo](./images/文件管理与向量化.gif)
+
+Explanation: This GIF shows the continuous workflow from file import to file management and vectorization, illustrating how raw literature is converted into a searchable knowledge base.
+
+![File vectorization](./images/文件向量化.jpg)
+
+Explanation: This screenshot shows the processing state after a document enters the vectorization pipeline, helping users confirm that indexing has completed successfully.
+
+![Document chunking](./images/文献切片.jpg)
+
+Explanation: This screenshot shows how a document is split into smaller semantic chunks, providing finer-grained context units for later retrieval and citation tracing.
+
+![Retrieval parameter settings](./images/检索参数设置.jpg)
+
+Explanation: This view is used to configure recall count, retrieval depth, and related settings so users can balance answer quality and response speed.
+
+![RAG knowledge-base selection](./images/RAG问答知识库选择.gif)
+
+Explanation: This GIF demonstrates how a target knowledge base is selected before QA, which is useful when managing multiple courses, topics, or document collections.
+
+### 2. QA interaction and memory mode
+
+The QA interface supports citation-aware answers, multi-turn interaction, and memory-mode switching, which makes it suitable for course-material QA and follow-up questions.
+
+![QA assistant demo](./images/问答助手展示.gif)
+
+Explanation: This GIF shows the full interaction loop from entering a question to receiving an answer, making the response behavior of the system easy to observe.
+
+![QA assistant module](./images/问答助手模块.jpg)
+
+Explanation: This screenshot shows the main QA layout, including the question area, answer area, and supporting controls for everyday use.
+
+![Conversation content interface](./images/对话内容界面.jpg)
+
+Explanation: This screenshot displays multi-turn conversation content together with cited sources so users can verify where each conclusion comes from.
+
+![Memory mode](./images/记忆模式.jpg)
+
+Explanation: This screenshot shows memory-mode switching, which controls whether the system keeps previous dialogue context for follow-up questions or starts each query independently.
+
+### 3. Analysis reports and structured export
+
+In the analysis workflow, the system supports targeted field extraction, batch comparison, report export, and table-based presentation for literature review, proposal writing, and research record organization.
+
+![Paper assistant mode selection](./images/论文助手选择展示.gif)
+
+Explanation: This GIF shows how users select different paper-assistant modes, indicating that the system can quickly switch between multiple analysis tasks.
+
+![Targeted field extraction](./images/定向字段抽取.jpg)
+
+Explanation: This screenshot shows the interface for extracting designated structured fields, which is useful for capturing research questions, methods, and experimental settings.
+
+![Batch comparison and report export](./images/批量对比及报告导出.jpg)
+
+Explanation: This screenshot presents the batch comparison and report export workflow across multiple papers, which is useful for surveys and research summaries.
+
+![Report table example](./images/报告表格示例.jpg)
+
+Explanation: This screenshot shows the tabular style of exported results so users can review, copy, and continue editing the structured output directly.
+
+![Research report example](./images/研究报告示例.jpg)
+
+Explanation: This screenshot shows a comprehensive research-oriented report page suitable for coursework presentation, proposal preparation, and project documentation.
+
+![Paper assistant result demo](./images/论文助手结果展示.gif)
+
+Explanation: This GIF shows how the paper assistant presents final analysis results, making the structured output and synthesized conclusions easy to understand at a glance.
+
+### 4. Prompt engineering and task orchestration
+
+The system uses dedicated prompt templates for question answering, field extraction, comparative analysis, and report generation so that outputs remain more stable and better structured.
+
+![Prompt engineering demo](./images/提示词工程展示.gif)
+
+Explanation: This GIF shows the prompt-engineering-related interface and highlights how task-specific templates improve controllability across the literature QA and analysis workflow.
 
 ## References
 
